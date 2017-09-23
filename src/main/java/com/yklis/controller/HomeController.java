@@ -56,11 +56,7 @@ public class HomeController{
             @RequestParam(value = "password",required = false) String password) {               
         
         logger.info("login方法。用户【" + account + "】,密码:【"+password+"】");        
-        
-        if("".equals(password)){
-            logger.info("密码为空 ");
-        }
-        
+                
         //passWord为null时Mybatis并不会作为空字符串""处理
     	String tmpPassword = password;
         if(null == password){
