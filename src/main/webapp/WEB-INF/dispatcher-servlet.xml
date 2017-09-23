@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd ">
+
+	<!-- 自动搜索@Controller标注的类，包括其下面的子包 -->
+    <context:component-scan base-package="com.yklis.controller" />
+    
+    <!-- 自动注册DefaultAnnotationHandlerMapping、AnnotationMethodHandlerAdapter两个bean -->
+    <!-- 是spring MVC为@Controllers分发请求所必须的 -->
+    <!-- 并提供了：数据绑定支持，@NumberFormatannotation支持，@DateTimeFormat支持，@Valid支持，读写XML的支持（JAXB），读写JSON的支持（Jackson） -->
+    <mvc:annotation-driven />    
+    
+    <!-- 使servlet(dispatcher)不拦截这些静态资源文件 -->
+    <!-- 如果不加这句，页面上引用的css、js等文件将无法加载 -->
+    <mvc:resources mapping="/static/**" location="/static/" />
+    
+    <!-- 配置视图解析器，将ModelAndView及字符串解析为具体的页面 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+</beans>
