@@ -13,8 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.yklis.entity.WorkerEntity;
 import com.yklis.service.WorkerService;
 
@@ -75,5 +78,59 @@ public class HomeController{
         }           
                 
         return new ModelAndView("labReport", null);
-    }      
+    }
+    
+    @RequestMapping(value = "selectLabReport" )
+    @ResponseBody
+    public String selectLabReport(HttpServletRequest request,HttpServletResponse response) {               
+        
+    	  		  /*if RadioGroup1.ItemIndex=1 then
+    			    strsql44:=' CONVERT(CHAR(10),check_date,121)=CONVERT(CHAR(10),GETDATE(),121) and '
+    			  else if RadioGroup1.ItemIndex=2 then
+    			    strsql44:=' check_date>GETDATE()-7 and '
+    			  else if RadioGroup1.ItemIndex=3 then
+    			    strsql44:=' check_date>GETDATE()-30 and '
+    			  else strsql44:=' ';
+    			  if RadioGroup3.ItemIndex=1 then
+    			    STRSQL46:=' isnull((case when len(caseno)=8 and LEFT(caseno,1)=''8'' then 1 else printtimes end),0)<=0 and '
+    			  else STRSQL46:='';
+    			  if trim(LabeledEdit1.Text)<>'' then STRSQL48:=' Caseno='''+trim(LabeledEdit1.Text)+''' and '
+    			  else STRSQL48:='';
+    			  if trim(LabeledEdit2.Text)<>'' then STRSQL22:=' patientname like ''%'+trim(LabeledEdit2.Text)+'%'' and '
+    			  else STRSQL22:='';
+    			  if trim(LabeledEdit3.Text)<>'' then STRSQL45:=' deptname='''+trim(LabeledEdit3.Text)+''' and '
+    			  else STRSQL45:='';
+    			  if trim(LabeledEdit4.Text)<>'' then STRSQL50:=' check_doctor='''+trim(LabeledEdit4.Text)+''' and '
+    			  else STRSQL50:='';
+    			  STRSQL47:=' isnull(report_doctor,'''')<>'''' ';
+    			  STRSQL49:=' order by patientname ';
+    			  ADObasic.Close;
+    			  ADObasic.SQL.Clear;
+    			  ADObasic.SQL.Add(SHOW_CHK_CON);
+    			  ADObasic.SQL.Add(' where ');
+    			  ADObasic.SQL.Add(strsql44);
+    			  ADObasic.SQL.Add(strsql46);
+    			  ADObasic.SQL.Add(strsql48);
+    			  ADObasic.SQL.Add(strsql22);
+    			  ADObasic.SQL.Add(strsql45);
+    			  ADObasic.SQL.Add(strsql50);
+    			  ADObasic.SQL.Add(strsql47);
+    			  ADObasic.SQL.Add(strsql49);
+    			  ADObasic.Open;*/
+
+    	String checkDate = request.getParameter("checkDate");
+    	String printtimes = request.getParameter("printtimes");
+    	String caseno = request.getParameter("caseno");
+    	String patientname = request.getParameter("patientname");
+    	String deptname = request.getParameter("deptname");
+    	String check_doctor = request.getParameter("check_doctor");
+    	
+        //获取输入参数  
+        Map<String, String[]> inputParamMap = request.getParameterMap();
+        
+        Gson gson = new Gson();
+        
+        logger.info("selectLabReport:"+gson.toJson(inputParamMap));
+        return gson.toJson(inputParamMap);
+    }          
 }
