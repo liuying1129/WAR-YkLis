@@ -13,12 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
 import com.yklis.entity.WorkerEntity;
+import com.yklis.service.SelectDataSetSQLCmdService;
 import com.yklis.service.WorkerService;
 
 @Controller
@@ -34,6 +32,9 @@ public class HomeController{
     
     @Autowired
     private WorkerService workerService;    
+
+    @Autowired
+    private SelectDataSetSQLCmdService selectDataSetSQLCmdService;    
 
     @RequestMapping("index")
     //不能加@ResponseBody,否则,不会跳转到index页面,而是将index做为字符串返回到当前页面中
@@ -84,40 +85,6 @@ public class HomeController{
     @ResponseBody
     public String selectLabReport(HttpServletRequest request,HttpServletResponse response) {               
         
-    	  		  /*if RadioGroup1.ItemIndex=1 then
-    			    strsql44:=' CONVERT(CHAR(10),check_date,121)=CONVERT(CHAR(10),GETDATE(),121) and '
-    			  else if RadioGroup1.ItemIndex=2 then
-    			    strsql44:=' check_date>GETDATE()-7 and '
-    			  else if RadioGroup1.ItemIndex=3 then
-    			    strsql44:=' check_date>GETDATE()-30 and '
-    			  else strsql44:=' ';
-    			  if RadioGroup3.ItemIndex=1 then
-    			    STRSQL46:=' isnull((case when len(caseno)=8 and LEFT(caseno,1)=''8'' then 1 else printtimes end),0)<=0 and '
-    			  else STRSQL46:='';
-    			  if trim(LabeledEdit1.Text)<>'' then STRSQL48:=' Caseno='''+trim(LabeledEdit1.Text)+''' and '
-    			  else STRSQL48:='';
-    			  if trim(LabeledEdit2.Text)<>'' then STRSQL22:=' patientname like ''%'+trim(LabeledEdit2.Text)+'%'' and '
-    			  else STRSQL22:='';
-    			  if trim(LabeledEdit3.Text)<>'' then STRSQL45:=' deptname='''+trim(LabeledEdit3.Text)+''' and '
-    			  else STRSQL45:='';
-    			  if trim(LabeledEdit4.Text)<>'' then STRSQL50:=' check_doctor='''+trim(LabeledEdit4.Text)+''' and '
-    			  else STRSQL50:='';
-    			  STRSQL47:=' isnull(report_doctor,'''')<>'''' ';
-    			  STRSQL49:=' order by patientname ';
-    			  ADObasic.Close;
-    			  ADObasic.SQL.Clear;
-    			  ADObasic.SQL.Add(SHOW_CHK_CON);
-    			  ADObasic.SQL.Add(' where ');
-    			  ADObasic.SQL.Add(strsql44);
-    			  ADObasic.SQL.Add(strsql46);
-    			  ADObasic.SQL.Add(strsql48);
-    			  ADObasic.SQL.Add(strsql22);
-    			  ADObasic.SQL.Add(strsql45);
-    			  ADObasic.SQL.Add(strsql50);
-    			  ADObasic.SQL.Add(strsql47);
-    			  ADObasic.SQL.Add(strsql49);
-    			  ADObasic.Open;*/
-
     	String checkDate = request.getParameter("checkDate");
     	String printtimes = request.getParameter("printtimes");
     	String caseno = request.getParameter("caseno");
@@ -125,12 +92,93 @@ public class HomeController{
     	String deptname = request.getParameter("deptname");
     	String check_doctor = request.getParameter("check_doctor");
     	
+    	 String SHOW_CHK_CON="select top 1000 patientname as 姓名,"+
+    		        " sex as 性别,"+
+    		        " age as 年龄,0 as 选择,caseno as 病历号,bedno as 床号,deptname as 送检科室,"+
+    		        " check_doctor as 送检医生,check_date as 检查日期,"+
+    		        " report_date as 申请日期,report_doctor as 审核者,"+//dbo.uf_GetPatientCombName(ifCompleted,unid) as 组合项目,
+    		        " combin_id as 工作组,operator as 操作者,diagnosetype as 优先级别,"+
+    		        " (case when len(caseno)=8 and LEFT(caseno,1)='8' then 1 else printtimes end) as 打印次数,"+//PEIS的单:caseno长度为8且以8开头
+    		        " flagetype as 样本类型,diagnose as 临床诊断,typeflagcase as 样本情况,"+
+    		        " issure as 备注,unid as 唯一编号, "+
+    		        " His_Unid as His唯一编号,His_MzOrZy as His门诊或住院, "+
+    		        " WorkDepartment as 所属部门,WorkCategory as 工种,WorkID as 工号,ifMarry as 婚否,OldAddress as 籍贯,Address as 住址,Telephone as 电话,WorkCompany as 所属公司, "+
+    		        " Audit_Date as 审核时间,ifCompleted,checkid as 联机号,lsh as 流水号 "+
+    		        " from view_Chk_Con_All ";
+    	
+    	String strsql44;
+		  if( "1".equals(checkDate)){
+			    strsql44 =" CONVERT(CHAR(10),check_date,121)=CONVERT(CHAR(10),GETDATE(),121) and ";			  
+		  }
+		  else if ("2".equals(checkDate)) {
+			  strsql44=" check_date>GETDATE()-7 and ";
+		  }		    
+		  else if ("3".equals(checkDate)) {
+			  strsql44=" check_date>GETDATE()-30 and ";
+		  }		    
+		  else strsql44=" ";
+
+		  String STRSQL46;
+		  if ( "1".equals(printtimes)){
+			    STRSQL46=" isnull((case when len(caseno)=8 and LEFT(caseno,1)=''8'' then 1 else printtimes end),0)<=0 and ";		  
+		  }
+  		  else STRSQL46="";
+		  
+		  StringBuilder STRSQL48 = new StringBuilder("");
+		  if (!"".equals(caseno.trim())) {
+			  STRSQL48.append(" Caseno='");
+			  STRSQL48.append(caseno.trim());
+			  STRSQL48.append("' and ");
+		  }
+		  
+		  StringBuilder STRSQL22 = new StringBuilder("");
+		  if (!"".equals(patientname.trim())) {
+			  STRSQL22.append(" patientname like '%");
+			  STRSQL22.append(patientname.trim());
+			  STRSQL22.append("%' and ");
+		  }
+		  
+		  StringBuilder STRSQL45 = new StringBuilder("");
+		  if (!"".equals(deptname.trim())) {
+			  STRSQL45.append(" deptname='");
+			  STRSQL45.append(deptname.trim());
+			  STRSQL45.append("' and ");
+		  }
+		  
+		  StringBuilder STRSQL50 = new StringBuilder("");
+		  if (!"".equals(check_doctor.trim())) {
+			  STRSQL50.append(" check_doctor='");
+			  STRSQL50.append(check_doctor.trim());
+			  STRSQL50.append("' and ");
+		  }
+		  
+		  String STRSQL47=" isnull(report_doctor,'')<>'' ";
+		  String STRSQL49=" order by patientname ";
+		  
+	    StringBuilder sbSQL = new StringBuilder();
+	    sbSQL.append(SHOW_CHK_CON);
+	    sbSQL.append(" where ");
+	    sbSQL.append(strsql44);
+	    sbSQL.append(STRSQL46);
+	    sbSQL.append(STRSQL48);
+	    sbSQL.append(STRSQL22);
+	    sbSQL.append(STRSQL45);
+	    sbSQL.append(STRSQL50);
+	    sbSQL.append(STRSQL47);
+	    sbSQL.append(STRSQL49);
+	    
+	    logger.info("selectLabReport方法：SQL:"+sbSQL.toString());
+		      	
+    	String aa = selectDataSetSQLCmdService.selectDataSetSQLCmd(sbSQL.toString());
+    	
+	    logger.info("selectLabReport方法：结果:"+aa);
+	    
         //获取输入参数  
-        Map<String, String[]> inputParamMap = request.getParameterMap();
+        //Map<String, String[]> inputParamMap = request.getParameterMap();
         
-        Gson gson = new Gson();
+        //Gson gson = new Gson();
         
-        logger.info("selectLabReport:"+gson.toJson(inputParamMap));
-        return gson.toJson(inputParamMap);
+        //logger.info("selectLabReport:"+gson.toJson(inputParamMap));
+        return aa;
     }          
 }
