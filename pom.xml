@@ -265,11 +265,11 @@
 		</dependency>
 			
 		<!-- 本地仓库工具库 -->
-        <!-- <dependency>
+        <dependency>
             <groupId>com.yklis</groupId>
             <artifactId>LisFunction</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency> -->       
+        </dependency>
 					
 	</dependencies>	
 
@@ -278,19 +278,20 @@
 	    <!-- 定义finalName，则生成的包名是finalName.war -->
 	    <finalName>YkLis</finalName>
 	    
-	    <!-- 如果不加该resources，则打包时只会默认将src/main/resources的文件做为资源文件打包，漏掉dao目录下的xml资源文件 -->
-	    <!-- <resources>  
-	       <resource>  
-	          <directory>src/main/resources</directory>  
-	       </resource>
-	       <resource>  
-	          <directory>src/main/java</directory>  
-	          <includes>  
-	              **/*,表示src/main/java下各级子目录的xml文件
-	              <include>**/*.xml</include>  
-	          </includes>  
-	       </resource>    
-	    </resources> -->
+        <!-- 如果不加该resources，则打包时只会默认将src/main/resources的文件做为资源文件打包，漏掉dao目录下的xml资源文件 -->
+        <resources>  
+           <resource>  
+              <directory>src/main/resources</directory>  
+           </resource>
+           <resource>  
+              <directory>src/main/java</directory>  
+              <includes>  
+                  <!-- **/*,表示src/main/java下各级子目录的xml文件 -->
+                  <include>**/*.xml</include>  
+              </includes>  
+           </resource>    
+        </resources>                
+        
 	    <plugins>
 	        <!-- 解决maven编译时“source-1.5 中不支持 diamond 运算符”的问题 -->
 	        <plugin>

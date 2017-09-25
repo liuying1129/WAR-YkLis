@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yklis.lisfunction.entity.WorkerEntity;
+import com.yklis.lisfunction.service.WorkerService;
+
 @Controller
 @RequestMapping("/") 
 public class HomeController{
@@ -26,8 +29,8 @@ public class HomeController{
     //PropertyConfigurator.configure("log4jj.properties");
     private transient Logger logger = Logger.getLogger(this.getClass());
     
-    //@Autowired
-    //private WorkerService workerService;    
+    @Autowired
+    private WorkerService workerService;    
 
     //@Autowired
     //private SelectDataSetSQLCmdService selectDataSetSQLCmdService;    
@@ -48,7 +51,7 @@ public class HomeController{
         return new ModelAndView("login", modelMap);        
     }    
     
-    /*@RequestMapping(value = "login" )
+    @RequestMapping(value = "login" )
     @ResponseBody
     public ModelAndView login(HttpServletRequest request,
             HttpServletResponse response,
@@ -77,7 +80,7 @@ public class HomeController{
         return new ModelAndView("labReport", null);
     }
     
-    @RequestMapping(value = "selectLabReport" )
+    /*@RequestMapping(value = "selectLabReport" )
     @ResponseBody
     public String selectLabReport(HttpServletRequest request,HttpServletResponse response) {               
         
