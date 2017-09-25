@@ -20,7 +20,7 @@ $(document).ready(function() {
 				$.each(data.response, function(index,element) {
 		            var tbBody = ""
 		            var trColor;
-		            if (i % 2 == 0) {
+		            if (index % 2 == 0) {
 		              trColor = "even";
 		            }
 		            else {
