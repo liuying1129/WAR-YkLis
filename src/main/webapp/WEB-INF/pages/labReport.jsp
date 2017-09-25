@@ -48,7 +48,7 @@
     <input type="text" name="check_doctor" placeholder="送检医生">
   </form>
   <button type="button" id="btnQuery">查询</button>
-  <table>
+  <table id="myTb">
     <tbody>
         <tr>
           <th>班级</th>

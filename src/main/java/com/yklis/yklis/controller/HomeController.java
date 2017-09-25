@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yklis.lisfunction.entity.WorkerEntity;
+import com.yklis.lisfunction.service.SelectDataSetSQLCmdService;
 import com.yklis.lisfunction.service.WorkerService;
 
 @Controller
@@ -32,8 +33,8 @@ public class HomeController{
     @Autowired
     private WorkerService workerService;    
 
-    //@Autowired
-    //private SelectDataSetSQLCmdService selectDataSetSQLCmdService;    
+    @Autowired
+    private SelectDataSetSQLCmdService selectDataSetSQLCmdService;    
 
     @RequestMapping("index")
     //不能加@ResponseBody,否则,不会跳转到index页面,而是将index做为字符串返回到当前页面中
@@ -80,7 +81,7 @@ public class HomeController{
         return new ModelAndView("labReport", null);
     }
     
-    /*@RequestMapping(value = "selectLabReport" )
+    @RequestMapping(value = "selectLabReport" )
     @ResponseBody
     public String selectLabReport(HttpServletRequest request,HttpServletResponse response) {               
         
@@ -179,5 +180,5 @@ public class HomeController{
         
         //logger.info("selectLabReport:"+gson.toJson(inputParamMap));
         return aa;
-    }*/          
+    }          
 }

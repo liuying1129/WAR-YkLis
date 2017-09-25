@@ -14,13 +14,23 @@ $(document).ready(function() {
 			//预期服务器返回的数据类型。如果不指定，jQuery将自动根据 HTTP包 MIME信息来智能判断
 			dataType : 'json',
 			success : function(data) {
-				//window.alert(data);
-				console.log(data);
+
+				//console.log(data);
+				//console.log(data.response);
+				$.each(data.response, function(index,element) {
+		            var tbBody = ""
+		            var trColor;
+		            if (i % 2 == 0) {
+		              trColor = "even";
+		            }
+		            else {
+		              trColor = "odd";
+		            }
+		            tbBody += "<tr><td>" + element.姓名 + "</td><td>" + element.性别 + "</td><td>" + element.性别 + "</td></tr>";
+		            $("#myTb").append(tbBody);
+		          });
 			},
 			error : function(xhr, type, errorThrown) {
-				//window.alert(xhr.status);
-				//window.alert(xhr.readyState);
-				//window.alert(textStatus);
 				console.log(xhr.status);
 				console.log(xhr.readyState);
 				console.log(textStatus);
