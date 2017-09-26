@@ -22,7 +22,7 @@
 
 <body>
 
-  <!-- form表单数据提交到controller示例,action -->
+  <!-- form表单数据通过form外button(ajax)提交到controller示例 -->
   <form id="frmQuery">
     检查日期:
     <label for="checkDateUnlimited">不限</label>
@@ -47,7 +47,7 @@
     送检医生
     <input type="text" name="check_doctor" placeholder="送检医生">
   </form>
-  <button type="button" id="btnQuery">查询</button>
+  <button id="btnQuery">查询</button>
   <table id="myTb">
     <tbody>
         <tr>

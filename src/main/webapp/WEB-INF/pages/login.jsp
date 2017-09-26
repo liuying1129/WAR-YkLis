@@ -22,7 +22,7 @@
 
 <body>
 
-  <!-- form表单数据提交到controller示例,action -->
+  <!-- form表单数据通过submit提交到controller示例,action -->
   <form id="slick-login" action="login" method="post">
     <label for="account">account</label>
     <input type="text" name="account" placeholder="帐号" required>
