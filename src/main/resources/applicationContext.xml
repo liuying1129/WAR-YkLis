@@ -97,9 +97,10 @@
         
     <!-- 配置sqlSessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <!-- <property name="configLocation" value="classpath*:MyBatis-Configuration.xml"></property> -->
+        <property name="configLocation" value="classpath:MyBatis-Configuration.xml"></property>
         <property name="dataSource" ref="dataSource_master" />
-        <property name="mapperLocations" value="classpath:com/yklis/lisfunction/dao/*.xml"/>
+        <!-- 无MyBatis-Configuration.xml时，可如下配置 -->
+        <!-- <property name="mapperLocations" value="classpath:com/yklis/lisfunction/dao/*.xml" /> -->
     </bean>
     
     <!-- 配置扫描器,扫描value下的所有接口，然后创建各自接口的动态代理类 -->
