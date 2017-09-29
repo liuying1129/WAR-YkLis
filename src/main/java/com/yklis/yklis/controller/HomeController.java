@@ -180,5 +180,12 @@ public class HomeController{
         
         //logger.info("selectLabReport:"+gson.toJson(inputParamMap));
         return aa;
-    }          
+    }
+    
+    @RequestMapping("labReport")
+    //不能加@ResponseBody,否则,不会跳转到index页面,而是将index做为字符串返回到当前页面中
+    public String labReport(HttpServletRequest request) {
+    	
+        return "labReport";
+    }    
 }

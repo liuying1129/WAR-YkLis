@@ -48,7 +48,7 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="goLogin">登录</a></li>
-            <li><a href="#contact">检验报告</a></li>
+            <li><a href="labReport">检验报告</a></li>
             <li><a href="#about">About</a></li>
           </ul>
         </div><!--/.nav-collapse -->
