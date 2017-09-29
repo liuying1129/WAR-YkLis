@@ -23,7 +23,6 @@
     
     <!-- 扫描类包Java文件的Spring注解，如@Component、@Repository、@Service、@Controller等，将这些类注册为bean -->
     <context:component-scan base-package="com.yklis.lisfunction.dao" />
-    
     <context:component-scan base-package="com.yklis.lisfunction.service.impl" />
     
     <!-- 读入属性文件 -->  
@@ -98,13 +97,14 @@
         
     <!-- 配置sqlSessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="configLocation" value="classpath:MyBatis-Configuration.xml"></property>
+        <!-- <property name="configLocation" value="classpath*:MyBatis-Configuration.xml"></property> -->
         <property name="dataSource" ref="dataSource_master" />
+        <property name="mapperLocations" value="classpath:com/yklis/lisfunction/dao/*.xml"/>
     </bean>
     
     <!-- 配置扫描器,扫描value下的所有接口，然后创建各自接口的动态代理类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> 
         <property name="basePackage" value="com.yklis.lisfunction.dao" />
-    </bean>
-    				
+    </bean>                    
+    
 </beans>
