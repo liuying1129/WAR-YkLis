@@ -8,7 +8,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -24,14 +23,7 @@ import com.yklis.lisfunction.service.WorkerService;
 @Controller
 @RequestMapping("/") 
 public class HomeController{
-	
-    //配置容器起动时候加载log4j配置文件
-    //只要将log4j.properties放在classes下，tomcat启动的时候会自动加载log4j的配置信息，
-    //在程式代码不再需要使用PropertyConfigurator.configure("log4j.properties")来加载，
-    //如果用了它反而会出现上面的错误--Could not read configuration file [log4jj.properties]
-    //PropertyConfigurator.configure("log4jj.properties");
-    //private transient Logger logger = Logger.getLogger(this.getClass());
-    
+	    
     @Autowired
     private WorkerService workerService;    
 
@@ -62,14 +54,11 @@ public class HomeController{
             @RequestParam(value = "password",required = false) String password,
             @CookieValue(value = "yklis.account",required = false) String cookieAccount,
             @CookieValue(value = "yklis.request",required = false) String cookieRequest) {
-        
-        //logger.info("login方法。用户【" + account + "】,密码:【"+password+"】");        
-                
+                        
         //passWord为null时Mybatis并不会作为空字符串""处理
     	String tmpPassword = password;
         if(null == password){
         	tmpPassword = "";
-            //logger.info("密码为null");
         }
         
         List<WorkerEntity> workerList = workerService.ifCanLogin(account, tmpPassword);
@@ -83,8 +72,7 @@ public class HomeController{
         }
         
         Cookie cookie = new Cookie("yklis.account",account);
-        response.addCookie(cookie);
-                
+        response.addCookie(cookie);                
                 
         if("".equals(cookieRequest)||(null==cookieRequest)){
             
@@ -98,10 +86,7 @@ public class HomeController{
             
             String str1 = cookieRequest.replace(request.getContextPath()+"/","");
             
-            //logger.info("原请求："+str1);
-            
-            return new ModelAndView(str1, null);
-            
+            return new ModelAndView(str1, null);            
         }
     }
     

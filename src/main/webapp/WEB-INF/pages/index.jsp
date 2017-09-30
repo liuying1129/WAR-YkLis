@@ -37,6 +37,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
+          <!-- button标签是浏览器变小时出现的响应式按钮,下面的三个icon-bar表示button的三横线 -->
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
@@ -49,6 +50,7 @@
           <ul class="nav navbar-nav">
             <li><a href="goLogin">登录</a></li>
             <li><a href="#">${account}</a></li>
+            <li><a href="index">首页</a></li>
             <li><a href="labReport">检验报告</a></li>
             <li><a href="#about">About</a></li>
           </ul>
