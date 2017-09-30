@@ -86,9 +86,9 @@
     
     <!-- 切点表达式语言定义目标方法 -->
     <!-- 第一个*代表所有的返回值类型 
-                               第二个*代表所有的类
-                               第三个*代表类所有方法 
-                               最后一个..代表所有的参数 -->
+              第二个*代表所有的类
+              第三个*代表类所有方法 
+              最后一个..代表所有的参数 -->
     <!-- 决定了不能在service层切换数据源。可以执行，但切换不成功(不会报错) -->
     <aop:config>
         <aop:pointcut id="servicesMethod" expression="execution(* com.yklis.lisfunction.service.impl.*.*(..))" />

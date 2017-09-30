@@ -28,7 +28,7 @@ public class HomeController{
     //在程式代码不再需要使用PropertyConfigurator.configure("log4j.properties")来加载，
     //如果用了它反而会出现上面的错误--Could not read configuration file [log4jj.properties]
     //PropertyConfigurator.configure("log4jj.properties");
-    private transient Logger logger = Logger.getLogger(this.getClass());
+    //private transient Logger logger = Logger.getLogger(this.getClass());
     
     @Autowired
     private WorkerService workerService;    
@@ -59,13 +59,13 @@ public class HomeController{
             @RequestParam(value = "account",required = true) String account,
             @RequestParam(value = "password",required = false) String password) {               
         
-        logger.info("login方法。用户【" + account + "】,密码:【"+password+"】");        
+        //logger.info("login方法。用户【" + account + "】,密码:【"+password+"】");        
                 
         //passWord为null时Mybatis并不会作为空字符串""处理
     	String tmpPassword = password;
         if(null == password){
         	tmpPassword = "";
-            logger.info("密码为null");
+            //logger.info("密码为null");
         }
         
         List<WorkerEntity> workerList = workerService.ifCanLogin(account, tmpPassword);
@@ -167,11 +167,11 @@ public class HomeController{
 	    sbSQL.append(STRSQL47);
 	    sbSQL.append(STRSQL49);
 	    
-	    logger.info("selectLabReport方法：SQL:"+sbSQL.toString());
+	    //logger.info("selectLabReport方法：SQL:"+sbSQL.toString());
 		      	
     	String aa = selectDataSetSQLCmdService.selectDataSetSQLCmd(sbSQL.toString());
     	
-	    logger.info("selectLabReport方法：结果:"+aa);
+	    //logger.info("selectLabReport方法：结果:"+aa);
 	    
         //获取输入参数  
         //Map<String, String[]> inputParamMap = request.getParameterMap();
