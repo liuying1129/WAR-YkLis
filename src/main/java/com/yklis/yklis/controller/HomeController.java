@@ -4,12 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -57,7 +59,9 @@ public class HomeController{
     public ModelAndView login(HttpServletRequest request,
             HttpServletResponse response,
             @RequestParam(value = "account",required = true) String account,
-            @RequestParam(value = "password",required = false) String password) {               
+            @RequestParam(value = "password",required = false) String password,
+            @CookieValue(value = "yklis.account",required = false) String cookieAccount,
+            @CookieValue(value = "yklis.request",required = false) String cookieRequest) {
         
         //logger.info("login方法。用户【" + account + "】,密码:【"+password+"】");        
                 
@@ -76,9 +80,29 @@ public class HomeController{
             modelMap.put("msg", "用户或密码错误");
             
             return new ModelAndView("login", modelMap);
-        }           
+        }
+        
+        Cookie cookie = new Cookie("yklis.account",account);
+        response.addCookie(cookie);
                 
-        return new ModelAndView("labReport", null);
+                
+        if("".equals(cookieRequest)||(null==cookieRequest)){
+            
+            Map<String, Object> modelMap2 = new HashMap<>();
+            modelMap2.put("account", account);
+            return new ModelAndView("index", modelMap2);
+        }else{
+            
+            Cookie cookie2 = new Cookie("yklis.request","");
+            response.addCookie(cookie2);
+            
+            String str1 = cookieRequest.replace(request.getContextPath()+"/","");
+            
+            //logger.info("原请求："+str1);
+            
+            return new ModelAndView(str1, null);
+            
+        }
     }
     
     @RequestMapping(value = "selectLabReport" )
