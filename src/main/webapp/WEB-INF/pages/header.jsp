@@ -33,21 +33,31 @@
     
 </head>
 <body>
-    
-    <!-- 静态包含 -->
-    <%@ include file="header.jsp" %>
-    <!-- 动态包含 -->
-    <jsp:include page="header.jsp" />
 
-    <div class="container">
-
-      <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <!-- button标签是浏览器变小时出现的响应式按钮,下面的三个icon-bar表示button的三横线 -->
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">誉凯检验信息管理系统</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="goLogin">登录</a></li>
+            <li><a href="#">${account}</a></li>
+            <li><a href="index">首页</a></li>
+            <li><a href="labReport">检验报告</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#">header</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
       </div>
-
-    </div><!-- /.container -->
-
+    </nav>
 	
 </body>
 </html>
