@@ -38,7 +38,7 @@
 <body>
 
     <!-- 静态包含 -->
-    <%@ include file="header.jsp" %>
+    <%-- <%@ include file="header.jsp" %> --%>
     <!-- 动态包含 -->
     <jsp:include page="header.jsp" />
 

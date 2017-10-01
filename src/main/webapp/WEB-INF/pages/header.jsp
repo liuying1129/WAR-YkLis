@@ -29,7 +29,7 @@
     <!--[if lt IE 9]>
       <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->        
+    <![endif]-->
     
 </head>
 <body>
@@ -44,20 +44,20 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">誉凯检验信息管理系统</a>
+          <a class="navbar-brand" href="index">誉凯检验信息管理系统</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="goLogin">登录</a></li>
-            <li><a href="#">${account}</a></li>
-            <li><a href="index">首页</a></li>
+          	<!-- js动态设置元素值 -->
+            <li><a id="hrefAccount" href="goLogin">登录</a></li>
             <li><a href="labReport">检验报告</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#">header</a></li>
+            <li><a href="logout">注销</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+    
+    <script src="${ctx}/static/dev-js/header.js"></script>
 	
 </body>
 </html>

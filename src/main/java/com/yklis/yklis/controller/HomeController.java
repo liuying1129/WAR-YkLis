@@ -73,12 +73,10 @@ public class HomeController{
         
         Cookie cookie = new Cookie("yklis.account",account);
         response.addCookie(cookie);                
-                
+
         if("".equals(cookieRequest)||(null==cookieRequest)){
             
-            Map<String, Object> modelMap2 = new HashMap<>();
-            modelMap2.put("account", account);
-            return new ModelAndView("index", modelMap2);
+            return new ModelAndView("index", null);
         }else{
             
             Cookie cookie2 = new Cookie("yklis.request","");
@@ -196,5 +194,18 @@ public class HomeController{
     public String labReport(HttpServletRequest request) {
     	
         return "labReport";
-    }    
+    } 
+    
+    @RequestMapping("logout")
+    //不能加@ResponseBody,否则,不会跳转到index页面,而是将index做为字符串返回到当前页面中
+    public String logout(HttpServletRequest request,HttpServletResponse response) {
+    	
+        Cookie cookie = new Cookie("yklis.account","");
+        response.addCookie(cookie);                
+
+        Cookie cookie2 = new Cookie("yklis.request","");
+        response.addCookie(cookie2);
+    	
+        return "index";
+    }
 }

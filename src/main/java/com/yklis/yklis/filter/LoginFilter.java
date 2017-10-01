@@ -42,6 +42,7 @@ public class LoginFilter implements Filter {
         if ((req.getContextPath()+"/").equals(req.getRequestURI())
           ||(req.getContextPath()+"/index").equals(req.getRequestURI())
           ||(req.getContextPath()+"/goLogin").equals(req.getRequestURI())
+          ||(req.getContextPath()+"/logout").equals(req.getRequestURI())
           ||(req.getContextPath()+"/login").equals(req.getRequestURI())) {
             chain.doFilter(request, response);
             return;
@@ -63,6 +64,7 @@ public class LoginFilter implements Filter {
             return;            
         }
         
+        //记录请求地址,以便登录成功后可以跳转到相应的页面
         Cookie cookie3 = new Cookie("yklis.request",req.getRequestURI());
         res.addCookie(cookie3);
         
