@@ -109,7 +109,6 @@
     </tbody>
   </table>
   
-  <script src="${ctx}/static/jquery/jquery-3.2.1.min.js"></script>
   <script src="${ctx}/static/dev-js/labReport.js"></script>
 </body>
 </html>
