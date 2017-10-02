@@ -26,7 +26,7 @@ $(document).ready(function() {
 		            else {
 		              trColor = "odd";
 		            }
-		            tbBody += "<tr><td>" + element.姓名 + "</td><td>" + element.性别 + "</td><td>" + element.性别 + "</td></tr>";
+		            tbBody += "<tr><td>" + element.姓名 + "</td><td>" + element.性别 + "</td><td>" + element.年龄 + "</td><td>" + element.选择 + "</td><td>" + element.病历号 + "</td><td>" + element.床号 + "</td><td>" + element.送检科室 + "</td><td>" + element.送检医生 + "</td><td>" + element.检查日期 + "</td><td>" + element.申请日期 + "</td><td>" + element.审核者 + "</td><td>" + element.工作组 + "</td><td>" + element.操作者 + "</td><td>" + element.优先级别 + "</td><td>" + element.打印次数 + "</td><td>" + element.样本类型 + "</td><td>" + element.临床诊断 + "</td><td>" + element.样本情况 + "</td><td>" + element.备注 + "</td><td>" + element.唯一编号 + "</td><td>" + element.His唯一编号 + "</td><td>" + element.His门诊或住院 + "</td><td>" + element.所属部门 + "</td><td>" + element.工种 + "</td><td>" + element.工号 + "</td><td>" + element.婚否 + "</td><td>" + element.籍贯 + "</td><td>" + element.住址 + "</td><td>" + element.电话 + "</td><td>" + element.所属公司 + "</td><td>" + element.审核时间 + "</td><td>" + element.ifCompleted + "</td><td>" + element.联机号 + "</td><td>" + element.流水号 + "</td></tr>";
 		            $("#myTb").append(tbBody);
 		          });
 			},
