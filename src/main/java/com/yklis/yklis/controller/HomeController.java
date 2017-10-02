@@ -108,8 +108,8 @@ public class HomeController{
     		        " (case when len(caseno)=8 and LEFT(caseno,1)='8' then 1 else printtimes end) as 打印次数,"+//PEIS的单:caseno长度为8且以8开头
     		        " flagetype as 样本类型,diagnose as 临床诊断,typeflagcase as 样本情况,"+
     		        " issure as 备注,unid as 唯一编号, "+
-    		        " His_Unid as His唯一编号,His_MzOrZy as His门诊或住院, "+
-    		        " WorkDepartment as 所属部门,WorkCategory as 工种,WorkID as 工号,ifMarry as 婚否,OldAddress as 籍贯,Address as 住址,Telephone as 电话,WorkCompany as 所属公司, "+
+    		        " isnull(His_Unid,'') as His唯一编号,isnull(His_MzOrZy,'') as His门诊或住院, "+
+    		        " isnull(WorkDepartment,'') as 所属部门,isnull(WorkCategory,'') as 工种,isnull(WorkID,'') as 工号,isnull(ifMarry,'') as 婚否,isnull(OldAddress,'') as 籍贯,isnull(Address,'') as 住址,isnull(Telephone,'') as 电话,isnull(WorkCompany,'') as 所属公司, "+
     		        " Audit_Date as 审核时间,ifCompleted,checkid as 联机号,lsh as 流水号 "+
     		        " from view_Chk_Con_All ";
     	
@@ -258,5 +258,14 @@ public class HomeController{
 		mv.setViewName("checkValue");
 		
 		return mv;
-    }    
+    }
+    
+    @RequestMapping("printReport")
+    public void printReport(HttpServletRequest request) {
+    	
+    	String unid = request.getParameter("unid");
+    	String ifCompleted = request.getParameter("ifCompleted");
+
+        return;
+    }   
 }

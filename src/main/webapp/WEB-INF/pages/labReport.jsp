@@ -11,15 +11,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 
-    <title>检验报告</title>
+    <title>誉凯检验信息管理系统</title>
 
     <c:set var="ctx" value="${pageContext.request.contextPath}"/>
     
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="${ctx}/static/bootstrap/3.3.7/css/bootstrap.min.css" />
-    
-    <!-- Custom styles for this template -->    
-    <link href="${ctx}/static/dev-css/starter-template.css" rel="stylesheet">
+    <link rel="stylesheet" href="${ctx}/static/bootstrap/3.3.7/css/bootstrap.min.css" />    
             
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="${ctx}/static/jquery/jquery-3.2.1.min.js"></script>
@@ -68,6 +65,7 @@
     <input type="text" name="check_doctor" placeholder="送检医生">
   </form>
   <button id="btnQuery">查询</button>
+  <button id="btnPrint">打印</button>
   <table border="1">
   	<thead>
         <tr style="background-color:yellow">

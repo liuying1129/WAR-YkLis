@@ -15,9 +15,6 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="${ctx}/static/bootstrap/3.3.7/css/bootstrap.min.css" />
-    
-    <!-- Custom styles for this template -->    
-    <link href="${ctx}/static/dev-css/starter-template.css" rel="stylesheet">
             
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="${ctx}/static/jquery/jquery-3.2.1.min.js"></script>
@@ -41,7 +38,7 @@
 
     <div class="container">
 
-      <div class="starter-template">
+      <div style="text-align: center;">
         <h1>Bootstrap starter template</h1>
         <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
       </div>

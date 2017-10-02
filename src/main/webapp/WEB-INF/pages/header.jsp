@@ -9,15 +9,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 	
-	<title>誉凯检验信息管理系统</title>
+	<!-- 母页理论上都有title,会融合母页title -->
+	<title></title>
 	
 	<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="${ctx}/static/bootstrap/3.3.7/css/bootstrap.min.css" />
-    
-    <!-- Custom styles for this template -->    
-    <link href="${ctx}/static/dev-css/starter-template.css" rel="stylesheet">
+    <link rel="stylesheet" href="${ctx}/static/bootstrap/3.3.7/css/bootstrap.min.css" />    
             
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="${ctx}/static/jquery/jquery-3.2.1.min.js"></script>
@@ -32,7 +30,8 @@
     <![endif]-->
     
 </head>
-<body>
+<!-- 融合后母页的body都会有该style.这是我们希望的结果:因为header的存在,内容都需要往下移50px -->
+<body style="padding-top: 50px;">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
