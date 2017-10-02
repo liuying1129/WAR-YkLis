@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.yklis.lisfunction.entity.WorkerEntity;
 import com.yklis.lisfunction.service.SelectDataSetSQLCmdService;
 import com.yklis.lisfunction.service.WorkerService;
@@ -89,6 +90,7 @@ public class HomeController{
     }
     
     @RequestMapping(value = "selectLabReport" )
+    //ajax请求时需要@ResponseBody,否则ajax方法进入error(404)
     @ResponseBody
     public String selectLabReport(HttpServletRequest request,HttpServletResponse response) {               
         
@@ -261,11 +263,18 @@ public class HomeController{
     }
     
     @RequestMapping("printReport")
-    public void printReport(HttpServletRequest request) {
+    @ResponseBody
+    public String printReport(HttpServletRequest request) {
     	
     	String unid = request.getParameter("unid");
     	String ifCompleted = request.getParameter("ifCompleted");
+    	
+        Map<String, Object> modelMap = new HashMap<>();
+        modelMap.put("msg", "用户或密码错误");
+        
+        Gson gson = new Gson();
+        
+        return gson.toJson(modelMap);
 
-        return;
     }   
 }

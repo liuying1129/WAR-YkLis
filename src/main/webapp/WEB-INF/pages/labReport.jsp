@@ -23,6 +23,11 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="${ctx}/static/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         
+	<script src="${ctx}/static/Lodop/LodopFuncs.js"></script>
+	<object id="LODOP_OB" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=0 height=0> 
+		<embed id="LODOP_EM" type="application/x-print-lodop" width=0 height=0></embed>
+	</object>
+        
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
