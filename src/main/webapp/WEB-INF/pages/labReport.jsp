@@ -68,10 +68,9 @@
     <input type="text" name="check_doctor" placeholder="送检医生">
   </form>
   <button id="btnQuery">查询</button>
-  <table id="myTb">
-  	<thead id="myThead">
-  	</thead>
-        <tr>
+  <table border="1">
+  	<thead>
+        <tr style="background-color:yellow">
           <th>姓名</th>
           <th>性别</th>
           <th>年龄</th>
@@ -107,6 +106,7 @@
           <th>联机号</th>
           <th>流水号</th>
         </tr>
+  	</thead>
     <tbody id="myTBody">
     </tbody>
   </table>

@@ -208,4 +208,55 @@ public class HomeController{
     	
         return "index";
     }
+    
+    @RequestMapping("checkValue")
+    @ResponseBody
+    public ModelAndView checkValue(HttpServletRequest request,HttpServletResponse response) {
+    	
+    	String unid = request.getParameter("unid");
+    	String ifCompleted = request.getParameter("ifCompleted");
+    	
+    	String  strsql11="select "+
+    	            "(case when photo is null then null else '图' end) as 图,"+
+    	            "combin_Name as 组合项目,name as 名称,english_name as 英文名,itemvalue as 检验结果,"+
+    	            "min_value as 最小值,max_value as 最大值,"+
+    	            "unit as 单位,"+
+    	            "pkcombin_id as 组合项目号,itemid as 项目编号,valueid as 唯一编号 "+
+    	            " from ";
+    	String strsql12;
+    	if("1".equals(ifCompleted)){
+    		strsql12="chk_valu_bak";
+    	}else{
+    		strsql12="chk_valu";
+    	}
+
+    	String strsql13=" where pkunid=";
+    	String strsql14=unid;
+    	String strsql15=" and issure=1 and ltrim(rtrim(isnull(itemvalue,'')))<>'' "+
+    	            " order by pkcombin_id,printorder ";
+    			  
+	    StringBuilder sbSQL = new StringBuilder();
+	    sbSQL.append(strsql11);
+	    sbSQL.append(strsql12);
+	    sbSQL.append(strsql13);
+	    sbSQL.append(strsql14);
+	    sbSQL.append(strsql15);
+	    
+	    //logger.info("selectLabReport方法：SQL:"+sbSQL.toString());
+		      	    	
+    	
+	    //logger.info("selectLabReport方法：结果:"+aa);
+	    
+        //获取输入参数  
+        //Map<String, String[]> inputParamMap = request.getParameterMap();
+        
+        //Gson gson = new Gson();
+        
+        //logger.info("selectLabReport:"+gson.toJson(inputParamMap));
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("DataTable", selectDataSetSQLCmdService.selectDataSetSQLCmd2(sbSQL.toString()));
+		mv.setViewName("checkValue");
+		
+		return mv;
+    }    
 }
