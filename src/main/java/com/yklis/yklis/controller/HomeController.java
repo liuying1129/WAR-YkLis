@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.yklis.lisfunction.entity.WorkerEntity;
+import com.yklis.lisfunction.service.ScalarSQLCmdService;
 import com.yklis.lisfunction.service.SelectDataSetSQLCmdService;
 import com.yklis.lisfunction.service.WorkerService;
 
@@ -31,10 +32,18 @@ public class HomeController{
     @Autowired
     private SelectDataSetSQLCmdService selectDataSetSQLCmdService;    
 
+    @Autowired
+    private ScalarSQLCmdService scalarSQLCmdService;
+
     @RequestMapping("index")
     //不能加@ResponseBody,否则,不会跳转到index页面,而是将index做为字符串返回到当前页面中
-    public String handleIndexPageRequest(HttpServletRequest request) {
+    public String handleIndexPageRequest(HttpServletRequest request,HttpServletResponse response) {
     	
+    	String s1 = scalarSQLCmdService.ScalarSQLCmd("select Name from CommCode where TypeName='系统代码' and ReMark='授权使用单位' ");
+    	
+        Cookie cookie = new Cookie("yklis.SCSYDW",s1);
+        response.addCookie(cookie);
+        
         return "index";
     }
     
@@ -85,12 +94,12 @@ public class HomeController{
             
             String str1 = cookieRequest.replace(request.getContextPath()+"/","");
             
-            return new ModelAndView(str1, null);            
+            return new ModelAndView(str1, null);
         }
     }
     
     @RequestMapping(value = "selectLabReport" )
-    //ajax请求时需要@ResponseBody,否则ajax方法进入error(404)
+    //此处需要@ResponseBody.否则,认为返回的是页面名称,会因为找不到该页面导致ajax方法进入error(404)
     @ResponseBody
     public String selectLabReport(HttpServletRequest request,HttpServletResponse response) {               
         
@@ -263,11 +272,13 @@ public class HomeController{
     }
     
     @RequestMapping("printReport")
+    //此处需要@ResponseBody.否则,认为返回的是页面名称,会因为找不到该页面导致ajax方法进入error(404)
     @ResponseBody
     public String printReport(HttpServletRequest request) {
     	
     	String unid = request.getParameter("unid");
     	String ifCompleted = request.getParameter("ifCompleted");
+    	
     	
         Map<String, Object> modelMap = new HashMap<>();
         modelMap.put("msg", "用户或密码错误");

@@ -13,6 +13,7 @@ function getCookie(cookieName) {
 $(document).ready(function() {
 	
 	var strCookie = getCookie("yklis.account");
+	var strSCSYDWCookie = getCookie("yklis.SCSYDW");
 	
     //判断变量为有效的字符串
     //先要确定该变量存在，否则后面的判断会发生错误，还要确定该变量是string数据类型的，
@@ -31,5 +32,12 @@ $(document).ready(function() {
 	}else{
 		document.getElementById("hrefAccount").innerHTML = "登录";
 		document.getElementById("hrefAccount").setAttribute("href","goLogin");
-	}		
+	}
+	
+	if((typeof strSCSYDWCookie!='undefined')&&(typeof strSCSYDWCookie.valueOf()=='string')&&(strSCSYDWCookie.length>0)){
+		
+		document.getElementById("hrefSCSYDW").innerHTML = strSCSYDWCookie;
+	}else{
+		document.getElementById("hrefSCSYDW").innerHTML = "授权使用单位";
+	}	
 });

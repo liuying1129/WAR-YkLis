@@ -86,7 +86,7 @@ $(document).ready(function() {
 						console.log(data);
 						
 						var LODOP=getLodop();
-						LODOP.PRINT_INIT("打印任务名");               //首先一个初始化语句
+						LODOP.PRINT_INIT("printReport");//首先一个初始化语句//参数为打印任务名
 						LODOP.ADD_PRINT_RECT(10,55,360,220,0,1);
 						LODOP.SET_PRINT_STYLE("FontSize",11);
 						LODOP.ADD_PRINT_TEXT(20,180,100,25,"郭德强");
@@ -95,7 +95,7 @@ $(document).ready(function() {
 						LODOP.ADD_PRINT_TEXT(53,187,75,20,"科学家");
 						LODOP.ADD_PRINT_TEXT(100,131,272,20,"地址：中国北京社会科学院附近东大街西胡同");
 						LODOP.ADD_PRINT_TEXT(138,132,166,20,"电话：010-88811888");
-						LODOP.PREVIEW();                               //最后一个打印(或预览、维护、设计)语句						
+						LODOP.PREVIEW();//最后一个打印(或预览、维护、设计)语句
 					},
 					error : function(xhr, textStatus, errorThrown) {
 						console.log(xhr.status);

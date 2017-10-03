@@ -50,6 +50,7 @@
           	<!-- js动态设置元素值 -->
             <li><a id="hrefAccount" href="goLogin">登录</a></li>
             <li><a href="labReport">检验报告</a></li>
+            <li><a id="hrefSCSYDW" href="#">授权使用单位</a></li>
             <li><a href="logout">注销</a></li>
           </ul>
         </div><!--/.nav-collapse -->

@@ -271,7 +271,14 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 					
-	</dependencies>	
+		<!-- 本地仓库工具库 -->
+        <dependency>
+            <groupId>com.yklis</groupId>
+            <artifactId>LYFunction</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+					
+	</dependencies>
 
 	<build> 
 	    <!-- 如果不定义finalName，则生成的包名是artifactId-version.war -->
