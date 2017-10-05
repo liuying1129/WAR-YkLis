@@ -8,6 +8,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -17,14 +18,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonPrimitive;
 import com.yklis.lisfunction.entity.WorkerEntity;
 import com.yklis.lisfunction.service.ScalarSQLCmdService;
 import com.yklis.lisfunction.service.SelectDataSetSQLCmdService;
 import com.yklis.lisfunction.service.WorkerService;
+import com.yklis.util.DESUtil;
 
 @Controller
 @RequestMapping("/") 
 public class HomeController{
+	
+    private Logger logger = Logger.getLogger(this.getClass());
+
 	    
     @Autowired
     private WorkerService workerService;    
@@ -41,9 +50,37 @@ public class HomeController{
     	
     	String s1 = scalarSQLCmdService.ScalarSQLCmd("select Name from CommCode where TypeName='系统代码' and ReMark='授权使用单位' ");
     	
-        Cookie cookie = new Cookie("yklis.SCSYDW",s1);
-        response.addCookie(cookie);
-        
+    	logger.info(s1);
+    	
+    	String s2 = null;
+    	
+    	JsonParser parser =new JsonParser();  //创建json解析器
+    	//JsonObject json=(JsonObject) parse.parse(s1);
+    	JsonElement jsonElement =parser.parse(s1);
+    	JsonObject jsonObject =jsonElement.getAsJsonObject();
+    	//boolean b = json.get("success").getAsBoolean();
+    	JsonPrimitive flagJson =jsonObject.getAsJsonPrimitive("success");
+    	boolean b = flagJson.getAsBoolean();
+    	if(b){
+    		logger.info("success=true");
+    		
+    	    // 获得 data 节点的值，data 节点为Object数据节点  
+    	    JsonObject dataJson = jsonObject.getAsJsonObject("response");  
+    	    JsonPrimitive namePrimitive =dataJson.getAsJsonPrimitive("result");  
+    	    String result =namePrimitive.getAsString();
+    	    
+    	    logger.info("result1:"+result);
+    	    s2 = DESUtil.DeCryptStr(result, "lc");
+    	    
+    	    logger.info("result2:"+result);
+    	      
+    	}else{
+    		logger.info("success=false");
+    	}       	
+    		
+            Cookie cookie = new Cookie("yklis.SCSYDW",s2);
+            response.addCookie(cookie);
+   	        
         return "index";
     }
     
