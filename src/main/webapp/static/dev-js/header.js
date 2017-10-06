@@ -38,6 +38,6 @@ $(document).ready(function() {
 		
 		document.getElementById("hrefSCSYDW").innerHTML = strSCSYDWCookie;
 	}else{
-		document.getElementById("hrefSCSYDW").innerHTML = "授权使用单位";
+		document.getElementById("hrefSCSYDW").innerHTML = "未授权";
 	}	
 });

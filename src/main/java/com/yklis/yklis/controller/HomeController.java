@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -26,7 +25,8 @@ import com.yklis.lisfunction.entity.WorkerEntity;
 import com.yklis.lisfunction.service.ScalarSQLCmdService;
 import com.yklis.lisfunction.service.SelectDataSetSQLCmdService;
 import com.yklis.lisfunction.service.WorkerService;
-import com.yklis.util.DESUtil;
+import com.yklis.util.CommFunction;
+import com.yklis.yklis.util.Constants;
 
 @Controller
 @RequestMapping("/") 
@@ -48,38 +48,34 @@ public class HomeController{
     //不能加@ResponseBody,否则,不会跳转到index页面,而是将index做为字符串返回到当前页面中
     public String handleIndexPageRequest(HttpServletRequest request,HttpServletResponse response) {
     	
+    	//获取授权使用单位 begin
     	String s1 = scalarSQLCmdService.ScalarSQLCmd("select Name from CommCode where TypeName='系统代码' and ReMark='授权使用单位' ");
-    	
-    	logger.info(s1);
-    	
+    	//{"success":true,"response":{"result":""}}
+    	    	
     	String s2 = null;
     	
-    	JsonParser parser =new JsonParser();  //创建json解析器
-    	//JsonObject json=(JsonObject) parse.parse(s1);
+    	JsonParser parser =new JsonParser();//创建json解析器
     	JsonElement jsonElement =parser.parse(s1);
+    	//josn字符串转换为json对象
     	JsonObject jsonObject =jsonElement.getAsJsonObject();
-    	//boolean b = json.get("success").getAsBoolean();
-    	JsonPrimitive flagJson =jsonObject.getAsJsonPrimitive("success");
-    	boolean b = flagJson.getAsBoolean();
-    	if(b){
-    		logger.info("success=true");
+    	JsonPrimitive jpSuccess =jsonObject.getAsJsonPrimitive("success");
+    	boolean success = jpSuccess.getAsBoolean();
+    	if(success){
     		
-    	    // 获得 data 节点的值，data 节点为Object数据节点  
-    	    JsonObject dataJson = jsonObject.getAsJsonObject("response");  
-    	    JsonPrimitive namePrimitive =dataJson.getAsJsonPrimitive("result");  
-    	    String result =namePrimitive.getAsString();
+    	    //获得 response节点的值，response节点为Object数据节点 
+    	    JsonObject joResponse = jsonObject.getAsJsonObject("response");  
+    	    JsonPrimitive jpResult =joResponse.getAsJsonPrimitive("result");  
+    	    String result =jpResult.getAsString();
     	    
     	    logger.info("result1:"+result);
-    	    s2 = DESUtil.DeCryptStr(result, "lc");
-    	    
-    	    logger.info("result2:"+result);
-    	      
-    	}else{
-    		logger.info("success=false");
-    	}       	
+    	    s2 = CommFunction.deCryptStr(result, Constants.DES_KEY);
+    	    logger.info("SCSYDW:"+s2);
+    	}
     		
-            Cookie cookie = new Cookie("yklis.SCSYDW",s2);
-            response.addCookie(cookie);
+    	//有空格的字符串add到cookie时会报错
+        Cookie cookie = new Cookie("yklis.SCSYDW",s2.trim());
+        response.addCookie(cookie);
+    	//获取授权使用单位 end 
    	        
         return "index";
     }
@@ -316,13 +312,17 @@ public class HomeController{
     	String unid = request.getParameter("unid");
     	String ifCompleted = request.getParameter("ifCompleted");
     	
+    	String ss;
     	
-        Map<String, Object> modelMap = new HashMap<>();
-        modelMap.put("msg", "用户或密码错误");
+    	if("1".equals(ifCompleted)){
+        	ss = selectDataSetSQLCmdService.selectDataSetSQLCmd("select * from chk_con where unid="+unid);
+    		
+    	}else{
+        	ss = selectDataSetSQLCmdService.selectDataSetSQLCmd("select * from chk_valu where pkunid="+unid);
+    		
+    	}    	
         
-        Gson gson = new Gson();
-        
-        return gson.toJson(modelMap);
+        return ss;
 
-    }   
+    }
 }

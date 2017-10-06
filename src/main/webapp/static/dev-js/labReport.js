@@ -1,3 +1,15 @@
+function getCookie(cookieName) {
+    var strCookie = document.cookie;
+    var arrCookie = strCookie.split("; ");
+    for(var i = 0; i < arrCookie.length; i++){
+        var arr = arrCookie[i].split("=");
+        if(cookieName == arr[0]){
+            return arr[1];
+        }
+    }
+    return "";
+}
+
 $(document).ready(function() {
 	
 	$('#btnQuery').click(function(){
@@ -71,6 +83,8 @@ $(document).ready(function() {
 
 			if(checked&&(params.length>0)){
 				
+				var strSCSYDWCookie = getCookie("yklis.SCSYDW");
+				
 				$.ajax({
 					//默认值: true。如果需要发送同步请求，请将此选项设置为 false。注意，同步请求将锁住浏览器，用户其它操作必须等待请求完成才可以执行
 					async : true,
@@ -89,7 +103,7 @@ $(document).ready(function() {
 						LODOP.PRINT_INIT("printReport");//首先一个初始化语句//参数为打印任务名
 						LODOP.ADD_PRINT_RECT(10,55,360,220,0,1);
 						LODOP.SET_PRINT_STYLE("FontSize",11);
-						LODOP.ADD_PRINT_TEXT(20,180,100,25,"郭德强");
+						LODOP.ADD_PRINT_TEXT(20,180,100,25,strSCSYDWCookie);
 						LODOP.SET_PRINT_STYLEA(2,"FontName","隶书");
 						LODOP.SET_PRINT_STYLEA(2,"FontSize",15);
 						LODOP.ADD_PRINT_TEXT(53,187,75,20,"科学家");
