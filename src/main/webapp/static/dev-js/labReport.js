@@ -120,5 +120,13 @@ $(document).ready(function() {
 			}
 		}						
 	});	
+	
+	$('#btnDesign').click(function(){	
+		
+		var LODOP=getLodop();
+		LODOP.PRINT_INIT("");//首先一个初始化语句//参数为打印任务名
+		LODOP.PRINT_DESIGN(); 
+		
+	});
 		
 });

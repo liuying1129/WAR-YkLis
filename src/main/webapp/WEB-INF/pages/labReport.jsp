@@ -72,6 +72,7 @@
   </form>
   <button id="btnQuery">查询</button>
   <button id="btnPrint">打印</button>
+  <button id="btnDesign">报表编辑器</button>
   <table border="1">
   	<thead>
         <tr style="background-color:yellow">
