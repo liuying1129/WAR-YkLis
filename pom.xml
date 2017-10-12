@@ -16,6 +16,9 @@
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     	<spring.version>4.1.7.RELEASE</spring.version>
     	<spring.groupId>org.springframework</spring.groupId>
+    	
+    	<!-- maven内置变量${maven.build.timestamp} -->
+    	<build.time>${maven.build.timestamp}</build.time>
 	</properties>
 
 	<dependencies>
@@ -296,8 +299,18 @@
                   <!-- **/*,表示src/main/java下各级子目录的xml文件 -->
                   <include>**/*.xml</include>  
               </includes>  
-           </resource>    
-        </resources>                
+           </resource>
+           <!-- maven变量build.time传入web.xml -->
+           <resource>
+	           <directory>src/main/webapp</directory>
+	           <filtering>true</filtering>
+	           <includes>
+	                <include>WEB-INF/web.xml</include>
+	           </includes>
+	           <!-- maven内置变量${project.build.directory}:构建目录;${project.build.finalName}:产出物名称 -->
+	           <targetPath>${project.build.directory}/${project.build.finalName}</targetPath>
+           </resource>
+        </resources>
         
 	    <plugins>
 	        <!-- 解决maven编译时“source-1.5 中不支持 diamond 运算符”的问题 -->
@@ -309,8 +322,17 @@
 	               <source>1.7</source>  
 	               <target>1.7</target>  
                 </configuration>  
-	        </plugin>	        
-	    </plugins>	      
+	        </plugin>
+	        <!-- maven变量build.time传入web.xml -->
+            <plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-war-plugin</artifactId>
+	            <version>3.1.0</version>
+	            <configuration>
+		            <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+	            </configuration>
+            </plugin>
+	    </plugins>
 	</build>
 	
 	<!-- profile的激活方式很多，1、使用-P参数显示激活；2、使用activeByDefault设置激活;3... -->	

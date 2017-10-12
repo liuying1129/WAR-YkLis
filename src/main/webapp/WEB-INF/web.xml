@@ -8,7 +8,7 @@
   <!-- 设定web项目的环境参数,可以在servlet中用getServletContext().getInitParameter("参数名称")取得参数值 -->
   <context-param>
     <param-name>jsRandom</param-name>
-    <param-value>1708171400V249</param-value>
+    <param-value>${build.time}</param-value>
   </context-param>
   
   <context-param>

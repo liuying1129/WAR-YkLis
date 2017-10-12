@@ -13,6 +13,8 @@
 	<title></title>
 	
 	<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+	<c:set var="jsr" value="${initParam.jsRandom}"/>
+	
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="${ctx}/static/bootstrap/3.3.7/css/bootstrap.min.css" />    
@@ -57,7 +59,7 @@
       </div>
     </nav>
     
-    <script src="${ctx}/static/dev-js/header.js"></script>
+    <script src="${ctx}/static/dev-js/header.js?jsr=${jsr}"></script>
 	
 </body>
 </html>
