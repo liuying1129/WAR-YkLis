@@ -69,9 +69,7 @@ public class HomeController{
     	    JsonPrimitive jpResult =joResponse.getAsJsonPrimitive("result");  
     	    String result =jpResult.getAsString();
     	    
-    	    logger.info("result1:"+result);
     	    s2 = CommFunction.deCryptStr(result, Constants.DES_KEY);
-    	    logger.info("SCSYDW:"+s2);
     	}
     		
     	//中文add到cookie时会报错,故URLEncoder.encode
@@ -129,7 +127,8 @@ public class HomeController{
             return new ModelAndView("index", null);
         }else{
             
-            Cookie cookie2 = new Cookie("yklis.request","");
+            Cookie cookie2 = new Cookie("yklis.request",null);
+            cookie2.setMaxAge(0);
             response.addCookie(cookie2);
             
             String str1 = cookieRequest.replace(request.getContextPath()+"/","");
@@ -251,10 +250,12 @@ public class HomeController{
     //不能加@ResponseBody,否则,不会跳转到index页面,而是将index做为字符串返回到当前页面中
     public String logout(HttpServletRequest request,HttpServletResponse response) {
     	
-        Cookie cookie = new Cookie("yklis.account","");
+        Cookie cookie = new Cookie("yklis.account",null);
+        cookie.setMaxAge(0);
         response.addCookie(cookie);                
 
-        Cookie cookie2 = new Cookie("yklis.request","");
+        Cookie cookie2 = new Cookie("yklis.request",null);
+        cookie2.setMaxAge(0);
         response.addCookie(cookie2);
     	
         return "index";
