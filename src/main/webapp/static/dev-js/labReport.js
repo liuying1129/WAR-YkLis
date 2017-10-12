@@ -103,7 +103,7 @@ $(document).ready(function() {
 						LODOP.PRINT_INIT("printReport");//首先一个初始化语句//参数为打印任务名
 						LODOP.ADD_PRINT_RECT(10,55,360,220,0,1);
 						LODOP.SET_PRINT_STYLE("FontSize",11);
-						LODOP.ADD_PRINT_TEXT(20,180,100,25,strSCSYDWCookie);
+						LODOP.ADD_PRINT_TEXT(20,180,200,25,decodeURI(strSCSYDWCookie));
 						LODOP.SET_PRINT_STYLEA(2,"FontName","隶书");
 						LODOP.SET_PRINT_STYLEA(2,"FontSize",15);
 						LODOP.ADD_PRINT_TEXT(53,187,75,20,"科学家");

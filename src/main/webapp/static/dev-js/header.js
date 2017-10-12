@@ -36,7 +36,7 @@ $(document).ready(function() {
 	
 	if((typeof strSCSYDWCookie!='undefined')&&(typeof strSCSYDWCookie.valueOf()=='string')&&(strSCSYDWCookie.length>0)){
 		
-		document.getElementById("hrefSCSYDW").innerHTML = strSCSYDWCookie;
+		document.getElementById("hrefSCSYDW").innerHTML = decodeURI(strSCSYDWCookie);
 	}else{
 		document.getElementById("hrefSCSYDW").innerHTML = "未授权";
 	}	

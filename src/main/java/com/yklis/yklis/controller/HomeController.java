@@ -1,5 +1,7 @@
 package com.yklis.yklis.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,10 +74,15 @@ public class HomeController{
     	    logger.info("SCSYDW:"+s2);
     	}
     		
-    	//有空格的字符串add到cookie时会报错
-        Cookie cookie = new Cookie("yklis.SCSYDW",s2.trim());
+    	//中文add到cookie时会报错,故URLEncoder.encode
+        Cookie cookie = null;
+        try {
+            cookie = new Cookie("yklis.SCSYDW",URLEncoder.encode(s2, "UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            logger.error("URLEncoder.encode报错:"+e.toString());
+        }
         response.addCookie(cookie);
-    	//获取授权使用单位 end 
+    	//获取授权使用单位 end
    	        
         return "index";
     }

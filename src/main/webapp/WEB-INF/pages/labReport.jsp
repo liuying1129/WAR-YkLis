@@ -14,6 +14,7 @@
     <title>誉凯检验信息管理系统</title>
 
     <c:set var="ctx" value="${pageContext.request.contextPath}"/>
+    <c:set var="jsr" value="${initParam.jsRandom}"/>
     
     <!-- Bootstrap -->
     <link rel="stylesheet" href="${ctx}/static/bootstrap/3.3.7/css/bootstrap.min.css" />    
@@ -114,6 +115,6 @@
     </tbody>
   </table>
   
-  <script src="${ctx}/static/dev-js/labReport.js"></script>
+  <script src="${ctx}/static/dev-js/labReport.js?jsr=${jsr}"></script>
 </body>
 </html>
