@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -155,7 +156,7 @@ public class HomeController{
     		        " check_doctor as 送检医生,check_date as 检查日期,"+
     		        " report_date as 申请日期,report_doctor as 审核者,"+//dbo.uf_GetPatientCombName(ifCompleted,unid) as 组合项目,
     		        " combin_id as 工作组,operator as 操作者,diagnosetype as 优先级别,"+
-    		        " (case when len(caseno)=8 and LEFT(caseno,1)='8' then 1 else printtimes end) as 打印次数,"+//PEIS的单:caseno长度为8且以8开头
+    		        " (case when len(caseno)=8 and LEFT(caseno,1)='8' then 1 else isnull(printtimes,0) end) as 打印次数,"+//PEIS的单:caseno长度为8且以8开头
     		        " flagetype as 样本类型,diagnose as 临床诊断,typeflagcase as 样本情况,"+
     		        " issure as 备注,unid as 唯一编号, "+
     		        " isnull(His_Unid,'') as His唯一编号,isnull(His_MzOrZy,'') as His门诊或住院, "+
@@ -320,17 +321,32 @@ public class HomeController{
     	String unid = request.getParameter("unid");
     	String ifCompleted = request.getParameter("ifCompleted");
     	
-    	String ss;
+    	List<Map<String, Object>> lsChkcon;
+    	List<Map<String, Object>> lsChkvalu;
     	
     	if("1".equals(ifCompleted)){
-        	ss = selectDataSetSQLCmdService.selectDataSetSQLCmd("select * from chk_con where unid="+unid);
+    		lsChkcon = selectDataSetSQLCmdService.selectDataSetSQLCmd2("select * from chk_con_bak where unid="+unid);
+    		lsChkvalu = selectDataSetSQLCmdService.selectDataSetSQLCmd2("select * from chk_valu_bak where pkunid="+unid);
     		
     	}else{
-        	ss = selectDataSetSQLCmdService.selectDataSetSQLCmd("select * from chk_valu where pkunid="+unid);
+    		lsChkcon = selectDataSetSQLCmdService.selectDataSetSQLCmd2("select * from chk_con where unid="+unid);
+    		lsChkvalu = selectDataSetSQLCmdService.selectDataSetSQLCmd2("select * from chk_valu where pkunid="+unid);
     		
-    	}    	
+    	}  
+    	
+    	Map<String, Object>    map2 = null;
+    	for(int i=0;i<lsChkcon.size();i++){   
+    		map2    =    lsChkcon.get(i);   
+    	}    
+        map2.put("chkvalu", lsChkvalu);
+        
+        Map<String, Object> map = new HashMap<>();
+        map.put("success", true);
+        map.put("response", map2);
+        
+    	Gson gson = new Gson();
+    	String ss = gson.toJson(map);
         
         return ss;
-
     }
 }

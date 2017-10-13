@@ -2,7 +2,6 @@ package com.yklis.yklis.util;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,7 +38,7 @@ public class AspectCtlLog {
     private String requestPath; // 请求地址  
     //private String userName = null ; // 用户名  
     private Map<String, String[]> inputParamMap; // 传入参数  
-    private Map<String, Object> outputParamMap; // 存放输出结果  
+    private Object obj;
     private long startTimeMillis; // 开始时间  
     private long endTimeMillis; // 结束时间  
   
@@ -80,12 +79,10 @@ public class AspectCtlLog {
         requestPath = request.getRequestURI();  
                   
         //通过反射机制调用目标方法
-        //obj就是被拦截方法的返回值 
-        Object obj = pjp.proceed();
+        //obj就是被拦截方法的返回值
+        obj = pjp.proceed();
         
         //在目标方法执行后调用
-        outputParamMap = new HashMap<>();
-        outputParamMap.put("result", obj);  
           
         return obj;  
     }  
@@ -108,7 +105,7 @@ public class AspectCtlLog {
         sbLog.append("ms;请求参数:");
         sbLog.append(gson.toJson(inputParamMap));
         sbLog.append(";返回结果:");
-        sbLog.append(gson.toJson(outputParamMap));
+        sbLog.append(gson.toJson(obj));
 
         logger.info(sbLog);
     }
