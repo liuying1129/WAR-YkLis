@@ -326,11 +326,11 @@ public class HomeController{
     	
     	if("1".equals(ifCompleted)){
     		lsChkcon = selectDataSetSQLCmdService.selectDataSetSQLCmd2("select * from chk_con_bak where unid="+unid);
-    		lsChkvalu = selectDataSetSQLCmdService.selectDataSetSQLCmd2("select * from chk_valu_bak where pkunid="+unid);
+    		lsChkvalu = selectDataSetSQLCmdService.selectDataSetSQLCmd2("select *,dbo.uf_Reference_Value_B1(min_value,max_value) as 前段参考范围,isnull(dbo.uf_Reference_Value_B2(min_value,max_value),'') as 后段参考范围  from chk_valu_bak where pkunid="+unid);
     		
     	}else{
     		lsChkcon = selectDataSetSQLCmdService.selectDataSetSQLCmd2("select * from chk_con where unid="+unid);
-    		lsChkvalu = selectDataSetSQLCmdService.selectDataSetSQLCmd2("select * from chk_valu where pkunid="+unid);
+    		lsChkvalu = selectDataSetSQLCmdService.selectDataSetSQLCmd2("select *,dbo.uf_Reference_Value_B1(min_value,max_value) as 前段参考范围,isnull(dbo.uf_Reference_Value_B2(min_value,max_value),'') as 后段参考范围 from chk_valu where pkunid="+unid);
     		
     	}  
     	

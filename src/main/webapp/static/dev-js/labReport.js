@@ -97,18 +97,41 @@ $(document).ready(function() {
 					//预期服务器返回的数据类型。如果不指定，jQuery将自动根据 HTTP包 MIME信息来智能判断
 					dataType : 'json',
 					success : function(data) {
-						console.log(data);
 						
 						var LODOP=getLodop();
 						LODOP.PRINT_INIT("printReport");//首先一个初始化语句//参数为打印任务名
-						LODOP.ADD_PRINT_RECT(10,55,360,220,0,1);
-						LODOP.SET_PRINT_STYLE("FontSize",11);
-						LODOP.ADD_PRINT_TEXT(20,180,200,25,decodeURI(strSCSYDWCookie));
-						LODOP.SET_PRINT_STYLEA(2,"FontName","隶书");
-						LODOP.SET_PRINT_STYLEA(2,"FontSize",15);
-						LODOP.ADD_PRINT_TEXT(53,187,75,20,"科学家");
-						LODOP.ADD_PRINT_TEXT(100,131,272,20,"地址：中国北京社会科学院附近东大街西胡同");
-						LODOP.ADD_PRINT_TEXT(138,132,166,20,"电话：010-88811888");
+						LODOP.ADD_PRINT_TEXT(10,10,774,24,decodeURI(strSCSYDWCookie)+"检验报告单");
+						LODOP.SET_PRINT_STYLEA(0,"Alignment",2);
+						LODOP.SET_PRINT_STYLEA(0,"FontName","隶书");
+						LODOP.SET_PRINT_STYLEA(0,"FontSize",15);
+						LODOP.ADD_PRINT_TEXT(44,10,100,20,"姓名："+data.response.patientname);
+						LODOP.ADD_PRINT_TEXT(44,296,100,20,"门诊/住院号："+data.response.Caseno);
+						LODOP.ADD_PRINT_TEXT(44,476,100,20,"检验单号："+data.response.LSH+" "+data.response.checkid);
+						LODOP.ADD_PRINT_TEXT(75,10,100,20,"性别："+data.response.sex);
+						LODOP.ADD_PRINT_TEXT(75,296,100,20,"科室："+data.response.deptname);
+						LODOP.ADD_PRINT_TEXT(75,476,100,20,"标本类型："+data.response.flagetype);
+						LODOP.ADD_PRINT_TEXT(99,10,117,20,"年龄："+data.response.age);
+						LODOP.ADD_PRINT_TEXT(99,296,100,20,"床号："+data.response.bedno);
+						LODOP.ADD_PRINT_TEXT(99,476,100,20,"标本状态："+data.response.typeflagcase);
+						LODOP.ADD_PRINT_TEXT(120,10,100,20,"送检医生："+data.response.check_doctor);
+						LODOP.ADD_PRINT_TEXT(120,296,100,20,"临床诊断："+data.response.diagnose);
+						LODOP.ADD_PRINT_TEXT(120,476,100,20,"备注："+data.response.issure);
+
+						LODOP.ADD_PRINT_TEXT(140,20,100,20,"检验项目");
+						LODOP.ADD_PRINT_TEXT(140,140,100,20,"英文名");
+						LODOP.ADD_PRINT_TEXT(140,260,100,20,"检验结果");
+						LODOP.ADD_PRINT_TEXT(140,380,100,20,"单位");
+						LODOP.ADD_PRINT_TEXT(140,500,100,20,"参考范围");
+
+						$.each(data.response.chkvalu, function(index,element) {
+							//160:第一条明细的top;30:每条明细占用的高度
+							LODOP.ADD_PRINT_TEXT(160+index*30,20,100,20,element.Name);
+							LODOP.ADD_PRINT_TEXT(160+index*30,140,100,20,element.english_name);
+							LODOP.ADD_PRINT_TEXT(160+index*30,260,100,20,element.itemvalue);
+							LODOP.ADD_PRINT_TEXT(160+index*30,380,100,20,element.Unit);
+							LODOP.ADD_PRINT_TEXT(160+index*30,500,100,20,element.前段参考范围+element.后段参考范围);							
+						});
+						
 						LODOP.PREVIEW();//最后一个打印(或预览、维护、设计)语句
 					},
 					error : function(xhr, textStatus, errorThrown) {
