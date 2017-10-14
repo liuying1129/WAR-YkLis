@@ -100,6 +100,7 @@ $(document).ready(function() {
 						
 						var LODOP=getLodop();
 						LODOP.PRINT_INIT("printReport");//首先一个初始化语句//参数为打印任务名
+						LODOP.SET_PRINT_PAGESIZE(1,2100,1397,"");
 						LODOP.ADD_PRINT_TEXT(10,10,774,24,decodeURI(strSCSYDWCookie)+"检验报告单");
 						LODOP.SET_PRINT_STYLEA(0,"Alignment",2);
 						LODOP.SET_PRINT_STYLEA(0,"FontName","隶书");
@@ -116,12 +117,16 @@ $(document).ready(function() {
 						LODOP.ADD_PRINT_TEXT(120,10,100,20,"送检医生："+data.response.check_doctor);
 						LODOP.ADD_PRINT_TEXT(120,296,100,20,"临床诊断："+data.response.diagnose);
 						LODOP.ADD_PRINT_TEXT(120,476,100,20,"备注："+data.response.issure);
+						
+						LODOP.ADD_PRINT_LINE(130,10,130,476,0,1);
 
 						LODOP.ADD_PRINT_TEXT(140,20,100,20,"检验项目");
 						LODOP.ADD_PRINT_TEXT(140,140,100,20,"英文名");
 						LODOP.ADD_PRINT_TEXT(140,260,100,20,"检验结果");
 						LODOP.ADD_PRINT_TEXT(140,380,100,20,"单位");
 						LODOP.ADD_PRINT_TEXT(140,500,100,20,"参考范围");
+						
+						LODOP.ADD_PRINT_LINE(150,10,150,476,0,1);
 
 						$.each(data.response.chkvalu, function(index,element) {
 							//160:第一条明细的top;30:每条明细占用的高度
@@ -131,6 +136,16 @@ $(document).ready(function() {
 							LODOP.ADD_PRINT_TEXT(160+index*30,380,100,20,element.Unit);
 							LODOP.ADD_PRINT_TEXT(160+index*30,500,100,20,element.前段参考范围+element.后段参考范围);							
 						});
+						
+						LODOP.ADD_PRINT_LINE(786,10,786,476,0,1);
+						
+						LODOP.ADD_PRINT_TEXT(800,10,100,20,"申请日期："+data.response.report_date);
+						LODOP.ADD_PRINT_TEXT(800,296,100,20,"检查日期："+data.response.check_date);
+						LODOP.ADD_PRINT_TEXT(800,476,100,20,"操作者："+data.response.operator);
+						LODOP.ADD_PRINT_TEXT(800,550,100,20,"审核者："+data.response.report_doctor);
+						LODOP.ADD_PRINT_TEXT(820,10,100,20,"本结果仅对该份标本负责!");
+						LODOP.ADD_PRINT_TEXT(820,296,100,20,"打印时间："+new Date());
+						LODOP.ADD_PRINT_TEXT(820,476,100,20,"(共1页 第1页)");
 						
 						LODOP.PREVIEW();//最后一个打印(或预览、维护、设计)语句
 					},
