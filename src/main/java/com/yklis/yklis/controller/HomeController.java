@@ -72,15 +72,23 @@ public class HomeController{
     	    
     	    s2 = CommFunction.deCryptStr(result, Constants.DES_KEY);
     	}
-    		
+    	
     	//中文add到cookie时会报错,故URLEncoder.encode
-        Cookie cookie = null;
+        String s3 = null;
         try {
-            cookie = new Cookie("yklis.SCSYDW",URLEncoder.encode(s2, "UTF-8"));
+            s3 = URLEncoder.encode(s2, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             logger.error("URLEncoder.encode报错:"+e.toString());
         }
-        response.addCookie(cookie);
+        
+        if("".equals(s3)||null==s3){
+            Cookie cookie = new Cookie("yklis.SCSYDW",null);
+            cookie.setMaxAge(0);
+            response.addCookie(cookie);
+        }else{
+            Cookie cookie = new Cookie("yklis.SCSYDW",s3);
+            response.addCookie(cookie);            
+        }        
     	//获取授权使用单位 end
    	        
         return "index";
