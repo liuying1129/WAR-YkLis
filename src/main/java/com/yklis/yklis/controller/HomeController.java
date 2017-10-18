@@ -324,8 +324,11 @@ public class HomeController{
     @RequestMapping("printReport")
     //此处需要@ResponseBody.否则,认为返回的是页面名称,会因为找不到该页面导致ajax方法进入error(404)
     @ResponseBody
-    public String printReport(HttpServletRequest request) {
+    public String printReport(HttpServletRequest request,HttpServletResponse response) {
     	
+        response.setHeader("Charset","GB2312");
+        //response.setCharacterEncoding("UTF-8");
+        
     	String unid = request.getParameter("unid");
     	String ifCompleted = request.getParameter("ifCompleted");
     	
