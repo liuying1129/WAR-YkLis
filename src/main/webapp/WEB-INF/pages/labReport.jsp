@@ -116,6 +116,7 @@
     </tbody>
   </table>
   
+  <script src="${ctx}/static/dev-js/commFunction.js?jsr=${jsr}"></script>
   <script src="${ctx}/static/dev-js/labReport.js?jsr=${jsr}"></script>
 </body>
 </html>

@@ -9,25 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 	
-	<title>誉凯检验信息管理系统</title>
-	
-	<c:set var="ctx" value="${pageContext.request.contextPath}"/>
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="${ctx}/static/bootstrap/3.3.7/css/bootstrap.min.css" />
-            
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="${ctx}/static/jquery/jquery-3.2.1.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="${ctx}/static/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->        
-    
+	<title>誉凯检验信息管理系统</title>	  
 </head>
 <body>
     
@@ -36,14 +18,12 @@
     <!-- 动态包含 -->
     <jsp:include page="header.jsp" />
 
-    <div class="container">
 
-      <div style="text-align: center;">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-      </div>
+    <div style="text-align: center;">
+      <h1>Bootstrap starter template</h1>
+      <p>Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+    </div>
 
-    </div><!-- /.container -->
 
 </body>
 </html>

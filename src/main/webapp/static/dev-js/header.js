@@ -1,16 +1,14 @@
-function getCookie(cookieName) {
-    var strCookie = document.cookie;
-    var arrCookie = strCookie.split("; ");
-    for(var i = 0; i < arrCookie.length; i++){
-        var arr = arrCookie[i].split("=");
-        if(cookieName == arr[0]){
-            return arr[1];
-        }
-    }
-    return "";
-}
+	//设立"严格模式"的目的
+    //1、消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为;
+    //2、消除代码运行的一些不安全之处，保证代码运行的安全；
+	//3、提高编译器效率，增加运行速度；
+	//4、为未来新版本的Javascript做好铺垫
+    "use strict";    
 
-$(document).ready(function() {
+//$(document).ready(function() {
+//});
+//用上面的方式更好,但需要引用jquery
+window.onload = function(){
 	
 	var strCookie = getCookie("yklis.account");
 	var strSCSYDWCookie = getCookie("yklis.SCSYDW");
@@ -40,4 +38,4 @@ $(document).ready(function() {
 	}else{
 		document.getElementById("hrefSCSYDW").innerHTML = "未授权";
 	}	
-});
+};

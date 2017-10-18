@@ -59,6 +59,7 @@
       </div>
     </nav>
     
+    <script src="${ctx}/static/dev-js/commFunction.js?jsr=${jsr}"></script>
     <script src="${ctx}/static/dev-js/header.js?jsr=${jsr}"></script>
 	
 </body>
