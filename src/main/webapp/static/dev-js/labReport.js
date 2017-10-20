@@ -81,6 +81,7 @@ btnPrint.onclick = function() {
 			
 			var strSCSYDWCookie = getCookie("yklis.SCSYDW");
 			
+			/*该方式中文返回乱码，只好放弃
 			var xhr = new XMLHttpRequest();
 			xhr.onreadystatechange = function(){ 
 				if (xhr.readyState == 4){ 
@@ -145,9 +146,9 @@ btnPrint.onclick = function() {
 				}
 			};
 			xhr.open("post", "printReport?"+params, true);
-			xhr.send(null);
+			xhr.send(null);*/
 			
-			/*$.ajax({
+			$.ajax({
 				//默认值: true。如果需要发送同步请求，请将此选项设置为 false。注意，同步请求将锁住浏览器，用户其它操作必须等待请求完成才可以执行
 				async : true,
 				//默认值:"GET".请求方式 ("POST"或 "GET")，注意：其它 HTTP请求方法，如 PUT和 DELETE也可以使用，但仅部分浏览器支持
@@ -216,7 +217,7 @@ btnPrint.onclick = function() {
 					console.log(xhr.readyState);
 					console.log(textStatus);
 				}
-			});*/				
+			});
 		}
 	}
 };

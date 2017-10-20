@@ -326,8 +326,14 @@ public class HomeController{
     @ResponseBody
     public String printReport(HttpServletRequest request,HttpServletResponse response) {
     	
-        response.setHeader("Charset","GB2312");
         //response.setCharacterEncoding("UTF-8");
+        //response.setHeader("Content-Type", "text/html; charset=gb2312");
+        //response.setContentType("text/html;charset=utf-8");
+        
+        //response.setContentType("html/text");//此5行必备，用于输出中文，否则乱码
+        //response.setCharacterEncoding("UTF-8");
+        //response.setHeader("Cache-Control","no-cache");
+        //response.setHeader("Charset","GB2312");
         
     	String unid = request.getParameter("unid");
     	String ifCompleted = request.getParameter("ifCompleted");
