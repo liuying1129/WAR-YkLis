@@ -81,13 +81,15 @@ btnPrint.onclick = function() {
 			
 			var strSCSYDWCookie = getCookie("yklis.SCSYDW");
 			
-			/*该方式中文返回乱码，只好放弃
+			/*//该方式中文返回乱码，只好放弃
 			var xhr = new XMLHttpRequest();
+			xhr.responseType = "json";//默认为text
 			xhr.onreadystatechange = function(){ 
 				if (xhr.readyState == 4){ 
 					if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){ 
 						
-						var data = JSON.parse(xhr.responseText);
+						//var data = JSON.parse(xhr.responseText);
+						var data = xhr.response;//responseType = "json"时只能用xhr.response
 						
 						var LODOP=getLodop();
 						LODOP.PRINT_INIT("printReport");//首先一个初始化语句//参数为打印任务名
@@ -146,7 +148,7 @@ btnPrint.onclick = function() {
 				}
 			};
 			xhr.open("post", "printReport?"+params, true);
-			xhr.send(null);*/
+			xhr.send(null);//*/
 			
 			$.ajax({
 				//默认值: true。如果需要发送同步请求，请将此选项设置为 false。注意，同步请求将锁住浏览器，用户其它操作必须等待请求完成才可以执行
@@ -217,7 +219,7 @@ btnPrint.onclick = function() {
 					console.log(xhr.readyState);
 					console.log(textStatus);
 				}
-			});
+			});//*/
 		}
 	}
 };
