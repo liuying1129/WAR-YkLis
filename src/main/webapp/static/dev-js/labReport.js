@@ -171,29 +171,29 @@ btnPrint.onclick = function() {
 					LODOP.SET_PRINT_STYLEA(0,"Alignment",2);
 					LODOP.SET_PRINT_STYLEA(0,"FontName","隶书");
 					LODOP.SET_PRINT_STYLEA(0,"FontSize",15);
-					LODOP.ADD_PRINT_TEXT(45,50,100,20,"姓名："+data.response.patientname);
+					LODOP.ADD_PRINT_TEXT(45,50,250,20,"姓名："+data.response.patientname);
 					LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
-					LODOP.ADD_PRINT_TEXT(45,310,100,20,"门诊/住院号："+data.response.Caseno);
+					LODOP.ADD_PRINT_TEXT(45,310,250,20,"门诊/住院号："+data.response.Caseno);
 					LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
-					LODOP.ADD_PRINT_TEXT(45,600,100,20,"检验单号："+data.response.LSH+" "+data.response.checkid);
+					LODOP.ADD_PRINT_TEXT(45,600,250,20,"检验单号："+data.response.LSH+" "+data.response.checkid);
 					LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
-					LODOP.ADD_PRINT_TEXT(65,50,100,20,"性别："+data.response.sex);
+					LODOP.ADD_PRINT_TEXT(65,50,250,20,"性别："+data.response.sex);
 					LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
-					LODOP.ADD_PRINT_TEXT(65,310,100,20,"科室："+data.response.deptname);
+					LODOP.ADD_PRINT_TEXT(65,310,250,20,"科室："+data.response.deptname);
 					LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
-					LODOP.ADD_PRINT_TEXT(65,600,100,20,"标本类型："+data.response.flagetype);
+					LODOP.ADD_PRINT_TEXT(65,600,250,20,"标本类型："+data.response.flagetype);
 					LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
-					LODOP.ADD_PRINT_TEXT(85,50,117,20,"年龄："+data.response.age);
+					LODOP.ADD_PRINT_TEXT(85,50,250,20,"年龄："+data.response.age);
 					LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
-					LODOP.ADD_PRINT_TEXT(85,310,100,20,"床号："+data.response.bedno);
+					LODOP.ADD_PRINT_TEXT(85,310,250,20,"床号："+data.response.bedno);
 					LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
-					LODOP.ADD_PRINT_TEXT(85,600,100,20,"标本状态："+data.response.typeflagcase);
+					LODOP.ADD_PRINT_TEXT(85,600,250,20,"标本状态："+data.response.typeflagcase);
 					LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
-					LODOP.ADD_PRINT_TEXT(105,50,100,20,"送检医生："+data.response.check_doctor);
+					LODOP.ADD_PRINT_TEXT(105,50,250,20,"送检医生："+data.response.check_doctor);
 					LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
-					LODOP.ADD_PRINT_TEXT(105,310,100,20,"临床诊断："+data.response.diagnose);
+					LODOP.ADD_PRINT_TEXT(105,310,250,20,"临床诊断："+data.response.diagnose);
 					LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
-					LODOP.ADD_PRINT_TEXT(105,600,100,20,"备注："+data.response.issure);
+					LODOP.ADD_PRINT_TEXT(105,600,250,20,"备注："+data.response.issure);
 					LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
 					
 					LODOP.ADD_PRINT_LINE(120,30,120,750,0,1);
@@ -207,7 +207,7 @@ btnPrint.onclick = function() {
 					LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
 					LODOP.ADD_PRINT_TEXT(125,460,100,20,"单位");
 					LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
-					LODOP.ADD_PRINT_TEXT(125,580,100,20,"参考范围");
+					LODOP.ADD_PRINT_TEXT(125,640,100,20,"参考范围");
 					LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
 					
 					LODOP.ADD_PRINT_LINE(140,30,140,750,0,1);
@@ -223,7 +223,9 @@ btnPrint.onclick = function() {
 						LODOP.ADD_PRINT_TEXT(FIRST_ROW_TOP+(index % PAGE_RECORDERS)*ROW_HEIGHT,220,100,20,element.english_name);
 						LODOP.ADD_PRINT_TEXT(FIRST_ROW_TOP+(index % PAGE_RECORDERS)*ROW_HEIGHT,340,100,20,element.itemvalue);
 						LODOP.ADD_PRINT_TEXT(FIRST_ROW_TOP+(index % PAGE_RECORDERS)*ROW_HEIGHT,460,100,20,element.Unit);
-						LODOP.ADD_PRINT_TEXT(FIRST_ROW_TOP+(index % PAGE_RECORDERS)*ROW_HEIGHT,580,100,20,element.前段参考范围+element.后段参考范围);					
+						LODOP.ADD_PRINT_TEXT(FIRST_ROW_TOP+(index % PAGE_RECORDERS)*ROW_HEIGHT,555,100,20,element.前段参考范围);	
+						LODOP.SET_PRINT_STYLEA(0,"Alignment",3);
+						LODOP.ADD_PRINT_TEXT(FIRST_ROW_TOP+(index % PAGE_RECORDERS)*ROW_HEIGHT,655,100,20,element.后段参考范围);	
 						
 						if((index % PAGE_RECORDERS)+1 === PAGE_RECORDERS){
 							LODOP.NewPage();

@@ -325,31 +325,36 @@ public class HomeController{
     //此处需要@ResponseBody.否则,认为返回的是页面名称,会因为找不到该页面导致ajax方法进入error(404)
     @ResponseBody
     public String printReport(HttpServletRequest request,HttpServletResponse response) {
-    	
-        //response.setCharacterEncoding("UTF-8");
-        //response.setHeader("Content-Type", "text/html; charset=gb2312");
-        //response.setContentType("text/html;charset=utf-8");
-        
-        //response.setContentType("html/text");//此5行必备，用于输出中文，否则乱码
-        //response.setCharacterEncoding("UTF-8");
-        //response.setHeader("Cache-Control","no-cache");
-        //response.setHeader("Charset","GB2312");
-        
+    	        
     	String unid = request.getParameter("unid");
     	String ifCompleted = request.getParameter("ifCompleted");
     	
     	List<Map<String, Object>> lsChkcon;
     	List<Map<String, Object>> lsChkvalu;
-    	
-    	if("1".equals(ifCompleted)){
-    		lsChkcon = selectDataSetSQLCmdService.selectDataSetSQLCmd2("select * from chk_con_bak where unid="+unid);
-    		lsChkvalu = selectDataSetSQLCmdService.selectDataSetSQLCmd2("select *,dbo.uf_Reference_Value_B1(min_value,max_value) as 前段参考范围,isnull(dbo.uf_Reference_Value_B2(min_value,max_value),'') as 后段参考范围  from chk_valu_bak where pkunid="+unid);
-    		
-    	}else{
-    		lsChkcon = selectDataSetSQLCmdService.selectDataSetSQLCmd2("select * from chk_con where unid="+unid);
-    		lsChkvalu = selectDataSetSQLCmdService.selectDataSetSQLCmd2("select *,dbo.uf_Reference_Value_B1(min_value,max_value) as 前段参考范围,isnull(dbo.uf_Reference_Value_B2(min_value,max_value),'') as 后段参考范围 from chk_valu where pkunid="+unid);
-    		
-    	}  
+
+	    StringBuilder sbChkcon = new StringBuilder();
+	    sbChkcon.append("select * from ");
+	    if("1".equals(ifCompleted)){
+	    	sbChkcon.append("chk_con_bak ");
+	    }else{
+	    	sbChkcon.append("chk_con ");
+	    }
+	    sbChkcon.append("where unid=");
+	    sbChkcon.append(unid);
+	    
+	    StringBuilder sbChkvalu = new StringBuilder();
+	    sbChkvalu.append("select itemid,Name,english_name,itemvalue,Min_value,Max_value,dbo.uf_Reference_Value_B1(min_value,max_value) as 前段参考范围,isnull(dbo.uf_Reference_Value_B2(min_value,max_value),'') as 后段参考范围,Unit,min(printorder) as 打印编号,min(pkcombin_id) as 组合项目号,Reserve1,Reserve2,Dosage1,Dosage2,Reserve5,Reserve6,Reserve7,Reserve8,Reserve9,Reserve10 from ");
+	    if("1".equals(ifCompleted)){
+	    	sbChkvalu.append("chk_valu_bak ");
+	    }else{
+	    	sbChkvalu.append("chk_valu ");
+	    }	 
+	    sbChkvalu.append("where pkunid=");
+	    sbChkvalu.append(unid);
+	    sbChkvalu.append(" and issure=1 and ltrim(rtrim(isnull(itemvalue,'')))<>'' group by itemid,name,english_name,itemvalue,min_value,max_value,unit,Reserve1,Reserve2,Dosage1,Dosage2,Reserve5,Reserve6,Reserve7,Reserve8,Reserve9,Reserve10 order by 组合项目号,打印编号");
+	    
+	    lsChkcon = selectDataSetSQLCmdService.selectDataSetSQLCmd2(sbChkcon.toString());
+	    lsChkvalu = selectDataSetSQLCmdService.selectDataSetSQLCmd2(sbChkvalu.toString());
     	
     	Map<String, Object>    map2 = null;
     	for(int i=0;i<lsChkcon.size();i++){   
