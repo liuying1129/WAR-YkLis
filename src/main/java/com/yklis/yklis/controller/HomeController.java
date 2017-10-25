@@ -2,6 +2,7 @@ package com.yklis.yklis.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,11 +25,13 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
+import com.google.gson.reflect.TypeToken;
 import com.yklis.lisfunction.entity.WorkerEntity;
 import com.yklis.lisfunction.service.ScalarSQLCmdService;
 import com.yklis.lisfunction.service.SelectDataSetSQLCmdService;
 import com.yklis.lisfunction.service.WorkerService;
 import com.yklis.util.CommFunction;
+import com.yklis.yklis.entity.SelectedPatientEntity;
 import com.yklis.yklis.util.Constants;
 
 @Controller
@@ -326,48 +329,62 @@ public class HomeController{
     @ResponseBody
     public String printReport(HttpServletRequest request,HttpServletResponse response) {
     	        
-    	String unid = request.getParameter("unid");
-    	String ifCompleted = request.getParameter("ifCompleted");
-    	
-    	List<Map<String, Object>> lsChkcon;
-    	List<Map<String, Object>> lsChkvalu;
+        /**
+        [{"unid":"25","ifCompleted":"0"},{"unid":"24","ifCompleted":"0"},{"unid":"23","ifCompleted":"1"}]
+         */
+        String lsSelected = request.getParameter("lsSelected");
+        
+        List<Map<String, Object>> listCheckInfo = new ArrayList<>();
+        
+        Gson gson = new Gson();
+        
+        //JSON字符串转换为JAVA List
+        List<SelectedPatientEntity> selected = gson.fromJson(lsSelected, new TypeToken<List<SelectedPatientEntity>>(){}.getType());
+        
+        for(int j = 0 ; j < selected.size() ; j++) {
+            
+            String unid = selected.get(j).getUnid();
+            String ifCompleted = selected.get(j).getIfCompletedd();
+            
+            StringBuilder sbChkcon = new StringBuilder();
+            sbChkcon.append("select * from ");
+            if("1".equals(ifCompleted)){
+                sbChkcon.append("chk_con_bak ");
+            }else{
+                sbChkcon.append("chk_con ");
+            }
+            sbChkcon.append("where unid=");
+            sbChkcon.append(unid);
+            
+            StringBuilder sbChkvalu = new StringBuilder();
+            sbChkvalu.append("select itemid,Name,english_name,itemvalue,Min_value,Max_value,dbo.uf_Reference_Value_B1(min_value,max_value) as 前段参考范围,isnull(dbo.uf_Reference_Value_B2(min_value,max_value),'') as 后段参考范围,Unit,min(printorder) as 打印编号,min(pkcombin_id) as 组合项目号,Reserve1,Reserve2,Dosage1,Dosage2,Reserve5,Reserve6,Reserve7,Reserve8,Reserve9,Reserve10 from ");
+            if("1".equals(ifCompleted)){
+                sbChkvalu.append("chk_valu_bak ");
+            }else{
+                sbChkvalu.append("chk_valu ");
+            }    
+            sbChkvalu.append("where pkunid=");
+            sbChkvalu.append(unid);
+            sbChkvalu.append(" and issure=1 and ltrim(rtrim(isnull(itemvalue,'')))<>'' group by itemid,name,english_name,itemvalue,min_value,max_value,unit,Reserve1,Reserve2,Dosage1,Dosage2,Reserve5,Reserve6,Reserve7,Reserve8,Reserve9,Reserve10 order by 组合项目号,打印编号");
+        
+            List<Map<String, Object>> lsChkcon = selectDataSetSQLCmdService.selectDataSetSQLCmd2(sbChkcon.toString());
+            List<Map<String, Object>> lsChkvalu = selectDataSetSQLCmdService.selectDataSetSQLCmd2(sbChkvalu.toString());
+            
+            Map<String, Object>    map2 = null;
+            for(int i=0;i<lsChkcon.size();i++){   
+                map2    =    lsChkcon.get(i);   
+            }    
+            map2.put("chkvalu", lsChkvalu);
+            
+            Map<String, Object> map = new HashMap<>();
+            map.put("success", true);
+            map.put("response", map2);
+            
+            listCheckInfo.add(map);
 
-	    StringBuilder sbChkcon = new StringBuilder();
-	    sbChkcon.append("select * from ");
-	    if("1".equals(ifCompleted)){
-	    	sbChkcon.append("chk_con_bak ");
-	    }else{
-	    	sbChkcon.append("chk_con ");
-	    }
-	    sbChkcon.append("where unid=");
-	    sbChkcon.append(unid);
-	    
-	    StringBuilder sbChkvalu = new StringBuilder();
-	    sbChkvalu.append("select itemid,Name,english_name,itemvalue,Min_value,Max_value,dbo.uf_Reference_Value_B1(min_value,max_value) as 前段参考范围,isnull(dbo.uf_Reference_Value_B2(min_value,max_value),'') as 后段参考范围,Unit,min(printorder) as 打印编号,min(pkcombin_id) as 组合项目号,Reserve1,Reserve2,Dosage1,Dosage2,Reserve5,Reserve6,Reserve7,Reserve8,Reserve9,Reserve10 from ");
-	    if("1".equals(ifCompleted)){
-	    	sbChkvalu.append("chk_valu_bak ");
-	    }else{
-	    	sbChkvalu.append("chk_valu ");
-	    }	 
-	    sbChkvalu.append("where pkunid=");
-	    sbChkvalu.append(unid);
-	    sbChkvalu.append(" and issure=1 and ltrim(rtrim(isnull(itemvalue,'')))<>'' group by itemid,name,english_name,itemvalue,min_value,max_value,unit,Reserve1,Reserve2,Dosage1,Dosage2,Reserve5,Reserve6,Reserve7,Reserve8,Reserve9,Reserve10 order by 组合项目号,打印编号");
-	    
-	    lsChkcon = selectDataSetSQLCmdService.selectDataSetSQLCmd2(sbChkcon.toString());
-	    lsChkvalu = selectDataSetSQLCmdService.selectDataSetSQLCmd2(sbChkvalu.toString());
-    	
-    	Map<String, Object>    map2 = null;
-    	for(int i=0;i<lsChkcon.size();i++){   
-    		map2    =    lsChkcon.get(i);   
-    	}    
-        map2.put("chkvalu", lsChkvalu);
-        
-        Map<String, Object> map = new HashMap<>();
-        map.put("success", true);
-        map.put("response", map2);
-        
-    	Gson gson = new Gson();
-    	String ss = gson.toJson(map);
+        }
+    	       
+    	String ss = gson.toJson(listCheckInfo);
         
         return ss;
     }
