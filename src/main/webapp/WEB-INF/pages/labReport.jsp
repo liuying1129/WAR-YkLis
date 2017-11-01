@@ -106,7 +106,7 @@
           <th>电话</th>
           <th>所属公司</th>
           <th>审核时间</th>
-          <th>ifCompleted</th>
+          <th>结束标志</th>
           <th>联机号</th>
           <th>流水号</th>
         </tr>
