@@ -133,100 +133,119 @@ btnPrint.onclick = function() {
 			
 			//$.each(data.response.chkvalu, function(index,element) {
 			//IE8及以下版本不支持forEach//上面是jQuery的each方法,效果一样
-			data.forEach(function(element2,index2){
+			data.forEach(function(element2,index2){				
 				
+				var PAGE_RECORDERS = 17;//每页行数
+				var iPageNum = 1;
+				var iPageTotal = Math.ceil(element2.response.chkvalu.length/PAGE_RECORDERS);
+				
+				//打印页头begin
 				LODOP.ADD_PRINT_TEXT(10,10,774,24,decodeURI(strSCSYDWCookie)+"检验报告单");
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
 				LODOP.SET_PRINT_STYLEA(0,"Alignment",2);
 				LODOP.SET_PRINT_STYLEA(0,"FontName","隶书");
 				LODOP.SET_PRINT_STYLEA(0,"FontSize",15);
 				LODOP.ADD_PRINT_TEXT(45,50,250,20,"姓名："+element2.response.patientname);
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
 				LODOP.ADD_PRINT_TEXT(45,310,250,20,"门诊/住院号："+element2.response.Caseno);
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
 				LODOP.ADD_PRINT_TEXT(45,600,250,20,"检验单号："+element2.response.LSH+" "+element2.response.checkid);
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
 				LODOP.ADD_PRINT_TEXT(65,50,250,20,"性别："+element2.response.sex);
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
 				LODOP.ADD_PRINT_TEXT(65,310,250,20,"科室："+element2.response.deptname);
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
 				LODOP.ADD_PRINT_TEXT(65,600,250,20,"标本类型："+element2.response.flagetype);
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
 				LODOP.ADD_PRINT_TEXT(85,50,250,20,"年龄："+element2.response.age);
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
 				LODOP.ADD_PRINT_TEXT(85,310,250,20,"床号："+element2.response.bedno);
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
 				LODOP.ADD_PRINT_TEXT(85,600,250,20,"标本状态："+element2.response.typeflagcase);
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
 				LODOP.ADD_PRINT_TEXT(105,50,250,20,"送检医生："+element2.response.check_doctor);
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
 				LODOP.ADD_PRINT_TEXT(105,310,250,20,"临床诊断："+element2.response.diagnose);
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
 				LODOP.ADD_PRINT_TEXT(105,600,250,20,"备注："+element2.response.issure);
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
 				
 				LODOP.ADD_PRINT_LINE(120,30,120,750,0,1);
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
 
 				LODOP.ADD_PRINT_TEXT(125,100,100,20,"检验项目");
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
-				LODOP.ADD_PRINT_TEXT(125,220,100,20,"英文名");
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
+				LODOP.ADD_PRINT_TEXT(125,245,100,20,"英文名");
 				LODOP.ADD_PRINT_TEXT(125,340,100,20,"检验结果");
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
 				LODOP.ADD_PRINT_TEXT(125,460,100,20,"单位");
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
 				LODOP.ADD_PRINT_TEXT(125,640,100,20,"参考范围");
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
 				
 				LODOP.ADD_PRINT_LINE(140,30,140,750,0,1);
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
+				//打印页头end								
 				
-				if(typeof Array.prototype.forEach != "function"){
-					alert("浏览器不支持forEach");
-					return;
-				}
+				//打印页尾begin
+				LODOP.ADD_PRINT_LINE(495,30,495,750,0,1);
 				
-				//$.each(data.response.chkvalu, function(index,element) {
-				//IE8及以下版本不支持forEach//上面是jQuery的each方法,效果一样
+				LODOP.ADD_PRINT_TEXT(500,50,250,20,"申请日期："+element2.response.report_date);
+				LODOP.ADD_PRINT_TEXT(500,296,250,20,"检查日期："+element2.response.check_date);
+				LODOP.ADD_PRINT_TEXT(500,520,100,20,"操作者："+element2.response.operator);
+				LODOP.ADD_PRINT_TEXT(500,620,100,20,"审核者："+element2.response.report_doctor);
+				LODOP.ADD_PRINT_TEXT(520,50,250,20,"本结果仅对该份标本负责!");
+				LODOP.ADD_PRINT_TEXT(520,296,250,20,"打印时间："+dateFtt("yyyy-MM-dd hh:mm:ss",new Date()));
+				LODOP.ADD_PRINT_TEXT(520,520,100,20, "共"+iPageTotal+"页/第"+iPageNum+"页");
+				//打印页尾end
+				
+				//打印明细begin
 				element2.response.chkvalu.forEach(function(element,index){
-								                
+													                
 					var FIRST_ROW_TOP = 145;//第一条明细的top
-					var PAGE_RECORDERS = 17;//每页行数
 					var ROW_HEIGHT = 20;//每条明细占用的高度
 					
-					LODOP.ADD_PRINT_TEXT(FIRST_ROW_TOP+(index % PAGE_RECORDERS)*ROW_HEIGHT,100,100,20,element.Name);
-					LODOP.ADD_PRINT_TEXT(FIRST_ROW_TOP+(index % PAGE_RECORDERS)*ROW_HEIGHT,220,100,20,element.english_name);
-					LODOP.ADD_PRINT_TEXT(FIRST_ROW_TOP+(index % PAGE_RECORDERS)*ROW_HEIGHT,340,100,20,element.itemvalue);
-					LODOP.ADD_PRINT_TEXT(FIRST_ROW_TOP+(index % PAGE_RECORDERS)*ROW_HEIGHT,460,100,20,element.Unit);
+					LODOP.ADD_PRINT_TEXT(FIRST_ROW_TOP+(index % PAGE_RECORDERS)*ROW_HEIGHT,100,145,20,element.Name);
+					LODOP.ADD_PRINT_TEXT(FIRST_ROW_TOP+(index % PAGE_RECORDERS)*ROW_HEIGHT,245,95,20,element.english_name);
+					LODOP.ADD_PRINT_TEXT(FIRST_ROW_TOP+(index % PAGE_RECORDERS)*ROW_HEIGHT,340,120,20,element.itemvalue);
+					LODOP.ADD_PRINT_TEXT(FIRST_ROW_TOP+(index % PAGE_RECORDERS)*ROW_HEIGHT,460,95,20,element.Unit);
 					LODOP.ADD_PRINT_TEXT(FIRST_ROW_TOP+(index % PAGE_RECORDERS)*ROW_HEIGHT,555,100,20,element.前段参考范围);	
 					LODOP.SET_PRINT_STYLEA(0,"Alignment",3);
 					LODOP.ADD_PRINT_TEXT(FIRST_ROW_TOP+(index % PAGE_RECORDERS)*ROW_HEIGHT,655,100,20,element.后段参考范围);	
 					
 					if((index % PAGE_RECORDERS)+1 === PAGE_RECORDERS){
-						LODOP.NewPage();
+						
+						LODOP.NewPageA();
+						
+						iPageNum = iPageNum + 1;
+						
+						//打印明细时,若出现换页,则需再次打印页头、页尾(原封不动的copy上面的代码即可)
+						//打印页头begin
+						LODOP.ADD_PRINT_TEXT(10,10,774,24,decodeURI(strSCSYDWCookie)+"检验报告单");
+						LODOP.SET_PRINT_STYLEA(0,"Alignment",2);
+						LODOP.SET_PRINT_STYLEA(0,"FontName","隶书");
+						LODOP.SET_PRINT_STYLEA(0,"FontSize",15);
+						LODOP.ADD_PRINT_TEXT(45,50,250,20,"姓名："+element2.response.patientname);
+						LODOP.ADD_PRINT_TEXT(45,310,250,20,"门诊/住院号："+element2.response.Caseno);
+						LODOP.ADD_PRINT_TEXT(45,600,250,20,"检验单号："+element2.response.LSH+" "+element2.response.checkid);
+						LODOP.ADD_PRINT_TEXT(65,50,250,20,"性别："+element2.response.sex);
+						LODOP.ADD_PRINT_TEXT(65,310,250,20,"科室："+element2.response.deptname);
+						LODOP.ADD_PRINT_TEXT(65,600,250,20,"标本类型："+element2.response.flagetype);
+						LODOP.ADD_PRINT_TEXT(85,50,250,20,"年龄："+element2.response.age);
+						LODOP.ADD_PRINT_TEXT(85,310,250,20,"床号："+element2.response.bedno);
+						LODOP.ADD_PRINT_TEXT(85,600,250,20,"标本状态："+element2.response.typeflagcase);
+						LODOP.ADD_PRINT_TEXT(105,50,250,20,"送检医生："+element2.response.check_doctor);
+						LODOP.ADD_PRINT_TEXT(105,310,250,20,"临床诊断："+element2.response.diagnose);
+						LODOP.ADD_PRINT_TEXT(105,600,250,20,"备注："+element2.response.issure);
+						
+						LODOP.ADD_PRINT_LINE(120,30,120,750,0,1);
+
+						LODOP.ADD_PRINT_TEXT(125,100,100,20,"检验项目");
+						LODOP.ADD_PRINT_TEXT(125,245,100,20,"英文名");
+						LODOP.ADD_PRINT_TEXT(125,340,100,20,"检验结果");
+						LODOP.ADD_PRINT_TEXT(125,460,100,20,"单位");
+						LODOP.ADD_PRINT_TEXT(125,640,100,20,"参考范围");
+						
+						LODOP.ADD_PRINT_LINE(140,30,140,750,0,1);
+						//打印页头end								
+						
+						//打印页尾begin
+						LODOP.ADD_PRINT_LINE(495,30,495,750,0,1);
+						
+						LODOP.ADD_PRINT_TEXT(500,50,250,20,"申请日期："+element2.response.report_date);
+						LODOP.ADD_PRINT_TEXT(500,296,250,20,"检查日期："+element2.response.check_date);
+						LODOP.ADD_PRINT_TEXT(500,520,100,20,"操作者："+element2.response.operator);
+						LODOP.ADD_PRINT_TEXT(500,620,100,20,"审核者："+element2.response.report_doctor);
+						LODOP.ADD_PRINT_TEXT(520,50,250,20,"本结果仅对该份标本负责!");
+						LODOP.ADD_PRINT_TEXT(520,296,250,20,"打印时间："+dateFtt("yyyy-MM-dd hh:mm:ss",new Date()));
+						LODOP.ADD_PRINT_TEXT(520,520,100,20, "共"+iPageTotal+"页/第"+iPageNum+"页");
+						//打印页尾end
 					}
 				});
+				//打印明细end
 				
-				LODOP.ADD_PRINT_LINE(495,30,495,750,0,1);
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
-				
-				LODOP.ADD_PRINT_TEXT(500,50,250,20,"申请日期："+element2.response.report_date);
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
-				LODOP.ADD_PRINT_TEXT(500,296,250,20,"检查日期："+element2.response.check_date);
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
-				LODOP.ADD_PRINT_TEXT(500,520,100,20,"操作者："+element2.response.operator);
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
-				LODOP.ADD_PRINT_TEXT(500,620,100,20,"审核者："+element2.response.report_doctor);
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
-				LODOP.ADD_PRINT_TEXT(520,50,250,20,"本结果仅对该份标本负责!");
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
-				LODOP.ADD_PRINT_TEXT(520,296,250,20,"打印时间："+dateFtt("yyyy-MM-dd hh:mm:ss",new Date()));
-				LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
-				LODOP.ADD_PRINT_TEXT(520,520,100,20, "共&页/第#页");
-		        LODOP.SET_PRINT_STYLEA(0, "ItemType", 2);
-		        
-		        LODOP.NewPage();
+		        LODOP.NewPageA();
 			});
 						
 			LODOP.SET_SHOW_MODE("LANDSCAPE_DEFROTATED",1);//横向打印的预览默认旋转90度（正向显示）
