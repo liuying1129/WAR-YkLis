@@ -14,14 +14,29 @@ window.onload = function(){
     	
     	var tdArr=trList[i].getElementsByTagName("td");
     	
+    	var cxzf = "";
+    	
         for (var j = 0; j < tdArr.length; j++) {   //遍历Row中的每一列
 
-			if(tdArr[j].getAttribute("flag") === "itemValue"){
-				//objSelected.unid = tdArr[j].innerText;
-			}
 			if(tdArr[j].getAttribute("flag") === "ifValueAlarm"){
-				//if(tdArr[j].innerText)
+
+				cxzf = tdArr[j].innerText;
 			}
+        }
+        
+        if(cxzf == "1"||cxzf == "2"){
+        	
+            for (var k = 0; k < tdArr.length; k++) {   //遍历Row中的每一列
+
+    			if(tdArr[k].getAttribute("flag") === "itemValue"){
+    				if(cxzf == "1"){
+    					tdArr[k].setAttribute("style","color:blue");
+    				}
+    				if(cxzf == "2"){
+    					tdArr[k].setAttribute("style","color:red");
+    				}
+    			}    			
+            }
         }
     }
 };
