@@ -11,6 +11,9 @@
 
     <title>检验结果</title>
     
+    <c:set var="ctx" value="${pageContext.request.contextPath}"/>
+    <c:set var="jsr" value="${initParam.jsRandom}"/>
+    
 </head>
 
 <body>
@@ -23,6 +26,7 @@
           <th>名称</th>
           <th>英文名</th>
           <th>检验结果</th>
+          <th>超限标识</th>
           <th>最小值</th>
           <th>最大值</th>
           <th>单位</th>
@@ -35,7 +39,8 @@
 						<td>${D.组合项目}</td>
 						<td>${D.名称}</td>
 						<td>${D.英文名}</td>
-						<td>${D.检验结果}</td>
+						<td flag='itemValue'>${D.检验结果}</td>
+						<td flag='ifValueAlarm'>${D.ifValueAlarm}</td>
 						<td>${D.最小值}</td>
 						<td>${D.最大值}</td>
 						<td>${D.单位}</td>
@@ -45,5 +50,6 @@
     </tbody>
   </table>
   
+  <script src="${ctx}/static/dev-js/checkValue.js?jsr=${jsr}"></script>
 </body>
 </html>

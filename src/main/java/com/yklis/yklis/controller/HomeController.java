@@ -280,13 +280,6 @@ public class HomeController{
     	String unid = request.getParameter("unid");
     	String ifCompleted = request.getParameter("ifCompleted");
     	
-    	String  strsql11="select "+
-    	            "(case when photo is null then null else '图' end) as 图,"+
-    	            "combin_Name as 组合项目,name as 名称,english_name as 英文名,itemvalue as 检验结果,"+
-    	            "min_value as 最小值,max_value as 最大值,"+
-    	            "unit as 单位,"+
-    	            "pkcombin_id as 组合项目号,itemid as 项目编号,valueid as 唯一编号 "+
-    	            " from ";
     	String strsql12;
     	if("1".equals(ifCompleted)){
     		strsql12="chk_valu_bak";
@@ -300,7 +293,7 @@ public class HomeController{
     	            " order by pkcombin_id,printorder ";
     			  
 	    StringBuilder sbSQL = new StringBuilder();
-	    sbSQL.append(strsql11);
+	    sbSQL.append("select (case when photo is null then null else '图' end) as 图,combin_Name as 组合项目,name as 名称,english_name as 英文名,itemvalue as 检验结果,dbo.uf_ValueAlarm(itemid,Min_value,Max_value,itemvalue) as ifValueAlarm,min_value as 最小值,max_value as 最大值,unit as 单位,pkcombin_id as 组合项目号,itemid as 项目编号,valueid as 唯一编号 from ");
 	    sbSQL.append(strsql12);
 	    sbSQL.append(strsql13);
 	    sbSQL.append(strsql14);
@@ -357,7 +350,7 @@ public class HomeController{
             sbChkcon.append(unid);
             
             StringBuilder sbChkvalu = new StringBuilder();
-            sbChkvalu.append("select itemid,Name,english_name,itemvalue,Min_value,Max_value,dbo.uf_Reference_Value_B1(min_value,max_value) as 前段参考范围,isnull(dbo.uf_Reference_Value_B2(min_value,max_value),'') as 后段参考范围,Unit,min(printorder) as 打印编号,min(pkcombin_id) as 组合项目号,Reserve1,Reserve2,Dosage1,Dosage2,Reserve5,Reserve6,Reserve7,Reserve8,Reserve9,Reserve10 from ");
+            sbChkvalu.append("select itemid,Name,english_name,itemvalue,Min_value,Max_value,dbo.uf_Reference_Value_B1(min_value,max_value) as 前段参考范围,isnull(dbo.uf_Reference_Value_B2(min_value,max_value),'') as 后段参考范围,Unit,min(printorder) as 打印编号,min(pkcombin_id) as 组合项目号,Reserve1,Reserve2,Dosage1,Dosage2,Reserve5,Reserve6,Reserve7,Reserve8,Reserve9,Reserve10,dbo.uf_ValueAlarm(itemid,Min_value,Max_value,itemvalue) as ifValueAlarm from ");
             if("1".equals(ifCompleted)){
                 sbChkvalu.append("chk_valu_bak ");
             }else{

@@ -5,6 +5,13 @@
 	//4、为未来新版本的Javascript做好铺垫
     "use strict";
 
+window.onload = function(){
+	
+	if(typeof Array.prototype.forEach != "function"){
+		alert("浏览器不支持forEach");
+	}
+};
+    
 var btnQuery = document.getElementById("btnQuery");
 btnQuery.onclick = function() {
 	
@@ -120,11 +127,6 @@ btnPrint.onclick = function() {
 		dataType : 'json',
 		success : function(data) {
 			
-			if(typeof Array.prototype.forEach != "function"){
-				alert("浏览器不支持forEach");
-				return;
-			}
-			
 			var strSCSYDWCookie = getCookie("yklis.SCSYDW");
 			
 			var LODOP=getLodop();
@@ -188,7 +190,16 @@ btnPrint.onclick = function() {
 					
 					LODOP.ADD_PRINT_TEXT(FIRST_ROW_TOP+(index % PAGE_RECORDERS)*ROW_HEIGHT,100,145,20,element.Name);
 					LODOP.ADD_PRINT_TEXT(FIRST_ROW_TOP+(index % PAGE_RECORDERS)*ROW_HEIGHT,245,95,20,element.english_name);
-					LODOP.ADD_PRINT_TEXT(FIRST_ROW_TOP+(index % PAGE_RECORDERS)*ROW_HEIGHT,340,120,20,element.itemvalue);
+					var cxzf = "";
+					switch (element.ifValueAlarm){
+						case 1:
+							cxzf = "↓";
+							break;
+						case 2:
+							cxzf = "↑";
+							break;
+					}
+					LODOP.ADD_PRINT_TEXT(FIRST_ROW_TOP+(index % PAGE_RECORDERS)*ROW_HEIGHT,340,120,20,element.itemvalue+" "+cxzf);
 					LODOP.ADD_PRINT_TEXT(FIRST_ROW_TOP+(index % PAGE_RECORDERS)*ROW_HEIGHT,460,95,20,element.Unit);
 					LODOP.ADD_PRINT_TEXT(FIRST_ROW_TOP+(index % PAGE_RECORDERS)*ROW_HEIGHT,555,100,20,element.前段参考范围);	
 					LODOP.SET_PRINT_STYLEA(0,"Alignment",3);
