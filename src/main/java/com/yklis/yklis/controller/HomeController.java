@@ -234,20 +234,10 @@ public class HomeController{
 	    sbSQL.append(STRSQL45);
 	    sbSQL.append(STRSQL50);
 	    sbSQL.append(STRSQL47);
-	    sbSQL.append(STRSQL49);
-	    
-	    //logger.info("selectLabReport方法：SQL:"+sbSQL.toString());
+	    sbSQL.append(STRSQL49);	   
 		      	
     	String aa = selectDataSetSQLCmdService.selectDataSetSQLCmd(sbSQL.toString());
     	
-	    //logger.info("selectLabReport方法：结果:"+aa);
-	    
-        //获取输入参数  
-        //Map<String, String[]> inputParamMap = request.getParameterMap();
-        
-        //Gson gson = new Gson();
-        
-        //logger.info("selectLabReport:"+gson.toJson(inputParamMap));
         return aa;
     }
     
@@ -279,6 +269,11 @@ public class HomeController{
     	
     	String unid = request.getParameter("unid");
     	String ifCompleted = request.getParameter("ifCompleted");
+    	//以下4个参数仅用于显示到结果界面
+        String patientname = request.getParameter("patientname");
+        String sex = request.getParameter("sex");
+        String age = request.getParameter("age");
+        String check_date = request.getParameter("check_date");
     	
     	String strsql12;
     	if("1".equals(ifCompleted)){
@@ -299,19 +294,16 @@ public class HomeController{
 	    sbSQL.append(strsql14);
 	    sbSQL.append(strsql15);
 	    
-	    //logger.info("selectLabReport方法：SQL:"+sbSQL.toString());
-		      	    	
-    	
-	    //logger.info("selectLabReport方法：结果:"+aa);
-	    
-        //获取输入参数  
-        //Map<String, String[]> inputParamMap = request.getParameterMap();
-        
-        //Gson gson = new Gson();
-        
-        //logger.info("selectLabReport:"+gson.toJson(inputParamMap));
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("DataTable", selectDataSetSQLCmdService.selectDataSetSQLCmd2(sbSQL.toString()));
+		mv.addObject("DataTable", selectDataSetSQLCmdService.selectDataSetSQLCmd2(sbSQL.toString()));		
+
+        Map<String, Object> modelMap = new HashMap<String, Object>();
+        modelMap.put("patientname", patientname);
+        modelMap.put("sex", sex);
+        modelMap.put("age", age);
+        modelMap.put("check_date", check_date);
+        mv.addObject("baseInfo", modelMap);
+        
 		mv.setViewName("checkValue");
 		
 		return mv;

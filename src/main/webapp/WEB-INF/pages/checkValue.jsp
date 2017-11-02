@@ -17,8 +17,9 @@
 </head>
 
 <body>
-
-  <table border="1">
+  <!-- table在页面居中 -->
+  <table border="1" style="margin:0 auto;">
+  <caption><em>${baseInfo.patientname}&nbsp;&nbsp;${baseInfo.sex}&nbsp;&nbsp;${baseInfo.age}&nbsp;&nbsp;${baseInfo.check_date}</em></caption>
   	<thead>
         <tr style="background-color:yellow">
           <th>图</th>
