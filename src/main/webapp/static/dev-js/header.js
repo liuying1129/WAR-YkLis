@@ -5,10 +5,9 @@
 	//4、为未来新版本的Javascript做好铺垫
     "use strict";    
 
-//$(document).ready(function() {
-//});
-//用上面的方式更好,但需要引用jquery
-window.onload = function(){
+//window.onload = function(){};
+//用window.onload的方式时遇到非常奇怪的问题,labReport.jsp页面(动态包含header.jsp)不会进入该window.onload事件
+$(document).ready(function() {
 	
 	var strCookie = getCookie("yklis.account");
 	var strSCSYDWCookie = getCookie("yklis.SCSYDW");
@@ -38,4 +37,4 @@ window.onload = function(){
 	}else{
 		document.getElementById("hrefSCSYDW").innerHTML = "未授权";
 	}	
-};
+});
