@@ -29,7 +29,7 @@
     <label for="password">password</label>
     <input type="password" name="password" placeholder="密码">
     <span style="color:red">${msg}</span>
-    <input type="submit" value="登录">
+    <input type="submit" style="font-family: Microsoft Yahei;" value="登录">
   </form>
   
 </body>
