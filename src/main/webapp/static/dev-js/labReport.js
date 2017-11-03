@@ -272,12 +272,52 @@ btnPrint.onclick = function() {
 
 $(document).ready(function() {
 	
+	//Select2初始化,参数是一个对象
 	$('select[name="deptname"]').select2({
-		tags: true//初始化参数//Dynamic option creation
+		placeholder: '送检科室',//仅对单选类型有效,为了使占位符值出现,SELECT的第一个<option>必须是一个空白的<option>
+		allowClear: true,
+		tags: true//Dynamic option creation
 	});
 	
 	$('select[name="check_doctor"]').select2({
-		//placeholder:"送检医生",
-		tags: true//初始化参数//Dynamic option creation
+		placeholder: '送检医生',//仅对单选类型有效,为了使占位符值出现,SELECT的第一个<option>必须是一个空白的<option>
+		allowClear: true,
+		tags: true//Dynamic option creation
+	});
+	
+	$.ajax({
+		//默认值: true。如果需要发送同步请求，请将此选项设置为 false。注意，同步请求将锁住浏览器，用户其它操作必须等待请求完成才可以执行
+		async : true,
+		//默认值:"GET".请求方式 ("POST"或 "GET")，注意：其它 HTTP请求方法，如 PUT和 DELETE也可以使用，但仅部分浏览器支持
+		type : 'POST',
+		//默认值: "application/x-www-form-urlencoded"。发送信息至服务器时内容编码类型
+		//默认值适合大多数情况。如果你明确指定$.ajax()的 content-type,那么它必定会发送给服务器（即使没有数据要发送）
+		//contentType : "application/x-www-form-urlencoded",//application/json
+		url : 'loadSelect',
+		//预期服务器返回的数据类型。如果不指定，jQuery将自动根据 HTTP包 MIME信息来智能判断
+		//dataType : 'json',
+		success : function(data) {
+						
+			var deptnameSelect = $('select[name="deptname"]');
+			deptnameSelect.append(new Option(""));
+			
+			data.dsDeptname.forEach(function(element,index){
+				
+				deptnameSelect.append(new Option(element.Name));
+			});
+			
+			var check_doctorSelect = $('select[name="check_doctor"]');
+			check_doctorSelect.append(new Option(""));
+
+			data.dsWorker.forEach(function(element,index){
+				
+				check_doctorSelect.append(new Option(element.name));
+			});
+		},
+		error : function(xhr, textStatus, errorThrown) {
+			console.log(xhr.status);
+			console.log(xhr.readyState);
+			console.log(textStatus);
+		}
 	});
 });

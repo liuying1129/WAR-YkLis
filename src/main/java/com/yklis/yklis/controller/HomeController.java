@@ -243,10 +243,21 @@ public class HomeController{
     
     @RequestMapping("labReport")
     //不能加@ResponseBody,否则,不会跳转到index页面,而是将index做为字符串返回到当前页面中
-    public String labReport(HttpServletRequest request) {
-    	
+    public String labReport(HttpServletRequest request) {    	
+        
         return "labReport";
-    } 
+    }
+    
+    @RequestMapping("loadSelect")
+    @ResponseBody
+    public Map<String, Object> loadSelect(HttpServletRequest request) {
+        
+        Map<String, Object> map = new HashMap<>();
+        map.put("dsDeptname", selectDataSetSQLCmdService.selectDataSetSQLCmd2("select Name from CommCode where TypeName='部门'"));
+        map.put("dsWorker", selectDataSetSQLCmdService.selectDataSetSQLCmd2("select name from worker"));
+        
+        return map;
+    }
     
     @RequestMapping("logout")
     //不能加@ResponseBody,否则,不会跳转到index页面,而是将index做为字符串返回到当前页面中

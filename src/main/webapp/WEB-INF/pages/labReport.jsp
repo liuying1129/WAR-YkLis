@@ -21,23 +21,9 @@
     <!-- select2 -->
     <link href="${ctx}/static/select2/4.0.5/css/select2.min.css" rel="stylesheet" />
             
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="${ctx}/static/jquery/jquery-3.2.1.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="${ctx}/static/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        
-	<script src="${ctx}/static/Lodop/LodopFuncs.js"></script>
 	<object id="LODOP_OB" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=0 height=0> 
 		<embed id="LODOP_EM" type="application/x-print-lodop" width=0 height=0></embed>
 	</object>
-        
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->        
-    
 </head>
 
 <body>
@@ -46,11 +32,6 @@
     <%-- <%@ include file="header.jsp" %> --%>
     <!-- 动态包含 -->
     <jsp:include page="header.jsp" />
-
-    <!-- select2 -->
-    <!-- 如果select2.js在jquery.js之后加载,初始化函数select2()报错:select2 is not a function -->
-    <!-- 注:header.jsp有引用jquery.js -->
-    <script src="${ctx}/static/select2/4.0.5/js/select2.min.js"></script>
 
   <!-- form表单数据通过form外button(ajax)提交到controller示例 -->
   <form id="frmQuery">
@@ -75,18 +56,10 @@
     送检科室
     <!-- <input type="text" name="deptname" placeholder="送检科室"> -->
     <select name="deptname" style="width:130px">
-        <option selected></option>
-        <option>orange</option>
-        <option>white</option>
-        <option>purple</option>
-    </select>    
+    </select>
     送检医生
     <!-- <input type="text" name="check_doctor" placeholder="送检医生"> -->
 	<select name="check_doctor" style="width:130px">
-	    <option selected></option>
-	    <option>orange</option>
-	    <option>white</option>
-	    <option>purple</option>
     </select>
   </form>
   <button id="btnQuery">查询</button>
@@ -134,7 +107,20 @@
     </tbody>
   </table>
 
-  <script src="${ctx}/static/dev-js/commFunction.js?jsr=${jsr}"></script>
-  <script src="${ctx}/static/dev-js/labReport.js?jsr=${jsr}"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="${ctx}/static/jquery/jquery-3.2.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="${ctx}/static/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+       
+    <!-- Lodop -->
+    <script src="${ctx}/static/Lodop/LodopFuncs.js"></script>
+    
+    <!-- select2 -->
+    <!-- 如果select2.js在jquery.js之前加载,初始化函数select2()报错:select2 is not a function -->
+    <!-- 注:header.jsp有引用jquery.js -->
+    <script src="${ctx}/static/select2/4.0.5/js/select2.min.js"></script>
+
+    <script src="${ctx}/static/dev-js/commFunction.js?jsr=${jsr}"></script>
+    <script src="${ctx}/static/dev-js/labReport.js?jsr=${jsr}"></script>
 </body>
 </html>

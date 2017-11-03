@@ -15,22 +15,8 @@
 	<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 	<c:set var="jsr" value="${initParam.jsRandom}"/>
 	
-
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="${ctx}/static/bootstrap/3.3.7/css/bootstrap.min.css" />    
-            
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="${ctx}/static/jquery/jquery-3.2.1.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="${ctx}/static/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    
+    <link rel="stylesheet" href="${ctx}/static/bootstrap/3.3.7/css/bootstrap.min.css" />                
 </head>
 <!-- 融合后母页的body都会有该style.这是我们希望的结果:因为header的存在,内容都需要往下移50px -->
 <body style="padding-top: 50px;">
@@ -59,8 +45,12 @@
       </div>
     </nav>
     
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="${ctx}/static/jquery/jquery-3.2.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="${ctx}/static/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
     <script src="${ctx}/static/dev-js/commFunction.js?jsr=${jsr}"></script>
-    <script src="${ctx}/static/dev-js/header.js?jsr=${jsr}"></script>
-	
+    <script src="${ctx}/static/dev-js/header.js?jsr=${jsr}"></script>	
 </body>
 </html>
