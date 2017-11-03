@@ -131,6 +131,9 @@ public class HomeController{
             return new ModelAndView("login", modelMap);
         }
         
+        //请求远程用户信息接口begin
+        //请求远程用户信息接口end
+        
         Cookie cookie = new Cookie("yklis.account",account);
         response.addCookie(cookie);                
 

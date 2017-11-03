@@ -128,6 +128,9 @@ btnPrint.onclick = function() {
 		success : function(data) {
 			
 			var strSCSYDWCookie = getCookie("yklis.SCSYDW");
+			if(typeof strSCSYDWCookie == "undefined"||strSCSYDWCookie ==null||strSCSYDWCookie.length == 0){
+				strSCSYDWCookie = "未授权";
+			}
 			
 			var LODOP=getLodop();
 			LODOP.PRINT_INIT("printReport");//首先一个初始化语句//参数为打印任务名
