@@ -119,6 +119,9 @@
     <!-- 如果select2.js在jquery.js之前加载,初始化函数select2()报错:select2 is not a function -->
     <!-- 注:header.jsp有引用jquery.js -->
     <script src="${ctx}/static/select2/4.0.5/js/select2.min.js"></script>
+    
+    <script src="${ctx}/static/md5-min.js"></script>
+    <script src="${ctx}/static/dev-js/make_sign.js"></script>
 
     <script src="${ctx}/static/dev-js/commFunction.js?jsr=${jsr}"></script>
     <script src="${ctx}/static/dev-js/labReport.js?jsr=${jsr}"></script>
