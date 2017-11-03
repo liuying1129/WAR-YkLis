@@ -18,6 +18,8 @@
     
     <!-- Bootstrap -->
     <link rel="stylesheet" href="${ctx}/static/bootstrap/3.3.7/css/bootstrap.min.css" />    
+    <!-- select2 -->
+    <link href="${ctx}/static/select2/4.0.5/css/select2.min.css" rel="stylesheet" />
             
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="${ctx}/static/jquery/jquery-3.2.1.min.js"></script>
@@ -45,6 +47,11 @@
     <!-- 动态包含 -->
     <jsp:include page="header.jsp" />
 
+    <!-- select2 -->
+    <!-- 如果select2.js在jquery.js之后加载,初始化函数select2()报错:select2 is not a function -->
+    <!-- 注:header.jsp有引用jquery.js -->
+    <script src="${ctx}/static/select2/4.0.5/js/select2.min.js"></script>
+
   <!-- form表单数据通过form外button(ajax)提交到controller示例 -->
   <form id="frmQuery">
     检查日期:
@@ -66,9 +73,21 @@
     姓名
     <input type="text" name="patientname" placeholder="姓名">
     送检科室
-    <input type="text" name="deptname" placeholder="送检科室">
+    <!-- <input type="text" name="deptname" placeholder="送检科室"> -->
+    <select name="deptname" style="width:130px">
+        <option selected></option>
+        <option>orange</option>
+        <option>white</option>
+        <option>purple</option>
+    </select>    
     送检医生
-    <input type="text" name="check_doctor" placeholder="送检医生">
+    <!-- <input type="text" name="check_doctor" placeholder="送检医生"> -->
+	<select name="check_doctor" style="width:130px">
+	    <option selected></option>
+	    <option>orange</option>
+	    <option>white</option>
+	    <option>purple</option>
+    </select>
   </form>
   <button id="btnQuery">查询</button>
   <button id="btnPrint">打印</button>

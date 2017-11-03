@@ -270,3 +270,14 @@ btnPrint.onclick = function() {
 	});//*/									
 };
 
+$(document).ready(function() {
+	
+	$('select[name="deptname"]').select2({
+		tags: true//初始化参数//Dynamic option creation
+	});
+	
+	$('select[name="check_doctor"]').select2({
+		//placeholder:"送检医生",
+		tags: true//初始化参数//Dynamic option creation
+	});
+});
