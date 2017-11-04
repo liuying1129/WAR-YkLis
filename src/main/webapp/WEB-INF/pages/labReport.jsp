@@ -19,11 +19,7 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="${ctx}/static/bootstrap/3.3.7/css/bootstrap.min.css" />    
     <!-- select2 -->
-    <link href="${ctx}/static/select2/4.0.5/css/select2.min.css" rel="stylesheet" />
-            
-	<object id="LODOP_OB" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=0 height=0> 
-		<embed id="LODOP_EM" type="application/x-print-lodop" width=0 height=0></embed>
-	</object>
+    <link href="${ctx}/static/select2/4.0.5/css/select2.min.css" rel="stylesheet" />           
 </head>
 
 <body>
@@ -115,6 +111,10 @@
     <!-- Lodop -->
     <script src="${ctx}/static/Lodop/LodopFuncs.js"></script>
     
+    <object id="LODOP_OB" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=0 height=0> 
+        <embed id="LODOP_EM" type="application/x-print-lodop" width=0 height=0></embed>
+    </object>
+	
     <!-- select2 -->
     <!-- 如果select2.js在jquery.js之前加载,初始化函数select2()报错:select2 is not a function -->
     <!-- 注:header.jsp有引用jquery.js -->
