@@ -34,7 +34,7 @@
         </tr>
   	</thead>
     <tbody id="myTBody">
-				<c:forEach items="${DataTable}" var="D">
+				<c:forEach items="${DataTable.response}" var="D">
 					<tr>
 						<td>${D.图}</td>
 						<td>${D.组合项目}</td>

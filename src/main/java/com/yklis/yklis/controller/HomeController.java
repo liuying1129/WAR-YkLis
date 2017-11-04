@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -305,8 +308,19 @@ public class HomeController{
 	    sbSQL.append(strsql14);
 	    sbSQL.append(strsql15);
 	    
+		String ss1 = selectDataSetSQLCmdService.selectDataSetSQLCmd(sbSQL.toString());
+		
+		JSONObject jso=JSON.parseObject(ss1);//json字符串转换成JSONObject(JSON对象)
+		
+		boolean bb1 = jso.getBooleanValue("success");
+		if(!bb1){
+			
+		}
+
+		JSONArray jsarr=jso.getJSONArray("response");//JSONObject取得response对应的JSONArray(JSON数组)
+		
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("DataTable", selectDataSetSQLCmdService.selectDataSetSQLCmd2(sbSQL.toString()));		
+        mv.addObject("DataTable", jsarr);
 
         Map<String, Object> modelMap = new HashMap<String, Object>();
         modelMap.put("patientname", patientname);
