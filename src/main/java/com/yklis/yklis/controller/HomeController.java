@@ -251,15 +251,18 @@ public class HomeController{
         return "labReport";
     }
     
-    @RequestMapping("loadSelect")
+    @RequestMapping("loadDeptname")
     @ResponseBody
-    public Map<String, Object> loadSelect(HttpServletRequest request) {
-        
-        Map<String, Object> map = new HashMap<>();
-        map.put("dsDeptname", selectDataSetSQLCmdService.selectDataSetSQLCmd2("select Name from CommCode where TypeName='部门'"));
-        map.put("dsWorker", selectDataSetSQLCmdService.selectDataSetSQLCmd2("select name from worker"));
-        
-        return map;
+    public String loadDeptname(HttpServletRequest request) {
+                
+        return selectDataSetSQLCmdService.selectDataSetSQLCmd("select Name from CommCode where TypeName='部门'");
+    }
+    
+    @RequestMapping("loadWorker")
+    @ResponseBody
+    public String loadWorker(HttpServletRequest request) {
+                
+        return selectDataSetSQLCmdService.selectDataSetSQLCmd("select name from worker");
     }
     
     @RequestMapping("logout")
@@ -377,14 +380,36 @@ public class HomeController{
             sbChkvalu.append(unid);
             sbChkvalu.append(" and issure=1 and ltrim(rtrim(isnull(itemvalue,'')))<>'' group by itemid,name,english_name,itemvalue,min_value,max_value,unit,Reserve1,Reserve2,Dosage1,Dosage2,Reserve5,Reserve6,Reserve7,Reserve8,Reserve9,Reserve10 order by 组合项目号,打印编号");
         
-            List<Map<String, Object>> lsChkcon = selectDataSetSQLCmdService.selectDataSetSQLCmd2(sbChkcon.toString());
-            List<Map<String, Object>> lsChkvalu = selectDataSetSQLCmdService.selectDataSetSQLCmd2(sbChkvalu.toString());
+            //List<Map<String, Object>> lsChkcon = selectDataSetSQLCmdService.selectDataSetSQLCmd2(sbChkcon.toString());
+            //List<Map<String, Object>> lsChkvalu = selectDataSetSQLCmdService.selectDataSetSQLCmd2(sbChkvalu.toString());
+            
+            String ssChkcon = selectDataSetSQLCmdService.selectDataSetSQLCmd(sbChkcon.toString());
+            String ssChkvalu = selectDataSetSQLCmdService.selectDataSetSQLCmd(sbChkvalu.toString());
+            
+    		JSONObject jsoChkcon=JSON.parseObject(ssChkcon);//json字符串转换成JSONObject(JSON对象)
+    		
+    		boolean bbChkcon = jsoChkcon.getBooleanValue("success");
+    		if(!bbChkcon){
+    			
+    		}
+
+    		JSONArray jsarrChkcon=jsoChkcon.getJSONArray("response");//JSONObject取得response对应的JSONArray(JSON数组)
             
             Map<String, Object>    map2 = null;
-            for(int i=0;i<lsChkcon.size();i++){   
-                map2    =    lsChkcon.get(i);   
-            }    
-            map2.put("chkvalu", lsChkvalu);
+            for(int i=0;i<jsarrChkcon.size();i++){   
+                map2    =  jsarrChkcon.getJSONObject(i);
+            }
+            
+    		JSONObject jsoChkvalu=JSON.parseObject(ssChkvalu);//json字符串转换成JSONObject(JSON对象)
+    		
+    		boolean bbssChkvalu = jsoChkcon.getBooleanValue("success");
+    		if(!bbssChkvalu){
+    			
+    		}
+
+    		JSONArray jsarrssChkvalu=jsoChkvalu.getJSONArray("response");//JSONObject取得response对应的JSONArray(JSON数组)
+            
+            map2.put("chkvalu", jsarrssChkvalu);
             
             Map<String, Object> map = new HashMap<>();
             map.put("success", true);
