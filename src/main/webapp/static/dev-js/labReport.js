@@ -142,25 +142,25 @@ btnPrint.onclick = function() {
 				
 				var PAGE_RECORDERS = 17;//每页行数
 				var iPageNum = 1;
-				var iPageTotal = Math.ceil(element2.response.chkvalu.length/PAGE_RECORDERS);
+				var iPageTotal = Math.ceil(element2.chkvalu.length/PAGE_RECORDERS);
 				
 				//打印页头begin
 				LODOP.ADD_PRINT_TEXT(10,10,774,24,decodeURI(strSCSYDWCookie)+"检验报告单");
 				LODOP.SET_PRINT_STYLEA(0,"Alignment",2);
 				LODOP.SET_PRINT_STYLEA(0,"FontName","隶书");
 				LODOP.SET_PRINT_STYLEA(0,"FontSize",15);
-				LODOP.ADD_PRINT_TEXT(45,50,250,20,"姓名："+element2.response.patientname);
-				LODOP.ADD_PRINT_TEXT(45,310,250,20,"门诊/住院号："+element2.response.Caseno);
-				LODOP.ADD_PRINT_TEXT(45,600,250,20,"检验单号："+element2.response.LSH+" "+element2.response.checkid);
-				LODOP.ADD_PRINT_TEXT(65,50,250,20,"性别："+element2.response.sex);
-				LODOP.ADD_PRINT_TEXT(65,310,250,20,"科室："+element2.response.deptname);
-				LODOP.ADD_PRINT_TEXT(65,600,250,20,"标本类型："+element2.response.flagetype);
-				LODOP.ADD_PRINT_TEXT(85,50,250,20,"年龄："+element2.response.age);
-				LODOP.ADD_PRINT_TEXT(85,310,250,20,"床号："+element2.response.bedno);
-				LODOP.ADD_PRINT_TEXT(85,600,250,20,"标本状态："+element2.response.typeflagcase);
-				LODOP.ADD_PRINT_TEXT(105,50,250,20,"送检医生："+element2.response.check_doctor);
-				LODOP.ADD_PRINT_TEXT(105,310,250,20,"临床诊断："+element2.response.diagnose);
-				LODOP.ADD_PRINT_TEXT(105,600,250,20,"备注："+element2.response.issure);
+				LODOP.ADD_PRINT_TEXT(45,50,250,20,"姓名："+element2.patientname);
+				LODOP.ADD_PRINT_TEXT(45,310,250,20,"门诊/住院号："+element2.Caseno);
+				LODOP.ADD_PRINT_TEXT(45,600,250,20,"检验单号："+element2.LSH+" "+element2.checkid);
+				LODOP.ADD_PRINT_TEXT(65,50,250,20,"性别："+element2.sex);
+				LODOP.ADD_PRINT_TEXT(65,310,250,20,"科室："+element2.deptname);
+				LODOP.ADD_PRINT_TEXT(65,600,250,20,"标本类型："+element2.flagetype);
+				LODOP.ADD_PRINT_TEXT(85,50,250,20,"年龄："+element2.age);
+				LODOP.ADD_PRINT_TEXT(85,310,250,20,"床号："+element2.bedno);
+				LODOP.ADD_PRINT_TEXT(85,600,250,20,"标本状态："+element2.typeflagcase);
+				LODOP.ADD_PRINT_TEXT(105,50,250,20,"送检医生："+element2.check_doctor);
+				LODOP.ADD_PRINT_TEXT(105,310,250,20,"临床诊断："+element2.diagnose);
+				LODOP.ADD_PRINT_TEXT(105,600,250,20,"备注："+element2.issure);
 				
 				LODOP.ADD_PRINT_LINE(120,30,120,750,0,1);
 
@@ -176,17 +176,17 @@ btnPrint.onclick = function() {
 				//打印页尾begin
 				LODOP.ADD_PRINT_LINE(495,30,495,750,0,1);
 				
-				LODOP.ADD_PRINT_TEXT(500,50,250,20,"申请日期："+element2.response.report_date);
-				LODOP.ADD_PRINT_TEXT(500,296,250,20,"检查日期："+element2.response.check_date);
-				LODOP.ADD_PRINT_TEXT(500,520,100,20,"操作者："+element2.response.operator);
-				LODOP.ADD_PRINT_TEXT(500,620,100,20,"审核者："+element2.response.report_doctor);
+				LODOP.ADD_PRINT_TEXT(500,50,250,20,"申请日期："+element2.report_date);
+				LODOP.ADD_PRINT_TEXT(500,296,250,20,"检查日期："+element2.check_date);
+				LODOP.ADD_PRINT_TEXT(500,520,100,20,"操作者："+element2.operator);
+				LODOP.ADD_PRINT_TEXT(500,620,100,20,"审核者："+element2.report_doctor);
 				LODOP.ADD_PRINT_TEXT(520,50,250,20,"本结果仅对该份标本负责!");
 				LODOP.ADD_PRINT_TEXT(520,296,250,20,"打印时间："+dateFtt("yyyy-MM-dd hh:mm:ss",new Date()));
 				LODOP.ADD_PRINT_TEXT(520,520,100,20, "共"+iPageTotal+"页/第"+iPageNum+"页");
 				//打印页尾end
 				
 				//打印明细begin
-				element2.response.chkvalu.forEach(function(element,index){
+				element2.chkvalu.forEach(function(element,index){
 													                
 					var FIRST_ROW_TOP = 145;//第一条明细的top
 					var ROW_HEIGHT = 20;//每条明细占用的高度
@@ -220,18 +220,18 @@ btnPrint.onclick = function() {
 						LODOP.SET_PRINT_STYLEA(0,"Alignment",2);
 						LODOP.SET_PRINT_STYLEA(0,"FontName","隶书");
 						LODOP.SET_PRINT_STYLEA(0,"FontSize",15);
-						LODOP.ADD_PRINT_TEXT(45,50,250,20,"姓名："+element2.response.patientname);
-						LODOP.ADD_PRINT_TEXT(45,310,250,20,"门诊/住院号："+element2.response.Caseno);
-						LODOP.ADD_PRINT_TEXT(45,600,250,20,"检验单号："+element2.response.LSH+" "+element2.response.checkid);
-						LODOP.ADD_PRINT_TEXT(65,50,250,20,"性别："+element2.response.sex);
-						LODOP.ADD_PRINT_TEXT(65,310,250,20,"科室："+element2.response.deptname);
-						LODOP.ADD_PRINT_TEXT(65,600,250,20,"标本类型："+element2.response.flagetype);
-						LODOP.ADD_PRINT_TEXT(85,50,250,20,"年龄："+element2.response.age);
-						LODOP.ADD_PRINT_TEXT(85,310,250,20,"床号："+element2.response.bedno);
-						LODOP.ADD_PRINT_TEXT(85,600,250,20,"标本状态："+element2.response.typeflagcase);
-						LODOP.ADD_PRINT_TEXT(105,50,250,20,"送检医生："+element2.response.check_doctor);
-						LODOP.ADD_PRINT_TEXT(105,310,250,20,"临床诊断："+element2.response.diagnose);
-						LODOP.ADD_PRINT_TEXT(105,600,250,20,"备注："+element2.response.issure);
+						LODOP.ADD_PRINT_TEXT(45,50,250,20,"姓名："+element2.patientname);
+						LODOP.ADD_PRINT_TEXT(45,310,250,20,"门诊/住院号："+element2.Caseno);
+						LODOP.ADD_PRINT_TEXT(45,600,250,20,"检验单号："+element2.LSH+" "+element2.checkid);
+						LODOP.ADD_PRINT_TEXT(65,50,250,20,"性别："+element2.sex);
+						LODOP.ADD_PRINT_TEXT(65,310,250,20,"科室："+element2.deptname);
+						LODOP.ADD_PRINT_TEXT(65,600,250,20,"标本类型："+element2.flagetype);
+						LODOP.ADD_PRINT_TEXT(85,50,250,20,"年龄："+element2.age);
+						LODOP.ADD_PRINT_TEXT(85,310,250,20,"床号："+element2.bedno);
+						LODOP.ADD_PRINT_TEXT(85,600,250,20,"标本状态："+element2.typeflagcase);
+						LODOP.ADD_PRINT_TEXT(105,50,250,20,"送检医生："+element2.check_doctor);
+						LODOP.ADD_PRINT_TEXT(105,310,250,20,"临床诊断："+element2.diagnose);
+						LODOP.ADD_PRINT_TEXT(105,600,250,20,"备注："+element2.issure);
 						
 						LODOP.ADD_PRINT_LINE(120,30,120,750,0,1);
 
@@ -247,10 +247,10 @@ btnPrint.onclick = function() {
 						//打印页尾begin
 						LODOP.ADD_PRINT_LINE(495,30,495,750,0,1);
 						
-						LODOP.ADD_PRINT_TEXT(500,50,250,20,"申请日期："+element2.response.report_date);
-						LODOP.ADD_PRINT_TEXT(500,296,250,20,"检查日期："+element2.response.check_date);
-						LODOP.ADD_PRINT_TEXT(500,520,100,20,"操作者："+element2.response.operator);
-						LODOP.ADD_PRINT_TEXT(500,620,100,20,"审核者："+element2.response.report_doctor);
+						LODOP.ADD_PRINT_TEXT(500,50,250,20,"申请日期："+element2.report_date);
+						LODOP.ADD_PRINT_TEXT(500,296,250,20,"检查日期："+element2.check_date);
+						LODOP.ADD_PRINT_TEXT(500,520,100,20,"操作者："+element2.operator);
+						LODOP.ADD_PRINT_TEXT(500,620,100,20,"审核者："+element2.report_doctor);
 						LODOP.ADD_PRINT_TEXT(520,50,250,20,"本结果仅对该份标本负责!");
 						LODOP.ADD_PRINT_TEXT(520,296,250,20,"打印时间："+dateFtt("yyyy-MM-dd hh:mm:ss",new Date()));
 						LODOP.ADD_PRINT_TEXT(520,520,100,20, "共"+iPageTotal+"页/第"+iPageNum+"页");
