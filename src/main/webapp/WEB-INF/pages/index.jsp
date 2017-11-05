@@ -9,7 +9,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 	
-	<title>誉凯检验信息管理系统</title>	  
+	<title>誉凯检验信息管理系统</title>	
+	
+    <c:set var="ctx" value="${pageContext.request.contextPath}"/>
+    
+    <style type="text/css">
+    body {
+        background-image: url(${ctx}/static/images/b.jpg);
+    }
+    </style>	
 </head>
 <body>
     
@@ -18,12 +26,8 @@
     <!-- 动态包含 -->
     <jsp:include page="header.jsp" />
 
-
     <div style="text-align: center;">
-      <h1>Bootstrap starter template</h1>
-      <p>Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
     </div>
-
 
 </body>
 </html>
