@@ -261,11 +261,11 @@
 		</dependency>
 		
 		<!-- google的JSON处理库 -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.5</version>
-		</dependency>
+		</dependency> -->
 		
 		<!-- alibaba的JSON处理库 -->
 		<dependency>

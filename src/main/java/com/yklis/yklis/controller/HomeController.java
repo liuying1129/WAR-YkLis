@@ -23,18 +23,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.reflect.TypeToken;
 import com.yklis.lisfunction.entity.WorkerEntity;
 import com.yklis.lisfunction.service.ScalarSQLCmdService;
 import com.yklis.lisfunction.service.SelectDataSetSQLCmdService;
 import com.yklis.lisfunction.service.WorkerService;
 import com.yklis.util.CommFunction;
-import com.yklis.yklis.entity.SelectedPatientEntity;
 import com.yklis.yklis.util.Constants;
 
 @Controller
@@ -61,24 +54,19 @@ public class HomeController{
     	String s1 = scalarSQLCmdService.ScalarSQLCmd("select Name from CommCode where TypeName='系统代码' and ReMark='授权使用单位' ");
     	//{"success":true,"response":{"result":""}}
     	    	
+		JSONObject jso=JSON.parseObject(s1);//json字符串转换成JSONObject(JSON对象)
+		boolean bb1 = jso.getBooleanValue("success");
+		
     	String s2 = null;
     	
-    	JsonParser parser =new JsonParser();//创建json解析器
-    	JsonElement jsonElement =parser.parse(s1);
-    	//josn字符串转换为json对象
-    	JsonObject jsonObject =jsonElement.getAsJsonObject();
-    	JsonPrimitive jpSuccess =jsonObject.getAsJsonPrimitive("success");
-    	boolean success = jpSuccess.getAsBoolean();
-    	if(success){
-    		
-    	    //获得 response节点的值，response节点为Object数据节点 
-    	    JsonObject joResponse = jsonObject.getAsJsonObject("response");  
-    	    JsonPrimitive jpResult =joResponse.getAsJsonPrimitive("result");  
-    	    String result =jpResult.getAsString();
+		if(bb1){
+			
+			JSONObject jso2=jso.getJSONObject("response");
+    	    String result =jso2.getString("result");
     	    
     	    s2 = CommFunction.deCryptStr(result, Constants.DES_KEY);
-    	}
-    	
+		}
+    	    	
     	//中文add到cookie时会报错,故URLEncoder.encode
         String s3 = null;
         try {
@@ -347,17 +335,14 @@ public class HomeController{
          */
         String lsSelected = request.getParameter("lsSelected");
         
+        JSONArray selected = JSON.parseArray(lsSelected);
+		
         List<Map<String, Object>> listCheckInfo = new ArrayList<>();
-        
-        Gson gson = new Gson();
-        
-        //JSON字符串转换为JAVA List
-        List<SelectedPatientEntity> selected = gson.fromJson(lsSelected, new TypeToken<List<SelectedPatientEntity>>(){}.getType());
-        
+                
         for(int j = 0 ; j < selected.size() ; j++) {
             
-            String unid = selected.get(j).getUnid();
-            String ifCompleted = selected.get(j).getIfCompletedd();
+            String unid = selected.getJSONObject(j).getString("unid");
+            String ifCompleted = selected.getJSONObject(j).getString("ifCompleted");
             
             StringBuilder sbChkcon = new StringBuilder();
             sbChkcon.append("select * from ");
@@ -411,7 +396,7 @@ public class HomeController{
             listCheckInfo.add(map);
         }
     	       
-    	String ss = gson.toJson(listCheckInfo);
+    	String ss = JSON.toJSONString(listCheckInfo);
         
         return ss;
     }

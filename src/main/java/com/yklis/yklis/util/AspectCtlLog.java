@@ -16,7 +16,7 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.google.gson.Gson;
+import com.alibaba.fastjson.JSON;
 
 /**
  * 记录Controller被请求的日志
@@ -93,8 +93,6 @@ public class AspectCtlLog {
         
         String optTime = dateFormat.format(startTimeMillis);  
         
-        Gson gson = new Gson();        
-
         StringBuilder sbLog = new StringBuilder();
         sbLog.append("请求url:");
         sbLog.append(requestPath);
@@ -103,9 +101,9 @@ public class AspectCtlLog {
         sbLog.append(";时长:");
         sbLog.append(endTimeMillis - startTimeMillis);
         sbLog.append("ms;请求参数:");
-        sbLog.append(gson.toJson(inputParamMap));
+        sbLog.append(JSON.toJSONString(inputParamMap));
         sbLog.append(";返回结果:");
-        sbLog.append(gson.toJson(obj));
+        sbLog.append(JSON.toJSONString(obj));
 
         logger.info(sbLog);
     }
