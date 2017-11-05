@@ -259,14 +259,7 @@
 			<artifactId>spring-websocket</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		
-		<!-- google的JSON处理库 -->
-		<!-- <dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.5</version>
-		</dependency> -->
-		
+				
 		<!-- alibaba的JSON处理库 -->
 		<dependency>
 		    <groupId>com.alibaba</groupId>
