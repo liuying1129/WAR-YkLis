@@ -21,8 +21,7 @@
     <!-- Custom styles for this template -->
     <link href="${ctx}/static/dev-css/header.css" rel="stylesheet">
 </head>
-<!-- 融合后母页的body都会有该style.这是我们希望的结果:因为header的存在,内容都需要往下移50px -->
-<body style="padding-top: 50px;">
+<body>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -42,6 +41,7 @@
             <li><a id="hrefAccount" href="goLogin">登录</a></li>
             <li><a href="labReport">检验报告</a></li>
             <li><a id="hrefSCSYDW" href="#">授权使用单位</a></li>
+            <li><a href="commonQuestion">常见问题</a></li>
             <li><a href="logout">注销</a></li>
           </ul>
         </div><!--/.nav-collapse -->

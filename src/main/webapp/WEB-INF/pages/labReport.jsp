@@ -49,15 +49,13 @@
     <label for="printtimesNotPrinted">未打印</label>
     <input type="radio" value="1"  name="printtimes" id="printtimesNotPrinted"  /><br />
     门诊/住院号
-    <input type="text" name="caseno" placeholder="门诊/住院号">
+    <input type="text" name="caseno" placeholder="门诊/住院号" />
     姓名
-    <input type="text" name="patientname" placeholder="姓名">
+    <input type="text" name="patientname" placeholder="姓名" />
     送检科室
-    <!-- <input type="text" name="deptname" placeholder="送检科室"> -->
     <select name="deptname" style="width:130px">
     </select>
     送检医生
-    <!-- <input type="text" name="check_doctor" placeholder="送检医生"> -->
 	<select name="check_doctor" style="width:130px">
     </select>
   </form>

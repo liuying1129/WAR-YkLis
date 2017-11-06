@@ -400,4 +400,10 @@ public class HomeController{
         
         return ss;
     }
+    
+    @RequestMapping(value = "commonQuestion" )
+    public String commonQuestion(HttpServletRequest request,HttpServletResponse response) {               
+        
+        return "commonQuestion";
+    }
 }

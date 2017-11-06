@@ -1,4 +1,8 @@
+table,th,td{
+    border: 1px solid black;
+}
+
+/* 居中 */
 table{
-    border: 1;
     margin: 0 auto;
 }

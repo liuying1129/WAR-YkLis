@@ -19,7 +19,6 @@
 </head>
 
 <body>
-  <!-- table在页面居中 -->
   <table>
   <caption><em>${baseInfo.patientname}&nbsp;&nbsp;${baseInfo.sex}&nbsp;&nbsp;${baseInfo.age}&nbsp;&nbsp;${baseInfo.check_date}</em></caption>
   	<thead>
