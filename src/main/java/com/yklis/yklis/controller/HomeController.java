@@ -24,6 +24,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.yklis.lisfunction.entity.WorkerEntity;
+import com.yklis.lisfunction.service.ExecSQLCmdService;
 import com.yklis.lisfunction.service.ScalarSQLCmdService;
 import com.yklis.lisfunction.service.SelectDataSetSQLCmdService;
 import com.yklis.lisfunction.service.WorkerService;
@@ -45,6 +46,9 @@ public class HomeController{
 
     @Autowired
     private ScalarSQLCmdService scalarSQLCmdService;
+
+    @Autowired
+    private ExecSQLCmdService execSQLCmdService;
 
     @RequestMapping("index")
     //不能加@ResponseBody,否则,不会跳转到index页面,而是将index做为字符串返回到当前页面中
@@ -89,6 +93,7 @@ public class HomeController{
     }
     
     @RequestMapping(value = "goLogin" )
+    //返回ModelAndView时,有没有@ResponseBody都没关系,因为已经很明确的指定了页面名称、页面内容
     @ResponseBody
     public ModelAndView goLogin(HttpServletRequest request,HttpServletResponse response) {               
         
@@ -98,6 +103,7 @@ public class HomeController{
     }    
     
     @RequestMapping(value = "login" )
+    //返回ModelAndView时,有没有@ResponseBody都没关系,因为已经很明确的指定了页面名称、页面内容
     @ResponseBody
     public ModelAndView login(HttpServletRequest request,
             HttpServletResponse response,
@@ -269,6 +275,7 @@ public class HomeController{
     }
     
     @RequestMapping("checkValue")
+    //返回ModelAndView时,有没有@ResponseBody都没关系,因为已经很明确的指定了页面名称、页面内容
     @ResponseBody
     public ModelAndView checkValue(HttpServletRequest request,HttpServletResponse response) {
     	
@@ -405,5 +412,39 @@ public class HomeController{
     public String commonQuestion(HttpServletRequest request,HttpServletResponse response) {               
         
         return "commonQuestion";
+    }
+    
+    @RequestMapping(value = "updatePrinttimes" )
+    @ResponseBody
+    public String updatePrinttimes(HttpServletRequest request,HttpServletResponse response) {               
+        
+        String iIfCompleted = request.getParameter("iIfCompleted");
+        String unid = request.getParameter("unid");
+        
+        StringBuilder sb = new StringBuilder();
+        sb.append("update ");
+        if(iIfCompleted=="1"){
+            sb.append("chk_con_bak");
+        }else{
+            sb.append("chk_con");
+        }
+        sb.append(" set printtimes=1 where unid=");
+        sb.append(unid);
+
+        return execSQLCmdService.ExecSQLCmd(sb.toString());
+    }
+    
+    @RequestMapping(value = "insertPrinttimes" )
+    @ResponseBody
+    public String insertPrinttimes(HttpServletRequest request,HttpServletResponse response) {               
+        
+        String unid = request.getParameter("unid");
+        
+        StringBuilder sb = new StringBuilder();
+        sb.append("insert into pix_tran (pkunid,Reserve1,Reserve2,OpType) values (");
+        sb.append(unid);
+        sb.append(",'operator_name','Class_Print','NurseBS')");
+        
+        return execSQLCmdService.ExecSQLCmd(sb.toString());
     }
 }

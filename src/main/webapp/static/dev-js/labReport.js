@@ -41,7 +41,7 @@ btnQuery.onclick = function() {
 	              trColor = "#a4c2f4";
 	            }		            
 	           		            
-	            tbBody += "<tr style='background-color:"+trColor+"'><td><a href='checkValue?unid="+element.唯一编号+"&ifCompleted="+element.ifCompleted+"&patientname="+element.姓名+"&sex="+element.性别+"&age="+element.年龄+"&check_date="+element.检查日期+"' target='_blank'>" + element.姓名 + "</a></td><td>" + element.性别 + "</td><td>" + element.年龄 + "</td><td><input type='checkbox' /></td><td>" + element.病历号 + "</td><td>" + element.床号 + "</td><td>" + element.送检科室 + "</td><td>" + element.送检医生 + "</td><td>" + element.检查日期 + "</td><td>" + element.申请日期 + "</td><td>" + element.审核者 + "</td><td>" + element.工作组 + "</td><td>" + element.操作者 + "</td><td>" + element.优先级别 + "</td><td>" + element.打印次数 + "</td><td>" + element.样本类型 + "</td><td>" + element.临床诊断 + "</td><td>" + element.样本情况 + "</td><td>" + element.备注 + "</td><td flag='unid'>" + element.唯一编号 + "</td><td>" + element.His唯一编号 + "</td><td>" + element.His门诊或住院 + "</td><td>" + element.所属部门 + "</td><td>" + element.工种 + "</td><td>" + element.工号 + "</td><td>" + element.婚否 + "</td><td>" + element.籍贯 + "</td><td>" + element.住址 + "</td><td>" + element.电话 + "</td><td>" + element.所属公司 + "</td><td>" + element.审核时间 + "</td><td flag='ifCompleted'>" + element.ifCompleted + "</td><td>" + element.联机号 + "</td><td>" + element.流水号 + "</td></tr>";
+	            tbBody += "<tr style='background-color:"+trColor+"'><td><a href='checkValue?unid="+element.唯一编号+"&ifCompleted="+element.ifCompleted+"&patientname="+element.姓名+"&sex="+element.性别+"&age="+element.年龄+"&check_date="+element.检查日期+"' target='_blank'>" + element.姓名 + "</a></td><td>" + element.性别 + "</td><td>" + element.年龄 + "</td><td><input type='checkbox' /></td><td>" + element.病历号 + "</td><td>" + element.床号 + "</td><td>" + element.送检科室 + "</td><td>" + element.送检医生 + "</td><td>" + element.检查日期 + "</td><td>" + element.申请日期 + "</td><td>" + element.审核者 + "</td><td>" + element.工作组 + "</td><td>" + element.操作者 + "</td><td>" + element.优先级别 + "</td><td flag='printtimes'>" + element.打印次数 + "</td><td>" + element.样本类型 + "</td><td>" + element.临床诊断 + "</td><td>" + element.样本情况 + "</td><td>" + element.备注 + "</td><td flag='unid'>" + element.唯一编号 + "</td><td>" + element.His唯一编号 + "</td><td>" + element.His门诊或住院 + "</td><td>" + element.所属部门 + "</td><td>" + element.工种 + "</td><td>" + element.工号 + "</td><td>" + element.婚否 + "</td><td>" + element.籍贯 + "</td><td>" + element.住址 + "</td><td>" + element.电话 + "</td><td>" + element.所属公司 + "</td><td>" + element.审核时间 + "</td><td flag='ifCompleted'>" + element.ifCompleted + "</td><td>" + element.联机号 + "</td><td>" + element.流水号 + "</td></tr>";
 	            $("#myTBody").append(tbBody);
 	          });
 		},
@@ -83,6 +83,9 @@ btnPrint.onclick = function() {
 				}
 				if(tdArr[j].getAttribute("flag") === "ifCompleted"){
 					objSelected.ifCompleted = tdArr[j].innerText;
+				}
+				if(tdArr[j].getAttribute("flag") === "printtimes"){
+					objSelected.printtimes = tdArr[j].innerText;
 				}
 			}
 			
@@ -263,6 +266,62 @@ btnPrint.onclick = function() {
 			});
 						
 			LODOP.SET_SHOW_MODE("LANDSCAPE_DEFROTATED",1);//横向打印的预览默认旋转90度（正向显示）
+            if (LODOP.CVERSION) {
+            	CLODOP.On_Return=function(TaskID,Value){
+            		if(Value>0){
+            			
+            			lsSelected.forEach(function(element,index){
+
+            				if(element.printtimes == 0){
+            					//修改打印次数
+            					
+            					//原生ajax方式.注:中文返回乱码
+            					var xhr = new XMLHttpRequest();
+            					xhr.responseType = "json";//默认为text
+            					xhr.onreadystatechange = function(){ 
+            						if (xhr.readyState == 4){ 
+            							if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){ 
+            								
+            								var data = xhr.response;//responseType = "json"时只能用xhr.response,否则可用xhr.responseText
+            								if(!data.success){
+            									alert("更新打印次数失败");
+            								}
+            								
+            							} else { 
+            								//console.log("Request was unsuccessful,状态码:" + xhr.status +",状态说明:"+ xhr.statusText);
+            								alert("Request was unsuccessful,状态码:" + xhr.status +",状态说明:"+ xhr.statusText);
+            							} 
+            						}
+            					};
+            					xhr.open("post", "updatePrinttimes", true);
+            					xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
+            					xhr.send(element);//*/
+            				}
+            				
+        					//原生ajax方式.注:中文返回乱码
+        					var xhr = new XMLHttpRequest();
+        					xhr.responseType = "json";//默认为text
+        					xhr.onreadystatechange = function(){ 
+        						if (xhr.readyState == 4){ 
+        							if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){ 
+        								
+        								var data = xhr.response;//responseType = "json"时只能用xhr.response,否则可用xhr.responseText
+        								if(!data.success){
+        									alert("插入打印记录失败");
+        								}        								
+        							} else { 
+        								//console.log("Request was unsuccessful,状态码:" + xhr.status +",状态说明:"+ xhr.statusText);
+        								alert("Request was unsuccessful,状态码:" + xhr.status +",状态说明:"+ xhr.statusText);
+        							} 
+        						}
+        					};
+        					xhr.open("post", "insertPrinttimes", true);
+        					xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
+        					xhr.send(element);//*/
+            			});            			
+            		}
+            	};
+            }
 			LODOP.PREVIEW();//最后一个打印(或预览、维护、设计)语句//PRINT_DESIGN();
 		},
 		error : function(xhr, textStatus, errorThrown) {
