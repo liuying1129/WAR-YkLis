@@ -13,11 +13,8 @@
 	
     <c:set var="ctx" value="${pageContext.request.contextPath}"/>
     
-    <style type="text/css">
-    body {
-        background-image: url(${ctx}/static/images/b.jpg);
-    }
-    </style>	
+    <!-- Custom styles for this template -->
+    <link href="${ctx}/static/dev-css/index.css" rel="stylesheet">
 </head>
 <body>
     

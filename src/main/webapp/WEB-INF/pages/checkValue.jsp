@@ -14,11 +14,13 @@
     <c:set var="ctx" value="${pageContext.request.contextPath}"/>
     <c:set var="jsr" value="${initParam.jsRandom}"/>
     
+    <!-- Custom styles for this template -->
+    <link href="${ctx}/static/dev-css/checkValue.css" rel="stylesheet">
 </head>
 
 <body>
   <!-- table在页面居中 -->
-  <table border="1" style="margin:0 auto;">
+  <table>
   <caption><em>${baseInfo.patientname}&nbsp;&nbsp;${baseInfo.sex}&nbsp;&nbsp;${baseInfo.age}&nbsp;&nbsp;${baseInfo.check_date}</em></caption>
   	<thead>
         <tr style="background-color:yellow">

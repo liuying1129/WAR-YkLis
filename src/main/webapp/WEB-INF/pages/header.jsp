@@ -16,7 +16,10 @@
 	<c:set var="jsr" value="${initParam.jsRandom}"/>
 	
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="${ctx}/static/bootstrap/3.3.7/css/bootstrap.min.css" />                
+    <link rel="stylesheet" href="${ctx}/static/bootstrap/3.3.7/css/bootstrap.min.css" />
+                  
+    <!-- Custom styles for this template -->
+    <link href="${ctx}/static/dev-css/header.css" rel="stylesheet">
 </head>
 <!-- 融合后母页的body都会有该style.这是我们希望的结果:因为header的存在,内容都需要往下移50px -->
 <body style="padding-top: 50px;">

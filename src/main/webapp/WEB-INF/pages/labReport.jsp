@@ -19,7 +19,10 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="${ctx}/static/bootstrap/3.3.7/css/bootstrap.min.css" />    
     <!-- select2 -->
-    <link href="${ctx}/static/select2/4.0.5/css/select2.min.css" rel="stylesheet" />           
+    <link href="${ctx}/static/select2/4.0.5/css/select2.min.css" rel="stylesheet" />      
+         
+    <!-- Custom styles for this template -->
+    <link href="${ctx}/static/dev-css/labReport.css" rel="stylesheet">
 </head>
 
 <body>
