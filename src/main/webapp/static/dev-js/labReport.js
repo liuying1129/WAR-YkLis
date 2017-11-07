@@ -46,9 +46,7 @@ btnQuery.onclick = function() {
 	          });
 		},
 		error : function(xhr, textStatus, errorThrown) {
-			console.log(xhr.status);
-			console.log(xhr.readyState);
-			console.log(textStatus);
+			console.log("ajax请求失败,请求:selectLabReport,状态码:"+xhr.status +",状态说明:"+ textStatus+",xhr readyState:"+xhr.readyState);
 		}
 	});	
 };
@@ -97,25 +95,7 @@ btnPrint.onclick = function() {
 	if(lsSelected.length<=0){
 		return;
 	}
-	
-	/*//原生ajax方式中文返回乱码，只好放弃
-	var xhr = new XMLHttpRequest();
-	xhr.responseType = "json";//默认为text
-	xhr.onreadystatechange = function(){ 
-		if (xhr.readyState == 4){ 
-			if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){ 
 				
-				//var data = JSON.parse(xhr.responseText);
-				var data = xhr.response;//responseType = "json"时只能用xhr.response
-				
-			} else { 
-				console.log("Request was unsuccessful,状态码:" + xhr.status +",状态说明:"+ xhr.statusText);
-			} 
-		}
-	};
-	xhr.open("post", "printReport?"+params, true);
-	xhr.send(null);//*/
-			
 	$.ajax({
 		//默认值: true。如果需要发送同步请求，请将此选项设置为 false。注意，同步请求将锁住浏览器，用户其它操作必须等待请求完成才可以执行
 		async : true,
@@ -134,6 +114,7 @@ btnPrint.onclick = function() {
 			if(typeof strSCSYDWCookie == "undefined"||strSCSYDWCookie ==null||strSCSYDWCookie.length == 0){
 				strSCSYDWCookie = "未授权";
 			}
+			var strAccountCookie = getCookie("yklis.account");
 			
 			var LODOP=getLodop();
 			LODOP.PRINT_INIT("printReport");//首先一个初始化语句//参数为打印任务名
@@ -282,42 +263,43 @@ btnPrint.onclick = function() {
             						if (xhr.readyState == 4){ 
             							if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){ 
             								
+            								console.log(xhr.response);
             								var data = xhr.response;//responseType = "json"时只能用xhr.response,否则可用xhr.responseText
             								if(!data.success){
             									alert("更新打印次数失败");
             								}
             								
             							} else { 
-            								//console.log("Request was unsuccessful,状态码:" + xhr.status +",状态说明:"+ xhr.statusText);
-            								alert("Request was unsuccessful,状态码:" + xhr.status +",状态说明:"+ xhr.statusText);
+            								console.log("ajax请求失败,请求:updatePrinttimes,状态码:"+xhr.status +",状态说明:"+ xhr.statusText+",xhr readyState:"+xhr.readyState);
             							} 
             						}
             					};
             					xhr.open("post", "updatePrinttimes", true);
             					xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
-            					xhr.send(element);//*/
+            					xhr.send("ifCompleted="+element.ifCompleted+"&unid="+element.unid);//*/
             				}
             				
         					//原生ajax方式.注:中文返回乱码
-        					var xhr = new XMLHttpRequest();
-        					xhr.responseType = "json";//默认为text
-        					xhr.onreadystatechange = function(){ 
-        						if (xhr.readyState == 4){ 
-        							if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){ 
+        					var xhr2 = new XMLHttpRequest();
+        					xhr2.responseType = "json";//默认为text
+        					xhr2.onreadystatechange = function(){
+        						if (xhr2.readyState == 4){ 
+        							if ((xhr2.status >= 200 && xhr2.status < 300) || xhr2.status == 304){ 
         								
-        								var data = xhr.response;//responseType = "json"时只能用xhr.response,否则可用xhr.responseText
+        								console.log(xhr2.response);
+        								var data = xhr2.response;//responseType = "json"时只能用xhr.response,否则可用xhr.responseText
         								if(!data.success){
         									alert("插入打印记录失败");
-        								}        								
+        								}							
         							} else { 
-        								//console.log("Request was unsuccessful,状态码:" + xhr.status +",状态说明:"+ xhr.statusText);
-        								alert("Request was unsuccessful,状态码:" + xhr.status +",状态说明:"+ xhr.statusText);
+        								console.log("ajax请求失败,请求:insertPrinttimes,状态码:"+xhr2.status +",状态说明:"+ xhr2.statusText+",xhr readyState:"+xhr2.readyState);
         							} 
         						}
         					};
-        					xhr.open("post", "insertPrinttimes", true);
-        					xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
-        					xhr.send(element);//*/
+        					xhr2.open("post", "insertPrinttimes", true);
+        					//POST方法必需设置请求Content-Type。其中charset=utf-8可避免请求中文参数值乱码
+        					xhr2.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=utf-8");
+        					xhr2.send("unid="+element.unid+"&operator_name="+strAccountCookie);//*/
             			});            			
             		}
             	};
@@ -325,9 +307,7 @@ btnPrint.onclick = function() {
 			LODOP.PREVIEW();//最后一个打印(或预览、维护、设计)语句//PRINT_DESIGN();
 		},
 		error : function(xhr, textStatus, errorThrown) {
-			console.log(xhr.status);
-			console.log(xhr.readyState);
-			console.log(textStatus);
+			console.log("ajax请求失败,请求:printReport,状态码:"+xhr.status +",状态说明:"+ textStatus+",xhr readyState:"+xhr.readyState);
 		}
 	});//*/									
 };
@@ -369,9 +349,7 @@ $(document).ready(function() {
 			});
 		},
 		error : function(xhr, textStatus, errorThrown) {
-			console.log(xhr.status);
-			console.log(xhr.readyState);
-			console.log(textStatus);
+			console.log("ajax请求失败,请求:loadDeptname,状态码:"+xhr.status +",状态说明:"+ textStatus+",xhr readyState:"+xhr.readyState);
 		}
 	});
 	
@@ -397,9 +375,7 @@ $(document).ready(function() {
 			});
 		},
 		error : function(xhr, textStatus, errorThrown) {
-			console.log(xhr.status);
-			console.log(xhr.readyState);
-			console.log(textStatus);
+			console.log("ajax请求失败,请求:loadWorker,状态码:"+xhr.status +",状态说明:"+ textStatus+",xhr readyState:"+xhr.readyState);
 		}
 	});	
 	
@@ -437,9 +413,7 @@ $(document).ready(function() {
             console.log('请求AIF012成功:'+data.response.msg);
 		},
 		error : function(xhr, textStatus, errorThrown) {
-			console.log('请求AIF012失败,状态码:'+xhr.status);
-			console.log(xhr.readyState);
-			console.log(textStatus);
+			console.log("ajax请求失败,请求:AIF012,状态码:"+xhr.status +",状态说明:"+ textStatus+",xhr readyState:"+xhr.readyState);
 		}
 	});	
     //请求远程用户信息接口end

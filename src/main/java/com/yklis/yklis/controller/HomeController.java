@@ -418,12 +418,12 @@ public class HomeController{
     @ResponseBody
     public String updatePrinttimes(HttpServletRequest request,HttpServletResponse response) {               
         
-        String iIfCompleted = request.getParameter("iIfCompleted");
+        String ifCompleted = request.getParameter("ifCompleted");
         String unid = request.getParameter("unid");
         
         StringBuilder sb = new StringBuilder();
         sb.append("update ");
-        if(iIfCompleted=="1"){
+        if("1".equals(ifCompleted)){
             sb.append("chk_con_bak");
         }else{
             sb.append("chk_con");
@@ -439,11 +439,14 @@ public class HomeController{
     public String insertPrinttimes(HttpServletRequest request,HttpServletResponse response) {               
         
         String unid = request.getParameter("unid");
+        String operator_name = request.getParameter("operator_name");
         
         StringBuilder sb = new StringBuilder();
         sb.append("insert into pix_tran (pkunid,Reserve1,Reserve2,OpType) values (");
         sb.append(unid);
-        sb.append(",'operator_name','Class_Print','NurseBS')");
+        sb.append(",'");
+        sb.append(operator_name);
+        sb.append("','Class_Print','NurseBS')");
         
         return execSQLCmdService.ExecSQLCmd(sb.toString());
     }
