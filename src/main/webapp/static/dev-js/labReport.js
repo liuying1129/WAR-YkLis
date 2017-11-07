@@ -5,12 +5,22 @@
 	//4、为未来新版本的Javascript做好铺垫
     "use strict";
 
-window.onload = function(){
+var strSCSYDWCookie = getCookie("yklis.SCSYDW");
+if(typeof strSCSYDWCookie == "undefined"||strSCSYDWCookie ==null||strSCSYDWCookie.length == 0){
+	strSCSYDWCookie = "未授权";
+}
+var strAccountCookie = getCookie("yklis.account");
+    
+if(typeof Array.prototype.forEach != "function"){
+	alert("浏览器不支持forEach");
+}
+
+/*window.onload = function(){
 	
 	if(typeof Array.prototype.forEach != "function"){
 		alert("浏览器不支持forEach");
 	}
-};
+};*/
     
 var btnQuery = document.getElementById("btnQuery");
 btnQuery.onclick = function() {
@@ -31,8 +41,6 @@ btnQuery.onclick = function() {
 			
 			$("#myTBody").html("");
 
-			//console.log(data);
-			//console.log(data.response);
 			$.each(data.response, function(index,element) {
 				
 	            var tbBody = "";
@@ -110,11 +118,11 @@ btnPrint.onclick = function() {
 		dataType : 'json',
 		success : function(data) {
 			
-			var strSCSYDWCookie = getCookie("yklis.SCSYDW");
+			/*var strSCSYDWCookie = getCookie("yklis.SCSYDW");
 			if(typeof strSCSYDWCookie == "undefined"||strSCSYDWCookie ==null||strSCSYDWCookie.length == 0){
 				strSCSYDWCookie = "未授权";
 			}
-			var strAccountCookie = getCookie("yklis.account");
+			var strAccountCookie = getCookie("yklis.account");*/
 			
 			var LODOP=getLodop();
 			LODOP.PRINT_INIT("printReport");//首先一个初始化语句//参数为打印任务名
@@ -378,14 +386,8 @@ $(document).ready(function() {
 			console.log("ajax请求失败,请求:loadWorker,状态码:"+xhr.status +",状态说明:"+ textStatus+",xhr readyState:"+xhr.readyState);
 		}
 	});	
-	
-    //请求远程用户信息接口begin
-	var strSCSYDWCookie = getCookie("yklis.SCSYDW");
-	if(typeof strSCSYDWCookie == "undefined"||strSCSYDWCookie ==null||strSCSYDWCookie.length == 0){
-		strSCSYDWCookie = "未授权";
-	}
-	var strAccountCookie = getCookie("yklis.account");
-	
+		
+	//请求远程用户信息接口begin
 	var params = {
 			methodNum : "AIF012",
 			sql : "insert into AppVisit (SysName,PageName,IP,ComputerName,Customer,UserName,ActionName,ActionTime) values ('LIS_BS','labReport','10.1.2.3',null,'"+decodeURI(strSCSYDWCookie)+"','"+strAccountCookie+"','Show',getdate())"

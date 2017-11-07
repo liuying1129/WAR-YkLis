@@ -8,5 +8,6 @@ package com.yklis.yklis.util;
 public class Constants {
 	
 	public static final String DES_KEY = "lc"; 
+	public static final String SYSNAME = "LIS_BS";
 	
 }

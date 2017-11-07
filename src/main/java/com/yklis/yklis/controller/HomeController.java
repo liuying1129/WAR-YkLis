@@ -446,7 +446,9 @@ public class HomeController{
         sb.append(unid);
         sb.append(",'");
         sb.append(operator_name);
-        sb.append("','Class_Print','NurseBS')");
+        sb.append("','Class_Print','");
+        sb.append(Constants.SYSNAME);
+        sb.append("')");
         
         return execSQLCmdService.ExecSQLCmd(sb.toString());
     }
