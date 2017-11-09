@@ -452,4 +452,10 @@ public class HomeController{
         
         return execSQLCmdService.ExecSQLCmd(sb.toString());
     }
+    
+    @RequestMapping("modifyPwd")
+    public String modifyPwd(HttpServletRequest request) {
+                
+        return "modifyPwd";
+    }
 }
