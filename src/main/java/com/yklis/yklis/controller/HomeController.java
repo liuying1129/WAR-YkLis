@@ -1,6 +1,7 @@
 package com.yklis.yklis.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -282,9 +283,26 @@ public class HomeController{
     	String unid = request.getParameter("unid");
     	String ifCompleted = request.getParameter("ifCompleted");
     	//以下4个参数仅用于显示到结果界面
-        String patientname = request.getParameter("patientname");
-        String sex = request.getParameter("sex");
-        String age = request.getParameter("age");
+        String patientname = null;
+        try {
+            //IE get方式传参,后端取到的中文可能乱码
+            //处理方式:前端使用两次encodeURIComponent编码,后台用下面的方式解码
+            patientname = URLDecoder.decode(request.getParameter("patientname"),"utf-8");
+        } catch (UnsupportedEncodingException e) {
+            logger.error("URLDecoder.decode patientname报错:"+e.toString());
+        }
+        String sex = null;
+        try {
+            sex = URLDecoder.decode(request.getParameter("sex"),"utf-8");
+        } catch (UnsupportedEncodingException e) {
+            logger.error("URLDecoder.decode sex报错:"+e.toString());
+        }
+        String age = null;
+        try {
+            age = URLDecoder.decode(request.getParameter("age"),"utf-8");
+        } catch (UnsupportedEncodingException e) {
+            logger.error("URLDecoder.decode age报错:"+e.toString());
+        }
         String check_date = request.getParameter("check_date");
     	
     	String strsql12;
