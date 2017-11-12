@@ -61,9 +61,9 @@
   </form>
   <button id="btnQuery">查询</button>
   <button id="btnPrint">打印</button>
-  <table border="1">
+  <table>
   	<thead>
-        <tr style="background-color:yellow">
+        <tr>
           <th>姓名</th>
           <th>性别</th>
           <th>年龄</th>

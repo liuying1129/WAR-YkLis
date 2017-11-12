@@ -2,3 +2,15 @@
 body{
     padding-top: 50px;
 }
+
+tr:nth-of-type(even){
+    background-color: #a4c2f4;
+}
+
+th{
+    background-color: yellow;
+}
+
+table,th,td{
+    border: 1px solid black;
+}
