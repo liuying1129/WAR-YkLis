@@ -94,13 +94,10 @@ public class HomeController{
     }
     
     @RequestMapping(value = "goLogin" )
-    //返回ModelAndView时,有没有@ResponseBody都没关系,因为已经很明确的指定了页面名称、页面内容
-    @ResponseBody
-    public ModelAndView goLogin(HttpServletRequest request,HttpServletResponse response) {               
+    //不能加@ResponseBody,否则,不会跳转到index页面,而是将index做为字符串返回到当前页面中
+    public String goLogin(HttpServletRequest request,HttpServletResponse response) {               
         
-        Map<String, Object> modelMap = new HashMap<String, Object>();
-        //modelMap.put("user", name);
-        return new ModelAndView("login", modelMap);        
+        return "login";
     }    
     
     @RequestMapping(value = "login" )
@@ -471,9 +468,60 @@ public class HomeController{
         return execSQLCmdService.ExecSQLCmd(sb.toString());
     }
     
-    @RequestMapping("modifyPwd")
-    public String modifyPwd(HttpServletRequest request) {
+    @RequestMapping("goModifyPwd")
+    public String goModifyPwd(HttpServletRequest request) {
                 
         return "modifyPwd";
+    }
+    
+    @RequestMapping("modifyPwd")
+    public ModelAndView modifyPwd(HttpServletRequest request,
+            @CookieValue(value = "yklis.account",required = false) String cookieAccount) {
+                
+        String oldPwd = request.getParameter("oldPwd");
+        String newPwd = request.getParameter("newPwd");
+        String confirmPwd = request.getParameter("confirmPwd");
+        
+        List<WorkerEntity> workerList = workerService.ifCanLogin(cookieAccount, oldPwd);
+
+        if((workerList == null)||(workerList.isEmpty())){
+            
+            Map<String, Object> modelMap = new HashMap<>();
+            modelMap.put("msg", "原密码错误");
+            
+            return new ModelAndView("modifyPwd", modelMap);
+        }
+        
+        if(!newPwd.equals(confirmPwd)){
+            
+            Map<String, Object> modelMap = new HashMap<>();
+            modelMap.put("msg", "两次输入的新密码不一致");
+            
+            return new ModelAndView("modifyPwd", modelMap);
+        }
+        
+        StringBuilder sb = new StringBuilder();
+        sb.append("update worker set passwd='");
+        sb.append(newPwd);
+        sb.append("' where id='");
+        sb.append(cookieAccount);
+        sb.append("'");
+        
+        String ss1 = execSQLCmdService.ExecSQLCmd(sb.toString());
+        
+        JSONObject jso=JSON.parseObject(ss1);//json字符串转换成JSONObject(JSON对象)
+        boolean bb1 = jso.getBooleanValue("success");
+        
+        if(bb1){
+        
+            Map<String, Object> modelMap = new HashMap<String, Object>();
+            modelMap.put("msg", "密码修改成功");
+            return new ModelAndView("modifyPwd", modelMap);
+        }else{
+            
+            Map<String, Object> modelMap = new HashMap<String, Object>();
+            modelMap.put("msg", "密码修改失败");
+            return new ModelAndView("modifyPwd", modelMap);
+        }
     }
 }

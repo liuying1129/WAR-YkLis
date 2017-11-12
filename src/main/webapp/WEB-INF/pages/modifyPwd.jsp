@@ -14,7 +14,7 @@
     <c:set var="ctx" value="${pageContext.request.contextPath}"/>
     
     <!-- Custom styles for this template -->
-    <link href="${ctx}/static/dev-css/commonQuestion.css" rel="stylesheet">
+    <link href="${ctx}/static/dev-css/modifyPwd.css" rel="stylesheet">
 </head>
 <body>
     
@@ -23,9 +23,14 @@
     <!-- 动态包含 -->
     <jsp:include page="header.jsp" />
 
-    <div>
-    修改密码
-    </div>
+  <!-- form表单数据通过submit提交到controller示例,action -->
+  <form action="modifyPwd" method="post">
+    <input type="password" name="oldPwd" placeholder="原密码"><br/><br/>
+    <input type="password" name="newPwd" placeholder="新密码" required><br/><br/>
+    <input type="password" name="confirmPwd" placeholder="确认新密码"><br/>
+    <span style="color:red">${msg}</span><br/>
+    <input type="submit" style="font-family: Microsoft Yahei;" value="确定"><br/>
+  </form>
 
 </body>
 </html>

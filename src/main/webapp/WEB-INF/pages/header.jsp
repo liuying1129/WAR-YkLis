@@ -43,7 +43,7 @@
             <li><a id="hrefSCSYDW" href="#">授权使用单位</a></li>
             <li><a href="commonQuestion">常见问题</a></li>
             <li><a href="logout">注销</a></li>
-            <li><a href="modifyPwd">修改密码</a></li>
+            <li><a href="goModifyPwd">修改密码</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
