@@ -515,12 +515,15 @@ public class HomeController{
         if(bb1){
         
             Map<String, Object> modelMap = new HashMap<String, Object>();
-            modelMap.put("msg", "密码修改成功");
-            return new ModelAndView("modifyPwd", modelMap);
+            modelMap.put("msg", "密码修改成功!");
+            return new ModelAndView("modifyPwdSucc", modelMap);
         }else{
             
+            JSONObject jso2=jso.getJSONObject("response");
+            String errorMsg =jso2.getString("errorMsg");
+            
             Map<String, Object> modelMap = new HashMap<String, Object>();
-            modelMap.put("msg", "密码修改失败");
+            modelMap.put("msg", "密码修改失败:"+errorMsg);
             return new ModelAndView("modifyPwd", modelMap);
         }
     }
