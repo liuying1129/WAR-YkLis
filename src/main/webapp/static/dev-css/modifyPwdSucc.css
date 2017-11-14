@@ -7,7 +7,9 @@ body{
 div{
     width: 200px;
     margin: 0 auto;
-    
+}
+
+#msg{	    
     font-family: Microsoft Yahei;
     font-size: 30px;
     color: green;

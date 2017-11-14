@@ -29,7 +29,7 @@
     localhost:可能需改为应用服务器IP地址<br/>
     8080:端口号<br/>
     Q:不能打印?<br/>
-    A:http://www.lodop.net/下载C-Lodop独立版,并在客户端电脑上安装<br/>
+    A:http://www.c-lodop.com下载Lodop综合版,并在客户端电脑上安装C-Lodop<br/>
     </div>
 
 </body>

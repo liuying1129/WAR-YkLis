@@ -23,7 +23,7 @@
     <!-- 动态包含 -->
     <jsp:include page="header.jsp" />
 
-    <div>
+    <div id="msg">
     ${msg}
     </div>
 </body>
