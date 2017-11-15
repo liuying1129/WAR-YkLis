@@ -5,9 +5,9 @@
 	//4、为未来新版本的Javascript做好铺垫
     "use strict";
 
-var strSCSYDWCookie = getCookie("yklis.SCSYDW");
-if(typeof strSCSYDWCookie == "undefined"||strSCSYDWCookie ==null||strSCSYDWCookie.length == 0){
-	strSCSYDWCookie = "未授权";
+var strSCSYDW = localStorage.getItem("yklis.SCSYDW");
+if(typeof strSCSYDW == "undefined"||strSCSYDW ==null||strSCSYDW.length == 0){
+	strSCSYDW = "未授权";
 }
 var strAccountCookie = getCookie("yklis.account");
     
@@ -133,7 +133,7 @@ btnPrint.onclick = function() {
 				var iPageTotal = Math.ceil(element2.chkvalu.length/PAGE_RECORDERS);
 				
 				//打印页头begin
-				LODOP.ADD_PRINT_TEXT(10,10,774,24,decodeURI(strSCSYDWCookie)+"检验报告单");
+				LODOP.ADD_PRINT_TEXT(10,10,774,24,strSCSYDW+"检验报告单");
 				LODOP.SET_PRINT_STYLEA(0,"Alignment",2);
 				LODOP.SET_PRINT_STYLEA(0,"FontName","隶书");
 				LODOP.SET_PRINT_STYLEA(0,"FontSize",15);
@@ -204,7 +204,7 @@ btnPrint.onclick = function() {
 						
 						//打印明细时,若出现换页,则需再次打印页头、页尾(原封不动的copy上面的代码即可)
 						//打印页头begin
-						LODOP.ADD_PRINT_TEXT(10,10,774,24,decodeURI(strSCSYDWCookie)+"检验报告单");
+						LODOP.ADD_PRINT_TEXT(10,10,774,24,strSCSYDW+"检验报告单");
 						LODOP.SET_PRINT_STYLEA(0,"Alignment",2);
 						LODOP.SET_PRINT_STYLEA(0,"FontName","隶书");
 						LODOP.SET_PRINT_STYLEA(0,"FontSize",15);
@@ -386,7 +386,7 @@ $(document).ready(function() {
 	//请求远程用户信息接口begin
 	var params = {
 			methodNum : "AIF012",
-			sql : "insert into AppVisit (SysName,PageName,IP,ComputerName,Customer,UserName,ActionName,ActionTime) values ('LIS_BS','labReport','10.1.2.3',null,'"+decodeURI(strSCSYDWCookie)+"','"+strAccountCookie+"','Show',getdate())"
+			sql : "insert into AppVisit (SysName,PageName,IP,ComputerName,Customer,UserName,ActionName,ActionTime) values ('LIS_BS','labReport','10.1.2.3',null,'"+strSCSYDW+"','"+strAccountCookie+"','Show',getdate())"
 	};
 	params.sign = make_sign(params);
 	

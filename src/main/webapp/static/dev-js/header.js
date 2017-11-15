@@ -9,8 +9,36 @@
 //用window.onload的方式时遇到非常奇怪的问题,labReport.jsp页面(动态包含header.jsp)不会进入该window.onload事件
 $(document).ready(function() {
 	
+	//读取授权使用单位
+	$.ajax({
+		
+		//默认值: true。如果需要发送同步请求，请将此选项设置为 false。注意，同步请求将锁住浏览器，用户其它操作必须等待请求完成才可以执行
+		async : true,
+		//默认值:"GET".请求方式 ("POST"或 "GET")，注意：其它 HTTP请求方法，如 PUT和 DELETE也可以使用，但仅部分浏览器支持
+		type : 'POST',
+		//默认值: "application/x-www-form-urlencoded"。发送信息至服务器时内容编码类型
+		//默认值适合大多数情况。如果你明确指定$.ajax()的 content-type,那么它必定会发送给服务器（即使没有数据要发送）
+		//contentType : "application/x-www-form-urlencoded",//application/json
+		url : 'querySqsydw',
+		//预期服务器返回的数据类型。如果不指定，jQuery将自动根据 HTTP包 MIME信息来智能判断
+		//dataType : 'json',
+		success : function(data) {
+			
+			if((typeof data!='undefined')&&(typeof data.valueOf()=='string')&&(data.length>0)){
+								
+				document.getElementById("hrefSCSYDW").innerHTML = data;
+				localStorage.setItem("yklis.SCSYDW", data);
+			}else{
+				document.getElementById("hrefSCSYDW").innerHTML = "未授权";
+			}
+		},
+		error : function(xhr, textStatus, errorThrown) {
+			console.log("ajax请求失败,请求:querySqsydw,状态码:"+xhr.status +",状态说明:"+ textStatus+",xhr readyState:"+xhr.readyState);
+		}
+	});	
+	
 	var strCookie = getCookie("yklis.account");
-	var strSCSYDWCookie = getCookie("yklis.SCSYDW");
+	//var strSCSYDWCookie = getCookie("yklis.SCSYDW");
 	
     //判断变量为有效的字符串
     //先要确定该变量存在，否则后面的判断会发生错误，还要确定该变量是string数据类型的，
@@ -31,10 +59,10 @@ $(document).ready(function() {
 		document.getElementById("hrefAccount").setAttribute("href","goLogin");
 	}
 	
-	if((typeof strSCSYDWCookie!='undefined')&&(typeof strSCSYDWCookie.valueOf()=='string')&&(strSCSYDWCookie.length>0)){
+	/*if((typeof strSCSYDWCookie!='undefined')&&(typeof strSCSYDWCookie.valueOf()=='string')&&(strSCSYDWCookie.length>0)){
 		
 		document.getElementById("hrefSCSYDW").innerHTML = decodeURI(strSCSYDWCookie);
 	}else{
 		document.getElementById("hrefSCSYDW").innerHTML = "未授权";
-	}	
+	}*/	
 });

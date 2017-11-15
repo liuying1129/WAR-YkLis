@@ -41,6 +41,7 @@ public class LoginFilter implements Filter {
         //request.getContextPath()取得项目名称，如/YkLis
         if ((req.getContextPath()+"/").equals(req.getRequestURI())
           ||(req.getContextPath()+"/index").equals(req.getRequestURI())
+          ||(req.getContextPath()+"/querySqsydw").equals(req.getRequestURI())
           ||(req.getContextPath()+"/goLogin").equals(req.getRequestURI())
           ||(req.getContextPath()+"/logout").equals(req.getRequestURI())
           ||(req.getContextPath()+"/login").equals(req.getRequestURI())) {

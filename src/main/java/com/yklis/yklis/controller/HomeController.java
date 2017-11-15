@@ -55,7 +55,7 @@ public class HomeController{
     //不能加@ResponseBody,否则,不会跳转到index页面,而是将index做为字符串返回到当前页面中
     public String handleIndexPageRequest(HttpServletRequest request,HttpServletResponse response) {
     	
-    	//获取授权使用单位 begin
+        /*//获取授权使用单位 begin
     	String s1 = scalarSQLCmdService.ScalarSQLCmd("select Name from CommCode where TypeName='系统代码' and ReMark='授权使用单位' ");
     	//{"success":true,"response":{"result":""}}
     	    	
@@ -88,7 +88,7 @@ public class HomeController{
             Cookie cookie = new Cookie("yklis.SCSYDW",s3);
             response.addCookie(cookie);            
         }        
-    	//获取授权使用单位 end
+    	//获取授权使用单位 end*/
    	        
         return "index";
     }
@@ -527,4 +527,28 @@ public class HomeController{
             return new ModelAndView("modifyPwd", modelMap);
         }
     }
+    
+    @RequestMapping("querySqsydw")
+    @ResponseBody
+    public String querySqsydw(HttpServletRequest request,HttpServletResponse response) {
+                
+        //获取授权使用单位
+        String s1 = scalarSQLCmdService.ScalarSQLCmd("select Name from CommCode where TypeName='系统代码' and ReMark='授权使用单位' ");
+        //{"success":true,"response":{"result":""}}
+                
+        JSONObject jso=JSON.parseObject(s1);//json字符串转换成JSONObject(JSON对象)
+        boolean bb1 = jso.getBooleanValue("success");
+        
+        String s2 = null;
+        
+        if(bb1){
+            
+            JSONObject jso2=jso.getJSONObject("response");
+            String result =jso2.getString("result");
+            
+            s2 = CommFunction.deCryptStr(result, Constants.DES_KEY);            
+        }
+        
+        return s2;
+    }    
 }
