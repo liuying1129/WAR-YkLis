@@ -23,8 +23,11 @@
          
     <!-- Custom styles for this template -->
     <link href="${ctx}/static/dev-css/labReport.css" rel="stylesheet">
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- 只能放在head,否则header.jsp变窄时出现的下拉菜单无法收起 -->
+    <script src="${ctx}/static/jquery/jquery-3.2.1.min.js"></script>
 </head>
-
 <body>
 
     <!-- 静态包含 -->
@@ -104,8 +107,6 @@
     </tbody>
   </table>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="${ctx}/static/jquery/jquery-3.2.1.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="${ctx}/static/bootstrap/3.3.7/js/bootstrap.min.js"></script>
        
