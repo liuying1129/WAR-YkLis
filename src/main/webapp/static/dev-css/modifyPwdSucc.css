@@ -1,12 +1,7 @@
 /* 因为header的存在,内容需要往下移50px */
 body{
     padding-top: 150px;
-}
-
-/* 居中 */
-div{
-    width: 200px;
-    margin: 0 auto;
+    padding-left: 50px;
 }
 
 #msg{	    
