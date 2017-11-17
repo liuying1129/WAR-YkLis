@@ -18,7 +18,7 @@ function needCLodop(){
 		return true; else
 	if ( verFF !== null) {
 		verFF = verFF[0].match(/\d+/);
-		if ((verFF[0]>= 42)||(x64!==null)) return true;
+		if ((verFF[0]>= 41)||(x64!==null)) return true;
 	} else 
 	if ( verOPR !== null) {
 		verOPR = verOPR[0].match(/\d+/);
@@ -28,7 +28,7 @@ function needCLodop(){
 		var verChrome=ua.match(/Chrome\D?\d+/i);		
 		if ( verChrome !== null ) {
 			verChrome = verChrome[0].match(/\d+/);
-			if (verChrome[0]>=42) return true;
+			if (verChrome[0]>=41) return true;
 		};
 	};
         return false;
@@ -66,13 +66,13 @@ function getLodop(oOBJECT,oEMBED){
 	    if (!LODOP && document.readyState!=="complete") {alert("C-Lodop没准备好，请稍后再试！"); return;};
             if (!LODOP) {
 		 if (isIE) document.write(strCLodopInstall); else
-		 document.documentElement.innerHTML=strCLodopInstall+document.documentElement.innerHTML;
+		 document.body.innerHTML=strCLodopInstall+document.body.innerHTML;
                  return;
             } else {
 
-	         if (CLODOP.CVERSION<"2.1.0.2") { 
+	         if (CLODOP.CVERSION<"3.0.2.3") { 
 			if (isIE) document.write(strCLodopUpdate); else
-			document.documentElement.innerHTML=strCLodopUpdate+document.documentElement.innerHTML;
+			document.body.innerHTML=strCLodopUpdate+document.body.innerHTML;
 		 };
 		 if (oEMBED && oEMBED.parentNode) oEMBED.parentNode.removeChild(oEMBED);
 		 if (oOBJECT && oOBJECT.parentNode) oOBJECT.parentNode.removeChild(oOBJECT);	
@@ -95,21 +95,21 @@ function getLodop(oOBJECT,oEMBED){
             //=====Lodop插件未安装时提示下载地址:==========
             if ((LODOP==null)||(typeof(LODOP.VERSION)=="undefined")) {
                  if (navigator.userAgent.indexOf('Chrome')>=0)
-                     document.documentElement.innerHTML=strHtmChrome+document.documentElement.innerHTML;
+                     document.body.innerHTML=strHtmChrome+document.body.innerHTML;
                  if (navigator.userAgent.indexOf('Firefox')>=0)
-                     document.documentElement.innerHTML=strHtmFireFox+document.documentElement.innerHTML;
+                     document.body.innerHTML=strHtmFireFox+document.body.innerHTML;
                  if (is64IE) document.write(strHtm64_Install); else
                  if (isIE)   document.write(strHtmInstall);    else
-                     document.documentElement.innerHTML=strHtmInstall+document.documentElement.innerHTML;
+                     document.body.innerHTML=strHtmInstall+document.body.innerHTML;
                  return LODOP;
             };
         };
-        if (LODOP.VERSION<"6.2.1.7") {
-            if (needCLodop())
-            document.documentElement.innerHTML=strCLodopUpdate+document.documentElement.innerHTML; else
-            if (is64IE) document.write(strHtm64_Update); else
-            if (isIE) document.write(strHtmUpdate); else
-            document.documentElement.innerHTML=strHtmUpdate+document.documentElement.innerHTML;
+        if (LODOP.VERSION<"6.2.2.0") {
+            if (!needCLodop()){
+            	if (is64IE) document.write(strHtm64_Update); else
+            	if (isIE) document.write(strHtmUpdate); else
+            	document.body.innerHTML=strHtmUpdate+document.body.innerHTML;
+	    };
             return LODOP;
         };
         //===如下空白位置适合调用统一功能(如注册语句、语言选择等):===
