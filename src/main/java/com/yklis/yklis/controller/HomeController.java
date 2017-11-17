@@ -1,6 +1,15 @@
 package com.yklis.yklis.controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -90,6 +99,70 @@ public class HomeController{
             
             return new ModelAndView("login", modelMap);
         }
+        
+        //请求远程用户信息接口begin
+        URL url = null;
+        try {
+            url = new URL("http://211.97.0.5:8080/YkAPI/service");
+        } catch (MalformedURLException e) {
+            logger.error("new URL失败:"+e.toString());
+        }
+        HttpURLConnection httpURLConnection = null;
+        try {
+            httpURLConnection = (HttpURLConnection) url.openConnection();
+        } catch (IOException e) {
+            logger.error("url.openConnection失败:"+e.toString());
+        }
+        try {
+            httpURLConnection.setRequestMethod("POST");
+        } catch (ProtocolException e) {
+            logger.error("httpURLConnection.setRequestMethod失败:"+e.toString());
+        }
+        //conn.setRequestProperty("accept", "*/*");
+        //conn.setRequestProperty("connection", "Keep-Alive");
+        //conn.setRequestProperty("user-agent","Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+        
+        //设置连接主机超时（单位：毫秒）
+        httpURLConnection.setConnectTimeout(10000);
+        //设置从主机读取数据超时（单位：毫秒）
+        httpURLConnection.setReadTimeout(10000);
+        //设置是否向httpUrlConnection输出,因为这个是post请求,参数要放在http正文内,因此需要设为true, 默认情况下是false
+        httpURLConnection.setDoOutput(true);
+        //设置是否从httpUrlConnection读入,默认情况下是true
+        httpURLConnection.setDoInput(true);
+        //Post请求不能使用缓存
+        httpURLConnection.setUseCaches(false);        
+        
+        PrintWriter printWriter = null;
+        try {
+            printWriter = new PrintWriter(httpURLConnection.getOutputStream());
+
+            String param = null;
+            printWriter.write(param);//参数 xx=xx&yy=yy
+        } catch (IOException e) {
+            logger.error("httpURLConnection.getOutputStream失败:"+e.toString());
+        } finally {
+            if (printWriter != null) printWriter.close();
+        }
+        
+        //开始获取数据
+        BufferedReader bufferedReader = null;
+        try {
+            bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+        } catch (IOException e) {
+            logger.error("httpURLConnection.getInputStream失败:"+e.toString());
+        }
+        String line;
+        String ss1 = "";
+        try {
+            while ((line = bufferedReader.readLine()) != null) {
+                ss1 += line;
+            }
+        } catch (IOException e) {
+            logger.error("bufferedReader.readLine失败:"+e.toString());
+        }
+        logger.info("请求远程用户信息接口的返回:"+ss1);
+        //请求远程用户信息接口end
         
         Cookie cookie = new Cookie("yklis.account",account);
         response.addCookie(cookie);                
