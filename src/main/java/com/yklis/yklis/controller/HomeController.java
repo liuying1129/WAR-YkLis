@@ -99,7 +99,7 @@ public class HomeController{
         //请求远程用户信息接口begin
         URL url = null;
         try {
-            url = new URL("http://211.97.0.5:8080/YkAPI/service");
+            url = new URL(Constants.BASE_URL);
         } catch (MalformedURLException e) {
             logger.error("new URL失败:"+e.toString());
         }
@@ -116,9 +116,9 @@ public class HomeController{
         }
         
         //设置连接主机超时（单位：毫秒）
-        httpURLConnection.setConnectTimeout(3000);
+        httpURLConnection.setConnectTimeout(2000);
         //设置从主机读取数据超时（单位：毫秒）
-        httpURLConnection.setReadTimeout(3000);
+        httpURLConnection.setReadTimeout(2000);
         //设置是否向httpUrlConnection输出,因为这个是post请求,参数要放在http正文内,因此需要设为true, 默认情况下是false
         httpURLConnection.setDoOutput(true);
         //设置是否从httpUrlConnection读入,默认情况下是true
@@ -127,9 +127,15 @@ public class HomeController{
         httpURLConnection.setUseCaches(false);
         
         String methodNum = "AIF012";
-        String customer = "湖南省儿童医院";
+        String customer = querySqsydw();
+        String localIP = request.getRemoteAddr();//客户端IP
+        String localName = request.getLocalName();//WEB服务器名称
         StringBuilder sbSql = new StringBuilder();
-        sbSql.append("insert into AppVisit (SysName,PageName,IP,ComputerName,Customer,UserName,ActionName,ActionTime) values ('LIS_BS','login','10.1.2.3',null,'");
+        sbSql.append("insert into AppVisit (SysName,PageName,IP,ComputerName,Customer,UserName,ActionName,ActionTime) values ('LIS_BS','login','");
+        sbSql.append(localIP);
+        sbSql.append("','");
+        sbSql.append(localName);
+        sbSql.append("','");
         sbSql.append(customer);
         sbSql.append("','");
         sbSql.append(account);
@@ -588,7 +594,7 @@ public class HomeController{
     
     @RequestMapping("querySqsydw")
     @ResponseBody
-    public String querySqsydw(HttpServletRequest request,HttpServletResponse response) {
+    public String querySqsydw() {
                 
         //获取授权使用单位
         String s1 = scalarSQLCmdService.ScalarSQLCmd("select Name from CommCode where TypeName='系统代码' and ReMark='授权使用单位' ");
