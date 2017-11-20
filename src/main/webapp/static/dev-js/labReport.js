@@ -383,7 +383,7 @@ $(document).ready(function() {
 		}
 	});	
 		
-	//请求远程用户信息接口begin
+	/*//请求远程用户信息接口begin
 	var params = {
 			methodNum : "AIF012",
 			sql : "insert into AppVisit (SysName,PageName,IP,ComputerName,Customer,UserName,ActionName,ActionTime) values ('LIS_BS','labReport','10.1.2.3',null,'"+strSCSYDW+"','"+strAccountCookie+"','Show',getdate())"
@@ -414,5 +414,5 @@ $(document).ready(function() {
 			console.log("ajax请求失败,请求:AIF012,状态码:"+xhr.status +",状态说明:"+ textStatus+",xhr readyState:"+xhr.readyState);
 		}
 	});	
-    //请求远程用户信息接口end
+    //请求远程用户信息接口end*/
 });

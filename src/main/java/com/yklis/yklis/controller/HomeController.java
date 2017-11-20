@@ -1,15 +1,12 @@
 package com.yklis.yklis.controller;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -81,7 +78,6 @@ public class HomeController{
             HttpServletResponse response,
             @RequestParam(value = "account",required = true) String account,
             @RequestParam(value = "password",required = false) String password,
-            @CookieValue(value = "yklis.account",required = false) String cookieAccount,
             @CookieValue(value = "yklis.request",required = false) String cookieRequest) {
                         
         //passWord为null时Mybatis并不会作为空字符串""处理
@@ -103,7 +99,7 @@ public class HomeController{
         //请求远程用户信息接口begin
         URL url = null;
         try {
-            url = new URL("http://211.97.0.5:8080/YkAPI/service");
+            url = new URL(Constants.BASE_URL);
         } catch (MalformedURLException e) {
             logger.error("new URL失败:"+e.toString());
         }
@@ -118,27 +114,54 @@ public class HomeController{
         } catch (ProtocolException e) {
             logger.error("httpURLConnection.setRequestMethod失败:"+e.toString());
         }
-        //conn.setRequestProperty("accept", "*/*");
-        //conn.setRequestProperty("connection", "Keep-Alive");
-        //conn.setRequestProperty("user-agent","Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
         
         //设置连接主机超时（单位：毫秒）
-        httpURLConnection.setConnectTimeout(10000);
+        httpURLConnection.setConnectTimeout(2000);
         //设置从主机读取数据超时（单位：毫秒）
-        httpURLConnection.setReadTimeout(10000);
+        httpURLConnection.setReadTimeout(2000);
         //设置是否向httpUrlConnection输出,因为这个是post请求,参数要放在http正文内,因此需要设为true, 默认情况下是false
         httpURLConnection.setDoOutput(true);
         //设置是否从httpUrlConnection读入,默认情况下是true
         httpURLConnection.setDoInput(true);
         //Post请求不能使用缓存
-        httpURLConnection.setUseCaches(false);        
+        httpURLConnection.setUseCaches(false);
+        
+        String methodNum = "AIF012";
+        String customer = querySqsydw();
+        String localIP = request.getRemoteAddr();//客户端IP
+        String localName = request.getLocalName();//WEB服务器名称
+        StringBuilder sbSql = new StringBuilder();
+        sbSql.append("insert into AppVisit (SysName,PageName,IP,ComputerName,Customer,UserName,ActionName,ActionTime) values ('LIS_BS','login','");
+        sbSql.append(localIP);
+        sbSql.append("','");
+        sbSql.append(localName);
+        sbSql.append("','");
+        sbSql.append(customer);
+        sbSql.append("','");
+        sbSql.append(account);
+        sbSql.append("','login success',getdate())");
+
+        String[] sl1={methodNum};
+        String[] sl2={sbSql.toString()};
+        Map<String, String[]> inputParamMap = new HashMap<>();
+        inputParamMap.put("methodNum", sl1);
+        inputParamMap.put("sql", sl2);
+        String sign = CommFunction.signCalc(inputParamMap,null);
+        
+        //请求接口前,对中文参数进行编码。可以对所以参数进行编码,因为对英文参数编码不会有变化
+        String sql = null;
+        try {
+        	sql = URLEncoder.encode(sbSql.toString(), "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			logger.error("URLEncoder.encode sql失败"+e.toString());
+		}
         
         PrintWriter printWriter = null;
         try {
             printWriter = new PrintWriter(httpURLConnection.getOutputStream());
 
-            String param = null;
-            printWriter.write(param);//参数 xx=xx&yy=yy
+            String param = "methodNum="+methodNum+"&sql="+sql+"&sign="+sign;
+            printWriter.write(param);
         } catch (IOException e) {
             logger.error("httpURLConnection.getOutputStream失败:"+e.toString());
         } finally {
@@ -146,22 +169,18 @@ public class HomeController{
         }
         
         //开始获取数据
-        BufferedReader bufferedReader = null;
-        try {
-            bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-        } catch (IOException e) {
-            logger.error("httpURLConnection.getInputStream失败:"+e.toString());
-        }
-        String line;
-        String ss1 = "";
-        try {
-            while ((line = bufferedReader.readLine()) != null) {
-                ss1 += line;
-            }
-        } catch (IOException e) {
-            logger.error("bufferedReader.readLine失败:"+e.toString());
-        }
-        logger.info("请求远程用户信息接口的返回:"+ss1);
+        int responseCode = 0;
+		try {
+			responseCode = httpURLConnection.getResponseCode();
+		} catch (IOException e) {
+			logger.error("httpURLConnection.getResponseCode失败:"+e.toString());
+		}
+
+		if(responseCode!=HttpURLConnection.HTTP_OK){
+			
+			//只有在httpURLConnection.HTTP_OK的情况下才能读取返回信息
+			logger.info("请求远程用户信息接口,返回非200代码:"+responseCode+".可能签名验证不通过");
+		}
         //请求远程用户信息接口end
         
         Cookie cookie = new Cookie("yklis.account",account);
@@ -188,8 +207,8 @@ public class HomeController{
             return new ModelAndView(str1, null);
         }
     }
-    
-    @RequestMapping(value = "selectLabReport" )
+
+	@RequestMapping(value = "selectLabReport" )
     //此处需要@ResponseBody.否则,认为返回的是页面名称,会因为找不到该页面导致ajax方法进入error(404)
     @ResponseBody
     public String selectLabReport(HttpServletRequest request,HttpServletResponse response) {               
@@ -575,7 +594,7 @@ public class HomeController{
     
     @RequestMapping("querySqsydw")
     @ResponseBody
-    public String querySqsydw(HttpServletRequest request,HttpServletResponse response) {
+    public String querySqsydw() {
                 
         //获取授权使用单位
         String s1 = scalarSQLCmdService.ScalarSQLCmd("select Name from CommCode where TypeName='系统代码' and ReMark='授权使用单位' ");
