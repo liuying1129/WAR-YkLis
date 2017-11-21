@@ -4,6 +4,10 @@
 	//3、提高编译器效率，增加运行速度；
 	//4、为未来新版本的Javascript做好铺垫
     "use strict";
+    
+if(!window.localStorage){
+	alert("浏览器不支持localStorage");
+}
 
 var strSCSYDW = localStorage.getItem("yklis.SCSYDW");
 if(typeof strSCSYDW == "undefined"||strSCSYDW ==null||strSCSYDW.length == 0){
@@ -15,12 +19,14 @@ if(typeof Array.prototype.forEach != "function"){
 	alert("浏览器不支持forEach");
 }
 
-/*window.onload = function(){
-	
-	if(typeof Array.prototype.forEach != "function"){
-		alert("浏览器不支持forEach");
-	}
-};*/
+window.onunload = function(){
+	//保存用户的选择
+	//localStorage.setItem("check_date", "aaa");//检查日期
+	//localStorage.setItem("printtimes", "aaa");//打印状态
+	//document.forms[i];  //得到页面中的第i个表单
+	//document.forms[fromName]; //得到页面中相应name的表单
+	//document.formName;//最为常用的一种方式
+};
     
 var btnQuery = document.getElementById("btnQuery");
 btnQuery.onclick = function() {
