@@ -21,11 +21,9 @@ if(typeof Array.prototype.forEach != "function"){
 
 window.onunload = function(){
 	//保存用户的选择
-	//localStorage.setItem("check_date", "aaa");//检查日期
-	//localStorage.setItem("printtimes", "aaa");//打印状态
-	//document.forms[i];  //得到页面中的第i个表单
-	//document.forms[fromName]; //得到页面中相应name的表单
-	//document.formName;//最为常用的一种方式
+	var f = document.getElementById('frmQuery');
+	localStorage.setItem("check_date", f['checkDate'].value);//检查日期
+	localStorage.setItem("printtimes", f['printtimes'].value);//打印状态
 };
     
 var btnQuery = document.getElementById("btnQuery");
@@ -387,7 +385,27 @@ $(document).ready(function() {
 		error : function(xhr, textStatus, errorThrown) {
 			console.log("ajax请求失败,请求:loadWorker,状态码:"+xhr.status +",状态说明:"+ textStatus+",xhr readyState:"+xhr.readyState);
 		}
-	});	
+	});
+	
+	//读取用户的选择begin	
+	//检查日期
+	var radiosCheckDate = document.getElementsByName("checkDate");
+    for (var i = 0; i < radiosCheckDate.length; i++) {
+        radiosCheckDate[i].checked = false;
+        if (radiosCheckDate[i].value == localStorage.getItem("check_date")) {
+    	    radiosCheckDate[i].checked = true;
+        }
+    }
+    
+    //打印状态
+	var radiosPrinttimes = document.getElementsByName("printtimes");
+    for (var i = 0; i < radiosPrinttimes.length; i++) {
+    	radiosPrinttimes[i].checked = false;
+        if (radiosPrinttimes[i].value == localStorage.getItem("printtimes")) {
+        	radiosPrinttimes[i].checked = true;
+        }
+    }
+	//读取用户的选择end
 		
 	/*//请求远程用户信息接口begin
 	var params = {

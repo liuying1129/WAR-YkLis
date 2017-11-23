@@ -248,7 +248,7 @@ public class HomeController{
 
 		  String STRSQL46;
 		  if ( "1".equals(printtimes)){
-			    STRSQL46=" isnull((case when len(caseno)=8 and LEFT(caseno,1)=''8'' then 1 else printtimes end),0)<=0 and ";		  
+			    STRSQL46=" isnull((case when len(caseno)=8 and LEFT(caseno,1)='8' then 1 else printtimes end),0)<=0 and ";		  
 		  }
   		  else STRSQL46="";
 		  
@@ -293,7 +293,9 @@ public class HomeController{
 	    sbSQL.append(STRSQL45);
 	    sbSQL.append(STRSQL50);
 	    sbSQL.append(STRSQL47);
-	    sbSQL.append(STRSQL49);	   
+	    sbSQL.append(STRSQL49);
+	    
+	    //logger.info("abcd:"+sbSQL.toString());
 		      	
     	String aa = selectDataSetSQLCmdService.selectDataSetSQLCmd(sbSQL.toString());
     	
