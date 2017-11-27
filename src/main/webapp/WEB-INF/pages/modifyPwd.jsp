@@ -25,7 +25,8 @@
     <jsp:include page="header.jsp" />
 
   <!-- form表单数据通过submit提交到controller示例,action -->
-  <form action="modifyPwd" method="post">
+  <!-- autocomplete="off"禁用记住功能 -->
+  <form action="modifyPwd" method="post" autocomplete="off">
     <input type="password" name="oldPwd" placeholder="原密码"><br/><br/>
     <input type="password" name="newPwd" placeholder="新密码" required><br/><br/>
     <input type="password" name="confirmPwd" placeholder="确认新密码"><br/>
