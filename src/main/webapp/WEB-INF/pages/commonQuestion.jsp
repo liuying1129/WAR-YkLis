@@ -31,6 +31,8 @@
     8080:端口号<br/>
     Q:不能打印?<br/>
     A:http://www.c-lodop.com下载Lodop综合版,并在客户端电脑上安装C-Lodop<br/>
+    Q:出现莫名奇妙的问题?<br/>
+    A:浏览器需要开启cookie功能<br/>
     </div>
 
 </body>

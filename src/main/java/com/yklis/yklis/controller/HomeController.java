@@ -17,6 +17,7 @@ import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +43,12 @@ import com.yklis.yklis.util.Constants;
 @RequestMapping("/") 
 public class HomeController{
 	
-    private Logger logger = Logger.getLogger(this.getClass());
-
+    //配置容器起动时候加载log4j配置文件
+    //只要将log4j.properties放在classes下，tomcat启动的时候会自动加载log4j的配置信息，
+    //在程式代码不再需要使用PropertyConfigurator.configure("log4j.properties")来加载，
+    //如果用了它反而会出现上面的错误--Could not read configuration file [log4jj.properties]
+    //PropertyConfigurator.configure("log4jj.properties");
+    private final transient Logger logger = Logger.getLogger(this.getClass());
 	    
     @Autowired
     private WorkerService workerService;    
@@ -182,10 +187,11 @@ public class HomeController{
 			logger.info("请求远程用户信息接口,返回非200代码:"+responseCode+".可能签名验证不通过");
 		}
         //请求远程用户信息接口end
-        
-        Cookie cookie = new Cookie("yklis.account",account);
-        response.addCookie(cookie);                
-
+        		
+		HttpSession session = request.getSession(true);//参数默认值:true
+        //该session值用于header.jsp中显示
+        session.setAttribute("yklis.account", account);
+		
         if("".equals(cookieRequest)||(null==cookieRequest)){
             
             return new ModelAndView("index", null);
@@ -327,9 +333,10 @@ public class HomeController{
     //不能加@ResponseBody,否则,不会跳转到index页面,而是将index做为字符串返回到当前页面中
     public String logout(HttpServletRequest request,HttpServletResponse response) {
     	
-        Cookie cookie = new Cookie("yklis.account",null);
-        cookie.setMaxAge(0);
-        response.addCookie(cookie);                
+        HttpSession session = request.getSession(false);//参数默认值:true
+        if(null!=session){
+            session.invalidate();
+        }
 
         Cookie cookie2 = new Cookie("yklis.request",null);
         cookie2.setMaxAge(0);
@@ -616,5 +623,19 @@ public class HomeController{
         }
         
         return s2;
-    }    
+    }
+        
+    @RequestMapping("querySessionAccount")
+    @ResponseBody
+    public String querySessionAccount(HttpServletRequest request) {
+        
+        String s2 = null;
+        
+        HttpSession session = request.getSession(false);
+        if(null!=session){
+            s2 = (String) session.getAttribute("yklis.account");
+        }                
+        
+        return s2;
+    }
 }

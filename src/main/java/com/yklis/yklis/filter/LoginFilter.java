@@ -11,14 +11,15 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * 未登录的情况下，强制进入登录页面
  * @author ying07.liu
  *
  */
-public class LoginFilter implements Filter {
-	
+public class LoginFilter implements Filter {	
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         
@@ -42,25 +43,17 @@ public class LoginFilter implements Filter {
         if ((req.getContextPath()+"/").equals(req.getRequestURI())
           ||(req.getContextPath()+"/index").equals(req.getRequestURI())
           ||(req.getContextPath()+"/querySqsydw").equals(req.getRequestURI())
+          ||(req.getContextPath()+"/querySessionAccount").equals(req.getRequestURI())
           ||(req.getContextPath()+"/goLogin").equals(req.getRequestURI())
           ||(req.getContextPath()+"/logout").equals(req.getRequestURI())
           ||(req.getContextPath()+"/login").equals(req.getRequestURI())) {
             chain.doFilter(request, response);
             return;
         }
-                
-        //获取请求中的cookies
-        String cookieAccount = null;
-        Cookie[] cookies = req.getCookies();
-        if(null!=cookies){
-            for(Cookie cookie : cookies){
-                if("yklis.account".equals(cookie.getName()))
-                    cookieAccount = cookie.getValue();
-            }
-        }
-        
-        if((null!=cookieAccount)&&(!"".equals(cookieAccount))){
-            
+                   
+        HttpServletRequest httpRequest = (HttpServletRequest)request;
+        HttpSession session = httpRequest.getSession(false);//参数默认值:true
+        if(null!=session){
             chain.doFilter(request, response);
             return;            
         }
