@@ -28,8 +28,7 @@
     <label for="account">account</label>
     <input type="text" name="account" placeholder="帐号" autofocus required>
     <label for="password">password</label>
-    <!-- autocomplete="off"禁用记住功能 -->
-    <input type="password" name="password" autocomplete="off" placeholder="密码">
+    <input type="password" name="password" placeholder="密码">
     <span style="color:red">${msg}</span>
     <input type="submit" style="font-family: Microsoft Yahei;" value="登录">
   </form>
