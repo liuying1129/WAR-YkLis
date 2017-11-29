@@ -19,12 +19,53 @@ if(typeof Array.prototype.forEach != "function"){
 	alert("浏览器不支持forEach");
 }
 
-window.onunload = function(){
-	//保存用户的选择
-	var f = document.getElementById('frmQuery');
-	localStorage.setItem("check_date", f['checkDate'].value);//检查日期
-	localStorage.setItem("printtimes", f['printtimes'].value);//打印状态
+/*window.onunload = function(){
+	//保存用户的选择//该方法对IE无效
+	//var f = document.getElementById('frmQuery');
+	//localStorage.setItem("check_date", f['checkDate'].value);//检查日期
+	//localStorage.setItem("printtimes", f['printtimes'].value);//打印状态
+	
+	//保存用户的选择begin
+	//检查日期
+	var radiosCheckDate = document.getElementsByName("checkDate");
+    for (var i = 0; i < radiosCheckDate.length; i++) {
+        if(radiosCheckDate[i].checked){
+        	localStorage.setItem("check_date", radiosCheckDate[i].value);
+        }
+    }
+    
+    //打印状态
+	var radiosPrinttimes = document.getElementsByName("printtimes");
+    for (var j = 0; j < radiosPrinttimes.length; j++) {
+        if(radiosPrinttimes[j].checked){
+        	localStorage.setItem("printtimes", radiosPrinttimes[j].value);
+        }
+    }
+	//保存用户的选择end
+};//*/
+
+var btnTest = document.getElementById("btnTest");
+btnTest.onclick = function() {
+	
+	//保存用户的选择begin
+	//检查日期
+	var radiosCheckDate = document.getElementsByName("checkDate");
+    for (var i = 0; i < radiosCheckDate.length; i++) {
+        if(radiosCheckDate[i].checked){
+        	localStorage.setItem("check_date", radiosCheckDate[i].value);
+        }
+    }
+    
+    //打印状态
+	var radiosPrinttimes = document.getElementsByName("printtimes");
+    for (var j = 0; j < radiosPrinttimes.length; j++) {
+        if(radiosPrinttimes[j].checked){
+        	localStorage.setItem("printtimes", radiosPrinttimes[j].value);
+        }
+    }
+	//保存用户的选择end
 };
+
     
 var btnQuery = document.getElementById("btnQuery");
 btnQuery.onclick = function() {

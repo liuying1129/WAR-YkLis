@@ -65,6 +65,7 @@
   </form>
   <button id="btnQuery">查询</button>
   <button id="btnPrint">打印</button>
+  <button id="btnTest">test</button>
   <table>
   	<thead>
         <tr>
