@@ -440,10 +440,10 @@ $(document).ready(function() {
     
     //打印状态
 	var radiosPrinttimes = document.getElementsByName("printtimes");
-    for (var i = 0; i < radiosPrinttimes.length; i++) {
-    	radiosPrinttimes[i].checked = false;
-        if (radiosPrinttimes[i].value == localStorage.getItem("printtimes")) {
-        	radiosPrinttimes[i].checked = true;
+    for (var j = 0; j < radiosPrinttimes.length; j++) {
+    	radiosPrinttimes[j].checked = false;
+        if (radiosPrinttimes[j].value == localStorage.getItem("printtimes")) {
+        	radiosPrinttimes[j].checked = true;
         }
     }
 	//读取用户的选择end
