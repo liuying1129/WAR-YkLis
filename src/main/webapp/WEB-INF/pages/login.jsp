@@ -28,7 +28,8 @@
     <label for="account">account</label>
     <input type="text" name="account" placeholder="帐号" autofocus required>
     <label for="password">password</label>
-    <input type="password" name="password" placeholder="密码">
+    <!-- <input type="password" name="password" placeholder="密码"> -->
+    <input type="text" name="password" placeholder="密码" onfocus="this.type='password'" autocomplete="off">
     <span style="color:red">${msg}</span>
     <input type="submit" style="font-family: Microsoft Yahei;" value="登录">
   </form>
