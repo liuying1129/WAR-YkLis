@@ -214,7 +214,7 @@ public class HomeController{
         }
     }
 
-	@RequestMapping(value = "selectLabReport" )
+	@RequestMapping(value = "selectLabReport" ,produces = "html/text;charset=UTF-8")
     //此处需要@ResponseBody.否则,认为返回的是页面名称,会因为找不到该页面导致ajax方法进入error(404)
     @ResponseBody
     public String selectLabReport(HttpServletRequest request,HttpServletResponse response) {               
@@ -420,7 +420,7 @@ public class HomeController{
 		return mv;
     }
     
-    @RequestMapping("printReport")
+    @RequestMapping(value = "printReport" ,produces = "html/text;charset=UTF-8")
     //此处需要@ResponseBody.否则,认为返回的是页面名称,会因为找不到该页面导致ajax方法进入error(404)
     @ResponseBody
     public String printReport(HttpServletRequest request,HttpServletResponse response) {
