@@ -47,27 +47,6 @@ window.onunload = function(){
 var btnQuery = document.getElementById("btnQuery");
 btnQuery.onclick = function() {
 	
-	var opts = {            
-	    lines: 13, // 花瓣数目
-	    length: 20, // 花瓣长度
-	    width: 10, // 花瓣宽度
-	    radius: 30, // 花瓣距中心半径
-	    corners: 1, // 花瓣圆滑度 (0-1)
-	    rotate: 0, // 花瓣旋转角度
-	    direction: 1, // 花瓣旋转方向 1: 顺时针, -1: 逆时针
-	    color: '#5882FA', // 花瓣颜色
-	    speed: 1, // 花瓣旋转速度
-	    trail: 60, // 花瓣旋转时的拖影(百分比)
-	    shadow: false, // 花瓣是否显示阴影
-	    hwaccel: false, //spinner 是否启用硬件加速及高速旋转            
-	    className: 'spinner', // spinner css 样式名称
-	    zIndex: 2e9, // spinner的z轴 (默认是2000000000)
-	    top: 'auto', // spinner 相对父容器Top定位 单位 px
-	    left: 'auto'// spinner 相对父容器Left定位 单位 px
-	};
-	
-	var spinner = new Spinner(opts);
-	
 	$.ajax({
 		//默认值: true。如果需要发送同步请求，请将此选项设置为 false。注意，同步请求将锁住浏览器，用户其它操作必须等待请求完成才可以执行
 		async : true,
@@ -82,8 +61,7 @@ btnQuery.onclick = function() {
 		dataType : 'json',
 		beforeSend: function () {
 			
-			var target = document.getElementById("frmQuery");
-			spinner.spin(target);			
+			$("#frmQuery").html("<img src='static/images/loading.gif' />");
         },
 		success : function(data) {
 			
@@ -97,10 +75,11 @@ btnQuery.onclick = function() {
 	            $("#myTBody").append(tbBody);
 	          });
 			
-			spinner.spin();
+			$("#frmQuery").empty();
 		},
 		error : function(xhr, textStatus, errorThrown) {
-			spinner.spin();
+			
+			$("#frmQuery").empty();
 			console.log("ajax请求失败,请求:selectLabReport,状态码:"+xhr.status +",状态说明:"+ textStatus+",xhr readyState:"+xhr.readyState);
 		}
 	});	
