@@ -47,6 +47,27 @@ window.onunload = function(){
 var btnQuery = document.getElementById("btnQuery");
 btnQuery.onclick = function() {
 	
+	var opts = {            
+	    lines: 13, // 花瓣数目
+	    length: 20, // 花瓣长度
+	    width: 10, // 花瓣宽度
+	    radius: 30, // 花瓣距中心半径
+	    corners: 1, // 花瓣圆滑度 (0-1)
+	    rotate: 0, // 花瓣旋转角度
+	    direction: 1, // 花瓣旋转方向 1: 顺时针, -1: 逆时针
+	    color: '#5882FA', // 花瓣颜色
+	    speed: 1, // 花瓣旋转速度
+	    trail: 60, // 花瓣旋转时的拖影(百分比)
+	    shadow: false, // 花瓣是否显示阴影
+	    hwaccel: false, //spinner 是否启用硬件加速及高速旋转            
+	    className: 'spinner', // spinner css 样式名称
+	    zIndex: 2e9, // spinner的z轴 (默认是2000000000)
+	    top: 'auto', // spinner 相对父容器Top定位 单位 px
+	    left: 'auto'// spinner 相对父容器Left定位 单位 px
+	};
+	
+	var spinner = new Spinner(opts);
+	
 	$.ajax({
 		//默认值: true。如果需要发送同步请求，请将此选项设置为 false。注意，同步请求将锁住浏览器，用户其它操作必须等待请求完成才可以执行
 		async : true,
@@ -59,6 +80,11 @@ btnQuery.onclick = function() {
 		data : $("#frmQuery").serialize(),
 		//预期服务器返回的数据类型。如果不指定，jQuery将自动根据 HTTP包 MIME信息来智能判断
 		dataType : 'json',
+		beforeSend: function () {
+			
+			var target = document.getElementById("frmQuery");
+			spinner.spin(target);			
+        },
 		success : function(data) {
 			
 			$("#myTBody").html("");
@@ -70,8 +96,11 @@ btnQuery.onclick = function() {
 	            tbBody += "<tr><td><a href='checkValue?unid="+element.唯一编号+"&ifCompleted="+element.ifCompleted+"&patientname="+encodeURIComponent(encodeURIComponent(element.姓名))+"&sex="+encodeURIComponent(encodeURIComponent(element.性别))+"&age="+encodeURIComponent(encodeURIComponent(element.年龄))+"&check_date="+element.检查日期+"' target='_blank'>" + element.姓名 + "</a></td><td>" + element.性别 + "</td><td>" + element.年龄 + "</td><td><input type='checkbox' /></td><td>" + element.病历号 + "</td><td>" + element.床号 + "</td><td>" + element.送检科室 + "</td><td>" + element.送检医生 + "</td><td>" + element.检查日期 + "</td><td>" + element.申请日期 + "</td><td>" + element.审核者 + "</td><td>" + element.工作组 + "</td><td>" + element.操作者 + "</td><td>" + element.优先级别 + "</td><td flag='printtimes'>" + element.打印次数 + "</td><td>" + element.样本类型 + "</td><td>" + element.临床诊断 + "</td><td>" + element.样本情况 + "</td><td>" + element.备注 + "</td><td flag='unid'>" + element.唯一编号 + "</td><td>" + element.His唯一编号 + "</td><td>" + element.His门诊或住院 + "</td><td>" + element.所属部门 + "</td><td>" + element.工种 + "</td><td>" + element.工号 + "</td><td>" + element.婚否 + "</td><td>" + element.籍贯 + "</td><td>" + element.住址 + "</td><td>" + element.电话 + "</td><td>" + element.所属公司 + "</td><td>" + element.审核时间 + "</td><td flag='ifCompleted'>" + element.ifCompleted + "</td><td>" + element.联机号 + "</td><td>" + element.流水号 + "</td></tr>";
 	            $("#myTBody").append(tbBody);
 	          });
+			
+			spinner.spin();
 		},
 		error : function(xhr, textStatus, errorThrown) {
+			spinner.spin();
 			console.log("ajax请求失败,请求:selectLabReport,状态码:"+xhr.status +",状态说明:"+ textStatus+",xhr readyState:"+xhr.readyState);
 		}
 	});	

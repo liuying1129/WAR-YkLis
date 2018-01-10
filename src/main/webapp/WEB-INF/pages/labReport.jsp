@@ -123,6 +123,8 @@
     <!-- 注:header.jsp有引用jquery.js -->
     <script src="${ctx}/static/select2/4.0.5/js/select2.min.js"></script>
     
+    <script src="${ctx}/static/spin/spin.js"></script>
+    
     <script src="${ctx}/static/md5-min.js"></script>
     <script src="${ctx}/static/dev-js/make_sign.js"></script>
 

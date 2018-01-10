@@ -601,7 +601,7 @@ public class HomeController{
         }
     }
     
-    @RequestMapping("querySqsydw")
+    @RequestMapping(value = "querySqsydw")
     @ResponseBody
     public String querySqsydw() {
                 
