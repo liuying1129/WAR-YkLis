@@ -41,6 +41,12 @@ window.onunload = function(){
         	localStorage.setItem("printtimes", radiosPrinttimes[j].value);
         }
     }
+    
+    //送检医生
+    var selectCheckDoctorData = $('select[name="check_doctor"]').select2('data');
+    if(selectCheckDoctorData.length>0){
+      localStorage.setItem("check_doctor", selectCheckDoctorData[0].text);
+    }
 	//保存用户的选择end
 };
 
@@ -429,6 +435,16 @@ $(document).ready(function() {
         if (radiosPrinttimes[j].value == localStorage.getItem("printtimes")) {
         	radiosPrinttimes[j].checked = true;
         }
+    }
+    
+    //送检医生
+    if((localStorage.getItem("check_doctor")!==null)&&(localStorage.getItem("check_doctor").length>0)){
+    	
+    	//刚刚加载的Option,无法find出来,导致有两条相同的下拉选项,但不影响
+        if($('select[name="check_doctor"]').find("option[value='"+localStorage.getItem("check_doctor")+"']").length<=0){
+            $('select[name="check_doctor"]').append(new Option(localStorage.getItem("check_doctor")));    
+        }
+        $('select[name="check_doctor"]').val(localStorage.getItem("check_doctor")).trigger("change");
     }
 	//读取用户的选择end
 		
