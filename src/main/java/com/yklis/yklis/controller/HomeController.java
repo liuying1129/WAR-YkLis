@@ -315,14 +315,14 @@ public class HomeController{
         return "labReport";
     }
     
-    @RequestMapping("loadDeptname")
+    @RequestMapping(value = "loadDeptname" ,produces = "html/text;charset=UTF-8")
     @ResponseBody
     public String loadDeptname(HttpServletRequest request) {
                 
         return selectDataSetSQLCmdService.selectDataSetSQLCmd("select Name from CommCode where TypeName='部门'");
     }
     
-    @RequestMapping("loadWorker")
+    @RequestMapping(value = "loadWorker" ,produces = "html/text;charset=UTF-8")
     @ResponseBody
     public String loadWorker(HttpServletRequest request) {
                 
