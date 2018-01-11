@@ -107,7 +107,11 @@
     <tbody id="myTBody">
     </tbody>
   </table>
-
+  
+  <div id="maskLayer">
+    <img src="static/images/loading.gif">
+  </div>
+  
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="${ctx}/static/bootstrap/3.3.7/js/bootstrap.min.js"></script>
        

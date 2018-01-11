@@ -59,9 +59,8 @@ btnQuery.onclick = function() {
 		data : $("#frmQuery").serialize(),
 		//预期服务器返回的数据类型。如果不指定，jQuery将自动根据 HTTP包 MIME信息来智能判断
 		dataType : 'json',
-		beforeSend: function () {
-			
-			$("#frmQuery").html("<img src='static/images/loading.gif' />");
+		beforeSend: function () {			
+			document.getElementById("maskLayer").style.display="block";
         },
 		success : function(data) {
 			
@@ -75,11 +74,11 @@ btnQuery.onclick = function() {
 	            $("#myTBody").append(tbBody);
 	          });
 			
-			$("#frmQuery").empty();
+			document.getElementById("maskLayer").style.display="none";
 		},
 		error : function(xhr, textStatus, errorThrown) {
 			
-			$("#frmQuery").empty();
+			document.getElementById("maskLayer").style.display="none";
 			console.log("ajax请求失败,请求:selectLabReport,状态码:"+xhr.status +",状态说明:"+ textStatus+",xhr readyState:"+xhr.readyState);
 		}
 	});	

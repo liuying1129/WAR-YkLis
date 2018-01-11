@@ -14,3 +14,23 @@ th{
 table,th,td{
     border: 1px solid black;
 }
+
+#maskLayer{
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:rgba(0,0,0,0.7);
+	z-index:15000;
+	
+	/* 使其中的loading动图水平居中 */
+	text-align:center;
+	
+	/* 默认不显示.js控制是否显示 */
+	display:none;
+}
+
+#maskLayer img{
+	padding-top:50px;
+}
