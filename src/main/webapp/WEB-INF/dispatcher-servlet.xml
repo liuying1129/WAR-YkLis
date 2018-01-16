@@ -33,6 +33,9 @@
     <!-- 使servlet(dispatcher)不拦截这些静态资源文件 -->
     <!-- 如果不加这句，页面上引用的css、js等文件将无法加载 -->
     <mvc:resources mapping="/static/**" location="/static/" />
+    <mvc:resources mapping="/CLodop_Setup_for_Win32NT.exe" location="/" />
+    <mvc:resources mapping="/install_lodop32.exe" location="/" />
+    <mvc:resources mapping="/install_lodop64.exe" location="/" />
     
     <!-- 配置视图解析器，将ModelAndView及字符串解析为具体的页面 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
