@@ -1,5 +1,5 @@
-¹ÙÍø:http://www.c-lodop.com
+ï»¿å®˜ç½‘:http://www.c-lodop.com
 
-ÏÂÔØLodop×ÛºÏ°æ
-1¡¢½«LodopFuncs.jsÒýÓÃµ½ÏîÄ¿
-2¡¢½«install_lodop32.exe¡¢install_lodop64.exe¡¢CLodop_Setup_for_Win32NT.exe·ÅÔÚsrc\main\webappÎÄ¼þ¼ÐÖÐ,ÒÔ¹©ÓÃ»§ÏÂÔØ£¨ÏÂÔØ´úÂëÔÚLodopFuncs.jsÖÐ£©
+ä¸‹è½½Lodopç»¼åˆç‰ˆ
+1ã€å°†LodopFuncs.jså¼•ç”¨åˆ°é¡¹ç›®
+2ã€å°†install_lodop32.exeã€install_lodop64.exeã€CLodop_Setup_for_Win32NT.exeæ”¾åœ¨src\main\webappæ–‡ä»¶å¤¹ä¸­,ä»¥ä¾›ç”¨æˆ·ä¸‹è½½ï¼ˆä¸‹è½½ä»£ç åœ¨LodopFuncs.jsä¸­ï¼‰
