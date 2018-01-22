@@ -23,7 +23,7 @@
     <link href="${ctx}/static/select2/4.0.5/css/select2.min.css" rel="stylesheet" />      
          
     <!-- Custom styles for this template -->
-    <link href="${ctx}/static/dev-css/labReport.css" rel="stylesheet">
+    <link href="${ctx}/static/dev-css/labReport.css?jsr=${jsr}" rel="stylesheet">
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!-- 只能放在head,否则header.jsp变窄时出现的下拉菜单无法收起 -->

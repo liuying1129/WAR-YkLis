@@ -13,9 +13,10 @@
 	<title>誉凯检验信息管理系统</title>	
 	
     <c:set var="ctx" value="${pageContext.request.contextPath}"/>
+    <c:set var="jsr" value="${initParam.jsRandom}"/>
     
     <!-- Custom styles for this template -->
-    <link href="${ctx}/static/dev-css/commonQuestion.css" rel="stylesheet">
+    <link href="${ctx}/static/dev-css/commonQuestion.css?jsr=${jsr}" rel="stylesheet">
 </head>
 <body>
     

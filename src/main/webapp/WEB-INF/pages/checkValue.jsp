@@ -16,7 +16,7 @@
     <c:set var="jsr" value="${initParam.jsRandom}"/>
     
     <!-- Custom styles for this template -->
-    <link href="${ctx}/static/dev-css/checkValue.css" rel="stylesheet">
+    <link href="${ctx}/static/dev-css/checkValue.css?jsr=${jsr}" rel="stylesheet">
 </head>
 
 <body>
