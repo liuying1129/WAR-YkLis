@@ -40,18 +40,19 @@
   <form id="frmQuery">
     <strong>检查日期:</strong>
     <input type="radio" value="0"  name="checkDate" id="checkDateUnlimited" checked />
-    <label for="checkDateUnlimited">不限</label>&nbsp;&nbsp;&nbsp;
+    <!-- Bootstrap写了label加粗的样式,故行内重写样式(经测试,写在外部CSS文件中不行) -->
+    <label style="font-weight:normal;" for="checkDateUnlimited">不限</label>&nbsp;&nbsp;&nbsp;
     <input type="radio" value="1"  name="checkDate" id="checkDateToday"  />
-    <label for="checkDateToday">今天</label>&nbsp;&nbsp;&nbsp;
+    <label style="font-weight:normal;" for="checkDateToday">今天</label>&nbsp;&nbsp;&nbsp;
     <input type="radio" value="2"  name="checkDate" id="checkDateWeek"  />
-    <label for="checkDateWeek">最近一周</label>&nbsp;&nbsp;&nbsp;
+    <label style="font-weight:normal;" for="checkDateWeek">最近一周</label>&nbsp;&nbsp;&nbsp;
     <input type="radio" value="3"  name="checkDate" id="checkDateMonth"  />
-    <label for="checkDateMonth">最近一月</label><br />
+    <label style="font-weight:normal;" for="checkDateMonth">最近一月</label><br />
     <strong>打印状态:</strong>
     <input type="radio" value="0"  name="printtimes" id="printtimesUnlimited" checked />
-    <label for="printtimesUnlimited">不限</label>&nbsp;&nbsp;&nbsp;
+    <label style="font-weight:normal;" for="printtimesUnlimited">不限</label>&nbsp;&nbsp;&nbsp;
     <input type="radio" value="1"  name="printtimes" id="printtimesNotPrinted"  />
-    <label for="printtimesNotPrinted">未打印</label><br />
+    <label style="font-weight:normal;" for="printtimesNotPrinted">未打印</label><br />
     <strong>门诊/住院号</strong>
     <input type="text" name="caseno" placeholder="门诊/住院号" />&nbsp;&nbsp;
     <strong>姓名</strong>
