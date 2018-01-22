@@ -38,28 +38,28 @@
 
   <!-- form表单数据通过form外button(ajax)提交到controller示例 -->
   <form id="frmQuery">
-    检查日期:
-    <label for="checkDateUnlimited">不限</label>
+    <strong>检查日期:</strong>
     <input type="radio" value="0"  name="checkDate" id="checkDateUnlimited" checked />
-    <label for="checkDateToday">今天</label>
+    <label for="checkDateUnlimited">不限</label>&nbsp;&nbsp;&nbsp;
     <input type="radio" value="1"  name="checkDate" id="checkDateToday"  />
-    <label for="checkDateWeek">最近一周</label>
+    <label for="checkDateToday">今天</label>&nbsp;&nbsp;&nbsp;
     <input type="radio" value="2"  name="checkDate" id="checkDateWeek"  />
-    <label for="checkDateMonth">最近一月</label>
-    <input type="radio" value="3"  name="checkDate" id="checkDateMonth"  /><br />
-    打印状态:
-    <label for="printtimesUnlimited">不限</label>
+    <label for="checkDateWeek">最近一周</label>&nbsp;&nbsp;&nbsp;
+    <input type="radio" value="3"  name="checkDate" id="checkDateMonth"  />
+    <label for="checkDateMonth">最近一月</label><br />
+    <strong>打印状态:</strong>
     <input type="radio" value="0"  name="printtimes" id="printtimesUnlimited" checked />
-    <label for="printtimesNotPrinted">未打印</label>
-    <input type="radio" value="1"  name="printtimes" id="printtimesNotPrinted"  /><br />
-    门诊/住院号
-    <input type="text" name="caseno" placeholder="门诊/住院号" />
-    姓名
-    <input type="text" name="patientname" placeholder="姓名" />
-    送检科室
+    <label for="printtimesUnlimited">不限</label>&nbsp;&nbsp;&nbsp;
+    <input type="radio" value="1"  name="printtimes" id="printtimesNotPrinted"  />
+    <label for="printtimesNotPrinted">未打印</label><br />
+    <strong>门诊/住院号</strong>
+    <input type="text" name="caseno" placeholder="门诊/住院号" />&nbsp;&nbsp;
+    <strong>姓名</strong>
+    <input type="text" name="patientname" placeholder="姓名" />&nbsp;&nbsp;
+    <strong>送检科室</strong>
     <select name="deptname" style="width:130px">
-    </select>
-    送检医生
+    </select>&nbsp;&nbsp;
+    <strong>送检医生</strong>
 	<select name="check_doctor" style="width:130px">
     </select>
   </form>
