@@ -73,11 +73,25 @@ $(document).ready(function() {
 			if((typeof data!='undefined')&&(typeof data.valueOf()=='string')&&(data.length>0)){
 								
 				//存在帐号cookie的情况下,显示帐号信息
-				document.getElementById("hrefAccount").innerHTML = data;
+				document.getElementById("hrefAccount").innerHTML = data+' <span class="caret"></span>';
 				document.getElementById("hrefAccount").setAttribute("href","#");//#表示当前页,且不会刷新页面。#后面跟任意字符效果一样 
+				document.getElementById("hrefAccount").setAttribute("class","dropdown-toggle");
+				document.getElementById("hrefAccount").setAttribute("data-toggle","dropdown");
+				document.getElementById("hrefAccount").setAttribute("role","button");
+				document.getElementById("hrefAccount").setAttribute("aria-haspopup","true");
+				document.getElementById("hrefAccount").setAttribute("aria-expanded","false");
+				$('#hrefAccount').parent('li').attr('class', 'dropdown');
+				$('#hrefAccount').parent('li').append('<ul class="dropdown-menu"><li><a href="logout">注销</a></li><li role="separator" class="divider"></li><li><a href="goModifyPwd">修改密码</a></li></ul>');
 			}else{
 				document.getElementById("hrefAccount").innerHTML = "登录";
 				document.getElementById("hrefAccount").setAttribute("href","goLogin");
+				document.getElementById("hrefAccount").removeAttribute("class");
+				document.getElementById("hrefAccount").removeAttribute("data-toggle");
+				document.getElementById("hrefAccount").removeAttribute("role");
+				document.getElementById("hrefAccount").removeAttribute("aria-haspopup");
+				document.getElementById("hrefAccount").removeAttribute("aria-expanded");
+				$('#hrefAccount').parent('li').removeAttr('class');
+				$('#hrefAccount').parent('li').children('ul').remove();
 			}
 		},
 		error : function(xhr, textStatus, errorThrown) {
