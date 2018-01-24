@@ -18,7 +18,7 @@
     <c:set var="jsr" value="${initParam.jsRandom}"/>
     
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="${ctx}/static/bootstrap/3.3.7/css/bootstrap.min.css" />    
+    <!-- <link rel="stylesheet" href="${ctx}/static/bootstrap/3.3.7/css/bootstrap.min.css" /> -->
     <!-- select2 -->
     <link href="${ctx}/static/select2/4.0.5/css/select2.min.css" rel="stylesheet" />      
          
@@ -114,7 +114,7 @@
   </div>
   
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="${ctx}/static/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- <script src="${ctx}/static/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
        
     <!-- Lodop -->
     <script src="${ctx}/static/Lodop/LodopFuncs.js"></script>
