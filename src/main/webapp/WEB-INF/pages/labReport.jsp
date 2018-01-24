@@ -17,8 +17,6 @@
     <c:set var="ctx" value="${pageContext.request.contextPath}"/>
     <c:set var="jsr" value="${initParam.jsRandom}"/>
     
-    <!-- Bootstrap -->
-    <!-- <link rel="stylesheet" href="${ctx}/static/bootstrap/3.3.7/css/bootstrap.min.css" /> -->
     <!-- select2 -->
     <link href="${ctx}/static/select2/4.0.5/css/select2.min.css" rel="stylesheet" />      
          
@@ -113,7 +111,8 @@
     <img src="static/images/loading.gif">
   </div>
   
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- Bootstrap -->
+    <!-- 如引用bootstrap.min.js,header.jsp用户名的下拉菜单无法下拉.幸好本页面不需要引用bootstrap.min.js -->
     <!-- <script src="${ctx}/static/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
        
     <!-- Lodop -->
