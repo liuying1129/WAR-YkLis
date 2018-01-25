@@ -15,43 +15,66 @@
     <c:set var="ctx" value="${pageContext.request.contextPath}"/>
     <c:set var="jsr" value="${initParam.jsRandom}"/>
     
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="${ctx}/static/bootstrap/3.3.7/css/bootstrap.min.css" />
+    
     <!-- Custom styles for this template -->
     <link href="${ctx}/static/dev-css/checkValue.css?jsr=${jsr}" rel="stylesheet">
 </head>
 
 <body>
-  <table>
-  <caption><em>${baseInfo.patientname}&nbsp;&nbsp;${baseInfo.sex}&nbsp;&nbsp;${baseInfo.age}&nbsp;&nbsp;${baseInfo.check_date}</em></caption>
-  	<thead>
-        <tr style="background-color:yellow">
-          <th>图</th>
-          <th>组合项目</th>
-          <th>名称</th>
-          <th>英文名</th>
-          <th>检验结果</th>
-          <th style="display:none">超限标识</th>
-          <th>最小值</th>
-          <th>最大值</th>
-          <th>单位</th>
-        </tr>
-  	</thead>
-    <tbody id="myTBody">
-				<c:forEach items="${DataTable}" var="D">
-					<tr>
-						<td>${D.图}</td>
-						<td>${D.组合项目}</td>
-						<td>${D.名称}</td>
-						<td>${D.英文名}</td>
-						<td flag="itemValue"><pre>${D.检验结果}</pre></td>
-						<td flag="ifValueAlarm" style="display:none">${D.ifValueAlarm}</td>
-						<td>${D.最小值}</td>
-						<td>${D.最大值}</td>
-						<td>${D.单位}</td>
-					</tr>
-				</c:forEach> 
+
+  <div><em>${baseInfo.patientname}&nbsp;&nbsp;${baseInfo.sex}&nbsp;&nbsp;${baseInfo.age}&nbsp;&nbsp;${baseInfo.check_date}</em></div>
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#value" data-toggle="tab">结果</a></li>
+	<li><a href="#graph" data-toggle="tab">图形</a></li>
+  </ul>
+  
+  <div class="tab-content">
+    <div class="tab-pane fade in active" id="value">
+	  <table>
+	    <thead>
+	        <tr style="background-color:yellow">
+	          <th>图</th>
+	          <th>组合项目</th>
+	          <th>名称</th>
+	          <th>英文名</th>
+	          <th>检验结果</th>
+	          <th style="display:none">超限标识</th>
+	          <th>最小值</th>
+	          <th>最大值</th>
+	          <th>单位</th>
+	        </tr>
+	    </thead>
+	    <tbody id="myTBody">
+	                <c:forEach items="${DataTable}" var="D">
+	                    <tr>
+	                        <td>${D.图}</td>
+	                        <td>${D.组合项目}</td>
+	                        <td>${D.名称}</td>
+	                        <td>${D.英文名}</td>
+	                        <td flag="itemValue"><pre>${D.检验结果}</pre></td>
+	                        <td flag="ifValueAlarm" style="display:none">${D.ifValueAlarm}</td>
+	                        <td>${D.最小值}</td>
+	                        <td>${D.最大值}</td>
+	                        <td>${D.单位}</td>
+	                    </tr>
+	                </c:forEach> 
+	    
+	    </tbody>
+	  </table>
+    </div>
+    <div class="tab-pane fade" id="graph">
+      <p>iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple 
+            TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。</p>
+    </div>
+  </div>
     
-    </tbody>
-  </table>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="${ctx}/static/jquery/jquery-3.2.1.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="${ctx}/static/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
   <script src="${ctx}/static/dev-js/checkValue.js?jsr=${jsr}"></script>
 </body>
