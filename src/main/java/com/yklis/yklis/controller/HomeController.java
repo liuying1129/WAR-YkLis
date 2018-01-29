@@ -751,9 +751,30 @@ public class HomeController{
     end;*/   
     
     @RequestMapping("showPictureValue")
+    //此处需要@ResponseBody.否则,认为返回的是页面名称,会因为找不到该页面导致ajax方法进入error(404)
+    @ResponseBody
     public String showPictureValue(HttpServletRequest request) {
                 
-        return "modifyPwd";
+        String unid = request.getParameter("unid");
+        String ifCompleted = request.getParameter("ifCompleted");
+        
+        String strsql12;
+        if("1".equals(ifCompleted)){
+            strsql12="chk_valu_bak";
+        }else{
+            strsql12="chk_valu";
+        }
+
+        StringBuilder sbSql = new StringBuilder();
+        sbSql.append(" select * from ");
+        sbSql.append(strsql12);
+        sbSql.append(" where pkunid=");
+        sbSql.append(unid);
+        sbSql.append(" and Photo is not null and issure='1' ");
+
+        String ss1 = selectDataSetSQLCmdService.selectDataSetSQLCmd(sbSql.toString());
+
+        return ss1;
     }
     
 }
