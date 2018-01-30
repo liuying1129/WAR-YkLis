@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,7 +32,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.yklis.lisfunction.entity.ChkValuEntity;
 import com.yklis.lisfunction.entity.WorkerEntity;
+import com.yklis.lisfunction.service.ChkValuService;
 import com.yklis.lisfunction.service.ExecSQLCmdService;
 import com.yklis.lisfunction.service.ScalarSQLCmdService;
 import com.yklis.lisfunction.service.SelectDataSetSQLCmdService;
@@ -61,6 +64,9 @@ public class HomeController{
 
     @Autowired
     private ExecSQLCmdService execSQLCmdService;
+    
+    @Autowired
+    private ChkValuService chkValuService;
 
     @RequestMapping("index")
     //不能加@ResponseBody,否则,不会跳转到index页面,而是将index做为字符串返回到当前页面中
@@ -405,8 +411,28 @@ public class HomeController{
 
 		JSONArray jsarr=jso.getJSONArray("response");//JSONObject取得response对应的JSONArray(JSON数组)
 		
+		//图形
+        StringBuilder sbSQL2 = new StringBuilder();
+        sbSQL2.append(" select english_name,'showPictureValue?valueid='+convert(varchar,valueid) as imgReq from ");
+        sbSQL2.append(strsql12);
+        sbSQL2.append(" where pkunid=");
+        sbSQL2.append(unid);
+        sbSQL2.append(" and Photo is not null and issure='1' ");
+
+        String ss2 = selectDataSetSQLCmdService.selectDataSetSQLCmd(sbSQL2.toString());
+        logger.info("图形:"+ss2);
+        JSONObject jso2=JSON.parseObject(ss2);//json字符串转换成JSONObject(JSON对象)
+        boolean bb2 = jso2.getBooleanValue("success");
+        if(!bb2){           
+        }
+        JSONArray jsarr2=jso2.getJSONArray("response");//JSONObject取得response对应的JSONArray(JSON数组)
+        //if(jsarr2.size()>0){            
+        //}
+		
 		ModelAndView mv = new ModelAndView();
         mv.addObject("DataTable", jsarr);
+        
+        mv.addObject("dtPic", jsarr2);
 
         Map<String, Object> modelMap = new HashMap<String, Object>();
         modelMap.put("patientname", patientname);
@@ -753,28 +779,44 @@ public class HomeController{
     @RequestMapping("showPictureValue")
     //此处需要@ResponseBody.否则,认为返回的是页面名称,会因为找不到该页面导致ajax方法进入error(404)
     @ResponseBody
-    public String showPictureValue(HttpServletRequest request) {
+    public void showPictureValue(HttpServletRequest request,HttpServletResponse response) {
                 
-        String unid = request.getParameter("unid");
-        String ifCompleted = request.getParameter("ifCompleted");
+        int valueid = 0;
+        try{
+            valueid = Integer.parseInt(request.getParameter("valueid"));
+        }catch(Exception e){
+            logger.error("传入的图片valueid转换为整数失败");
+        }
         
-        String strsql12;
-        if("1".equals(ifCompleted)){
-            strsql12="chk_valu_bak";
-        }else{
-            strsql12="chk_valu";
+        ChkValuEntity chkValuEntity = new ChkValuEntity();
+        chkValuEntity.setValueid(valueid);
+        List<ChkValuEntity> chkValuEntityList = chkValuService.selectChkValuImage(chkValuEntity);
+        byte b[] = chkValuEntityList.get(0).getPhoto();
+        
+        ServletOutputStream servletOutputStream = null;
+        try {
+            servletOutputStream = response.getOutputStream();
+        } catch (IOException e) {
+            logger.error("response.getOutputStream失败");
+        }
+        
+        try {
+            servletOutputStream.write(b);
+        } catch (IOException e) {
+            logger.error("servletOutputStream.write失败");
+        }
+        
+        try {
+            servletOutputStream.flush();
+        } catch (IOException e) {
+            logger.error("servletOutputStream.flush失败");
+        }
+        try {
+            servletOutputStream.close();
+        } catch (IOException e) {
+            logger.error("servletOutputStream.close失败");
         }
 
-        StringBuilder sbSql = new StringBuilder();
-        sbSql.append(" select * from ");
-        sbSql.append(strsql12);
-        sbSql.append(" where pkunid=");
-        sbSql.append(unid);
-        sbSql.append(" and Photo is not null and issure='1' ");
-
-        String ss1 = selectDataSetSQLCmdService.selectDataSetSQLCmd(sbSql.toString());
-
-        return ss1;
     }
     
 }

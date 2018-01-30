@@ -41,7 +41,7 @@ window.onload = function(){
     }
 };
 
-$(document).ready(function() {
+/*$(document).ready(function() {
 	
 	$.ajax({
 		
@@ -69,4 +69,4 @@ $(document).ready(function() {
 			console.log("ajax请求失败,请求:loadDeptname,状态码:"+xhr.status +",状态说明:"+ textStatus+",xhr readyState:"+xhr.readyState);
 		}
 	});
-});
+});*/

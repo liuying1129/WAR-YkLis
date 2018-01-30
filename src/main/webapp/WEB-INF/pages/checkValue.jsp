@@ -66,8 +66,23 @@
 	  </table>
     </div>
     <div class="tab-pane fade" id="graph">
-      <p>iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple 
-            TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。</p>
+      <table>
+        <thead>
+            <tr style="background-color:yellow">
+              <th>english_name</th>
+              <th>Photo</th>
+            </tr>
+        </thead>
+        <tbody id="myTBody">
+                    <c:forEach items="${dtPic}" var="dt">
+                        <tr>
+                            <td>${dt.english_name}</td>
+                            <td><img src="${dt.imgReq}" alt="哎呀，加载失败了" /></td>
+                        </tr>
+                    </c:forEach>
+        
+        </tbody>
+      </table>
     </div>
   </div>
     
