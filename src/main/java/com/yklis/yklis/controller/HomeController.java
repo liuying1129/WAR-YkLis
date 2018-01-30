@@ -411,7 +411,7 @@ public class HomeController{
 
 		JSONArray jsarr=jso.getJSONArray("response");//JSONObject取得response对应的JSONArray(JSON数组)
 		
-		//图形
+		//图形begin
         StringBuilder sbSQL2 = new StringBuilder();
         sbSQL2.append(" select english_name,'showPictureValue?valueid='+convert(varchar,valueid) as imgReq from ");
         sbSQL2.append(strsql12);
@@ -420,18 +420,15 @@ public class HomeController{
         sbSQL2.append(" and Photo is not null and issure='1' ");
 
         String ss2 = selectDataSetSQLCmdService.selectDataSetSQLCmd(sbSQL2.toString());
-        logger.info("图形:"+ss2);
         JSONObject jso2=JSON.parseObject(ss2);//json字符串转换成JSONObject(JSON对象)
         boolean bb2 = jso2.getBooleanValue("success");
         if(!bb2){           
         }
         JSONArray jsarr2=jso2.getJSONArray("response");//JSONObject取得response对应的JSONArray(JSON数组)
-        //if(jsarr2.size()>0){            
-        //}
-		
+        //图形end
+        
 		ModelAndView mv = new ModelAndView();
         mv.addObject("DataTable", jsarr);
-        
         mv.addObject("dtPic", jsarr2);
 
         Map<String, Object> modelMap = new HashMap<String, Object>();
@@ -777,8 +774,6 @@ public class HomeController{
     end;*/   
     
     @RequestMapping("showPictureValue")
-    //此处需要@ResponseBody.否则,认为返回的是页面名称,会因为找不到该页面导致ajax方法进入error(404)
-    @ResponseBody
     public void showPictureValue(HttpServletRequest request,HttpServletResponse response) {
                 
         int valueid = 0;

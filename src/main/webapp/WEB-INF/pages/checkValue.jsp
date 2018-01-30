@@ -67,12 +67,6 @@
     </div>
     <div class="tab-pane fade" id="graph">
       <table>
-        <thead>
-            <tr style="background-color:yellow">
-              <th>english_name</th>
-              <th>Photo</th>
-            </tr>
-        </thead>
         <tbody id="myTBody">
                     <c:forEach items="${dtPic}" var="dt">
                         <tr>
