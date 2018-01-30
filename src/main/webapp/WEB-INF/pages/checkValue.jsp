@@ -36,7 +36,6 @@
 	  <table>
 	    <thead>
 	        <tr style="background-color:yellow">
-	          <th>图</th>
 	          <th>组合项目</th>
 	          <th>名称</th>
 	          <th>英文名</th>
@@ -50,7 +49,6 @@
 	    <tbody id="myTBody">
 	                <c:forEach items="${DataTable}" var="D">
 	                    <tr>
-	                        <td>${D.图}</td>
 	                        <td>${D.组合项目}</td>
 	                        <td>${D.名称}</td>
 	                        <td>${D.英文名}</td>

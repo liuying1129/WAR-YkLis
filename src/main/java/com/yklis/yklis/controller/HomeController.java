@@ -394,7 +394,7 @@ public class HomeController{
     	            " order by pkcombin_id,printorder ";
     			  
 	    StringBuilder sbSQL = new StringBuilder();
-	    sbSQL.append("select (case when photo is null then null else '图' end) as 图,combin_Name as 组合项目,name as 名称,english_name as 英文名,itemvalue as 检验结果,dbo.uf_ValueAlarm(itemid,Min_value,Max_value,itemvalue) as ifValueAlarm,min_value as 最小值,max_value as 最大值,unit as 单位,pkcombin_id as 组合项目号,itemid as 项目编号,valueid as 唯一编号 from ");
+	    sbSQL.append("select combin_Name as 组合项目,name as 名称,english_name as 英文名,itemvalue as 检验结果,dbo.uf_ValueAlarm(itemid,Min_value,Max_value,itemvalue) as ifValueAlarm,min_value as 最小值,max_value as 最大值,unit as 单位,pkcombin_id as 组合项目号,itemid as 项目编号,valueid as 唯一编号 from ");
 	    sbSQL.append(strsql12);
 	    sbSQL.append(strsql13);
 	    sbSQL.append(strsql14);
@@ -413,7 +413,9 @@ public class HomeController{
 		
 		//图形begin
         StringBuilder sbSQL2 = new StringBuilder();
-        sbSQL2.append(" select english_name,'showPictureValue?valueid='+convert(varchar,valueid) as imgReq from ");
+        sbSQL2.append(" select english_name,'showPictureValue?valueid='+convert(varchar,valueid)+'&tableName='+'");
+        sbSQL2.append(strsql12);
+        sbSQL2.append("' as imgReq from ");
         sbSQL2.append(strsql12);
         sbSQL2.append(" where pkunid=");
         sbSQL2.append(unid);
@@ -783,8 +785,11 @@ public class HomeController{
             logger.error("传入的图片valueid转换为整数失败");
         }
         
+        String tableName = request.getParameter("tableName");
+        
         ChkValuEntity chkValuEntity = new ChkValuEntity();
         chkValuEntity.setValueid(valueid);
+        chkValuEntity.setTableName(tableName);
         List<ChkValuEntity> chkValuEntityList = chkValuService.selectChkValuImage(chkValuEntity);
         byte b[] = chkValuEntityList.get(0).getPhoto();
         
