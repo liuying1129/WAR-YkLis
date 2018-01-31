@@ -26,7 +26,15 @@ window.onload = function(){
         
         if(cxzf == "1"||cxzf == "2"){
         	
-            for (var k = 0; k < tdArr.length; k++) {   //遍历Row中的每一列
+        	var preObj=trList[i].querySelector("pre");
+			if(cxzf == "1"){
+				preObj.setAttribute("style","color:blue");
+			}
+			if(cxzf == "2"){
+				preObj.setAttribute("style","color:red");
+			}
+        	
+            /*for (var k = 0; k < tdArr.length; k++) {   //遍历Row中的每一列
 
     			if(tdArr[k].getAttribute("flag") === "itemValue"){
     				if(cxzf == "1"){
@@ -36,7 +44,7 @@ window.onload = function(){
     					tdArr[k].setAttribute("style","color:red");
     				}
     			}    			
-            }
+            }*/
         }
     }
 };

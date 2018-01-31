@@ -52,7 +52,7 @@
 	                        <td>${D.组合项目}</td>
 	                        <td>${D.名称}</td>
 	                        <td>${D.英文名}</td>
-	                        <td flag="itemValue"><pre>${D.检验结果}</pre></td>
+	                        <td><pre>${D.检验结果}</pre></td>
 	                        <td flag="ifValueAlarm" style="display:none">${D.ifValueAlarm}</td>
 	                        <td>${D.最小值}</td>
 	                        <td>${D.最大值}</td>
