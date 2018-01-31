@@ -49,7 +49,7 @@ window.onload = function(){
     }
 };
 
-/*$(document).ready(function() {
+$(document).ready(function() {
 	
 	$.ajax({
 		
@@ -60,21 +60,21 @@ window.onload = function(){
 		//默认值: "application/x-www-form-urlencoded"。发送信息至服务器时内容编码类型
 		//默认值适合大多数情况。如果你明确指定$.ajax()的 content-type,那么它必定会发送给服务器（即使没有数据要发送）
 		//contentType : "application/x-www-form-urlencoded",//application/json
-		url : 'showPictureValue',
+		url : 'lineChartBloodCount',
 		//预期服务器返回的数据类型。如果不指定，jQuery将自动根据 HTTP包 MIME信息来智能判断
 		dataType : 'json',
 		success : function(data) {
 						
-			var deptnameSelect = $('select[name="deptname"]');
-			deptnameSelect.append(new Option(""));
+			//var deptnameSelect = $('select[name="deptname"]');
+			//deptnameSelect.append(new Option(""));
 			
-			data.response.forEach(function(element,index){
+			//data.response.forEach(function(element,index){
 				
-				deptnameSelect.append(new Option(element.Name));
-			});
+				//deptnameSelect.append(new Option(element.Name));
+			//});
 		},
 		error : function(xhr, textStatus, errorThrown) {
-			console.log("ajax请求失败,请求:loadDeptname,状态码:"+xhr.status +",状态说明:"+ textStatus+",xhr readyState:"+xhr.readyState);
+			console.log("ajax请求失败,请求:lineChartBloodCount,状态码:"+xhr.status +",状态说明:"+ textStatus+",xhr readyState:"+xhr.readyState);
 		}
 	});
-});*/
+});

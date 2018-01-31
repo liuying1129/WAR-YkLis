@@ -65,7 +65,7 @@
     </div>
     <div class="tab-pane fade" id="graph">
       <table>
-        <tbody id="myTBody">
+        <tbody>
                     <c:forEach items="${dtPic}" var="dt">
                         <tr>
                             <td>${dt.english_name}</td>
@@ -75,6 +75,30 @@
         
         </tbody>
       </table>
+      
+      <table>
+        <tbody>
+                    <c:forEach items="${dtLineChartBloodCount}" var="dt">
+                        <tr>
+                            <td>${dt.english_name}</td>
+                            <td><img src="${dt.imgReq}" alt="哎呀，加载失败了" /></td>
+                        </tr>
+                    </c:forEach>
+        
+        </tbody>
+      </table>
+      
+      <table>
+        <tbody>
+                    <c:forEach items="${dtLineChartBloodRheology}" var="dt">
+                        <tr>
+                            <td>${dt.english_name}</td>
+                            <td><img src="${dt.imgReq}" alt="哎呀，加载失败了" /></td>
+                        </tr>
+                    </c:forEach>
+        
+        </tbody>
+      </table>      
     </div>
   </div>
     

@@ -411,7 +411,7 @@ public class HomeController{
 
 		JSONArray jsarr=jso.getJSONArray("response");//JSONObject取得response对应的JSONArray(JSON数组)
 		
-		//图形begin
+		//图片begin
         StringBuilder sbSQL2 = new StringBuilder();
         sbSQL2.append(" select english_name,'showPictureValue?valueid='+convert(varchar,valueid)+'&tableName='+'");
         sbSQL2.append(strsql12);
@@ -427,11 +427,49 @@ public class HomeController{
         if(!bb2){           
         }
         JSONArray jsarr2=jso2.getJSONArray("response");//JSONObject取得response对应的JSONArray(JSON数组)
-        //图形end
+        //图片end
+        
+        //绘点begin
+        StringBuilder sbSQL3 = new StringBuilder();
+        sbSQL3.append(" select english_name,'lineChartBloodCount?valueid='+convert(varchar,valueid)+'&tableName='+'");
+        sbSQL3.append(strsql12);
+        sbSQL3.append("' as imgReq from ");
+        sbSQL3.append(strsql12);
+        sbSQL3.append(" where pkunid=");
+        sbSQL3.append(unid);
+        sbSQL3.append(" and isnull(histogram,'')<>'' and issure='1' ");
+
+        String ss3 = selectDataSetSQLCmdService.selectDataSetSQLCmd(sbSQL3.toString());
+        JSONObject jso3=JSON.parseObject(ss3);//json字符串转换成JSONObject(JSON对象)
+        boolean bb3 = jso3.getBooleanValue("success");
+        if(!bb3){
+        }
+        JSONArray jsarr3=jso3.getJSONArray("response");//JSONObject取得response对应的JSONArray(JSON数组)
+        //绘点end
+        
+        //血流变begin
+        StringBuilder sbSQL4 = new StringBuilder();
+        sbSQL4.append(" select english_name,'lineChartBloodRheology?valueid='+convert(varchar,valueid)+'&tableName='+'");
+        sbSQL4.append(strsql12);
+        sbSQL4.append("' as imgReq from ");
+        sbSQL4.append(strsql12);
+        sbSQL4.append(" where pkunid=");
+        sbSQL4.append(unid);
+        sbSQL4.append(" and Reserve8 is not null and issure='1' ");
+
+        String ss4 = selectDataSetSQLCmdService.selectDataSetSQLCmd(sbSQL4.toString());
+        JSONObject jso4=JSON.parseObject(ss4);//json字符串转换成JSONObject(JSON对象)
+        boolean bb4 = jso4.getBooleanValue("success");
+        if(!bb4){
+        }
+        JSONArray jsarr4=jso4.getJSONArray("response");//JSONObject取得response对应的JSONArray(JSON数组)
+        //血流变end
         
 		ModelAndView mv = new ModelAndView();
         mv.addObject("DataTable", jsarr);
         mv.addObject("dtPic", jsarr2);
+        mv.addObject("dtLineChartBloodCount", jsarr3);
+        mv.addObject("dtLineChartBloodRheology", jsarr4);
 
         Map<String, Object> modelMap = new HashMap<String, Object>();
         modelMap.put("patientname", patientname);
@@ -818,5 +856,14 @@ public class HomeController{
         }
 
     }
+        
+    @RequestMapping("lineChartBloodCount")
+    public void lineChartBloodCount(HttpServletRequest request,HttpServletResponse response) {
+        
+    }
     
+    @RequestMapping("lineChartBloodRheology")
+    public void lineChartBloodRheology(HttpServletRequest request,HttpServletResponse response) {
+        
+    }
 }
