@@ -320,8 +320,10 @@
                 <version>3.5.1</version>  
                 <configuration>  
 	               <source>1.7</source>  
-	               <target>1.7</target>  
-                </configuration>  
+	               <target>1.7</target>
+                   <!-- 解决maven编译时“编码GBK的不可映射字符”的问题 -->
+                   <encoding>utf8</encoding>
+                </configuration>
 	        </plugin>
 	        <!-- maven变量build.time传入web.xml -->
             <plugin>
