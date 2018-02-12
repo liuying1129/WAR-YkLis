@@ -47,6 +47,22 @@ window.onload = function(){
             }*/
         }
     }
+    
+	var myChart = echarts.init(document.getElementById('main'));
+	var option = {
+		    xAxis: {
+		        type: 'category',
+		    },
+		    yAxis: {
+		        type: 'value'
+		    },
+		    series: [{
+		        data: [10, 14, 16, 18, 19, 20, 23, 26, 28, 29, 30, 34, 36, 35, 33, 31, 29, 28, 25, 24, 20, 19, 18, 17, 15, 16, 18, 19, 20, 23, 26, 28, 29, 30, 34, 36, 35, 33, 31, 29, 28, 25, 24, 20, 19, 18, 17, 15],
+		        type: 'line'
+		    }]
+		};
+	myChart.setOption(option, true);
+
 };
 
 $(document).ready(function() {

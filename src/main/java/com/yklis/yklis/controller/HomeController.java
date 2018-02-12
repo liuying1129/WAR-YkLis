@@ -431,9 +431,7 @@ public class HomeController{
         
         //绘点begin
         StringBuilder sbSQL3 = new StringBuilder();
-        sbSQL3.append(" select english_name,'lineChartBloodCount?valueid='+convert(varchar,valueid)+'&tableName='+'");
-        sbSQL3.append(strsql12);
-        sbSQL3.append("' as imgReq from ");
+        sbSQL3.append(" select english_name,histogram from ");
         sbSQL3.append(strsql12);
         sbSQL3.append(" where pkunid=");
         sbSQL3.append(unid);

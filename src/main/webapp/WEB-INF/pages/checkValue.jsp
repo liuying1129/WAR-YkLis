@@ -74,14 +74,15 @@
                     </c:forEach>
         
         </tbody>
-      </table>
+      </table>            
       
       <table>
-        <tbody>
+        <tbody id="tbdLineChartBloodCount">
                     <c:forEach items="${dtLineChartBloodCount}" var="dt">
                         <tr>
                             <td>${dt.english_name}</td>
-                            <td><img src="${dt.imgReq}" alt="哎呀，加载失败了" /></td>
+                            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                            <td><div style="width: 600px;height:400px;"><span>${dt.histogram}</span></div></td>
                         </tr>
                     </c:forEach>
         
@@ -106,6 +107,8 @@
   <script src="${ctx}/static/jquery/jquery-3.2.1.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="${ctx}/static/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <script src="${ctx}/static/echarts/echarts.min.js"></script>
   
   <script src="${ctx}/static/dev-js/checkValue.js?jsr=${jsr}"></script>
 </body>
