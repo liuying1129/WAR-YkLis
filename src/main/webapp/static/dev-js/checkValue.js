@@ -68,87 +68,98 @@ window.onload = function(){
     //血流变曲线 start
     var tbdLineChartBloodRheology = document.getElementById("tbdLineChartBloodRheology");
     var trList3=tbdLineChartBloodRheology.getElementsByTagName("tr");
-    if(trList3.length>=2){
+    
+	var X1=-1,Y1=-1,X1_MIN=-1,Y1_MIN=-1,X1_MAX=-1,Y1_MAX=-1,X2=-1,Y2=-1,X2_MIN=-1,Y2_MIN=-1,X2_MAX=-1,Y2_MAX=-1;
 
+    if(trList3.length>=2){
+    	
         for (var i = 0; i < trList3.length; i++) {//遍历Table的所有Row
         	
+        	if(i===0){
+        		
+            	X1 = trList3[i].querySelector('td[flag="rheologyReserve8"]').innerHTML;
+            	Y1 = trList3[i].querySelector('td[flag="rheologyItemvalue"]').innerHTML;
+            	X1_MIN = trList3[i].querySelector('td[flag="rheologyReserve8"]').innerHTML;
+            	Y1_MIN = trList3[i].querySelector('td[flag="rheologyMin_value"]').innerHTML;
+            	X1_MAX = trList3[i].querySelector('td[flag="rheologyReserve8"]').innerHTML;
+            	Y1_MAX = trList3[i].querySelector('td[flag="rheologyMax_value"]').innerHTML;
+        	}
+        	
+        	if(i===1){
+        		
+            	X2 = trList3[i].querySelector('td[flag="rheologyReserve8"]').innerHTML;
+            	Y2 = trList3[i].querySelector('td[flag="rheologyItemvalue"]').innerHTML;
+            	X2_MIN = trList3[i].querySelector('td[flag="rheologyReserve8"]').innerHTML;
+            	Y2_MIN = trList3[i].querySelector('td[flag="rheologyMin_value"]').innerHTML;
+            	X2_MAX = trList3[i].querySelector('td[flag="rheologyReserve8"]').innerHTML;
+            	Y2_MAX = trList3[i].querySelector('td[flag="rheologyMax_value"]').innerHTML;
+        	}
         }
-
     }
-    /*procedure TSDIAppForm.Draw_MVIS2035_Curve(Chart_XLB:TChart;const X1,Y1,X2,Y2,X1_MIN,Y1_MIN,X2_MIN,Y2_MIN,
-                                                   X1_MAX,Y1_MAX,X2_MAX,Y2_MAX:Real);
-    //要利用Chart生成图片,故该函数不能写在DLL中                                    
-    VAR
-      Y:Array[1..200] of real;
-      Y_MIN:Array[1..200] of real;
-      Y_MAX:Array[1..200] of real;
-      A,B:real;
-      A_MIN,B_MIN:real;
-      A_MAX,B_MAX:real;
-      i:integer;
-      rMin,rMax:real;
-      Series_Val,Series_Min,Series_Max:TFastLineSeries;
-    BEGIN
-      if not CassonEquation(X1,Y1,X2,Y2,A,B) then exit;
-      if not CassonEquation(X1_MIN,Y1_MIN,X2_MIN,Y2_MIN,A_MIN,B_MIN) then exit;
-      if not CassonEquation(X1_MAX,Y1_MAX,X2_MAX,Y2_MAX,A_MAX,B_MAX) then exit;
-
-      Chart_XLB.Width:=600;
-      Chart_XLB.Height:=250;
-      Chart_XLB.View3D:=false;
-      Chart_XLB.Legend.Visible:=false;
-      Chart_XLB.Color:=clWhite;
-      Chart_XLB.BevelOuter:=bvNone;
-      Chart_XLB.BottomAxis.Axis.Width:=1;
-      Chart_XLB.LeftAxis.Axis.Width:=1;
-      Chart_XLB.BackWall.Pen.Visible:=false;//隐藏top、right的框
-      Chart_XLB.BottomAxis.Grid.Visible:=false;//隐藏横向的GRID线
-      Chart_XLB.LeftAxis.Grid.Visible:=false;//隐藏纵向的GRID线
-      Chart_XLB.Title.Font.Color:=clBlack;//默认是clBlue
-      Chart_XLB.Title.Text.Clear;
-      Chart_XLB.Title.Text.Add('血液粘度特性曲线');
-      Chart_XLB.BottomAxis.Title.Caption:='切变率(1/s)';
-      Chart_XLB.LeftAxis.Title.Caption:='粘度(mPa.s)';
-      //for k:=Chart2.SeriesCount-1 downto 0 do Chart2.Series[k].Clear;//动态创建的Chart,肯定没Serie
-
-      Series_Val:=TFastLineSeries.Create(Chart_XLB);
-      Series_Val.ParentChart :=Chart_XLB;
-      Series_Val.SeriesColor:=clBlack;//设置曲线颜色
-      Chart_XLB.AddSeries(Series_Val);
-
-      Series_Min:=TFastLineSeries.Create(Chart_XLB);
-      Series_Min.ParentChart :=Chart_XLB;
-      Series_Min.SeriesColor:=clBtnFace;//设置曲线颜色
-      Series_Min.LinePen.Style:=psDashDotDot;
-      Chart_XLB.AddSeries(Series_Min);
-
-      Series_Max:=TFastLineSeries.Create(Chart_XLB);
-      Series_Max.ParentChart :=Chart_XLB;
-      Series_Max.SeriesColor:=clBtnFace;//设置曲线颜色
-      Series_Max.LinePen.Style:=psDashDotDot;
-      Chart_XLB.AddSeries(Series_Max);
-
-      rMin:=0;rMax:=0;
-      for i :=1 to 200 do
-      begin
-        Y[i]:=POWER(A+B*sqrt(1/I),2);
-        Y_MIN[i]:=POWER(A_MIN+B_MIN*sqrt(1/I),2);
-        Y_MAX[i]:=POWER(A_MAX+B_MAX*sqrt(1/I),2);
-
-        Series_Val.Add(Y[i]);
-        Series_Min.Add(Y_min[i]);
-        Series_Max.Add(Y_max[i]);
-
-        if i=1 then begin rMin:=Y[i];rMax:=Y[i];end;
-        if Y[i]<rMin then rMin:=Y[i];
-        if Y[i]>rMax then rMax:=Y[i];
-      end;
-
-      Chart_XLB.LeftAxis.Automatic:=false;
-      Chart_XLB.LeftAxis.Maximum:=MaxInt;//如果不加这句,下句有可能报错(最小值必须=<最大值)
-      Chart_XLB.LeftAxis.Minimum:=rMin-10*(rMax-rMin)/100;//下面留10%的空
-      Chart_XLB.LeftAxis.Maximum:=rMax-10*(rMax-rMin)/100;//上面减少10%,这样图形才机子打出来的差不多
-    END;*/
-    //血流变曲线 stop
     
+    if((X1>=0)&&(Y1>=0)&&(X1_MIN>=0)&&(Y1_MIN>=0)&&(X1_MAX>=0)&&(Y1_MAX>=0)&&(X2>=0)&&(Y2>=0)&&(X2_MIN>=0)&&(Y2_MIN>=0)&&(X2_MAX>=0)&&(Y2_MAX>=0)){
+    	
+        var B=(Math.sqrt(Y1)-Math.sqrt(Y2))/(Math.sqrt(1/X1)-Math.sqrt(1/X2));
+        var A=Math.sqrt(Y1)-B*Math.sqrt(1/X1);
+
+        var B_MIN=(Math.sqrt(Y1_MIN)-Math.sqrt(Y2_MIN))/(Math.sqrt(1/X1_MIN)-Math.sqrt(1/X2_MIN));
+        var A_MIN=Math.sqrt(Y1_MIN)-B_MIN*Math.sqrt(1/X1_MIN);
+
+        var B_MAX=(Math.sqrt(Y1_MAX)-Math.sqrt(Y2_MAX))/(Math.sqrt(1/X1_MAX)-Math.sqrt(1/X2_MAX));
+        var A_MAX=Math.sqrt(Y1_MAX)-B_MAX*Math.sqrt(1/X1_MAX);
+        
+        var Y=[];
+        var Y_MIN=[];
+        var Y_MAX=[];
+        
+        for (var i = 1; i <= 200; i++) {
+        	           
+              Y.push(Math.pow(A+B*Math.sqrt(1/i),2));
+              Y_MIN.push(Math.pow(A_MIN+B_MIN*Math.sqrt(1/i),2));
+              Y_MAX.push(Math.pow(A_MAX+B_MAX*Math.sqrt(1/i),2));
+        }
+        
+        var option = {
+        	    
+        	    title: {
+        	        text: '血液粘度特性曲线',
+        	        x: 'center'
+        	    },
+                legend: {
+                    orient:'vertical',
+                    right:'10%',
+                    top:'15%'
+                },
+        	    xAxis: {
+        	    	name : '切变率(1/s)',
+        	        type: 'category'//,
+        	        //boundaryGap: false
+        	    },
+        	    yAxis: {
+        	    	name : '粘度(mPa.s)',
+        	        type: 'value'
+        	    },
+        	    series: [
+        	        {
+        	        	name:'全血粘度曲线',
+        	            type:'line',
+        	            data:Y
+        	        },
+        	        {
+        	        	name:'参考范围(下限)',
+        	            type:'line',
+        	            data:Y_MIN
+        	        },
+        	        {
+        	        	name:'参考范围(上限)',
+        	            type:'line',
+        	            data:Y_MAX
+        	        }
+        	    ]
+        	};
+
+    	var myChart = echarts.init(document.getElementById("divLineChartBloodRheology"));
+    	myChart.setOption(option);
+    }    
+    //血流变曲线 stop    
 };

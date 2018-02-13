@@ -93,19 +93,32 @@
       </table>
       
       <table>
+        <thead>
+            <tr style="background-color:yellow">
+              <th>英文名</th>
+              <th>切变率(Reserve8)</th>
+              <th>结果</th>
+              <th>最小值</th>
+              <th>最大值</th>
+            </tr>
+        </thead>
         <tbody id="tbdLineChartBloodRheology">
                     <c:forEach items="${dtLineChartBloodRheology}" var="dt">
                         <tr>
                             <td>${dt.english_name}</td>
-                            <td>${dt.Reserve8}</td>
-                            <td>${dt.itemvalue}</td>
-                            <td>${dt.Min_value}</td>
-                            <td>${dt.Max_value}</td>
+                            <td flag="rheologyReserve8">${dt.Reserve8}</td>
+                            <td flag="rheologyItemvalue">${dt.itemvalue}</td>
+                            <td flag="rheologyMin_value">${dt.Min_value}</td>
+                            <td flag="rheologyMax_value">${dt.Max_value}</td>
                         </tr>
                     </c:forEach>
         
         </tbody>
-      </table>      
+      </table>
+      
+		<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+		<div id="divLineChartBloodRheology" style="width: 600px;height:400px;"></div>
+		
     </div>
   </div>
     

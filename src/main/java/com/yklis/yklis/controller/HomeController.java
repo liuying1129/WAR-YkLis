@@ -7,7 +7,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -455,27 +454,6 @@ public class HomeController{
         JSONArray jsarr3=jso3.getJSONArray("response");//JSONObject取得response对应的JSONArray(JSON数组)
         //绘点end
         
-        /*if adotemp3.FieldByName('PictureType').AsString='血流变' then
-        begin
-          inc(m);
-          
-          if m=1 then
-          begin
-            Reserve8_1:=adotemp3.fieldbyname('Reserve8').AsFloat;//切变率
-            mPa_1:=adotemp3.fieldbyname('itemValue').AsString;//粘度
-            mPa_min_1:=adotemp3.fieldbyname('Min_Value').AsString;//粘度
-            mPa_max_1:=adotemp3.fieldbyname('Max_Value').AsString;//粘度
-          end;
-          
-          if m=2 then
-          begin
-            Reserve8_2:=adotemp3.fieldbyname('Reserve8').AsFloat;//切变率
-            mPa_2:=adotemp3.fieldbyname('itemValue').AsString;//粘度
-            mPa_min_2:=adotemp3.fieldbyname('Min_Value').AsString;//粘度
-            mPa_max_2:=adotemp3.fieldbyname('Max_Value').AsString;//粘度
-            k:=n;
-          end;
-        end;*/
         //血流变begin
         StringBuilder sbSQL4 = new StringBuilder();
         sbSQL4.append(" select english_name,Reserve8,itemvalue,Min_value,Max_value from ");
@@ -728,118 +706,7 @@ public class HomeController{
         
         return s2;
     }
-    
-/*    procedure TSDIAppForm.ShowPictureValue(const ACheckUnid: integer);
-    var
-      adotemp3:tadoquery;
-      i,n,m,k:integer;
-      GroupBox:array of TGroupBox;
-      Chart:array of TChart;
-      MS:tmemorystream;
-
-      //血流变变量start
-      Reserve8_1,Reserve8_2:single;//切变率
-      mPa_1,mPa_2:string;//粘度
-      mPa_min_1,mPa_min_2:string;//粘度
-      mPa_max_1,mPa_max_2:string;//粘度
-    begin
-      for i :=ScrollBoxPicture.ControlCount-1 downto 0 do
-      begin
-        if ScrollBoxPicture.Controls[i] is TGroupBox then ScrollBoxPicture.Controls[i].Free;
-      end;
-
-      adotemp3:=tadoquery.Create(nil);
-      adotemp3.Connection:=DM.ADOConnection1;
-      adotemp3.Close;
-      adotemp3.SQL.Clear;
-      adotemp3.SQL.Text:=
-        'select * from ( '+
-          'select ''绘点''   as PictureType,chk_valu.* from chk_valu where pkunid='+inttostr(ACheckUnid)+' and isnull(histogram,'''')<>'''' and issure=''1'' '+
-          'union all '+
-          'select ''图片''   as PictureType,chk_valu.* from chk_valu where pkunid='+inttostr(ACheckUnid)+' and Photo is not null and issure=''1'' '+
-          'union all '+
-          'select ''血流变'' as PictureType,chk_valu.* from chk_valu where pkunid='+inttostr(ACheckUnid)+' and Reserve8 is not null and issure=''1'' '+
-        ' ) TempTable order by pkcombin_id,printorder ';
-      adotemp3.Open;
-      setlength(GroupBox,adotemp3.RecordCount);
-      setlength(Chart,adotemp3.RecordCount);
-      n:=0;m:=0;k:=-1;Reserve8_1:=-1;Reserve8_2:=-1;
-      while not adotemp3.Eof do
-      begin
-        GroupBox[n]:=TGroupBox.Create(self);
-        GroupBox[n].Parent:=ScrollBoxPicture;
-        GroupBox[n].Left:=maxint;//使各个Panel按创建顺序排列
-        GroupBox[n].Align:=alLeft;
-        GroupBox[n].Width:=ScrollBoxPicture.Height;
-        GroupBox[n].Caption:=adotemp3.FieldByName('name').AsString;
-        GroupBox[n].Tag:=adotemp3.FieldByName('valueid').AsInteger;
-        GroupBox[n].PopupMenu:=PopupMenu2;
-
-        if adotemp3.FieldByName('PictureType').AsString='绘点' then
-        begin
-          Chart[n]:=TChart.Create(GroupBox[n]);//GroupBox负责释放Chart
-          Chart[n].Parent:=GroupBox[n];
-          Chart[n].Align:=alClient;
-          updatechart(Chart[n],trim(adotemp3.FieldByName('histogram').AsString),adotemp3.FieldByName('english_name').AsString,adotemp3.FieldByName('Dosage1').AsString);
-        end;
-
-        if adotemp3.FieldByName('PictureType').AsString='图片' then
-        begin
-          if tblobfield(adotemp3.FieldByName('photo')).BlobSize <=0 then begin inc(n);adotemp3.Next;continue;end;
-          
-          MS:=TMemoryStream.Create;
-          TBlobField(adotemp3.fieldbyname('photo')).SaveToStream(MS);
-          MS.Position:=0;
-          with TImage.Create(GroupBox[n]) do//GroupBox负责释放Image
-          begin
-            Parent:=GroupBox[n];
-            Align:=alClient;
-            Stretch:=true;
-            Picture.Graphic:=nil;
-            Picture.Graphic:=TJpegImage.Create;
-            Picture.Graphic.LoadFromStream(MS);
-          end;
-          MS.Free;
-        end;
-
-        if adotemp3.FieldByName('PictureType').AsString='血流变' then
-        begin
-          inc(m);
-          
-          if m=1 then
-          begin
-            Reserve8_1:=adotemp3.fieldbyname('Reserve8').AsFloat;//切变率
-            mPa_1:=adotemp3.fieldbyname('itemValue').AsString;//粘度
-            mPa_min_1:=adotemp3.fieldbyname('Min_Value').AsString;//粘度
-            mPa_max_1:=adotemp3.fieldbyname('Max_Value').AsString;//粘度
-          end;
-          
-          if m=2 then
-          begin
-            Reserve8_2:=adotemp3.fieldbyname('Reserve8').AsFloat;//切变率
-            mPa_2:=adotemp3.fieldbyname('itemValue').AsString;//粘度
-            mPa_min_2:=adotemp3.fieldbyname('Min_Value').AsString;//粘度
-            mPa_max_2:=adotemp3.fieldbyname('Max_Value').AsString;//粘度
-            k:=n;
-          end;
-        end;
-
-        inc(n);
-        adotemp3.Next
-      end;
-      adotemp3.Free;
-
-      if m=2 then//血流变
-      begin
-        Chart[k]:=TChart.Create(GroupBox[k]);//GroupBox负责释放Chart
-        Chart[k].Parent:=GroupBox[k];
-        Chart[k].Align:=alClient;
-        Draw_MVIS2035_Curve(Chart[k],Reserve8_1,strtofloatdef(mPa_1,-1),Reserve8_2,strtofloatdef(mPa_2,-1),
-                            Reserve8_1,strtofloatdef(mPa_min_1,-1),Reserve8_2,strtofloatdef(mPa_min_2,-1),
-                            Reserve8_1,strtofloatdef(mPa_max_1,-1),Reserve8_2,strtofloatdef(mPa_max_2,-1));
-      end;
-    end;*/   
-    
+        
     @RequestMapping("showPictureValue")
     public void showPictureValue(HttpServletRequest request,HttpServletResponse response) {
                 
@@ -881,6 +748,5 @@ public class HomeController{
         } catch (IOException e) {
             logger.error("servletOutputStream.close失败");
         }
-
     }
 }
