@@ -81,8 +81,11 @@
                     <c:forEach items="${dtLineChartBloodCount}" var="dt">
                         <tr>
                             <td>${dt.english_name}</td>
-                            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                            <td><div style="width: 600px;height:400px;"><span>${dt.histogram}</span></div></td>
+                            <td>
+                                <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                                <div flag="lineChartBloodCount" style="width: 600px;height:400px;"></div>
+                                <span flag="lineChartBloodCount" style="display:none">${dt.histogram}</span>
+                            </td>
                         </tr>
                     </c:forEach>
         
@@ -90,11 +93,14 @@
       </table>
       
       <table>
-        <tbody>
+        <tbody id="tbdLineChartBloodRheology">
                     <c:forEach items="${dtLineChartBloodRheology}" var="dt">
                         <tr>
                             <td>${dt.english_name}</td>
-                            <td><img src="${dt.imgReq}" alt="哎呀，加载失败了" /></td>
+                            <td>${dt.Reserve8}</td>
+                            <td>${dt.itemvalue}</td>
+                            <td>${dt.Min_value}</td>
+                            <td>${dt.Max_value}</td>
                         </tr>
                     </c:forEach>
         

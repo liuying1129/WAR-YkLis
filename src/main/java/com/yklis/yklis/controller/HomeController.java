@@ -358,36 +358,45 @@ public class HomeController{
     	
     	String unid = request.getParameter("unid");
     	String ifCompleted = request.getParameter("ifCompleted");
-    	//以下4个参数仅用于显示到结果界面
-        String patientname = null;
-        try {
-            //IE get方式传参,后端取到的中文可能乱码
-            //处理方式:前端使用两次encodeURIComponent编码,后台用下面的方式解码
-            patientname = URLDecoder.decode(request.getParameter("patientname"),"utf-8");
-        } catch (UnsupportedEncodingException e) {
-            logger.error("URLDecoder.decode patientname报错:"+e.toString());
-        }
-        String sex = null;
-        try {
-            sex = URLDecoder.decode(request.getParameter("sex"),"utf-8");
-        } catch (UnsupportedEncodingException e) {
-            logger.error("URLDecoder.decode sex报错:"+e.toString());
-        }
-        String age = null;
-        try {
-            age = URLDecoder.decode(request.getParameter("age"),"utf-8");
-        } catch (UnsupportedEncodingException e) {
-            logger.error("URLDecoder.decode age报错:"+e.toString());
-        }
-        String check_date = request.getParameter("check_date");
     	
-    	String strsql12;
+    	String strsql12,strsql11;
     	if("1".equals(ifCompleted)){
     		strsql12="chk_valu_bak";
+    		strsql11="chk_con_bak";
     	}else{
     		strsql12="chk_valu";
+    		strsql11="chk_con";
     	}
 
+    	//获取病人基本信息begin
+        StringBuilder sbSQL11 = new StringBuilder();
+        sbSQL11.append(" select * from ");
+        sbSQL11.append(strsql11);
+        sbSQL11.append(" where unid=");
+        sbSQL11.append(unid);
+        String ss11 = selectDataSetSQLCmdService.selectDataSetSQLCmd(sbSQL11.toString());
+        JSONObject jso11=JSON.parseObject(ss11);//json字符串转换成JSONObject(JSON对象)
+        
+        boolean bb11 = jso11.getBooleanValue("success");
+        if(!bb11){            
+        }
+        JSONArray jsarr11=jso11.getJSONArray("response");//JSONObject取得response对应的JSONArray(JSON数组)
+        String patientname = null;
+        String sex = null;
+        String age = null;
+        String check_date = null;
+        for(int i=0;i<jsarr11.size();i++){
+            
+            JSONObject jso111 = jsarr11.getJSONObject(i);
+            
+            patientname = null==jso111.get("patientname")?"":jso111.get("patientname").toString();
+            sex = null==jso111.get("sex")?"":jso111.get("sex").toString();
+            age = null==jso111.get("age")?"":jso111.get("age").toString();
+            check_date = null==jso111.get("check_date")?"":jso111.get("check_date").toString();
+        }
+        //获取病人基本信息end
+
+        //检验结果begin
     	String strsql13=" where pkunid=";
     	String strsql14=unid;
     	String strsql15=" and issure=1 and ltrim(rtrim(isnull(itemvalue,'')))<>'' "+
@@ -410,6 +419,7 @@ public class HomeController{
 		}
 
 		JSONArray jsarr=jso.getJSONArray("response");//JSONObject取得response对应的JSONArray(JSON数组)
+        //检验结果end
 		
 		//图片begin
         StringBuilder sbSQL2 = new StringBuilder();
@@ -445,11 +455,30 @@ public class HomeController{
         JSONArray jsarr3=jso3.getJSONArray("response");//JSONObject取得response对应的JSONArray(JSON数组)
         //绘点end
         
+        /*if adotemp3.FieldByName('PictureType').AsString='血流变' then
+        begin
+          inc(m);
+          
+          if m=1 then
+          begin
+            Reserve8_1:=adotemp3.fieldbyname('Reserve8').AsFloat;//切变率
+            mPa_1:=adotemp3.fieldbyname('itemValue').AsString;//粘度
+            mPa_min_1:=adotemp3.fieldbyname('Min_Value').AsString;//粘度
+            mPa_max_1:=adotemp3.fieldbyname('Max_Value').AsString;//粘度
+          end;
+          
+          if m=2 then
+          begin
+            Reserve8_2:=adotemp3.fieldbyname('Reserve8').AsFloat;//切变率
+            mPa_2:=adotemp3.fieldbyname('itemValue').AsString;//粘度
+            mPa_min_2:=adotemp3.fieldbyname('Min_Value').AsString;//粘度
+            mPa_max_2:=adotemp3.fieldbyname('Max_Value').AsString;//粘度
+            k:=n;
+          end;
+        end;*/
         //血流变begin
         StringBuilder sbSQL4 = new StringBuilder();
-        sbSQL4.append(" select english_name,'lineChartBloodRheology?valueid='+convert(varchar,valueid)+'&tableName='+'");
-        sbSQL4.append(strsql12);
-        sbSQL4.append("' as imgReq from ");
+        sbSQL4.append(" select english_name,Reserve8,itemvalue,Min_value,Max_value from ");
         sbSQL4.append(strsql12);
         sbSQL4.append(" where pkunid=");
         sbSQL4.append(unid);
@@ -853,15 +882,5 @@ public class HomeController{
             logger.error("servletOutputStream.close失败");
         }
 
-    }
-        
-    @RequestMapping("lineChartBloodCount")
-    public void lineChartBloodCount(HttpServletRequest request,HttpServletResponse response) {
-        
-    }
-    
-    @RequestMapping("lineChartBloodRheology")
-    public void lineChartBloodRheology(HttpServletRequest request,HttpServletResponse response) {
-        
     }
 }
