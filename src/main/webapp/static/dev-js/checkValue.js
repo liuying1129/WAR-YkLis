@@ -132,6 +132,7 @@ window.onload = function(){
                 },
         	    xAxis: {
         	    	name : '切变率(1/s)',
+        	    	nameLocation:'center',//默认值:end,end时文本过长会被截断
         	        type: 'category'//,
         	        //boundaryGap: false
         	    },
