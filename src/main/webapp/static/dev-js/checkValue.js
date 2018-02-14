@@ -7,6 +7,7 @@
 
 window.onload = function(){
 	
+	//超限结果标颜色begin
 	var myTBody = document.getElementById("myTBody");
 	var trList=myTBody.getElementsByTagName("tr");
 	
@@ -35,6 +36,7 @@ window.onload = function(){
 			}        	
         }
     }
+	//超限结果标颜色begin
     
     //绘点begin
     var tbdLineChartBloodCount = document.getElementById("tbdLineChartBloodCount");
@@ -53,7 +55,10 @@ window.onload = function(){
     		        type: 'category',
     		    },
     		    yAxis: {
-    		        type: 'value'
+    		        type: 'value',
+                    splitLine: {
+                        show: false
+                    }
     		    },
     		    series: [{
     		        data: filterResult,
@@ -96,71 +101,95 @@ window.onload = function(){
         	}
         }
     }
-    
-    if((X1>=0)&&(Y1>=0)&&(X1_MIN>=0)&&(Y1_MIN>=0)&&(X1_MAX>=0)&&(Y1_MAX>=0)&&(X2>=0)&&(Y2>=0)&&(X2_MIN>=0)&&(Y2_MIN>=0)&&(X2_MAX>=0)&&(Y2_MAX>=0)){
-    	
-        var B=(Math.sqrt(Y1)-Math.sqrt(Y2))/(Math.sqrt(1/X1)-Math.sqrt(1/X2));
-        var A=Math.sqrt(Y1)-B*Math.sqrt(1/X1);
 
-        var B_MIN=(Math.sqrt(Y1_MIN)-Math.sqrt(Y2_MIN))/(Math.sqrt(1/X1_MIN)-Math.sqrt(1/X2_MIN));
-        var A_MIN=Math.sqrt(Y1_MIN)-B_MIN*Math.sqrt(1/X1_MIN);
+    if((!isNaN(X1))&&(!isNaN(Y1))&&(!isNaN(X1_MIN))&&(!isNaN(Y1_MIN))&&(!isNaN(X1_MAX))&&(!isNaN(Y1_MAX))&&(!isNaN(X2))&&(!isNaN(Y2))&&(!isNaN(X2_MIN))&&(!isNaN(Y2_MIN))&&(!isNaN(X2_MAX))&&(!isNaN(Y2_MAX))){
 
-        var B_MAX=(Math.sqrt(Y1_MAX)-Math.sqrt(Y2_MAX))/(Math.sqrt(1/X1_MAX)-Math.sqrt(1/X2_MAX));
-        var A_MAX=Math.sqrt(Y1_MAX)-B_MAX*Math.sqrt(1/X1_MAX);
-        
-        var Y=[];
-        var Y_MIN=[];
-        var Y_MAX=[];
-        
-        for (var i = 1; i <= 200; i++) {
-        	           
-              Y.push(Math.pow(A+B*Math.sqrt(1/i),2));
-              Y_MIN.push(Math.pow(A_MIN+B_MIN*Math.sqrt(1/i),2));
-              Y_MAX.push(Math.pow(A_MAX+B_MAX*Math.sqrt(1/i),2));
-        }
-        
-        var option = {
-        	    
-        	    title: {
-        	        text: '血液粘度特性曲线',
-        	        x: 'center'
-        	    },
-                legend: {
-                    orient:'vertical',
-                    right:'10%',
-                    top:'15%'
-                },
-        	    xAxis: {
-        	    	name : '切变率(1/s)',
-        	    	nameLocation:'center',//默认值:end,end时文本过长会被截断
-        	        type: 'category'//,
-        	        //boundaryGap: false
-        	    },
-        	    yAxis: {
-        	    	name : '粘度(mPa.s)',
-        	        type: 'value'
-        	    },
-        	    series: [
-        	        {
-        	        	name:'全血粘度曲线',
-        	            type:'line',
-        	            data:Y
-        	        },
-        	        {
-        	        	name:'参考范围(下限)',
-        	            type:'line',
-        	            data:Y_MIN
-        	        },
-        	        {
-        	        	name:'参考范围(上限)',
-        	            type:'line',
-        	            data:Y_MAX
-        	        }
-        	    ]
-        	};
-
-    	var myChart = echarts.init(document.getElementById("divLineChartBloodRheology"));
-    	myChart.setOption(option);
-    }    
+	    if((X1>=0)&&(Y1>=0)&&(X1_MIN>=0)&&(Y1_MIN>=0)&&(X1_MAX>=0)&&(Y1_MAX>=0)&&(X2>=0)&&(Y2>=0)&&(X2_MIN>=0)&&(Y2_MIN>=0)&&(X2_MAX>=0)&&(Y2_MAX>=0)){
+	    	
+	        var B=(Math.sqrt(Y1)-Math.sqrt(Y2))/(Math.sqrt(1/X1)-Math.sqrt(1/X2));
+	        var A=Math.sqrt(Y1)-B*Math.sqrt(1/X1);
+	
+	        var B_MIN=(Math.sqrt(Y1_MIN)-Math.sqrt(Y2_MIN))/(Math.sqrt(1/X1_MIN)-Math.sqrt(1/X2_MIN));
+	        var A_MIN=Math.sqrt(Y1_MIN)-B_MIN*Math.sqrt(1/X1_MIN);
+	
+	        var B_MAX=(Math.sqrt(Y1_MAX)-Math.sqrt(Y2_MAX))/(Math.sqrt(1/X1_MAX)-Math.sqrt(1/X2_MAX));
+	        var A_MAX=Math.sqrt(Y1_MAX)-B_MAX*Math.sqrt(1/X1_MAX);
+	        
+	        var Y=[];
+	        var Y_MIN=[];
+	        var Y_MAX=[];
+	        var X=[];
+	        
+	        for (var i = 1; i <= 200; i++) {
+	        	           
+	              Y.push(Math.pow(A+B*Math.sqrt(1/i),2));
+	              Y_MIN.push(Math.pow(A_MIN+B_MIN*Math.sqrt(1/i),2));
+	              Y_MAX.push(Math.pow(A_MAX+B_MAX*Math.sqrt(1/i),2));
+	              X.push(i-1);
+	        }
+	        
+	        var option3 = {
+	        	    
+	        	    title: {
+	        	        text: '血液粘度特性曲线',
+	        	        x: 'center'
+	        	    },
+	                legend: {
+	                    orient:'vertical',
+	                    right:'10%',
+	                    top:'15%'
+	                },
+	        	    xAxis: {
+	        	    	name : '切变率(1/s)',
+	        	    	nameLocation:'center',//默认值:end,end时文本过长会被截断
+	                    nameGap:25,
+	        	        type: 'category',
+	        	        data:X
+	        	    },
+	        	    yAxis: {
+	        	    	name : '粘度(mPa.s)',
+	        	        type: 'value',
+	                    splitLine: {
+	                        show: false
+	                    }
+	        	    },
+	        	    series: [
+	        	        {
+	        	        	name:'全血粘度曲线',
+	        	            type:'line',
+	        	            data:Y,
+	        	            itemStyle:{
+	        	                color:'red'
+	        	            }
+	        	        },
+	        	        {
+	        	        	name:'参考范围(下限)',
+	        	            type:'line',
+	        	            data:Y_MIN,
+	        	            itemStyle:{
+	        	                color:'blue'
+	        	            },
+	        	            lineStyle:{
+	        	                type:'dashed'
+	        	            }
+	        	        },
+	        	        {
+	        	        	name:'参考范围(上限)',
+	        	            type:'line',
+	        	            data:Y_MAX,
+	        	            itemStyle:{
+	        	                color:'blue'
+	        	            },
+	        	            lineStyle:{
+	        	                type:'dashed'
+	        	            }
+	        	        }
+	        	    ]
+	        	};
+	
+	    	var myChart3 = echarts.init(document.getElementById("divLineChartBloodRheology"));
+	    	myChart3.setOption(option3);
+	    }
+    }
     //血流变曲线 stop    
 };

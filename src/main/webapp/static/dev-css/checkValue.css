@@ -6,3 +6,11 @@ table,th,td{
 table{
     margin: 0 auto;
 }
+
+/* 居中 */
+#divLineChartBloodRheology{
+    width: 600px;
+    height:400px;
+    
+	margin: 0 auto;
+}

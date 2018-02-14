@@ -92,7 +92,7 @@
         </tbody>
       </table>
       
-      <table>
+      <table style="display:none">
         <thead>
             <tr style="background-color:yellow">
               <th>英文名</th>
@@ -116,8 +116,8 @@
         </tbody>
       </table>
       
-		<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-		<div id="divLineChartBloodRheology" style="width: 600px;height:400px;"></div>
+	  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+	  <div id="divLineChartBloodRheology"></div>
 		
     </div>
   </div>
