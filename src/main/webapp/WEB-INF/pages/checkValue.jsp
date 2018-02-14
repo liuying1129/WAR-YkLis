@@ -80,10 +80,10 @@
         <tbody id="tbdLineChartBloodCount">
                     <c:forEach items="${dtLineChartBloodCount}" var="dt">
                         <tr>
-                            <td>${dt.english_name}</td>
+                            <td flag="lineChartBloodCount" style="display:none">${dt.english_name}</td>
                             <td>
                                 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-                                <div flag="lineChartBloodCount" style="width: 600px;height:400px;"></div>
+                                <div flag="lineChartBloodCount" style="width: 400px;height:250px;"></div>
                                 <span flag="lineChartBloodCount" style="display:none">${dt.histogram}</span>
                             </td>
                         </tr>
@@ -117,7 +117,7 @@
       </table>
       
 	  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-	  <div id="divLineChartBloodRheology"></div>
+	  <div id="divLineChartBloodRheology" style="display:none"></div>
 		
     </div>
   </div>

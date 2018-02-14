@@ -52,9 +52,9 @@
     <input type="radio" value="1"  name="printtimes" id="printtimesNotPrinted"  />
     <label style="font-weight:normal;" for="printtimesNotPrinted">未打印</label><br />
     <strong>门诊/住院号</strong>
-    <input type="text" name="caseno" placeholder="门诊/住院号" />&nbsp;&nbsp;
+    <input type="text" name="caseno" placeholder="门诊/住院号" style="width:110px" />&nbsp;&nbsp;
     <strong>姓名</strong>
-    <input type="text" name="patientname" placeholder="姓名" />&nbsp;&nbsp;
+    <input type="text" name="patientname" placeholder="姓名" style="width:110px" />&nbsp;&nbsp;
     <strong>送检科室</strong>
     <select name="deptname" style="width:130px">
     </select>&nbsp;&nbsp;

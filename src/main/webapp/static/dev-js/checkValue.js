@@ -43,6 +43,7 @@ window.onload = function(){
     var trList2=tbdLineChartBloodCount.getElementsByTagName("tr");
     for (var i = 0; i < trList2.length; i++) {//遍历Table的所有Row
     	
+    	var tdLineChartBloodCount = trList2[i].querySelector('td[flag="lineChartBloodCount"]');
     	var divLineChartBloodCount = trList2[i].querySelector('div[flag="lineChartBloodCount"]');
     	var spanLineChartBloodCount = trList2[i].querySelector('span[flag="lineChartBloodCount"]');
     	var ss1 = spanLineChartBloodCount.innerHTML;
@@ -51,6 +52,10 @@ window.onload = function(){
     			return (item.length > 0);
     		});
     	var option = {
+        	    title: {
+        	        text: tdLineChartBloodCount.innerHTML,
+        	        x: 'center'
+        	    },    			
     		    xAxis: {
     		        type: 'category',
     		    },
@@ -187,7 +192,9 @@ window.onload = function(){
 	        	    ]
 	        	};
 	
-	    	var myChart3 = echarts.init(document.getElementById("divLineChartBloodRheology"));
+	        var divLineChartBloodRheology = document.getElementById("divLineChartBloodRheology");
+	        divLineChartBloodRheology.removeAttribute("style");
+	    	var myChart3 = echarts.init(divLineChartBloodRheology);
 	    	myChart3.setOption(option3);
 	    }
     }
