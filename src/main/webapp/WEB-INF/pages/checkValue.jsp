@@ -69,12 +69,14 @@
                     <c:forEach items="${dtPic}" var="dt">
                         <tr>
                             <td>${dt.english_name}</td>
-                            <td><img src="${dt.imgReq}" alt="哎呀，加载失败了" /></td>
+                            <!-- 写stream到页面的方式 -->
+                            <!-- <td><img src="${dt.imgReq}" alt="哎呀，加载失败了" /></td> -->
+                            <td><img src="data:image/jpeg;base64,${dt.photo}" alt="哎呀，加载失败了" /></td>
                         </tr>
                     </c:forEach>
         
         </tbody>
-      </table>            
+      </table>
       
       <table>
         <tbody id="tbdLineChartBloodCount">

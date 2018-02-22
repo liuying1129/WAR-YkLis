@@ -9,6 +9,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -421,21 +422,48 @@ public class HomeController{
         //检验结果end
 		
 		//图片begin
-        StringBuilder sbSQL2 = new StringBuilder();
-        sbSQL2.append(" select english_name,'showPictureValue?valueid='+convert(varchar,valueid)+'&tableName='+'");
-        sbSQL2.append(strsql12);
-        sbSQL2.append("' as imgReq from ");
-        sbSQL2.append(strsql12);
-        sbSQL2.append(" where pkunid=");
-        sbSQL2.append(unid);
-        sbSQL2.append(" and Photo is not null and issure='1' ");
+		//写stream到页面的方式
+        //StringBuilder sbSQL2 = new StringBuilder();
+        //sbSQL2.append(" select english_name,'showPictureValue?valueid='+convert(varchar,valueid)+'&tableName='+'");
+        //sbSQL2.append(strsql12);
+        //sbSQL2.append("' as imgReq from ");
+        //sbSQL2.append(strsql12);
+        //sbSQL2.append(" where pkunid=");
+        //sbSQL2.append(unid);
+        //sbSQL2.append(" and Photo is not null and issure='1' ");
 
-        String ss2 = selectDataSetSQLCmdService.selectDataSetSQLCmd(sbSQL2.toString());
-        JSONObject jso2=JSON.parseObject(ss2);//json字符串转换成JSONObject(JSON对象)
-        boolean bb2 = jso2.getBooleanValue("success");
-        if(!bb2){           
+        //String ss2 = selectDataSetSQLCmdService.selectDataSetSQLCmd(sbSQL2.toString());
+        //JSONObject jso2=JSON.parseObject(ss2);//json字符串转换成JSONObject(JSON对象)
+        //boolean bb2 = jso2.getBooleanValue("success");
+        //if(!bb2){           
+        //}
+        //JSONArray jsarr2=jso2.getJSONArray("response");//JSONObject取得response对应的JSONArray(JSON数组)
+        
+        int pkunid = 0;
+        try{
+            pkunid = Integer.parseInt(unid);
+        }catch(Exception e){
+            logger.error("传入的病人基本信息唯一ID转换为整数失败");
         }
-        JSONArray jsarr2=jso2.getJSONArray("response");//JSONObject取得response对应的JSONArray(JSON数组)
+        
+        ChkValuEntity chkValuEntity = new ChkValuEntity();
+        chkValuEntity.setPkunid(pkunid);
+        chkValuEntity.setTableName(strsql12);
+        chkValuEntity.setIssure("1");
+        byte[] bt1={1};//随意赋值,不为null即可
+        chkValuEntity.setPhoto(bt1);
+        List<ChkValuEntity> chkValuEntityList = chkValuService.selectChkValuImage(chkValuEntity);
+        List<Map<String, String>> jsarr2 = new ArrayList<>();
+        for( int i = 0 ; i < chkValuEntityList.size() ; i++) {
+            
+            byte bt2[] = chkValuEntityList.get(i).getPhoto();
+            
+            Map<String, String> map11 = new HashMap<>();
+            map11.put("english_name", chkValuEntityList.get(i).getEnglish_name());
+            map11.put("photo", Base64.getMimeEncoder().encodeToString(bt2));//Base64为Java 8引入的标准功能
+            
+            jsarr2.add(map11);
+        }
         //图片end
         
         //绘点begin
@@ -707,6 +735,12 @@ public class HomeController{
         return s2;
     }
         
+    /**
+     * 写stream到页面的方式
+     * 应用中使用Base64方式,故该方法暂无用
+     * @param request
+     * @param response
+     */
     @RequestMapping("showPictureValue")
     public void showPictureValue(HttpServletRequest request,HttpServletResponse response) {
                 
