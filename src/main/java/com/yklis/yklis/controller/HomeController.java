@@ -498,6 +498,13 @@ public class HomeController{
         JSONArray jsarr4=jso4.getJSONArray("response");//JSONObject取得response对应的JSONArray(JSON数组)
         //血流变end
         
+        //计算图形数量begin
+        int graphNum = 0;
+        if(null!=chkValuEntityList) graphNum=chkValuEntityList.size();
+        if(null!=jsarr3) graphNum=graphNum+jsarr3.size();
+        if((null!=jsarr4)&&(jsarr4.size()>=2)) graphNum=graphNum+1;
+        //计算图形数量end
+        
 		ModelAndView mv = new ModelAndView();
         mv.addObject("DataTable", jsarr);
         mv.addObject("dtPic", jsarr2);
@@ -509,6 +516,7 @@ public class HomeController{
         modelMap.put("sex", sex);
         modelMap.put("age", age);
         modelMap.put("check_date", check_date);
+        modelMap.put("graphNum", graphNum);
         mv.addObject("baseInfo", modelMap);
         
 		mv.setViewName("checkValue");

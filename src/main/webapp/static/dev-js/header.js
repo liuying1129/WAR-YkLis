@@ -99,3 +99,15 @@ $(document).ready(function() {
 		}
 	});	
 });
+
+$('#hrefWap').popover({
+	trigger:"focus",
+	placement:"bottom",
+	html:true,
+	title:"扫描二维码",
+    content:function(){
+    	//var currentHref = window.location.href;
+    	//todo-动态生成二维码,现在是由草料二维码生成的图片
+    	return "<img width='100px' height='100px' src='static/images/QRCodeURL.png'>";
+    }
+});

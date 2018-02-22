@@ -198,5 +198,5 @@ window.onload = function(){
 	    	myChart3.setOption(option3);
 	    }
     }
-    //血流变曲线 stop    
+    //血流变曲线 stop
 };

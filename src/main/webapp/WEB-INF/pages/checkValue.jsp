@@ -28,7 +28,7 @@
 
   <ul class="nav nav-tabs">
     <li class="active"><a href="#value" data-toggle="tab">结果</a></li>
-	<li><a href="#graph" data-toggle="tab">图形</a></li>
+	<li><a href="#graph" data-toggle="tab">图形 <span class="badge">${baseInfo.graphNum}</span></a></li>
   </ul>
   
   <div class="tab-content">

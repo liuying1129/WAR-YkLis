@@ -45,6 +45,7 @@
             <li><a href="commonQuestion">常见问题</a></li>
             <!-- <li><a href="logout">注销</a></li>
             <li><a href="goModifyPwd">修改密码</a></li> -->
+            <li><a id="hrefWap" tabindex="0" role="button">手机版</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
