@@ -87,17 +87,24 @@ public class HomeController{
     @ResponseBody
     public ModelAndView login(HttpServletRequest request,
             HttpServletResponse response,
-            @RequestParam(value = "account",required = true) String account,
+            //如required设置为true,则地址栏中访问http://localhost:8080/YkLis/login时,因校验不通过,页面报错
+            @RequestParam(value = "account",required = false) String account,
             @RequestParam(value = "password",required = false) String password,
             @CookieValue(value = "yklis.request",required = false) String cookieRequest) {
-                        
+          
+        //account为null时Mybatis并不会作为空字符串""处理
+        String tmpAccount = account;
+        if(null == account){
+            tmpAccount = "";
+        }
+        
         //passWord为null时Mybatis并不会作为空字符串""处理
     	String tmpPassword = password;
         if(null == password){
         	tmpPassword = "";
         }
         
-        List<WorkerEntity> workerList = workerService.ifCanLogin(account, tmpPassword);
+        List<WorkerEntity> workerList = workerService.ifCanLogin(tmpAccount, tmpPassword);
 
         if((workerList == null)||(workerList.isEmpty())){
             
