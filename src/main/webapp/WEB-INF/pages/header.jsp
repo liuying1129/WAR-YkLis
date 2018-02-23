@@ -45,7 +45,7 @@
             <li><a href="commonQuestion">常见问题</a></li>
             <!-- <li><a href="logout">注销</a></li>
             <li><a href="goModifyPwd">修改密码</a></li> -->
-            <li><a id="hrefWap" tabindex="0" role="button">手机版</a></li>
+            <li><a id="hrefWap" tabindex="0" role="button" title="扫描二维码" data-trigger="focus" data-placement="bottom" data-html="true" data-content="&lt;img width='100px' height='100px' src='static/images/QRCodeURL.png'&gt;">手机版</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -55,6 +55,8 @@
     <script src="${ctx}/static/jquery/jquery-3.2.1.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="${ctx}/static/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <script src="${ctx}/static/qrcodejs/qrcode.min.js"></script>
     
     <script src="${ctx}/static/dev-js/commFunction.js?jsr=${jsr}"></script>
     <script src="${ctx}/static/dev-js/header.js?jsr=${jsr}"></script>	
