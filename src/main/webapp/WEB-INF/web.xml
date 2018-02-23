@@ -43,4 +43,16 @@
   </filter-mapping>
   <!-- 登陆校验end -->
   
+  <servlet>
+    <description></description>
+    <display-name>StartupServlet</display-name>
+    <servlet-name>StartupServlet</servlet-name>
+    <servlet-class>com.yklis.yklis.business.StartupServlet</servlet-class>
+    
+    <!-- 该Servlet中用ServletConfig.getInitParameter("config-file")可取得param-value -->
+    <!-- <init-param>
+      <param-name>config-file</param-name>
+      <param-value>quartz.properties</param-value>
+    </init-param> -->        
+  </servlet>  
 </web-app>
