@@ -1,6 +1,10 @@
 package com.yklis.yklis.business;
 
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -9,12 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.SchedulerFactory;
-import org.quartz.impl.StdSchedulerFactory;
 
-import com.yklis.util.MySingleton;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
 
 public class StartupServlet extends HttpServlet {
 
@@ -41,81 +46,33 @@ public class StartupServlet extends HttpServlet {
         //执行上面这句后，就可以使用
         //@Autowired
         //private WorkerService workerService;
-                
-        logger.info("Quartz Initializer Servlet loaded");
-
-        SchedulerFactory factory;
+        
+        logger.info("aaaaa:"+config.getServletContext().getInitParameter("webAppRootKey"));
+        logger.info("bbbbb:"+System.getProperty("webapp.root"));
+        //config.getServletContext().getInitParameter("webAppRootKey");
+        //System.getProperty("webapp.root");
+        
+        int width = 100;
+        int height = 100;
+        String contents = "abc";
+        Map<EncodeHintType, Object> encodeHints = new HashMap<EncodeHintType, Object>();
+        encodeHints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+        BitMatrix bitMatrix = null;
         try {
-            //默认从ClassPath读取quartz.properties
-            //也可通过参数指定其他位置的配置文件
-            factory = new StdSchedulerFactory();
-            logger.info("创建Scheduler Factory成功");
-        } catch (Exception e) {
-            
-            logger.error("创建Scheduler Factory失败:"+e.toString());
-            return;
+            bitMatrix = new MultiFormatWriter().encode(contents, BarcodeFormat.QR_CODE, width, height, encodeHints);
+        } catch (WriterException e) {
+            logger.error("MultiFormatWriter.encode失败:"+e.toString());
         }
-        
-        MySingleton mySingleton = MySingleton.getInstance();
-        
+        Path path = FileSystems.getDefault().getPath("");
         try {
-            Scheduler scheduler = factory.getScheduler();
-            mySingleton.setScheduler(scheduler);
-            logger.info("获取Scheduler成功");
-        } catch (SchedulerException e) {
-
-            logger.error("获取Scheduler失败:"+e.toString());
-            return;
-
-        }
-                
-        /*//手动设置Job、Trigger
-        JobDetail getMessageJob = newJob(Job1.class).withIdentity("getDetailsJob", "group1").build();  
-
-        Trigger getMessageTrigger = newTrigger()
-                .withIdentity("getDetailsTrigger", "group1")
-                .startNow()
-                .withSchedule(simpleSchedule().withIntervalInSeconds(5).repeatForever())  
-                .build();
-
-        try {
-            scheduler.scheduleJob(getMessageJob, getMessageTrigger);
-        } catch (SchedulerException e) {
-            
-            System.out.println("为Scheduler设置job失败");
-            return;
-        } 
-        //===================*/
-        
-        Scheduler scheduler = mySingleton.getScheduler();
-        try {
-            scheduler.start();
-            logger.info("Scheduler has been started");                
-        } catch (SchedulerException e) {
-            
-            logger.error("启动Scheduler失败:"+e.toString());
-            return;
+            MatrixToImageWriter.writeToPath(bitMatrix, "png", path);
+        } catch (IOException e) {
+            logger.error("MatrixToImageWriter.writeToPath失败:"+e.toString());
         }
     }
     
     @Override
     public void destroy() {
-
-        MySingleton mySingleton = MySingleton.getInstance();
-        Scheduler scheduler = mySingleton.getScheduler();
-        
-        if (scheduler != null) {
-            try {
-                //true:等待进行中的Job完成后才关闭
-                scheduler.shutdown(true);
-            } catch (SchedulerException e) {
-                logger.error("Quartz Scheduler shutdown fail:"+e.toString());
-                return;
-            }
-        }
-        
-        logger.info("Quartz Scheduler successful shutdown.");
-        
     }
 
     /**
@@ -131,5 +88,4 @@ public class StartupServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.sendError(HttpServletResponse.SC_FORBIDDEN);
     }
-
 }
