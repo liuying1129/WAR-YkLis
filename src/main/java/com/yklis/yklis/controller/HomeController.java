@@ -1,5 +1,6 @@
 package com.yklis.yklis.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -8,6 +9,8 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
@@ -32,6 +35,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
 import com.yklis.lisfunction.entity.ChkValuEntity;
 import com.yklis.lisfunction.entity.WorkerEntity;
 import com.yklis.lisfunction.service.ChkValuService;
@@ -67,11 +76,35 @@ public class HomeController{
     
     @Autowired
     private ChkValuService chkValuService;
+    
 
     @RequestMapping("index")
     //不能加@ResponseBody,否则,不会跳转到index页面,而是将index做为字符串返回到当前页面中
     public String handleIndexPageRequest(HttpServletRequest request,HttpServletResponse response) {
-    	   	        
+    	   
+        //生成二维码图片begin
+        int width = 100;
+        int height = 100;
+        String contents = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/";
+        logger.info("aaaa:"+contents);
+        Map<EncodeHintType, Object> encodeHints = new HashMap<EncodeHintType, Object>();
+        encodeHints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+        BitMatrix bitMatrix = null;
+        try {
+            bitMatrix = new MultiFormatWriter().encode(contents, BarcodeFormat.QR_CODE, width, height, encodeHints);
+        } catch (WriterException e) {
+            logger.error("MultiFormatWriter.encode失败:"+e.toString());
+        }
+        Path path = FileSystems.getDefault().getPath(request.getRealPath("/"));
+        logger.info("path:"+path.toString());
+        File file = new File(request.getRealPath("/"),"QRCodeURL.png");
+        try {
+            MatrixToImageWriter.writeToFile(bitMatrix, "png", file);
+        } catch (IOException e) {
+            logger.error("MatrixToImageWriter.writeToFile失败:"+e.toString());
+        }
+        //生成二维码图片end
+        
         return "index";
     }
     
