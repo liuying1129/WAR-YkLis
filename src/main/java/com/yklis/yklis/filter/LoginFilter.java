@@ -1,10 +1,14 @@
 package com.yklis.yklis.filter;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -13,16 +17,35 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+
 /**
  * 未登录的情况下，强制进入登录页面
  * @author ying07.liu
  *
  */
 public class LoginFilter implements Filter {	
+    
+    //配置容器起动时候加载log4j配置文件
+    //只要将log4j.properties放在classes下，tomcat启动的时候会自动加载log4j的配置信息，
+    //在程式代码不再需要使用PropertyConfigurator.configure("log4j.properties")来加载，
+    //如果用了它反而会出现上面的错误--Could not read configuration file [log4jj.properties]
+    //PropertyConfigurator.configure("log4jj.properties");
+    private final Logger logger = Logger.getLogger(this.getClass());
+
+    private ServletContext servletContext;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        
+    	
+    	servletContext = filterConfig.getServletContext();
     }
 
     @Override
@@ -32,6 +55,29 @@ public class LoginFilter implements Filter {
         HttpServletRequest req= (HttpServletRequest)request;
         HttpServletResponse res = (HttpServletResponse)response;  
           
+        //生成二维码图片begin
+        //servletContext.getRealPath("/")->D:\Tools\apache-tomcat-8.5.4\webapps\YkLis\
+        String ssFile = servletContext.getRealPath("/")+"static/images/QRCodeURL.png";
+        File file = new File(ssFile);
+        if(!file.exists()) {
+        	
+            String contents = req.getScheme()+"://"+req.getServerName()+":"+req.getServerPort()+req.getContextPath()+"/";
+            Map<EncodeHintType, Object> encodeHints = new HashMap<EncodeHintType, Object>();
+            encodeHints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+            BitMatrix bitMatrix = null;
+            try {
+                bitMatrix = new MultiFormatWriter().encode(contents, BarcodeFormat.QR_CODE, 100, 100, encodeHints);
+            } catch (WriterException e) {
+                logger.error("MultiFormatWriter.encode失败:"+e.toString());
+            }
+            try {
+                MatrixToImageWriter.writeToFile(bitMatrix, "png", file);
+            } catch (IOException e) {
+                logger.error("MatrixToImageWriter.writeToFile失败:"+e.toString());
+            }
+        }
+        //生成二维码图片end
+
         //静态资源文件
         if (req.getRequestURI().indexOf("/static/") >= 0) {
             //chain.doFilter表示放过去，不做处理

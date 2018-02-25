@@ -102,11 +102,4 @@ $(document).ready(function() {
 
 $('#hrefWap').popover({
 	//&lt;img width='100px' height='100px' src='static/images/QRCodeURL.png'&gt;
-	//&lt;div id='qrcode' style='width:100px;height:100px;'&gt;&lt;/div&gt;
 });
-
-/*var qrcode = new QRCode(document.getElementById("qrcode"), {
-text: "http://jindo.dev.naver.com/collie",
-width: 128,
-height: 128
-});*/
