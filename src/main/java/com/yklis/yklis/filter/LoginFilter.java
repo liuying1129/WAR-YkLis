@@ -2,6 +2,8 @@ package com.yklis.yklis.filter;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -70,10 +72,11 @@ public class LoginFilter implements Filter {
             } catch (WriterException e) {
                 logger.error("MultiFormatWriter.encode失败:"+e.toString());
             }
+        	Path path = FileSystems.getDefault().getPath(ssFile);
             try {
-                MatrixToImageWriter.writeToFile(bitMatrix, "png", file);
+            	MatrixToImageWriter.writeToPath(bitMatrix, "png", path);
             } catch (IOException e) {
-                logger.error("MatrixToImageWriter.writeToFile失败:"+e.toString());
+                logger.error("MatrixToImageWriter.writeToPath失败:"+e.toString());
             }
         }
         //生成二维码图片end
