@@ -33,7 +33,9 @@ window.onload = function(){
 			}
 			if(cxzf == "2"){
 				preObj.setAttribute("style","color:red");
-			}        	
+			}
+			//Animate.css//animated:固定类;infinite:无限循环;tada:具体动画类
+			preObj.setAttribute("class","animated infinite tada");
         }
     }
 	//超限结果标颜色begin

@@ -15,6 +15,9 @@
     <c:set var="ctx" value="${pageContext.request.contextPath}"/>
     <c:set var="jsr" value="${initParam.jsRandom}"/>
     
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="${ctx}/static/animate.min.css">
+    
     <!-- Bootstrap -->
     <link rel="stylesheet" href="${ctx}/static/bootstrap/3.3.7/css/bootstrap.min.css" />
     
