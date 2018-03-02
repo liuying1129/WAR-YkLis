@@ -37,6 +37,17 @@
     <mvc:resources mapping="/install_lodop32.exe" location="/" />
     <mvc:resources mapping="/install_lodop64.exe" location="/" />
     
+    <!-- html视图解析器必须先配置freemarkerConfig,注意html是没有prefix前缀属性的-->
+    <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath">
+            <value>/WEB-INF/pages/</value>
+        </property>
+    </bean>
+    <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+       <property name="suffix" value=".html" />
+    </bean>
+   
+    <!-- 配置不同类型视图解析器时,InternalResourceViewResolver必须放在最后 -->
     <!-- 配置视图解析器，将ModelAndView及字符串解析为具体的页面 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/pages/" />

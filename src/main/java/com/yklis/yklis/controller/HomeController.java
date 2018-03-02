@@ -799,4 +799,10 @@ public class HomeController{
             logger.error("servletOutputStream.close失败");
         }
     }
+    
+    @RequestMapping(value = "testHtml" )
+    public String htmlTest(HttpServletRequest request,HttpServletResponse response) {
+                   
+        return "testHtml";
+    }    
 }

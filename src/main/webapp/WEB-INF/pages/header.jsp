@@ -46,6 +46,7 @@
             <!-- <li><a href="logout">注销</a></li>
             <li><a href="goModifyPwd">修改密码</a></li> -->
             <li><a id="hrefWap" tabindex="0" role="button" title="扫描二维码" data-trigger="focus" data-placement="bottom" data-html="true" data-content="&lt;img width='100px' height='100px' src='static/images/QRCodeURL.png'&gt;">手机版</a></li>
+            <li><a href="testHtml" target='_blank'>HtmlTest</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

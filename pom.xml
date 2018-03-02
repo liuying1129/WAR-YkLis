@@ -280,7 +280,14 @@
 		    <artifactId>javase</artifactId>
 		    <version>3.3.2</version>
 		</dependency>
-					
+		
+		<!-- html视图解析器 -->
+		<dependency>
+		    <groupId>org.freemarker</groupId>
+		    <artifactId>freemarker</artifactId>
+		    <version>2.3.23</version>
+		</dependency>
+									
 		<!-- 本地仓库工具库 -->
         <dependency>
             <groupId>com.yklis</groupId>
