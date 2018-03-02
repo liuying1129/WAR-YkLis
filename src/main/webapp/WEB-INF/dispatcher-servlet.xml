@@ -42,8 +42,16 @@
         <property name="templateLoaderPath">
             <value>/WEB-INF/pages/</value>
         </property>
+        <!-- 解决HTML页面中文乱码问题 -->
+        <property name="freemarkerSettings"> 
+	        <props>
+	            <prop key="defaultEncoding">UTF-8</prop> 
+	        </props>
+        </property>
     </bean>
     <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+       <!-- 解决HTML页面中文乱码问题 -->
+       <property name="contentType" value="text/html;charset=UTF-8" />
        <property name="suffix" value=".html" />
     </bean>
    
