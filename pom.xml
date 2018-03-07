@@ -281,6 +281,7 @@
 		    <version>3.3.2</version>
 		</dependency>
 		
+		<!-- FreeMarker的JAVA解析包 -->
 		<!-- html视图解析器 -->
 		<dependency>
 		    <groupId>org.freemarker</groupId>
