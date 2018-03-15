@@ -17,6 +17,11 @@
     <c:set var="ctx" value="${pageContext.request.contextPath}"/>
     <c:set var="jsr" value="${initParam.jsRandom}"/>
     
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="${ctx}/static/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <!-- Bootstrap Table -->
+    <link rel="stylesheet" href="${ctx}/static/bootstrap-table/bootstrap-table.min.css" />
+
     <!-- select2 -->
     <link href="${ctx}/static/select2/4.0.5/css/select2.min.css" rel="stylesheet" />      
          
@@ -64,7 +69,7 @@
   </form>
   <button id="btnQuery">查询</button>
   <button id="btnPrint">打印</button>
-  <table>
+  <!-- <table>
   	<thead>
         <tr>
           <th>姓名</th>
@@ -105,15 +110,19 @@
   	</thead>
     <tbody id="myTBody">
     </tbody>
-  </table>
+  </table> -->
+  <table id="myTBody"></table>
   
   <div id="maskLayer">
     <img src="static/images/loading.gif">
   </div>
   
     <!-- Bootstrap -->
-    <!-- 如引用bootstrap.min.js,header.jsp用户名的下拉菜单无法下拉.幸好本页面不需要引用bootstrap.min.js -->
+    <!-- 如引用bootstrap.min.js,header.jsp用户名的下拉菜单无法下拉.应该是与header.jsp的bootstrap.min.js引用冲突 -->
+    <!-- Bootstrap Table需要依赖bootstrap.min.js,因上述原因,本页面就不要引用bootstrap.min.js,使用header.jsp中的引用 -->
     <!-- <script src="${ctx}/static/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <!-- Bootstrap Table -->
+    <script src="${ctx}/static/bootstrap-table/bootstrap-table.min.js"></script>
        
     <!-- Lodop -->
     <script src="${ctx}/static/Lodop/LodopFuncs.js"></script>
