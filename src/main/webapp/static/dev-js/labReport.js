@@ -52,7 +52,7 @@ window.onunload = function(){
 
 var btnQuery = document.getElementById("btnQuery");
 btnQuery.onclick = function() {
-	
+		
 	$.ajax({
 		//默认值: true。如果需要发送同步请求，请将此选项设置为 false。注意，同步请求将锁住浏览器，用户其它操作必须等待请求完成才可以执行
 		async : true,
@@ -76,11 +76,28 @@ btnQuery.onclick = function() {
 				
 	            var tbBody = "";
 	           		            
-	            tbBody += "<tr><td><a href='checkValue?unid="+element.唯一编号+"&ifCompleted="+element.ifCompleted+"' target='_blank'>" + element.姓名 + "</a></td><td>" + element.性别 + "</td><td>" + element.年龄 + "</td><td><input type='checkbox' /></td><td>" + element.病历号 + "</td><td>" + element.床号 + "</td><td>" + element.送检科室 + "</td><td>" + element.送检医生 + "</td><td>" + element.检查日期 + "</td><td>" + element.申请日期 + "</td><td>" + element.审核者 + "</td><td>" + element.工作组 + "</td><td>" + element.操作者 + "</td><td>" + element.优先级别 + "</td><td flag='printtimes'>" + element.打印次数 + "</td><td>" + element.样本类型 + "</td><td>" + element.临床诊断 + "</td><td>" + element.样本情况 + "</td><td>" + element.备注 + "</td><td flag='unid'>" + element.唯一编号 + "</td><td>" + element.His唯一编号 + "</td><td>" + element.His门诊或住院 + "</td><td>" + element.所属部门 + "</td><td>" + element.工种 + "</td><td>" + element.工号 + "</td><td>" + element.婚否 + "</td><td>" + element.籍贯 + "</td><td>" + element.住址 + "</td><td>" + element.电话 + "</td><td>" + element.所属公司 + "</td><td>" + element.审核时间 + "</td><td flag='ifCompleted'>" + element.ifCompleted + "</td><td>" + element.联机号 + "</td><td>" + element.流水号 + "</td></tr>";
+	            tbBody += "<tr><td><a href='checkValue?unid="+element.唯一编号+"&ifCompleted="+element.ifCompleted+"' target='_blank'>" + element.姓名 + "</a></td><td>" + element.性别 + "</td><td>" + element.年龄 + "</td><td><input type='checkbox' /></td><td>" + element.病历号 + "</td><td>" + element.床号 + "</td><td>" + element.送检科室 + "</td><td>" + element.送检医生 + "</td><td>" + element.检查日期 + "</td><td>" + element.申请日期 + "</td><td>" + element.审核者 + "</td><td>" + element.工作组 + "</td><td>" + element.操作者 + "</td><td>" + element.优先级别 + "</td><td class='printtimes'>" + element.打印次数 + "</td><td>" + element.样本类型 + "</td><td>" + element.临床诊断 + "</td><td>" + element.样本情况 + "</td><td>" + element.备注 + "</td><td class='unid'>" + element.唯一编号 + "</td><td>" + element.His唯一编号 + "</td><td>" + element.His门诊或住院 + "</td><td>" + element.所属部门 + "</td><td>" + element.工种 + "</td><td>" + element.工号 + "</td><td>" + element.婚否 + "</td><td>" + element.籍贯 + "</td><td>" + element.住址 + "</td><td>" + element.电话 + "</td><td>" + element.所属公司 + "</td><td>" + element.审核时间 + "</td><td class='ifCompleted'>" + element.ifCompleted + "</td><td>" + element.联机号 + "</td><td>" + element.流水号 + "</td></tr>";
 	            $("#myTBody").append(tbBody);
 	          });*/
 			
+			$('#myTBody').bootstrapTable('load', data.response);
+			
 			$('#myTBody').bootstrapTable({
+				
+			    data: data.response,
+				detailView:true,
+			    detailFormatter:function(index, row, element){
+
+			        var html = [];
+
+			        $.each(row, function (key, value) {
+
+			        	if((key==="唯一编号")||(key==="His唯一编号")||(key==="His门诊或住院")||(key==="所属部门")||(key==="工种")||(key==="工号")||(key==="婚否")||(key==="籍贯")||(key==="住址")||(key==="电话")||(key==="所属公司")||(key==="ifCompleted")||(key==="联机号")||(key==="流水号")||(key==="打印次数"))
+			            	html.push('<p><b>' + key + ':</b> ' + value + '</p>');
+
+			        });
+			        return html.join('');
+			    },
 			    columns: [{
 			        field: '姓名',
 			        title: '姓名',
@@ -156,23 +173,9 @@ btnQuery.onclick = function() {
 			        field: '打印次数',
 			        //title: '打印次数',//为减小宽度而注释
 				    class: 'printtimes'//用于打印
-			    }],
-			    data: data.response,
-				detailView:true,
-			    detailFormatter:function(index, row, element){
-
-			        var html = [];
-
-			        $.each(row, function (key, value) {
-
-			        	if((key==="唯一编号")||(key==="His唯一编号")||(key==="His门诊或住院")||(key==="所属部门")||(key==="工种")||(key==="工号")||(key==="婚否")||(key==="籍贯")||(key==="住址")||(key==="电话")||(key==="所属公司")||(key==="ifCompleted")||(key==="联机号")||(key==="流水号")||(key==="打印次数"))
-			            	html.push('<p><b>' + key + ':</b> ' + value + '</p>');
-
-			        });
-			        return html.join('');
-			    }
+			    }]
 			});
-			
+						
 			document.getElementById("maskLayer").style.display="none";
 		},
 		error : function(xhr, textStatus, errorThrown) {
@@ -180,7 +183,7 @@ btnQuery.onclick = function() {
 			document.getElementById("maskLayer").style.display="none";
 			console.log("ajax请求失败,请求:selectLabReport,状态码:"+xhr.status +",状态说明:"+ textStatus+",xhr readyState:"+xhr.readyState);
 		}
-	});	
+	});
 };
 
 var btnPrint = document.getElementById("btnPrint");
