@@ -189,7 +189,7 @@ btnQuery.onclick = function() {
 var btnPrint = document.getElementById("btnPrint");
 btnPrint.onclick = function() {
 	
-	var lsSelected = [];
+	/*var lsSelected = [];
 	
 	var myTBody=document.getElementById("myTBody");
 
@@ -225,7 +225,9 @@ btnPrint.onclick = function() {
 			lsSelected.push(objSelected);
 			
 		}
-	}
+	}*/
+	
+	var lsSelected = $('#myTBody').bootstrapTable('getSelections');
 	
 	if(lsSelected.length<=0){
 		return;
@@ -543,6 +545,59 @@ $(document).ready(function() {
         $('select[name="check_doctor"]').val(localStorage.getItem("check_doctor")).trigger("change");
     }
 	//读取用户的选择end
+    
+    /*//初始化表头begin
+    //只是为了进入页面时更美观,并没有实际作用
+    //todo-list:初始化表头后，查询出来的数据全部渲染为了-
+    $('#myTBody').bootstrapTable({
+    	
+	    columns: [{
+	        title: '姓名'
+	    }, {
+	        title: '性别'
+	    }, {
+	        title: '年龄'
+	    }, {
+	    	checkbox: true
+	    }, {
+	        title: '病历号'
+	    }, {
+	        title: '床号'
+	    }, {
+	        title: '送检科室'
+	    }, {
+	        title: '送检医生'
+	    }, {
+	        title: '检查日期'
+	    }, {
+	        title: '申请日期'
+	    }, {
+	        title: '审核者'
+	    }, {
+	        title: '工作组'
+	    }, {
+	        title: '操作者'
+	    }, {
+	        title: '优先级别'
+	    }, {
+	        title: '样本类型'
+	    }, {
+	        title: '临床诊断'
+	    }, {
+	        title: '样本情况'
+	    }, {
+	        title: '备注'
+	    }, {
+	        title: '审核时间'
+	    }, {
+	        title: '唯一编号'
+	    }, {
+	        title: 'ifCompleted'
+	    }, {
+	        title: '打印次数'
+	    }]
+    });
+    //初始化表头end//*/
 		
 	/*//请求远程用户信息接口begin
 	var params = {

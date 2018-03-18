@@ -549,6 +549,10 @@ public class HomeController{
         for(int j = 0 ; j < selected.size() ; j++) {
             
             String unid = selected.getJSONObject(j).getString("unid");
+            //bootstrap table getSelections方法传过来的key是【唯一编号】
+            if((null==unid)||("".equals(unid))){
+                unid = selected.getJSONObject(j).getString("唯一编号");
+            }
             String ifCompleted = selected.getJSONObject(j).getString("ifCompleted");
             
             StringBuilder sbChkcon = new StringBuilder();
