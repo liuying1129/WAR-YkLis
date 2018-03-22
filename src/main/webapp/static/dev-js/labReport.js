@@ -98,7 +98,21 @@ btnQuery.onclick = function() {
 			        });
 			        return html.join('');
 			    },
-			    columns: [{
+			    pagination: true, //分页
+			    //pageSize: 5,//如果设置了分页，页面数据条数
+			    //pageList: [5, 10, 20, 40],  //如果设置了分页，设置可供选择的页面数据条数。设置为All 则显示所有记录
+			    sidePagination: "server", //服务端处理分页
+			    queryParamsType: "",
+		        queryParams: function (params) {//自定义参数，这里的参数是传给后台的，我这是分页用的  
+		            return {//这里的params是table提供的
+		            	
+		            	pageNumber: params.pageNumber,
+                        pageSize: params.pageSize
+		                //cp: params.offset,//从数据库第几条记录开始
+		                //ps: params.limit//找多少条
+		            };
+		        },
+		        columns: [{
 			        field: '姓名',
 			        title: '姓名',
 			        formatter: function formatter(value, row, index, field) {
