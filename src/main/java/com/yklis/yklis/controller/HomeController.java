@@ -240,7 +240,7 @@ public class HomeController{
     	String deptname = request.getParameter("deptname");
     	String check_doctor = request.getParameter("check_doctor");
     	
-    	String strPageSize = request.getParameter("pageSize");
+    	/*String strPageSize = request.getParameter("pageSize");
         int pageSize = 0;
         try{
             pageSize = Integer.parseInt(strPageSize);
@@ -258,9 +258,9 @@ public class HomeController{
         if(pageSize<0) logger.error("传入的pageSize小于0");
         if(pageNum<1) logger.error("传入的pageNum小于1");
         
-        int startRecNum = pageSize * (pageNum - 1);
+        int startRecNum = pageSize * (pageNum - 1);//*/
     	
-    	 String SHOW_CHK_CON=" patientname as 姓名,"+
+    	String SHOW_CHK_CON=" patientname as 姓名,"+
     		        " sex as 性别,"+
     		        " age as 年龄,0 as 选择,caseno as 病历号,bedno as 床号,deptname as 送检科室,"+
     		        " check_doctor as 送检医生,check_date as 检查日期,"+
@@ -324,22 +324,22 @@ public class HomeController{
 		  String STRSQL49=" order by patientname ";
 		  
 	    StringBuilder sbSQL = new StringBuilder();
-        sbSQL.append("select top ");
-        sbSQL.append(strPageSize);
+        sbSQL.append("select top 1000 ");
+        //sbSQL.append(strPageSize);
 	    sbSQL.append(SHOW_CHK_CON);
-        sbSQL.append(" where unid NOT IN (select top ");
-        sbSQL.append(startRecNum);
-        sbSQL.append(" unid from view_Chk_Con_All ");
+        //sbSQL.append(" where unid NOT IN (select top ");
+        //sbSQL.append(startRecNum);
+        //sbSQL.append(" unid from view_Chk_Con_All ");
         sbSQL.append(" where ");
-	    sbSQL.append(strsql44);
-	    sbSQL.append(STRSQL46);
-	    sbSQL.append(STRSQL48);
-	    sbSQL.append(STRSQL22);
-	    sbSQL.append(STRSQL45);
-	    sbSQL.append(STRSQL50);
-	    sbSQL.append(STRSQL47);
-        sbSQL.append(STRSQL49);
-        sbSQL.append(" ) and ");
+	    //sbSQL.append(strsql44);
+	    //sbSQL.append(STRSQL46);
+	    //sbSQL.append(STRSQL48);
+	    //sbSQL.append(STRSQL22);
+	    //sbSQL.append(STRSQL45);
+	    //sbSQL.append(STRSQL50);
+	    //sbSQL.append(STRSQL47);
+        //sbSQL.append(STRSQL49);
+        //sbSQL.append(" ) and ");
         sbSQL.append(strsql44);
         sbSQL.append(STRSQL46);
         sbSQL.append(STRSQL48);

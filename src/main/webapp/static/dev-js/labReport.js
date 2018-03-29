@@ -52,6 +52,126 @@ window.onunload = function(){
 
 var btnQuery = document.getElementById("btnQuery");
 btnQuery.onclick = function() {
+	
+	/*$('#myTBody').bootstrapTable({
+		
+		method : 'post',
+		url : 'selectLabReport',
+		dataType : 'json',
+		//加载服务器数据之前的处理程序，可以用来格式化数据。参数：res为从服务器请求到的数据
+	    responseHandler:function(res){
+	    	return res.response;
+	    },
+		detailView:true,
+	    detailFormatter:function(index, row, element){
+
+	        var html = [];
+
+	        $.each(row, function (key, value) {
+
+	        	if((key==="唯一编号")||(key==="His唯一编号")||(key==="His门诊或住院")||(key==="所属部门")||(key==="工种")||(key==="工号")||(key==="婚否")||(key==="籍贯")||(key==="住址")||(key==="电话")||(key==="所属公司")||(key==="ifCompleted")||(key==="联机号")||(key==="流水号")||(key==="打印次数"))
+	            	html.push('<p><b>' + key + ':</b> ' + value + '</p>');
+
+	        });
+	        return html.join('');
+	    },
+	    pagination: true, //分页
+	    //pageSize: 5,//如果设置了分页，页面数据条数
+	    //pageList: [5, 10, 20, 40],  //如果设置了分页，设置可供选择的页面数据条数。设置为All 则显示所有记录
+	    sidePagination: "server", //服务端处理分页
+	    queryParamsType: "",
+        queryParams: function (params) {//自定义参数，这里的参数是传给后台的，我这是分页用的  
+            return {//这里的params是table提供的
+            	
+            	pageNum: 1,//params.pageNumber,
+                pageSize: 20,//params.pageSize,
+                //cp: params.offset,//从数据库第几条记录开始
+                //ps: params.limit//找多少条
+                checkDate: '5',
+                printtimes: '5',
+                caseno: '',
+                patientname: '',
+                deptname: '',
+                check_doctor: '刘幼平'
+            };
+        },
+        columns: [{
+	        field: '姓名',
+	        title: '姓名',
+	        formatter: function formatter(value, row, index, field) {
+	        	
+	        	return "<a href='checkValue?unid="+row.唯一编号+"&ifCompleted="+row.ifCompleted+"' target='_blank'>" + value + "</a>";
+	        }
+	    }, {
+	        field: '性别',
+	        title: '性别'
+	    }, {
+	        field: '年龄',
+	        title: '年龄'
+	    }, {
+	    	checkbox: true
+	    }, {
+	        field: '病历号',
+	        title: '病历号'
+	    }, {
+	        field: '床号',
+	        title: '床号'
+	    }, {
+	        field: '送检科室',
+	        title: '送检科室'
+	    }, {
+	        field: '送检医生',
+	        title: '送检医生'
+	    }, {
+	        field: '检查日期',
+	        title: '检查日期'
+	    }, {
+	        field: '申请日期',
+	        title: '申请日期'
+	    }, {
+	        field: '审核者',
+	        title: '审核者'
+	    }, {
+	        field: '工作组',
+	        title: '工作组'
+	    }, {
+	        field: '操作者',
+	        title: '操作者'
+	    }, {
+	        field: '优先级别',
+	        title: '优先级别'
+	    }, {
+	        field: '样本类型',
+	        title: '样本类型'
+	    }, {
+	        field: '临床诊断',
+	        title: '临床诊断'
+	    }, {
+	        field: '样本情况',
+	        title: '样本情况'
+	    }, {
+	        field: '备注',
+	        title: '备注'
+	    }, {
+	        field: '审核时间',
+	        title: '审核时间'
+	    }, {
+	    	width: '0px',//todo-list,不起作用
+	        field: '唯一编号',
+	        //title: '唯一编号',//为减小宽度而注释
+	        class: 'unid'//用于打印
+	    }, {
+	    	width: '0px',//todo-list,不起作用
+	        field: 'ifCompleted',
+	        //title: 'ifCompleted',//为减小宽度而注释
+		    class: 'ifCompleted'//用于打印
+	    }, {
+	    	width: '0px',//todo-list,不起作用
+	        field: '打印次数',
+	        //title: '打印次数',//为减小宽度而注释
+		    class: 'printtimes'//用于打印
+	    }]
+	});//*/
 		
 	$.ajax({
 		//默认值: true。如果需要发送同步请求，请将此选项设置为 false。注意，同步请求将锁住浏览器，用户其它操作必须等待请求完成才可以执行
@@ -98,20 +218,6 @@ btnQuery.onclick = function() {
 			        });
 			        return html.join('');
 			    },
-			    pagination: true, //分页
-			    //pageSize: 5,//如果设置了分页，页面数据条数
-			    //pageList: [5, 10, 20, 40],  //如果设置了分页，设置可供选择的页面数据条数。设置为All 则显示所有记录
-			    sidePagination: "server", //服务端处理分页
-			    queryParamsType: "",
-		        queryParams: function (params) {//自定义参数，这里的参数是传给后台的，我这是分页用的  
-		            return {//这里的params是table提供的
-		            	
-		            	pageNumber: params.pageNumber,
-                        pageSize: params.pageSize
-		                //cp: params.offset,//从数据库第几条记录开始
-		                //ps: params.limit//找多少条
-		            };
-		        },
 		        columns: [{
 			        field: '姓名',
 			        title: '姓名',
@@ -197,7 +303,7 @@ btnQuery.onclick = function() {
 			document.getElementById("maskLayer").style.display="none";
 			console.log("ajax请求失败,请求:selectLabReport,状态码:"+xhr.status +",状态说明:"+ textStatus+",xhr readyState:"+xhr.readyState);
 		}
-	});
+	});//*/
 };
 
 var btnPrint = document.getElementById("btnPrint");
