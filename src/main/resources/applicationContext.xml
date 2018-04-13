@@ -27,6 +27,7 @@
     
     <!-- 读入属性文件 -->  
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+        <!-- setter依赖注入.类PropertyPlaceholderConfigurer有setLocations方法 -->  
         <property name="locations">  
             <list>  
                 <!-- <value>classpath:jdbc.properties</value> -->
