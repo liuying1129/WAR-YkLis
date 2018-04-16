@@ -17,6 +17,9 @@
     <c:set var="ctx" value="${pageContext.request.contextPath}"/>
     <c:set var="jsr" value="${initParam.jsRandom}"/>
     
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="${ctx}/static/animate.min.css">
+    
     <!-- Custom styles for this template -->
     <link href="${ctx}/static/dev-css/login.css?jsr=${jsr}" rel="stylesheet">
 
@@ -25,7 +28,7 @@
 <body>
 
   <!-- form表单数据通过submit提交到controller示例,action -->
-  <form id="slick-login" action="login" method="post">
+  <form id="slick-login" action="login" method="post" class="animated bounce">
     <label for="account">account</label>
     <input type="text" name="account" placeholder="帐号" autofocus required>
     <label for="password">password</label>
