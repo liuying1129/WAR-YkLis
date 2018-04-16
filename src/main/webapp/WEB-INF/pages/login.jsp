@@ -35,7 +35,7 @@
     <!-- <input type="password" name="password" placeholder="密码"> -->
     <input type="text" name="password" placeholder="密码" onfocus="this.type='password'" autocomplete="off">
     <span style="color:red">${msg}</span>
-    <input type="submit" style="font-family: Microsoft Yahei;" value="登录">
+    <input type="submit" value="登录">
   </form>
   
 </body>
