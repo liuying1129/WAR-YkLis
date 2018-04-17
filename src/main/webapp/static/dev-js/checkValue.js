@@ -50,6 +50,9 @@ window.onload = function(){
     	var spanLineChartBloodCount = trList2[i].querySelector('span[flag="lineChartBloodCount"]');
     	var ss1 = spanLineChartBloodCount.innerHTML;
     	var sl1 = ss1.split(" ");
+    	//filter() 方法创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素
+    	//filter() 不会对空数组进行检测
+    	//filter() 不会改变原始数组
     	var filterResult = sl1.filter(function(item, index, array){ 
     			return (item.length > 0);
     		});

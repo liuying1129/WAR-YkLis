@@ -379,6 +379,8 @@ btnPrint.onclick = function() {
 			
 			//$.each(data.response.chkvalu, function(index,element) {
 			//IE8及以下版本不支持forEach//上面是jQuery的each方法,效果一样
+			//forEach() 方法用于调用数组的每个元素，并将元素传递给回调函数
+			//forEach() 对于空数组是不会执行回调函数
 			data.forEach(function(element2,index2){				
 				
 				var PAGE_RECORDERS = 17;//每页行数
