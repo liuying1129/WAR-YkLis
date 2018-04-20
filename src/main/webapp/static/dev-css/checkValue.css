@@ -14,3 +14,46 @@ table{
     
 	margin: 0 auto;
 }
+
+/* tab样式美化 */
+/* 标签样式 */
+.tab .nav-tabs {
+    border-bottom: 0 none;
+    background: #eaeaea;
+}
+/* 标签链接样式 */
+.tab .nav-tabs li a {
+    background: transparent;
+    border-radius: 0;
+    font-size: 16px;
+    border: none;
+    color: #333;
+    padding: 12px 22px;
+}
+/* 当前选中标签样式 */
+.tab .nav-tabs li.active a, .tab .nav-tabs li.active a i {
+    border: 0 none;
+    background:#e67e22;
+    color: #fff;
+}
+/* 当前选中标签之后插入的样式 */
+.tab .nav-tabs li.active a:after {
+    content: "";
+    position: absolute;
+    left: 45%;
+    bottom: -14px;
+    border: 7px solid transparent;
+    border-top: 7px solid #e67e22;
+}
+/* 标签内容页样式 */
+.tab .tab-content {
+    padding: 5px;
+    color: #5a5c5d;
+    font-size: 14px;
+    line-height: 20px;
+    margin-top: 5px;
+    border-bottom: 1px solid #e67e22;
+}
+
+/* tab在小屏幕中的样式 */
+/* @media only screen and (max-width: 480px) {} */
