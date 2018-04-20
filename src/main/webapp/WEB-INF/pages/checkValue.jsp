@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="${ctx}/static/bootstrap/3.3.7/css/bootstrap.min.css" />
     
     <!-- Custom styles for this template -->
-    <link href="${ctx}/static/dev-css/checkValue.css?jsr=${jsr}" rel="stylesheet">
+    <link href="${ctx}/static/dev-css/checkValue.css?jsr=${jsr}" rel="stylesheet">    
 </head>
 
 <body>
