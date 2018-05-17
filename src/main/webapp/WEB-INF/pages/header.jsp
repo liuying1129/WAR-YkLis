@@ -57,7 +57,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="${ctx}/static/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
     
-    <script src="${ctx}/static/dev-js/commFunction.js?jsr=${jsr}"></script>
+    <!-- <script src="${ctx}/static/dev-js/commFunction.js?jsr=${jsr}"></script> -->
     <script src="${ctx}/static/dev-js/header.js?jsr=${jsr}"></script>	
 </body>
 </html>
