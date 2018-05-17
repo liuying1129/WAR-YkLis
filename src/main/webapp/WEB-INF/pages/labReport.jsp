@@ -138,6 +138,8 @@
     
     <script src="${ctx}/static/md5-min.js"></script>
     <script src="${ctx}/static/dev-js/make_sign.js"></script>
+    
+    <script src="${ctx}/static/dayjs/dayjs.min.js"></script>
 
     <script src="${ctx}/static/dev-js/commFunction.js?jsr=${jsr}"></script>
     <script src="${ctx}/static/dev-js/labReport.js?jsr=${jsr}"></script>

@@ -424,7 +424,7 @@ btnPrint.onclick = function() {
 				LODOP.ADD_PRINT_TEXT(500,520,100,20,"操作者："+element2.operator);
 				LODOP.ADD_PRINT_TEXT(500,620,100,20,"审核者："+element2.report_doctor);
 				LODOP.ADD_PRINT_TEXT(520,50,250,20,"本结果仅对该份标本负责!");
-				LODOP.ADD_PRINT_TEXT(520,296,250,20,"打印时间："+dateFtt("yyyy-MM-dd hh:mm:ss",new Date()));
+				LODOP.ADD_PRINT_TEXT(520,296,250,20,"打印时间："+dayjs().format("YYYY-MM-DD HH:mm:ss"));
 				LODOP.ADD_PRINT_TEXT(520,520,100,20, "共"+iPageTotal+"页/第"+iPageNum+"页");
 				//打印页尾end
 				
