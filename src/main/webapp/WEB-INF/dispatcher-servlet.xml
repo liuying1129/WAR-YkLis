@@ -37,23 +37,40 @@
     <mvc:resources mapping="/install_lodop32.exe" location="/" />
     <mvc:resources mapping="/install_lodop64.exe" location="/" />
     
+    <mvc:resources mapping="/html/**" location="/WEB-INF/html/" />
+    <mvc:default-servlet-handler />
+    
+    <!-- SSM框架集成了JSP的同时，如何集成HTML
+              一、通过controller返回对应的html页面
+    1.1 后端
+    dispatcher-servlet.xml中配置html视图解析器FreeMarkerConfigurer
+    1.2 前端
+    html中引用的js、css等用绝对路径，如:/项目名/js/xx.js
+              二、直接访问项目中的html页面
+    1.1 后端
+    <mvc:resources mapping="/html/**" location="/WEB-INF/html/" />
+    dispatcher-servlet.xml中配置<mvc:default-servlet-handler />
+    1.2 前端
+              把html文件放在WEB-INF/html/下，访问路径如http://localhost:8080/项目名称/html/siteMap.html
+    html中引用的js、css等用相对路径 -->
+
     <!-- html视图解析器必须先配置freemarkerConfig,注意html是没有prefix前缀属性的-->
-    <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+    <!-- <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
         <property name="templateLoaderPath">
             <value>/WEB-INF/pages/</value>
-        </property>
+        </property> -->
         <!-- 解决HTML页面中文乱码问题 -->
-        <property name="freemarkerSettings"> 
+        <!-- <property name="freemarkerSettings"> 
 	        <props>
 	            <prop key="defaultEncoding">UTF-8</prop> 
 	        </props>
         </property>
     </bean>
-    <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+    <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"> -->
        <!-- 解决HTML页面中文乱码问题 -->
-       <property name="contentType" value="text/html;charset=UTF-8" />
+       <!-- <property name="contentType" value="text/html;charset=UTF-8" />
        <property name="suffix" value=".html" />
-    </bean>
+    </bean> -->
    
     <!-- 配置不同类型视图解析器时,InternalResourceViewResolver必须放在最后 -->
     <!-- 配置视图解析器，将ModelAndView及字符串解析为具体的页面 -->
