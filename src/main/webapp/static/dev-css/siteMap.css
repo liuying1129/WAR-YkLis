@@ -6,6 +6,14 @@
     padding-top: 16px !important;
     padding-bottom: 16px !important;
 }
+.live_ptb_24 {
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+}
+
+.live_ta_c {
+    text-align: center;
+}
 
 /*对齐相关_浮动对齐*/
 
