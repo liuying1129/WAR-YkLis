@@ -838,9 +838,12 @@ public class HomeController{
         }
     }
     
-    @RequestMapping(value = "testHtml" )
+    /**
+     * 通过controller返回对应的html页面的示例
+     */
+    /*@RequestMapping(value = "testHtml" )
     public String htmlTest(HttpServletRequest request,HttpServletResponse response) {
                    
         return "testHtml";
-    }    
+    }*/
 }
