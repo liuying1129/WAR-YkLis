@@ -9,7 +9,7 @@ var intervals=0;
 
 $(document).ready(function() {
 	
-	initNotice();
+	//initNotice();
 	initSiteMap();
 	$('.wrap').css('min-height',$(window).height()-368+'px')
 	var leftMargin= 1340/2;
@@ -63,14 +63,17 @@ $(document).ajaxStop(function(){
 }); 
 
 function initSiteMap() {
-	$.ajax({
-		url : ctx+"/siteMap/initSiteMapList",
-		type : "post",
+	/*$.ajax({
+		//默认值: true。如果需要发送同步请求，请将此选项设置为 false。注意，同步请求将锁住浏览器，用户其它操作必须等待请求完成才可以执行
+		async : true,
+		//默认值:"GET".请求方式 ("POST"或 "GET")，注意：其它 HTTP请求方法，如 PUT和 DELETE也可以使用，但仅部分浏览器支持
+		type : 'POST',
+		//默认值: "application/x-www-form-urlencoded"。发送信息至服务器时内容编码类型
+		//默认值适合大多数情况。如果你明确指定$.ajax()的 content-type,那么它必定会发送给服务器（即使没有数据要发送）
+		//contentType : "application/x-www-form-urlencoded",//application/json
+		url : 'selectSiteList',
+		//预期服务器返回的数据类型。如果不指定，jQuery将自动根据 HTTP包 MIME信息来智能判断
 		dataType : "json",
-		data : {
-			r : Math.random()
-		},
-		async : false,
 		success : function(data) {
 			if (data.success) {
 				var page = createPage(data.data);
@@ -79,8 +82,55 @@ function initSiteMap() {
 				createRecently();
 			}
 		}
-	});
+	});*/
+	
+	var data = {
+			success:true,
+			data:[{
+				parentId:"-1",
+				groupNum:"0",
+				title:"仓储开放平台",
+				siteMapId:"1"
+			},{
+				parentId:"-1",
+				groupNum:"0",
+				title:"运输配送平台",
+				siteMapId:"2"				
+			},{
+				parentId:"1",
+				groupNum:"0",
+				title:"WMS大仓",
+				siteMapId:"3"				
+			},{
+				parentId:"3",
+				groupNum:"0",
+				title:"华南仓-主域",
+				siteMapId:"4"				
+			},{
+				parentId:"3",
+				groupNum:"0",
+				title:"西南仓-主域",
+				siteMapId:"5"				
+			},{
+				parentId:"2",
+				groupNum:"0",
+				title:"TMS",
+				siteMapId:"6"				
+			},{
+				parentId:"6",
+				groupNum:"0",
+				title:"TMS主域",
+				siteMapId:"7"				
+			}]			
+	};
+	if (data.success) {
+		var page = createPage(data.data);
+		$("#dvContent").append(page);
+		$("#leftContent").append(createLeftContent(data.data));
+		createRecently();
+	}
 }
+
 function createRecently(){
 	var recentlyArr=$.parseJSON(getCookie('recently'))||[];
 	if(recentlyArr.length>0){
@@ -148,7 +198,7 @@ function createLeftContent(siteData){
 }
 
 function createTitle(currTitle,currId,activeFlag){
-	tabTitle='<div class="live_p_12 live_ts_16  live_tc_white title-red live_mtb_12 live_radius" id="title_'+currId+'">'+currTitle+'</div>';
+	var tabTitle='<div class="live_p_12 live_ts_16  live_tc_white title-red live_mtb_12 live_radius" id="title_'+currId+'">'+currTitle+'</div>';
 	return tabTitle;
 }
 function createContent(siteData,parentId,activeFlag){
@@ -171,7 +221,7 @@ function createContent(siteData,parentId,activeFlag){
 		}
 	}
 
-	tabContentResult='<div class="tab-pane  active" id="portlet_tab'+parentId+'">';
+	var tabContentResult='<div class="tab-pane  active" id="portlet_tab'+parentId+'">';
 
 	tabContentResult+=tabContent;
 	tabContentResult+='</div>';

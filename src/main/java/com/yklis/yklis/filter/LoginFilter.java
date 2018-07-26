@@ -92,10 +92,11 @@ public class LoginFilter implements Filter {
         if ((req.getContextPath()+"/").equals(req.getRequestURI())
           ||(req.getContextPath()+"/index").equals(req.getRequestURI())
           ||(req.getContextPath()+"/querySqsydw").equals(req.getRequestURI())
-          ||(req.getContextPath()+"/querySessionAccount").equals(req.getRequestURI())
+          ||(req.getContextPath()+"/querySessionAccount").equals(req.getRequestURI())          
           ||(req.getContextPath()+"/goLogin").equals(req.getRequestURI())
           ||(req.getContextPath()+"/logout").equals(req.getRequestURI())
-          ||(req.getContextPath()+"/login").equals(req.getRequestURI())) {
+          ||(req.getContextPath()+"/login").equals(req.getRequestURI())
+          ||(req.getContextPath()+"/html/siteMap.html").equals(req.getRequestURI())){
             chain.doFilter(request, response);
             return;
         }
