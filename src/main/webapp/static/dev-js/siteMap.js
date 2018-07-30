@@ -9,9 +9,9 @@ var intervals=0;
 
 $(document).ready(function() {
 	
-	//initNotice();
+	initNotice();
 	initSiteMap();
-	$('.wrap').css('min-height',$(window).height()-368+'px')
+	$('.wrap').css('min-height',$(window).height()-368+'px');
 	var leftMargin= 1340/2;
  	$('.container-bgc').css('min-height',$(window).height()+'px');
 
@@ -34,7 +34,7 @@ $(document).ready(function() {
 			$('#leftContent').css({'margin-left':-leftMargin+'px'});//设置左边fixed的x位置
 			$('#rightContent').css({'margin-right':-leftMargin+'px'});//设置右边fixed的x位置
 		}
-	}
+	};
 	window.onscroll=function(){
 	 	if($(window).scrollTop()-leftContentTop>=0){
 			$('#leftContent').css({'position':'fixed'}) ;
@@ -49,7 +49,7 @@ $(document).ready(function() {
 			$('#leftContent').css({'margin-left':-leftMargin+'px'});//设置左边fixed的x位置
 			$('#rightContent').css({'margin-right':-leftMargin+'px'});//设置右边fixed的x位置
 		}
-	}
+	};
 });
 
 $(document).ajaxStop(function(){
@@ -186,11 +186,12 @@ function createPage(siteData){
 	}
 	return page;
 }
+
 function createLeftContent(siteData){
 	var page='';
 	for (var l = 0; l < siteData.length; l++) {
 		if(siteData[l].parentId=="-1" ){
-			page+='<div class="left_content_text" style="cursor: pointer" onclick="scrollToArea(\''+siteData[l].siteMapId+'\')">'+siteData[l].title+'<img style="margin-top:3px" class="live_fr" src="'+ctx+'/static/image/siteMap/first.png"></div>';
+			page+='<div class="left_content_text" style="cursor: pointer" onclick="scrollToArea(\''+siteData[l].siteMapId+'\')">'+siteData[l].title+'<img style="margin-top:3px" class="live_fr" src="../static/images/siteMap/first.png"></div>';
 		}
 	}
 
@@ -201,6 +202,7 @@ function createTitle(currTitle,currId,activeFlag){
 	var tabTitle='<div class="live_p_12 live_ts_16  live_tc_white title-red live_mtb_12 live_radius" id="title_'+currId+'">'+currTitle+'</div>';
 	return tabTitle;
 }
+
 function createContent(siteData,parentId,activeFlag){
 	var tabContent="";
 	for(var i=0;i<siteData.length;i++){
@@ -319,12 +321,64 @@ function linkTo(t,url,id){
 function  scrollToArea(id) {
 	$('html, body').animate({
 		scrollTop:$('#title_'+id).offset().top+'px'
-	},300)
+	},300);
 }
 
 function initNotice(){
-	var currTime=getCurDateTime();
-	$.ajax({
+	//var currTime=getCurDateTime();
+	
+	var data = [{
+			active:"1",
+			content:"导航通知1，中华人民共和国，中华人民共和国，中华人民共和国，中华人民共和国，你好！",
+			createDate:"2016-07-25 16:14:24",
+			createUser:"hanke.lin",
+			direction:"left",
+			endTime:"2020-03-31 23:40:10",
+			intervals:60000,
+			noticeId:1,
+			operDate:"2018-06-12 17:07:33",
+			operUser:"hanke.lin",
+			speed:5,
+			startTime:"2016-10-01 16:13:54"
+	},{
+		active:"1",
+		content:"导航通知2，中华人民共和国，中华人民共和国，中华人民共和国，中华人民共和国，你好2！",
+		createDate:"2016-07-25 16:14:24",
+		createUser:"hanke.lin",
+		direction:"left",
+		endTime:"2020-03-31 23:40:10",
+		intervals:60000,
+		noticeId:2,
+		operDate:"2018-06-12 17:07:33",
+		operUser:"hanke.lin",
+		speed:5,
+		startTime:"2016-10-01 16:13:54"
+	}];	
+	
+	intervals=0;
+    if(data.length>0){
+    	var noticeStr="";
+    	var speed=0;
+
+    	var direction="left";
+    	for(var i=0;i<data.length;i++){
+    	    //var noticeNum=i+1;
+    		noticeStr+='<span style="padding-right:100px;">'+data[i].content+'</span>';
+    		if(data[i].speed*1>speed*1){
+    			speed=data[i].speed;
+    		}
+    		if(data[i].intervals*1>intervals*1){
+    			intervals=data[i].intervals;
+    		}
+    		direction=data[i].direction;
+    	}
+    	var dvMq='<marquee id="mqNotice" direction="'+direction+'" behavior="scroll" scrollamount="'+speed+'" scrolldelay="0" loop="-1"   hspace="0" vspace="0" style="color:#E3007F;font-size:18px;font-weight:bold;" >';
+		dvMq+=noticeStr;
+		dvMq+='</marquee>';
+    	$("#marquee").html(dvMq);
+    }
+    
+	/*$.ajax({
         type : "post",
         url : ctx+"/siteMap/initNoticeList?r="+Math.random(),
         data : {
@@ -357,54 +411,9 @@ function initNotice(){
             	$("#marquee").html(dvMq);
             }            
         }
-    });
+    });*/
 }
 
-function getCurDateTime(){
-	var d = new Date(); 
-	var year = d.getFullYear(); 
-	var month = d.getMonth()+1; 
-	var date = d.getDate(); 
-	var day = d.getDay(); 
-	var hours = d.getHours(); 
-	var minutes = d.getMinutes(); 
-	var seconds = d.getSeconds(); 
-	var ms = d.getMilliseconds(); 
-	var curDateTime= year;
-	if(month>9){
-		curDateTime = curDateTime +"-"+month;
-	}
-	else{
-		curDateTime = curDateTime +"-0"+month;
-	}
-	
-	if(date>9){
-		curDateTime = curDateTime +"-"+date;
-	}
-	else{
-		curDateTime = curDateTime +"-0"+date;
-	}
-	if(hours>9){
-		curDateTime = curDateTime +" "+hours;
-	}
-	else{
-		curDateTime = curDateTime +" 0"+hours;
-	}
-	
-	if(minutes>9){
-		curDateTime = curDateTime +":"+minutes;
-	}
-	else{
-		curDateTime = curDateTime +":0"+minutes;
-	}
-	if(seconds>9){
-		curDateTime = curDateTime +":"+seconds;
-	}
-	else{
-		curDateTime = curDateTime +":0"+seconds;
-	}
-	return curDateTime; 
-}
 function setCookie(name,value)
 {
 	var Days = 365;
