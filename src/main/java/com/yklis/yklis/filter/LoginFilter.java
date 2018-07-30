@@ -100,12 +100,24 @@ public class LoginFilter implements Filter {
             chain.doFilter(request, response);
             return;
         }
-                   
+        
+        //logger.info("getRequestURI:"+req.getRequestURI());
+        //logger.info("getContextPath:"+req.getContextPath());
+        
+        /*//导航页的链接
+        if(null!=req.getRequestURI()){            
+            if(req.getRequestURI().indexOf(req.getContextPath()+"/")==-1){
+                chain.doFilter(request, response);
+                return;
+            }
+        }*/
+              
+        //存在session,表示已经成功登录的情况
         HttpServletRequest httpRequest = (HttpServletRequest)request;
         HttpSession session = httpRequest.getSession(false);//参数默认值:true
         if(null!=session){
             chain.doFilter(request, response);
-            return;            
+            return;
         }
         
         //记录请求地址,以便登录成功后可以跳转到相应的页面

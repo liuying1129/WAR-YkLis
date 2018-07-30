@@ -104,12 +104,14 @@ function initSiteMap() {
 			},{
 				parentId:"3",
 				groupNum:"0",
-				title:"华南仓-主域",
+				title:"百度",
+				url:"www.baidu.com",
 				siteMapId:"4"				
 			},{
 				parentId:"3",
 				groupNum:"0",
-				title:"西南仓-主域",
+				title:"腾讯",
+				url:"www.qq.com",
 				siteMapId:"5"				
 			},{
 				parentId:"2",
@@ -119,8 +121,9 @@ function initSiteMap() {
 			},{
 				parentId:"6",
 				groupNum:"0",
-				title:"TMS主域",
-				siteMapId:"7"				
+				title:"新浪",
+				url:"www.sina.com.cn",
+				siteMapId:"7"
 			}]			
 	};
 	if (data.success) {
@@ -283,6 +286,7 @@ function getLevelFourSite(siteData,parentId,col){
 
 	return childArr.length==0?'':siteContent;
 }
+
 function linkTo(t,url,id){
 	if(url==undefined||url==null||url==''){
 		$('#level_four_'+id).siblings('.level_four').slideUp(100);
