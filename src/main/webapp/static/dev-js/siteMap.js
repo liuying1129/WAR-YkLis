@@ -105,13 +105,14 @@ function initSiteMap() {
 				parentId:"3",
 				groupNum:"0",
 				title:"百度",
-				url:"www.baidu.com",
+				//注意:url前必须加协议,如https://
+				url:"https://www.baidu.com",
 				siteMapId:"4"				
 			},{
 				parentId:"3",
 				groupNum:"0",
 				title:"腾讯",
-				url:"www.qq.com",
+				url:"http://www.qq.com",
 				siteMapId:"5"				
 			},{
 				parentId:"2",
@@ -122,7 +123,7 @@ function initSiteMap() {
 				parentId:"6",
 				groupNum:"0",
 				title:"新浪",
-				url:"www.sina.com.cn",
+				url:"http://www.sina.com.cn",
 				siteMapId:"7"
 			}]			
 	};
@@ -156,37 +157,29 @@ function createRecently(){
 	}
 	$("#rightContent >.right_content_body").html(page);
 }
+
 function createPage(siteData){
 	var page="";
-	var groupArray=[];
-	for (var i = 0; i < siteData.length; i++) {
-		if(siteData[i].parentId=="-1" && $.inArray(siteData[i].groupNum, groupArray)==-1){
-			groupArray.push(siteData[i].groupNum);
-		}
-	}
 
-	for(var k=0;k<groupArray.length;k++){
-		var tabTitle="";
-		var tabContent="";
-		var activeFlag=0;
-		for (var l = 0; l < siteData.length; l++) {
-			if(siteData[l].parentId=="-1" && groupArray[k]==siteData[l].groupNum){
-				tabTitle=createTitle(siteData[l].title,siteData[l].siteMapId,activeFlag);
-				tabContent=createContent(siteData,siteData[l].siteMapId,activeFlag);
-				activeFlag++;
-				if(tabTitle!=""){
-					page+='<div class="row-fluid">';
-					page+='<div class="span12">';
-					page+=tabTitle;
-					page+='	<div class="">';
-					page+=tabContent;
-					page+='</div>';
-					page+='</div>';
-					page+='</div>';
-				}
+	var tabTitle="";
+	var tabContent="";
+	for (var l = 0; l < siteData.length; l++) {
+		if(siteData[l].parentId=="-1" ){
+			tabTitle=createTitle(siteData[l].title,siteData[l].siteMapId);
+			tabContent=createContent(siteData,siteData[l].siteMapId);
+			if(tabTitle!=""){
+				page+='<div class="row-fluid">';
+				page+='<div class="span12">';
+				page+=tabTitle;
+				page+='	<div class="">';
+				page+=tabContent;
+				page+='</div>';
+				page+='</div>';
+				page+='</div>';
 			}
 		}
 	}
+		
 	return page;
 }
 
@@ -201,12 +194,12 @@ function createLeftContent(siteData){
 	return page;
 }
 
-function createTitle(currTitle,currId,activeFlag){
+function createTitle(currTitle,currId){
 	var tabTitle='<div class="live_p_12 live_ts_16  live_tc_white title-red live_mtb_12 live_radius" id="title_'+currId+'">'+currTitle+'</div>';
 	return tabTitle;
 }
 
-function createContent(siteData,parentId,activeFlag){
+function createContent(siteData,parentId){
 	var tabContent="";
 	for(var i=0;i<siteData.length;i++){
 		if(siteData[i].parentId==parentId){
@@ -235,10 +228,10 @@ function createContent(siteData,parentId,activeFlag){
 
 function createContentList(siteData,parentId){
 	var contentList ='';
-	var siteList='';
+
 	var childArr=[];
-	var endCount=0,//一行的结束序列
-		col=0;//列的序列
+	var endCount=0;//一行的结束序列
+
 	//找出符合parent的子集数组
 	for(var i=0;i<siteData.length;i++) {
 		if (siteData[i].parentId == parentId) {
@@ -253,38 +246,12 @@ function createContentList(siteData,parentId){
 			contentList+='<div class="span2 live_m_0" style="min-height: 0;">';
 			contentList+='<a href="javascript:;" id="'+childArr[i].siteMapId+'" data-parent-id="'+parentId+'" onclick="linkTo(this,\''+childArr[i].url+'\',\''+childArr[i].siteMapId+'\')"  ><span class="title">'+childArr[i].title+'</span></a>';
 			contentList+='</div>';
-			siteList+=getLevelFourSite(siteData,childArr[i].siteMapId,col);
 			if((i==childArr.length-1||i==endCount)){
-				contentList+=siteList;
+
 				contentList+='</div>';
-				siteList='';
-				col=0;
 			}
-			col++;
 	}
 	return contentList;
-}
-function getLevelFourSite(siteData,parentId,col){
-	var siteContent='<div class="span12    live_m_0     level_four   live_pt_12    " id="level_four_'+parentId+'"  >';
-	siteContent+='<div class="arrow1" style="left:'+(145*col)+'px"></div>';
-	siteContent+='<div class="row-fluid live_m_0 live_ptb_6    live_radius"  style="position: relative;z-index: 3;width: auto" >';
-	var childArr=[];
-	//找出符合parent的子集数组
-	for(var i=0;i<siteData.length;i++) {
-		if (siteData[i].parentId == parentId) {
-			childArr.push(siteData[i]);
-		}
-	}
-
- 	for(var i=0;i<childArr.length;i++){
-			siteContent+='<div class="span2 live_m_0 live_pl_12"  style="min-height: 0;">';
-			siteContent+='<a href="javascript:;" data-parent-id="'+parentId+'" onclick="linkTo(this,\''+childArr[i].url+'\',\''+childArr[i].siteMapId+'\')"  ><span class="title">'+childArr[i].title+'</span></a>';
-			siteContent+='</div>';
-	}
-	siteContent+='</div>';
-	siteContent+='</div>';
-
-	return childArr.length==0?'':siteContent;
 }
 
 function linkTo(t,url,id){

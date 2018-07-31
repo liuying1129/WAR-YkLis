@@ -56,7 +56,7 @@ public class LoginFilter implements Filter {
 
         HttpServletRequest req= (HttpServletRequest)request;
         HttpServletResponse res = (HttpServletResponse)response;  
-          
+                  
         //生成二维码图片begin
         //servletContext.getRealPath("/")->D:\Tools\apache-tomcat-8.5.4\webapps\YkLis\
         String ssFile = servletContext.getRealPath("/")+"static/images/QRCodeURL.png";
@@ -100,18 +100,7 @@ public class LoginFilter implements Filter {
             chain.doFilter(request, response);
             return;
         }
-        
-        //logger.info("getRequestURI:"+req.getRequestURI());
-        //logger.info("getContextPath:"+req.getContextPath());
-        
-        /*//导航页的链接
-        if(null!=req.getRequestURI()){            
-            if(req.getRequestURI().indexOf(req.getContextPath()+"/")==-1){
-                chain.doFilter(request, response);
-                return;
-            }
-        }*/
-              
+                      
         //存在session,表示已经成功登录的情况
         HttpServletRequest httpRequest = (HttpServletRequest)request;
         HttpSession session = httpRequest.getSession(false);//参数默认值:true
