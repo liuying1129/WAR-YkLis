@@ -845,5 +845,12 @@ public class HomeController{
     public String htmlTest(HttpServletRequest request,HttpServletResponse response) {
                    
         return "testHtml";
-    }*/      
+    }*/
+    
+    @RequestMapping(value = "hm.gif" )
+    public void hm(HttpServletRequest request,HttpServletResponse response){
+    	
+    	//埋点请求
+    	logger.info("页面的img请求");
+    }
 }

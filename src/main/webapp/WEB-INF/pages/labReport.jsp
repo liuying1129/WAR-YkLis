@@ -117,6 +117,11 @@
     <img src="static/images/loading.gif">
   </div>
   
+  <!-- 埋点.伪装成图片请求,因为图片请求天然是跨域的,所以业界的通用做法是构造一个空的gif -->
+  <!-- display:none时,Opera不产生请求 -->
+  <!-- burialPoint.js的方法更好、更灵活 -->
+  <!-- <img src="hm.gif" style="display:none;"> -->
+  
     <!-- Bootstrap -->
     <!-- 如引用bootstrap.min.js,header.jsp用户名的下拉菜单无法下拉.应该是与header.jsp的bootstrap.min.js引用冲突 -->
     <!-- Bootstrap Table需要依赖bootstrap.min.js,因上述原因,本页面就不要引用bootstrap.min.js,使用header.jsp中的引用 -->
@@ -143,5 +148,6 @@
 
     <script src="${ctx}/static/dev-js/commFunction.js?jsr=${jsr}"></script>
     <script src="${ctx}/static/dev-js/labReport.js?jsr=${jsr}"></script>
+    <script src="${ctx}/static/dev-js/burialPoint.js?jsr=${jsr}"></script>
 </body>
 </html>
