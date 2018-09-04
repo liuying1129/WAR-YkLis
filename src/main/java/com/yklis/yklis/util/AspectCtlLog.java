@@ -19,6 +19,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.alibaba.fastjson.JSON;
 
 /**
+ * 切面:用于插入到指定位置实现某项功能的类
+ * 
  * 记录Controller被请求的日志
  * @author ying07.liu
  *
