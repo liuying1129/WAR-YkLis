@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.javatuples.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -165,7 +166,11 @@ public class HomeController{
         Map<String, String[]> inputParamMap = new HashMap<>();
         inputParamMap.put("methodNum", sl1);
         inputParamMap.put("sql", sl2);
-        String sign = CommFunction.signCalc(inputParamMap,null);
+        
+        Pair<Boolean,String> pairSign= CommFunction.signCalc(inputParamMap,null);
+        
+        String sign = null;
+        if(null != pairSign) sign = pairSign.getValue1();
         
         //请求接口前,对中文参数进行编码。可以对所以参数进行编码,因为对英文参数编码不会有变化
         String sql = null;
