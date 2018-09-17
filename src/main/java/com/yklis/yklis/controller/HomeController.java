@@ -207,9 +207,14 @@ public class HomeController{
 		}
         //请求远程用户信息接口end
         		
+		//登录成功,创建会话
+		//true:若存在会话则返回该会话,否则新建一个会话
+		//false:若存在会话则返回该会话,否则返回NULL
 		HttpSession session = request.getSession(true);//参数默认值:true
         //该session值用于header.jsp中显示
         session.setAttribute("yklis.account", account);
+        //该session值用于标识是否成功登录
+        session.setAttribute("yklis.isLogin", true);
 		
         if("".equals(cookieRequest)||(null==cookieRequest)){
             
