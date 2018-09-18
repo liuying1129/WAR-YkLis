@@ -105,8 +105,12 @@ public class LoginFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest)request;
         HttpSession session = httpRequest.getSession(false);//参数默认值:true
         if(null!=session){
-            chain.doFilter(request, response);
-            return;
+            boolean b2 = (boolean) session.getAttribute("yklis.isLogin");
+            
+            if(b2) {                
+                chain.doFilter(request, response);
+                return;
+            }
         }
         
         //记录请求地址,以便登录成功后可以跳转到相应的页面

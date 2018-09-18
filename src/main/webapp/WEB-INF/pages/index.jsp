@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page session="false"%>
+<!-- 登录成功后session中增加了属性值yklis.isLogin,故访问页面时自动生成session也没关系了.注:以前通过是否存在session判断登录成功与否 -->
+<%-- <%@ page session="false"%> --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
