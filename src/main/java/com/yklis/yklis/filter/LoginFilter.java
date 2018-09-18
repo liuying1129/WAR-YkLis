@@ -101,15 +101,20 @@ public class LoginFilter implements Filter {
             return;
         }
                       
-        //存在session,表示已经成功登录的情况
+        //yklis.isLogin为true,表示已经成功登录的情况
         HttpServletRequest httpRequest = (HttpServletRequest)request;
         HttpSession session = httpRequest.getSession(false);//参数默认值:true
         if(null!=session){
-            boolean b2 = (boolean) session.getAttribute("yklis.isLogin");
             
-            if(b2) {                
-                chain.doFilter(request, response);
-                return;
+            Object o2 = session.getAttribute("yklis.isLogin");
+            if(null != o2) {
+                
+                boolean b2 = (boolean) o2;
+                        
+                if(b2) {                
+                    chain.doFilter(request, response);
+                    return;
+                }                
             }
         }
         
