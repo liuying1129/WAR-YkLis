@@ -1,8 +1,7 @@
 package com.yklis.yklis.misc;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
@@ -17,7 +16,8 @@ import org.apache.log4j.Logger;
 
 /**
  * WebSocket
- * 新结果提示功能
+   * 每次请求都会产生新的实例（WebSocketNewValue）
+   * 新结果提示功能
  * @author liuyi
  *
  */
@@ -31,56 +31,70 @@ public class WebSocketNewValue {
     //PropertyConfigurator.configure("log4jj.properties");
     private final Logger logger = Logger.getLogger(this.getClass());
     
-    private static String userId;
+    private String userId;
     //与某个客户端的连接会话，需要通过它来给客户端发送数据
     private Session session;
     
-    private Map<String, Object> wsMap = new HashMap<>();
+    private static ConcurrentHashMap<String, WebSocketNewValue> wsMap = new ConcurrentHashMap<>();
       
-    //有连接时的触发函数
+    /**
+              * 有连接时的触发函数
+     * @param session.可选参数，session为与某个客户端的连接会话，需要通过它来给客户端发送数据
+              * 使用@PathParam注解进行参数获取
+     */
 	@OnOpen
 	public void onOpen(@PathParam("userId") String userId,Session session){
 
 		this.session = session;
-	    logger.info("新连接："+userId);
+		this.userId = userId;
 	    
-	    wsMap.put(session.getQueryString(),this);
-	    //sendMessage("张三");
-	    	    	    
-    	try {
+	    wsMap.put(userId,this);
+	    
+		for (String key : wsMap.keySet()) {
+			
+			if (!userId.equals(key)) continue;
+			
+			try {
+				wsMap.get(key).session.getBasicRemote().sendText("hello " + userId);
+			} catch (IOException e) {
+				logger.error("WebSocket sendText错误");
+			}
+		}
+    	/*try {
 			session.getBasicRemote().sendText("张三");
 		} catch (IOException e) {
 			
 			logger.error("WebSocket sendText错误");
-		}	    
+		}*/
 	}
 	
     //连接关闭时的调用方法
     @OnClose
     public void onClose(){
+    	
         logger.info("连接：{} 关闭"+this.userId);
+        wsMap.remove(userId);
     }	
     
-    //收到消息时执行
+    /**
+              * 收到消息时执行
+     * @param message.客户端发送过来的消息
+     * @param session.可选参数
+     * @throws IOException
+     */
     @OnMessage
     public void onMessage(String message, Session session) throws IOException {    	
     }
     
-    //连接错误时执行
+    /**
+              * 连接错误时执行
+     * @param session
+     * @param error
+     */
     @OnError
     public void onError(Session session, Throwable error){
-        logger.info("用户id为："+"this.userId"+"的连接发送错误");
-        error.printStackTrace();
-    }
-    
-    //没有用注解，根据需要添加的方法
-    public void sendMessage(String message){
     	
-    	try {
-			this.session.getBasicRemote().sendText(message);
-		} catch (IOException e) {
-			
-			logger.error("WebSocket sendText错误");
-		}
-    }
+        logger.error("session id["+session.getId()+"]连接错误");
+        error.printStackTrace();
+    }    
 }
