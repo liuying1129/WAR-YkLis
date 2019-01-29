@@ -754,3 +754,54 @@ $(document).ready(function() {
 	});	
     //请求远程用户信息接口end*/
 });
+
+//WebSocket begin
+//判断浏览器是否支持WebSocket
+if (!!window.WebSocket && window.WebSocket.prototype.send){
+    var wsNewValue = new WebSocket("ws://localhost:8080/YkLis/websocket/user000");
+}else{
+	alert("浏览器不支持WebSocket");
+}
+ 
+//连接发生错误的回调方法
+wsNewValue.onerror = function(){
+	alert('WebSocket onerror事件');
+};
+  
+//连接成功建立的回调方法
+wsNewValue.onopen = function(event){
+    console.log("WebSocket onopen事件")
+}
+
+//接收到消息的回调方法
+wsNewValue.onmessage = function(event){
+	alert('WebSocket onmessage事件:'+event.data);
+}
+  
+//连接关闭的回调方法
+wsNewValue.onclose = function(){
+	console.log('WebSocket onclose事件');
+}
+  
+//监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+window.onbeforeunload = function(){
+	wsNewValue.close();
+}
+  
+ //将消息显示在网页上
+ //function setMessageInnerHTML(innerHTML){
+ //    document.getElementById('message').innerHTML += innerHTML + '<br/>';
+ //}
+  
+ //关闭连接
+ //function closeWebSocket(){
+ //    websocket.close();
+ //}
+  
+//发送消息
+//function send(){
+//     var message = document.getElementById('text').value;
+//     websocket.send(message);
+//}
+//WebSocket end
+      

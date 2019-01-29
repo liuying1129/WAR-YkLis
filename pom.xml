@@ -284,7 +284,15 @@
             <artifactId>LYFunction</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-					
+        
+        <!-- WebSocket -->
+		<dependency>
+		    <groupId>javax</groupId>
+		    <artifactId>javaee-api</artifactId>
+		    <version>8.0</version>
+		    <scope>provided</scope>
+		</dependency>
+								
 	</dependencies>
 
 	<build> 
