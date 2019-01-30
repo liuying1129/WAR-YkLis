@@ -62,7 +62,9 @@ $.ajax({
 
 			//接收到消息的回调方法
 			wsNewValue.onmessage = function(event){
-				alert('WebSocket onmessage事件:'+event.data);
+				
+				var notyf = new Notyf({delay:5000});
+				notyf.confirm(event.data);
 			}
 			  
 			//连接关闭的回调方法

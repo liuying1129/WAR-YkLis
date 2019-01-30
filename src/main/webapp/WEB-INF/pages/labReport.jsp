@@ -23,6 +23,9 @@
 
     <!-- select2 -->
     <link href="${ctx}/static/select2/4.0.5/css/select2.min.css" rel="stylesheet" />      
+       
+    <!-- notyf -->     
+    <link href="${ctx}/static/notyf/notyf.min.css" rel="stylesheet">
          
     <!-- Custom styles for this template -->
     <link href="${ctx}/static/dev-css/labReport.css?jsr=${jsr}" rel="stylesheet">
@@ -144,6 +147,9 @@
     <script src="${ctx}/static/dev-js/make_sign.js"></script>
     
     <script src="${ctx}/static/dayjs/dayjs.min.js"></script>
+
+    <!-- notyf -->     
+    <script src="${ctx}/static/notyf/notyf.min.js"></script>
 
     <script src="${ctx}/static/dev-js/commFunction.js?jsr=${jsr}"></script>
     <script src="${ctx}/static/dev-js/labReport.js?jsr=${jsr}"></script>
