@@ -44,7 +44,7 @@ $.ajax({
 			//依赖strAccountCookie的值，故放在这里
 			//判断浏览器是否支持WebSocket
 			if (!!window.WebSocket && window.WebSocket.prototype.send){
-			    var wsNewValue = new WebSocket("ws://localhost:8080/YkLis/websocket/"+strAccountCookie);
+			    var wsNewValue = new WebSocket("ws://localhost:8080/YkSchedule/websocket/"+strAccountCookie);
 			}else{
 				alert("浏览器不支持WebSocket");
 			}
