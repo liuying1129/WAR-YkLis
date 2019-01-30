@@ -13,6 +13,7 @@ var strSCSYDW = localStorage.getItem("yklis.SCSYDW");
 if(typeof strSCSYDW == "undefined"||strSCSYDW ==null||strSCSYDW.length == 0){
 	strSCSYDW = "未授权";
 }
+
 var strAccountCookie;// = getCookie("yklis.account")
 //读取session中yklis.account的值
 $.ajax({
@@ -44,7 +45,7 @@ $.ajax({
 			//依赖strAccountCookie的值，故放在这里
 			//判断浏览器是否支持WebSocket
 			if (!!window.WebSocket && window.WebSocket.prototype.send){
-			    var wsNewValue = new WebSocket("ws://localhost:8080/YkSchedule/websocket/"+strAccountCookie);
+			    var wsNewValue = new WebSocket(localStorage.getItem("WebSocketNewValueUrl")+"/websocket/"+strAccountCookie);
 			}else{
 				alert("浏览器不支持WebSocket");
 			}
@@ -79,9 +80,8 @@ $.ajax({
 	error : function(xhr, textStatus, errorThrown) {
 		console.log("ajax请求失败,请求:querySessionAccount,状态码:"+xhr.status +",状态说明:"+ textStatus+",xhr readyState:"+xhr.readyState);
 	}
-});    
+});
 
-    
 if(typeof Array.prototype.forEach != "function"){
 	alert("浏览器不支持forEach");
 }

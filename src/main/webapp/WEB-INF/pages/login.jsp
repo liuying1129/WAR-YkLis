@@ -37,5 +37,8 @@
     <input type="submit" value="登录">
   </form>
   
+  <script src="${ctx}/static/jquery/jquery-3.2.1.min.js"></script>
+  <script src="${ctx}/static/dev-js/login.js?jsr=${jsr}"></script>
+  
 </body>
 </html>

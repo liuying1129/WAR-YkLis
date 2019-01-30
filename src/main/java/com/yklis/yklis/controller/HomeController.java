@@ -873,23 +873,20 @@ public class HomeController{
     @ResponseBody
     public String queryWebSocketNewValueUrl(HttpServletRequest request) {
         
-        //获取授权使用单位
-        String s1 = scalarSQLCmdService.ScalarSQLCmd("select Reserve from CommCode where TypeName='WebSocket服务端' and Name='新结果提醒' ");
+        String s1 = scalarSQLCmdService.ScalarSQLCmd("select Name from CommCode where TypeName='系统代码' and Remark='WebSocket服务端' and Reserve='新结果提醒' ");
         //{"success":true,"response":{"result":""}}
-                
+                        
         JSONObject jso=JSON.parseObject(s1);//json字符串转换成JSONObject(JSON对象)
         boolean bb1 = jso.getBooleanValue("success");
         
-        String s2 = null;
+        String result = null;
         
         if(bb1){
             
             JSONObject jso2=jso.getJSONObject("response");
-            String result =jso2.getString("result");
-            
-            //s2 = CommFunction.deCryptStr(result, Constants.DES_KEY);            
+            result =jso2.getString("result");
         }
         
-        return s2;
+        return result;
     }
 }
