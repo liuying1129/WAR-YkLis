@@ -863,4 +863,33 @@ public class HomeController{
     	//埋点请求
     	logger.info("页面的img请求");
     }
+    
+    /**
+     * 查询【新结果提醒】WebSocket的URL
+     * @param request
+     * @return
+     */
+    @RequestMapping("queryWebSocketNewValueUrl")
+    @ResponseBody
+    public String queryWebSocketNewValueUrl(HttpServletRequest request) {
+        
+        //获取授权使用单位
+        String s1 = scalarSQLCmdService.ScalarSQLCmd("select Reserve from CommCode where TypeName='WebSocket服务端' and Name='新结果提醒' ");
+        //{"success":true,"response":{"result":""}}
+                
+        JSONObject jso=JSON.parseObject(s1);//json字符串转换成JSONObject(JSON对象)
+        boolean bb1 = jso.getBooleanValue("success");
+        
+        String s2 = null;
+        
+        if(bb1){
+            
+            JSONObject jso2=jso.getJSONObject("response");
+            String result =jso2.getString("result");
+            
+            //s2 = CommFunction.deCryptStr(result, Constants.DES_KEY);            
+        }
+        
+        return s2;
+    }
 }
