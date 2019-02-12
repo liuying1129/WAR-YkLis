@@ -70,7 +70,7 @@
     </select>
   </form>
   <button id="btnQuery">查询</button>
-  <button id="btnPrint">打印</button>
+  <button id="btnPrint">打印</button><!--  越秀中医,不需要显示打印按钮 style="display:none;" -->
   <!-- <table>
   	<thead>
         <tr>
