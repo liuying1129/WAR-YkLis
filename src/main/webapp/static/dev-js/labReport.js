@@ -121,126 +121,6 @@ window.onunload = function(){
 
 var btnQuery = document.getElementById("btnQuery");
 btnQuery.onclick = function() {
-	
-	/*$('#myTBody').bootstrapTable({
-		
-		method : 'post',
-		url : 'selectLabReport',
-		dataType : 'json',
-		//加载服务器数据之前的处理程序，可以用来格式化数据。参数：res为从服务器请求到的数据
-	    responseHandler:function(res){
-	    	return res.response;
-	    },
-		detailView:true,
-	    detailFormatter:function(index, row, element){
-
-	        var html = [];
-
-	        $.each(row, function (key, value) {
-
-	        	if((key==="唯一编号")||(key==="His唯一编号")||(key==="His门诊或住院")||(key==="所属部门")||(key==="工种")||(key==="工号")||(key==="婚否")||(key==="籍贯")||(key==="住址")||(key==="电话")||(key==="所属公司")||(key==="ifCompleted")||(key==="联机号")||(key==="流水号")||(key==="打印次数"))
-	            	html.push('<p><b>' + key + ':</b> ' + value + '</p>');
-
-	        });
-	        return html.join('');
-	    },
-	    pagination: true, //分页
-	    //pageSize: 5,//如果设置了分页，页面数据条数
-	    //pageList: [5, 10, 20, 40],  //如果设置了分页，设置可供选择的页面数据条数。设置为All 则显示所有记录
-	    sidePagination: "server", //服务端处理分页
-	    queryParamsType: "",
-        queryParams: function (params) {//自定义参数，这里的参数是传给后台的，我这是分页用的  
-            return {//这里的params是table提供的
-            	
-            	pageNum: 1,//params.pageNumber,
-                pageSize: 20,//params.pageSize,
-                //cp: params.offset,//从数据库第几条记录开始
-                //ps: params.limit//找多少条
-                checkDate: '5',
-                printtimes: '5',
-                caseno: '',
-                patientname: '',
-                deptname: '',
-                check_doctor: '刘幼平'
-            };
-        },
-        columns: [{
-	        field: '姓名',
-	        title: '姓名',
-	        formatter: function formatter(value, row, index, field) {
-	        	
-	        	return "<a href='checkValue?unid="+row.唯一编号+"&ifCompleted="+row.ifCompleted+"' target='_blank'>" + value + "</a>";
-	        }
-	    }, {
-	        field: '性别',
-	        title: '性别'
-	    }, {
-	        field: '年龄',
-	        title: '年龄'
-	    }, {
-	    	checkbox: true
-	    }, {
-	        field: '病历号',
-	        title: '病历号'
-	    }, {
-	        field: '床号',
-	        title: '床号'
-	    }, {
-	        field: '送检科室',
-	        title: '送检科室'
-	    }, {
-	        field: '送检医生',
-	        title: '送检医生'
-	    }, {
-	        field: '检查日期',
-	        title: '检查日期'
-	    }, {
-	        field: '申请日期',
-	        title: '申请日期'
-	    }, {
-	        field: '审核者',
-	        title: '审核者'
-	    }, {
-	        field: '工作组',
-	        title: '工作组'
-	    }, {
-	        field: '操作者',
-	        title: '操作者'
-	    }, {
-	        field: '优先级别',
-	        title: '优先级别'
-	    }, {
-	        field: '样本类型',
-	        title: '样本类型'
-	    }, {
-	        field: '临床诊断',
-	        title: '临床诊断'
-	    }, {
-	        field: '样本情况',
-	        title: '样本情况'
-	    }, {
-	        field: '备注',
-	        title: '备注'
-	    }, {
-	        field: '审核时间',
-	        title: '审核时间'
-	    }, {
-	    	width: '0px',//todo-list,不起作用
-	        field: '唯一编号',
-	        //title: '唯一编号',//为减小宽度而注释
-	        class: 'unid'//用于打印
-	    }, {
-	    	width: '0px',//todo-list,不起作用
-	        field: 'ifCompleted',
-	        //title: 'ifCompleted',//为减小宽度而注释
-		    class: 'ifCompleted'//用于打印
-	    }, {
-	    	width: '0px',//todo-list,不起作用
-	        field: '打印次数',
-	        //title: '打印次数',//为减小宽度而注释
-		    class: 'printtimes'//用于打印
-	    }]
-	});//*/
 		
 	$.ajax({
 		//默认值: true。如果需要发送同步请求，请将此选项设置为 false。注意，同步请求将锁住浏览器，用户其它操作必须等待请求完成才可以执行
@@ -258,16 +138,6 @@ btnQuery.onclick = function() {
 			document.getElementById("maskLayer").style.display="block";
         },
 		success : function(data) {
-			
-			/*$("#myTBody").html("");
-
-			$.each(data.response, function(index,element) {
-				
-	            var tbBody = "";
-	           		            
-	            tbBody += "<tr><td><a href='checkValue?unid="+element.唯一编号+"&ifCompleted="+element.ifCompleted+"' target='_blank'>" + element.姓名 + "</a></td><td>" + element.性别 + "</td><td>" + element.年龄 + "</td><td><input type='checkbox' /></td><td>" + element.病历号 + "</td><td>" + element.床号 + "</td><td>" + element.送检科室 + "</td><td>" + element.送检医生 + "</td><td>" + element.检查日期 + "</td><td>" + element.申请日期 + "</td><td>" + element.审核者 + "</td><td>" + element.工作组 + "</td><td>" + element.操作者 + "</td><td>" + element.优先级别 + "</td><td class='printtimes'>" + element.打印次数 + "</td><td>" + element.样本类型 + "</td><td>" + element.临床诊断 + "</td><td>" + element.样本情况 + "</td><td>" + element.备注 + "</td><td class='unid'>" + element.唯一编号 + "</td><td>" + element.His唯一编号 + "</td><td>" + element.His门诊或住院 + "</td><td>" + element.所属部门 + "</td><td>" + element.工种 + "</td><td>" + element.工号 + "</td><td>" + element.婚否 + "</td><td>" + element.籍贯 + "</td><td>" + element.住址 + "</td><td>" + element.电话 + "</td><td>" + element.所属公司 + "</td><td>" + element.审核时间 + "</td><td class='ifCompleted'>" + element.ifCompleted + "</td><td>" + element.联机号 + "</td><td>" + element.流水号 + "</td></tr>";
-	            $("#myTBody").append(tbBody);
-	          });*/
 			
 			$('#myTBody').bootstrapTable('load', data.response);
 			
@@ -372,49 +242,11 @@ btnQuery.onclick = function() {
 			document.getElementById("maskLayer").style.display="none";
 			console.log("ajax请求失败,请求:selectLabReport,状态码:"+xhr.status +",状态说明:"+ textStatus+",xhr readyState:"+xhr.readyState);
 		}
-	});//*/
+	});
 };
 
 var btnPrint = document.getElementById("btnPrint");
 btnPrint.onclick = function() {
-	
-	/*var lsSelected = [];
-	
-	var myTBody=document.getElementById("myTBody");
-
-	var trList=myTBody.getElementsByTagName("tr");
-	for (var i=0;i<trList.length;i++) {
-
-		var checked = false;
-		
-		var inputArr=trList[i].getElementsByTagName("input");
-		if (inputArr.length>0) {
-			checked = inputArr[0].checked;
-		}
-		
-		if(checked){
-			
-			var objSelected = {};
-			
-			var tdArr=trList[i].getElementsByTagName("td");
-
-			for (var j=0;j<tdArr.length;j++) {
-							
-				if(tdArr[j].getAttribute("class") === "unid"){
-					objSelected.unid = tdArr[j].innerText;
-				}
-				if(tdArr[j].getAttribute("class") === "ifCompleted"){
-					objSelected.ifCompleted = tdArr[j].innerText;
-				}
-				if(tdArr[j].getAttribute("class") === "printtimes"){
-					objSelected.printtimes = tdArr[j].innerText;
-				}
-			}
-			
-			lsSelected.push(objSelected);
-			
-		}
-	}*/
 	
 	var lsSelected = $('#myTBody').bootstrapTable('getSelections');
 	
@@ -435,12 +267,6 @@ btnPrint.onclick = function() {
 		//预期服务器返回的数据类型。如果不指定，jQuery将自动根据 HTTP包 MIME信息来智能判断
 		dataType : 'json',
 		success : function(data) {
-			
-			/*var strSCSYDWCookie = getCookie("yklis.SCSYDW");
-			if(typeof strSCSYDWCookie == "undefined"||strSCSYDWCookie ==null||strSCSYDWCookie.length == 0){
-				strSCSYDWCookie = "未授权";
-			}
-			var strAccountCookie = getCookie("yklis.account");*/
 			
 			var LODOP=getLodop();
 			LODOP.PRINT_INIT("printReport");//首先一个初始化语句//参数为打印任务名
@@ -637,7 +463,7 @@ btnPrint.onclick = function() {
 		error : function(xhr, textStatus, errorThrown) {
 			console.log("ajax请求失败,请求:printReport,状态码:"+xhr.status +",状态说明:"+ textStatus+",xhr readyState:"+xhr.readyState);
 		}
-	});//*/									
+	});							
 };
 
 $(document).ready(function() {
@@ -737,58 +563,105 @@ $(document).ready(function() {
     }
 	//读取用户的选择end
         
-    /*//初始化表头begin
+    //初始化表头begin
     //只是为了进入页面时更美观,并没有实际作用
-    //todo-list:初始化表头后，查询出来的数据全部渲染为了-
-    $('#myTBody').bootstrapTable({
-    	
-	    columns: [{
-	        title: '姓名'
+    //复制查询按钮的代码，注释其中两行
+	//$('#myTBody').bootstrapTable('load', data.response);//初始化表头专用注释
+	
+	$('#myTBody').bootstrapTable({
+		
+	    //data: data.response,//初始化表头专用注释
+		detailView:true,
+	    detailFormatter:function(index, row, element){
+
+	        var html = [];
+
+	        $.each(row, function (key, value) {
+
+	        	if((key==="唯一编号")||(key==="His唯一编号")||(key==="His门诊或住院")||(key==="所属部门")||(key==="工种")||(key==="工号")||(key==="婚否")||(key==="籍贯")||(key==="住址")||(key==="电话")||(key==="所属公司")||(key==="ifCompleted")||(key==="联机号")||(key==="流水号")||(key==="打印次数"))
+	            	html.push('<p><b>' + key + ':</b> ' + value + '</p>');
+
+	        });
+	        return html.join('');
+	    },
+        columns: [{
+	        field: '姓名',
+	        title: '姓名',
+	        formatter: function formatter(value, row, index, field) {
+	        	
+	        	return "<a href='checkValue?unid="+row.唯一编号+"&ifCompleted="+row.ifCompleted+"' target='_blank'>" + value + "</a>";
+	        }
 	    }, {
+	        field: '性别',
 	        title: '性别'
 	    }, {
+	        field: '年龄',
 	        title: '年龄'
 	    }, {
 	    	checkbox: true
 	    }, {
+	        field: '病历号',
 	        title: '病历号'
 	    }, {
+	        field: '床号',
 	        title: '床号'
 	    }, {
+	        field: '送检科室',
 	        title: '送检科室'
 	    }, {
+	        field: '送检医生',
 	        title: '送检医生'
 	    }, {
+	        field: '检查日期',
 	        title: '检查日期'
 	    }, {
+	        field: '申请日期',
 	        title: '申请日期'
 	    }, {
+	        field: '审核者',
 	        title: '审核者'
 	    }, {
+	        field: '工作组',
 	        title: '工作组'
 	    }, {
+	        field: '操作者',
 	        title: '操作者'
 	    }, {
+	        field: '优先级别',
 	        title: '优先级别'
 	    }, {
+	        field: '样本类型',
 	        title: '样本类型'
 	    }, {
+	        field: '临床诊断',
 	        title: '临床诊断'
 	    }, {
+	        field: '样本情况',
 	        title: '样本情况'
 	    }, {
+	        field: '备注',
 	        title: '备注'
 	    }, {
+	        field: '审核时间',
 	        title: '审核时间'
 	    }, {
-	        title: '唯一编号'
+	    	width: '0px',//todo-list,不起作用
+	        field: '唯一编号',
+	        //title: '唯一编号',//为减小宽度而注释
+	        class: 'unid'//用于打印
 	    }, {
-	        title: 'ifCompleted'
+	    	width: '0px',//todo-list,不起作用
+	        field: 'ifCompleted',
+	        //title: 'ifCompleted',//为减小宽度而注释
+		    class: 'ifCompleted'//用于打印
 	    }, {
-	        title: '打印次数'
+	    	width: '0px',//todo-list,不起作用
+	        field: '打印次数',
+	        //title: '打印次数',//为减小宽度而注释
+		    class: 'printtimes'//用于打印
 	    }]
-    });
-    //初始化表头end//*/
+	});    
+    //初始化表头end
 		
 	/*//请求远程用户信息接口begin
 	var params = {

@@ -71,48 +71,7 @@
   </form>
   <button id="btnQuery">查询</button>
   <button id="btnPrint">打印</button><!--  越秀中医,不需要显示打印按钮 style="display:none;" -->
-  <!-- <table>
-  	<thead>
-        <tr>
-          <th>姓名</th>
-          <th>性别</th>
-          <th>年龄</th>
-          <th>选择</th>
-          <th>病历号</th>
-          <th>床号</th>
-          <th>送检科室</th>
-          <th>送检医生</th>
-          <th>检查日期</th>
-          <th>申请日期</th>
-          <th>审核者</th>
-          <th>工作组</th>
-          <th>操作者</th>
-          <th>优先级别</th>
-          <th>打印次数</th>
-          <th>样本类型</th>
-          <th>临床诊断</th>
-          <th>样本情况</th>
-          <th>备注</th>
-          <th>唯一编号</th>
-          <th>His唯一编号</th>
-          <th>His门诊或住院</th>
-          <th>所属部门</th>
-          <th>工种</th>
-          <th>工号</th>
-          <th>婚否</th>
-          <th>籍贯</th>
-          <th>住址</th>
-          <th>电话</th>
-          <th>所属公司</th>
-          <th>审核时间</th>
-          <th>结束标志</th>
-          <th>联机号</th>
-          <th>流水号</th>
-        </tr>
-  	</thead>
-    <tbody id="myTBody">
-    </tbody>
-  </table> -->
+
   <table id="myTBody"></table>
   
   <div id="maskLayer">
