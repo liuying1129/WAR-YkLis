@@ -708,9 +708,10 @@ public class HomeController{
     }
     
     @RequestMapping("modifyPwd")
-    public ModelAndView modifyPwd(HttpServletRequest request,
-            @CookieValue(value = "yklis.account",required = false) String cookieAccount) {
-                
+    public ModelAndView modifyPwd(HttpServletRequest request) {
+    	
+    	String cookieAccount = querySessionAccount(request);
+
         String oldPwd = request.getParameter("oldPwd");
         String newPwd = request.getParameter("newPwd");
         String confirmPwd = request.getParameter("confirmPwd");
