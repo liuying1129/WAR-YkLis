@@ -67,7 +67,10 @@
         <property name="dataSource">
             <ref bean="dataSource_master" />
         </property>
-    </bean>  
+    </bean>
+    
+    <!-- 创建Spring bean【springSessionRepositoryFilter】,该bean实现了Filter,负责替换原生HttpSession的实现 -->
+    <bean class="org.springframework.session.jdbc.config.annotation.web.http.JdbcHttpSessionConfiguration"/>
     
     <!-- 注解方式配置事务 -->
     <!-- <tx:annotation-driven transaction-manager="transactionManager" /> -->

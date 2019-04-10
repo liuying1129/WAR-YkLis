@@ -218,7 +218,7 @@ public class HomeController{
 		
         if("".equals(cookieRequest)||(null==cookieRequest)){
             
-            return new ModelAndView("index", null);
+            return new ModelAndView("index");
         }else{
             
             Cookie cookie2 = new Cookie("yklis.request",null);
@@ -234,7 +234,7 @@ public class HomeController{
                 break;
             }
             
-            return new ModelAndView(str1, null);
+            return new ModelAndView(str1);
         }
     }
 
