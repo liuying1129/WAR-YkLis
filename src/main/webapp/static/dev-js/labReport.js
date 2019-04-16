@@ -131,6 +131,7 @@ btnQuery.onclick = function() {
 		//默认值适合大多数情况。如果你明确指定$.ajax()的 content-type,那么它必定会发送给服务器（即使没有数据要发送）
 		//contentType : "application/x-www-form-urlencoded",//application/json
 		url : 'selectLabReport',
+		//serialize()方法将表单内容序列化为字符串(标准 URL编码表示的文本字符串)。操作对象是代表表单元素集合的 jQuery对象。必须给input加name属性
 		data : $("#frmQuery").serialize(),
 		//预期服务器返回的数据类型。如果不指定，jQuery将自动根据 HTTP包 MIME信息来智能判断
 		dataType : 'json',
