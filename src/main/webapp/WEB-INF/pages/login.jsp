@@ -33,6 +33,9 @@
     <label for="password">password</label>
     <!-- <input type="password" name="password" placeholder="密码"> -->
     <input type="text" name="password" placeholder="密码" onfocus="this.type='password'" autocomplete="off">
+    <label for="captcha">captcha</label>
+    <input type="text" name="captcha" placeholder="验证码" required>
+    <img alt="验证码" title="点击更换" src="kaptcha.jpg" /><!-- src对应KaptchaServlet的url-pattern -->
     <span style="color:red">${msg}</span>
     <input type="submit" value="登录">
   </form>

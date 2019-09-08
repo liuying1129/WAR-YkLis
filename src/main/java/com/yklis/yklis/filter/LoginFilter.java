@@ -97,6 +97,7 @@ public class LoginFilter implements Filter {
           ||(req.getContextPath()+"/goLogin").equals(req.getRequestURI())
           ||(req.getContextPath()+"/logout").equals(req.getRequestURI())
           ||(req.getContextPath()+"/login").equals(req.getRequestURI())
+          ||(req.getContextPath()+"/kaptcha.jpg").equals(req.getRequestURI())//生成图形验证码
           ||(req.getContextPath()+"/html/siteMap.html").equals(req.getRequestURI())){
             chain.doFilter(request, response);
             return;

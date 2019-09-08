@@ -93,7 +93,22 @@ public class HomeController{
             @RequestParam(value = "account",required = false) String account,
             @RequestParam(value = "password",required = false) String password,
             @CookieValue(value = "yklis.request",required = false) String cookieRequest) {
+    	
+    	//获取生成的验证码
+    	String verifyCodeExpected = (String)request.getSession().getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
           
+        //获取用户输入的验证码
+    	String verifyCodeActual = request.getParameter("captcha");
+    	
+    	//验证码校验
+        if(verifyCodeActual == null ||!verifyCodeActual.equals(verifyCodeExpected)) {
+        	
+            Map<String, Object> modelMap = new HashMap<>();
+            modelMap.put("msg", "验证码错误");
+            
+            return new ModelAndView("login", modelMap);
+        }
+        
         //account为null时Mybatis并不会作为空字符串""处理
         String tmpAccount = account;
         if(null == account){

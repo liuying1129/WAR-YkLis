@@ -36,6 +36,14 @@ body {
     -webkit-box-shadow: inset 0px 2px 0px #d9d9d9;
     box-shadow: inset 0px 2px 0px #d9d9d9;
 }
+
+#slick-login input[name="captcha"]{
+    width: 47%;
+}
+
+#slick-login img[alt="验证码"]{
+    vertical-align: middle;/* img与同行的input垂直居中对齐 */
+}
  
 #slick-login input[type="text"]:focus,#slick-login input[type="password"]:focus {
     -webkit-box-shadow: inset 0px 2px 0px #a7a7a7;

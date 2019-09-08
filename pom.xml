@@ -264,6 +264,14 @@
 		    <artifactId>freemarker</artifactId>
 		    <version>2.3.23</version>
 		</dependency>
+		
+		<!-- 图形验证码生成工具 -->
+		<!-- kaptcha的工作原理:调用KaptchaServlet生成图片,同时将生成验证码的字符串放到HttpSession -->
+		<dependency>
+		    <groupId>com.github.penggle</groupId>
+		    <artifactId>kaptcha</artifactId>
+		    <version>2.3.2</version>
+		</dependency>
 									
 		<!-- 本地仓库工具库 -->
         <dependency>

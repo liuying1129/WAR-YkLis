@@ -31,6 +31,61 @@
       <url-pattern>/</url-pattern>
   </servlet-mapping>
   
+  <!-- 生成图形验证码servlet -->
+  <servlet>
+  	<servlet-name>kaptcha</servlet-name>
+  	<servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+  	<init-param>
+  	 	<description>是否有边框</description>
+  		<param-name>kaptcha.border</param-name>
+  		<param-value>no</param-value>
+  	</init-param>
+  	<init-param>
+  		<description>字体颜色</description>
+  		<param-name>kaptcha.textproducer.font.color</param-name>
+  		<param-value>red</param-value>
+  	</init-param>
+  	<init-param>
+  		<description>图片宽度</description>
+  		<param-name>kaptcha.image.width</param-name>
+  		<param-value>110</param-value>
+  	</init-param>
+  	<init-param>
+  		<description>使用哪些字符生成验证码</description>
+  		<param-name>kaptcha.textproducer.char.string</param-name>
+  		<param-value>ACDEFHKPRSTWX345678</param-value>
+  	</init-param>
+  	<init-param>
+  		<description>图片高度</description>
+  		<param-name>kaptcha.image.height</param-name>
+  		<param-value>40</param-value>
+  	</init-param>
+  	<init-param>
+  		<description>字体大小</description>
+  		<param-name>kaptcha.textproducer.font.size</param-name>
+  		<param-value>32</param-value>
+  	</init-param>
+  	<init-param>
+  		<description>干扰线颜色</description>
+  		<param-name>kaptcha.noise.color</param-name>
+  		<param-value>black</param-value>
+  	</init-param>
+  	<init-param>
+  		<description>字符个数</description>
+  		<param-name>kaptcha.textproducer.char.length</param-name>
+  		<param-value>4</param-value>
+  	</init-param>
+  	<init-param>
+  		<description>字体</description>
+  		<param-name>kaptcha.textproducer.font.names</param-name>
+  		<param-value>Arial</param-value>
+  	</init-param>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>kaptcha</servlet-name>
+  	<url-pattern>/kaptcha.jpg</url-pattern>
+  </servlet-mapping>
+  
   <!-- Spring Session -->
   <filter>
 	<filter-name>springSessionRepositoryFilter</filter-name>

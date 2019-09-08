@@ -8,6 +8,12 @@
 if(!window.localStorage){
 	alert("浏览器不支持localStorage");
 }
+
+//点击更换验证码实现--kaptcha.jpg请求,由KaptchaServlet生成验证码
+var kaptchaImg = document.querySelector('img[alt="验证码"]');
+kaptchaImg.onclick = function() {
+	kaptchaImg.setAttribute("src","kaptcha.jpg?" + Math.floor(Math.random()*100));
+}
     
 //读取WebSocket服务端-新结果提醒的URL,并存储在localStorage
 $.ajax({
