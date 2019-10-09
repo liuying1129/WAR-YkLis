@@ -286,7 +286,47 @@
             <artifactId>LYFunction</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-								
+			
+		<!-- dubbo微服务 -->
+		<dependency>
+            <groupId>com.yklis</groupId>
+            <artifactId>lodop-designer-interface</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+		
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>2.6.5</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.101tec</groupId>
+            <artifactId>zkclient</artifactId>
+            <version>0.11</version>
+        </dependency>
+        
+		<!-- Netflix公司开源的zookeeper客户端 -->
+		<!-- dubbo 2.6.5需要该ZK客户端支持,否则报错:NoClassDefFoundError: org/apache/curator/RetryPolicy -->
+		<!-- dubbo 2.5.3版本则不需要 -->
+		<dependency>
+		    <groupId>org.apache.curator</groupId>
+		    <artifactId>curator-framework</artifactId>
+		    <version>4.1.0</version>
+		</dependency>        				
+		
+		<!-- dubbo注解配置方式需要该依赖 -->
+		<dependency>
+		    <groupId>com.alibaba.spring</groupId>
+		    <artifactId>spring-context-support</artifactId>
+		    <version>1.0.2</version>
+		</dependency>
+										
 	</dependencies>
 
 	<build> 

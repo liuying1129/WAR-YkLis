@@ -5,6 +5,7 @@
 		xmlns:tx="http://www.springframework.org/schema/tx"
 		xmlns:aop="http://www.springframework.org/schema/aop"
         xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
 		xsi:schemaLocation="
 		http://www.springframework.org/schema/beans 
 		http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -15,8 +16,10 @@
         http://www.springframework.org/schema/aop 
         http://www.springframework.org/schema/aop/spring-aop.xsd
         http://www.springframework.org/schema/context 
-        http://www.springframework.org/schema/context/spring-context.xsd">
-
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://dubbo.apache.org/schema/dubbo
+        http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+        
     <!-- 有该配置，spring才支持autowire注解 -->
     <!-- 下面的context:component-scan隐含此功能 -->
     <!-- <context:annotation-config/> -->
@@ -110,6 +113,27 @@
     <!-- 配置扫描器,扫描value下的所有接口，然后创建各自接口的动态代理类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> 
         <property name="basePackage" value="com.yklis.lisfunction.dao" />
-    </bean>                    
+    </bean>
+    
+	<!-- 配置服务消费者(consumer)信息，用于计算依赖关系 -->
+	<dubbo:application name="consumer-test" />
+		
+	<!-- 用于配置注册中心相关信息 -->
+	<!-- check="false":注册中心ZK未启动,consumer仍可启动. 注册中心ZK启动后,consumer会自动注册上去-->
+	<dubbo:registry address="zookeeper://127.0.0.1:2181" check="false"/>
+		
+	<!-- check="false":provider未启动,consumer仍可启动. provider启动后,consumer可正常使用 -->
+	<!-- 这里配置后,则不需要各个服务引用单独配置check -->
+	<dubbo:consumer check="false" />
+		
+	<!-- XML配置方式begin -->
+	<!-- 用于创建一个远程服务代理，一个引用可以指向多个注册中心 -->
+	<!-- 声明服务引用，与服务声明接口类型一致 -->
+	<!-- id必填,值可随意 -->
+	<!-- check="false":provider未启动,consumer仍可启动. provider启动后,consumer可正常使用 -->
+	<!-- 缺省使用<dubbo:consumer>的check值 -->
+	<!-- 直连模式,url="dubbo://localhost:20880".直连模式下,zk是否启动都没关系 -->
+	<dubbo:reference id="lodopDesignerService" interface="com.yklis.lodopdesigner.inf.LodopDesignerService" url="dubbo://localhost:20880"/>
+	<!-- XML配置方式end -->    
     
 </beans>
