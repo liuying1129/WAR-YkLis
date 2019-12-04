@@ -40,7 +40,7 @@ $.ajax({
 	    //最终，只用测量该字符串长度是否大于0了
 		if((typeof data!='undefined')&&(typeof data.valueOf()=='string')&&(data.length>0)){
 			
-        	localStorage.setItem("WebSocketNewValueUrl", data);
+        	localStorage.setItem("ScheduleWebSocketAddr", data);
 		}
 	},
 	error : function(xhr, textStatus, errorThrown) {

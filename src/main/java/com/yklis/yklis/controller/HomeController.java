@@ -895,7 +895,7 @@ public class HomeController{
     @ResponseBody
     public String queryWebSocketNewValueUrl(HttpServletRequest request) {
         
-        String s1 = scalarSQLCmdService.ScalarSQLCmd("select Name from CommCode where TypeName='系统代码' and Remark='WebSocket服务端' and Reserve='新结果提醒' ");
+        String s1 = scalarSQLCmdService.ScalarSQLCmd("select Name from CommCode where TypeName='系统代码' and Remark='Schedule WebSocket服务地址' ");
         //{"success":true,"response":{"result":""}}
                         
         JSONObject jso=JSON.parseObject(s1);//json字符串转换成JSONObject(JSON对象)
@@ -919,4 +919,10 @@ public class HomeController{
 		
 		return lodopDesignerService.delete(userId);
 	}
+	
+    @RequestMapping(value = "equipMonitor" )
+    public String equipMonitor(HttpServletRequest request,HttpServletResponse response) {               
+        
+        return "equipMonitor";
+    }
 }
