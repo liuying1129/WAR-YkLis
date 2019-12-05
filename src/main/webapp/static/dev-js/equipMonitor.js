@@ -6,7 +6,6 @@
     "use strict";
     
 	//WebSocket begin
-	//依赖strAccountCookie的值，故放在这里
 	//判断浏览器是否支持WebSocket
 	if (!!window.WebSocket && window.WebSocket.prototype.send){
 	    var wsNewValue = new WebSocket(localStorage.getItem("ScheduleWebSocketAddr")+"/websocket/equipMonitor");
@@ -27,8 +26,8 @@
 	//接收到消息的回调方法
 	wsNewValue.onmessage = function(event){
 		
-		var notyf = new Notyf({delay:5000});
-		notyf.confirm(event.data);
+		//alert(event.data);
+		document.getElementById("unid").innerHTML = "";
 	}
 	  
 	//连接关闭的回调方法
