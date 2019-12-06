@@ -24,10 +24,20 @@
 	}
 
 	//接收到消息的回调方法
-	wsNewValue.onmessage = function(event){
+	wsNewValue.onmessage = function(event){		
 		
-		//alert(event.data);
-		document.getElementById("unid").innerHTML = "";
+		var o1 = JSON.parse(event.data);
+		
+		var minute = dayjs().diff(dayjs(o1.check_date),'minute');
+		var showTime;
+		if(minute<=0) showTime="刚刚"
+			else if(minute<60) showTime=minute+"分钟前"
+				else showTime=o1.check_date;
+		document.getElementById(o1.equipUnid).querySelector(".recentSpc").innerHTML = "最近样本:"+ o1.patientname+ "[" + showTime +"]";
+		
+		document.getElementById(o1.equipUnid).querySelector(".todayNum").innerHTML = "今天样本数量:"+o1.todayNum;
+		
+		document.getElementById(o1.equipUnid).querySelector(".thisMonthNum").innerHTML = "当月样本数量:"+o1.thisMonthNum;
 	}
 	  
 	//连接关闭的回调方法
@@ -39,4 +49,42 @@
 	window.onbeforeunload = function(){
 		wsNewValue.close();
 	}			  			  
-	//WebSocket end		
+	//WebSocket end	
+	
+if(typeof Array.prototype.forEach != "function"){
+	alert("浏览器不支持forEach");
+}
+	
+$(document).ready(function() {
+	
+	$.ajax({
+		//默认值: true。如果需要发送同步请求，请将此选项设置为 false。注意，同步请求将锁住浏览器，用户其它操作必须等待请求完成才可以执行
+		async : true,
+		//默认值:"GET".请求方式 ("POST"或 "GET")，注意：其它 HTTP请求方法，如 PUT和 DELETE也可以使用，但仅部分浏览器支持
+		type : 'POST',
+		//默认值: "application/x-www-form-urlencoded"。发送信息至服务器时内容编码类型
+		//默认值适合大多数情况。如果你明确指定$.ajax()的 content-type,那么它必定会发送给服务器（即使没有数据要发送）
+		//contentType : "application/x-www-form-urlencoded",//application/json
+		url : 'queryEquipList',
+		//预期服务器返回的数据类型。如果不指定，jQuery将自动根据 HTTP包 MIME信息来智能判断
+		dataType : 'json',
+		success : function(data) {
+						
+			var x = document.querySelectorAll(".col-md-3");
+
+			data.response.forEach(function(element,index){
+				
+				//jq中不能使用continue
+				if(index < x.length) {
+									
+					x[index].id=element.Unid;
+					
+					x[index].querySelector(".equipName").innerHTML = element.Type + "["+element.Model+"]";
+				}
+			});
+		},
+		error : function(xhr, textStatus, errorThrown) {
+			console.log("ajax请求失败,请求:queryEquipList,状态码:"+xhr.status +",状态说明:"+ textStatus+",xhr readyState:"+xhr.readyState);
+		}
+	});	
+});

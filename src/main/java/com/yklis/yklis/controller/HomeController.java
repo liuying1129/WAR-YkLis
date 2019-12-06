@@ -925,4 +925,16 @@ public class HomeController{
         
         return "equipMonitor";
     }
+    
+    /**
+     * 获取设备列表
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "queryEquipList" ,produces = "html/text;charset=UTF-8")
+    @ResponseBody
+    public String queryEquipList(HttpServletRequest request) {
+        
+    	return selectDataSetSQLCmdService.selectDataSetSQLCmd("SELECT * FROM EquipManage WITH(NOLOCK)");
+    }    
 }

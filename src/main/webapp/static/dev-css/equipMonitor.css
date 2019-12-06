@@ -1,1 +1,12 @@
-@charset "UTF-8";
+
+.col-md-3[id] {
+	
+    border:2px solid;
+	border-radius:25px;
+}
+
+.equipName {
+	
+	/* 文字居中 */
+	text-align:center;
+}
