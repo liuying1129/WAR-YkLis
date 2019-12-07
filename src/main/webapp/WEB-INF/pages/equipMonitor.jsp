@@ -28,51 +28,33 @@
 	  		<div class="equipName"></div>
 	  		<div class="recentSpc"></div>
 	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
 	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
 	  	</div>
 	  	<div class="col-md-3">
 	  		<div class="equipName"></div>
 	  		<div class="recentSpc"></div>
 	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
 	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
 	  	</div>
 	  	<div class="col-md-3">
 	  		<div class="equipName"></div>
 	  		<div class="recentSpc"></div>
 	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
 	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
 	  	</div>
 	  	<div class="col-md-3">
 	  		<div class="equipName"></div>
 	  		<div class="recentSpc"></div>
 	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
 	  		<div class="thisMonthNum"></div>
-	  	</div>
-	  </div>
-	  <div class="row">
-	  	<div class="col-md-3">
-	  		<div class="equipName"></div>
-	  		<div class="recentSpc"></div>
-	  		<div class="todayNum"></div>
-	  		<div class="thisMonthNum"></div>
-	  	</div>
-	  	<div class="col-md-3">
-	  		<div class="equipName"></div>
-	  		<div class="recentSpc"></div>
-	  		<div class="todayNum"></div>
-	  		<div class="thisMonthNum"></div>
-	  	</div>
-	  	<div class="col-md-3">
-	  		<div class="equipName"></div>
-	  		<div class="recentSpc"></div>
-	  		<div class="todayNum"></div>
-	  		<div class="thisMonthNum"></div>
-	  	</div>
-	  	<div class="col-md-3">
-	  		<div class="equipName"></div>
-	  		<div class="recentSpc"></div>
-	  		<div class="todayNum"></div>
-	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
 	  	</div>
 	  </div>
 	  <div class="row">
@@ -80,51 +62,33 @@
 	  		<div class="equipName"></div>
 	  		<div class="recentSpc"></div>
 	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
 	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
 	  	</div>
 	  	<div class="col-md-3">
 	  		<div class="equipName"></div>
 	  		<div class="recentSpc"></div>
 	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
 	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
 	  	</div>
 	  	<div class="col-md-3">
 	  		<div class="equipName"></div>
 	  		<div class="recentSpc"></div>
 	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
 	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
 	  	</div>
 	  	<div class="col-md-3">
 	  		<div class="equipName"></div>
 	  		<div class="recentSpc"></div>
 	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
 	  		<div class="thisMonthNum"></div>
-	  	</div>
-	  </div>
-	  <div class="row">
-	  	<div class="col-md-3">
-	  		<div class="equipName"></div>
-	  		<div class="recentSpc"></div>
-	  		<div class="todayNum"></div>
-	  		<div class="thisMonthNum"></div>
-	  	</div>
-	  	<div class="col-md-3">
-	  		<div class="equipName"></div>
-	  		<div class="recentSpc"></div>
-	  		<div class="todayNum"></div>
-	  		<div class="thisMonthNum"></div>
-	  	</div>
-	  	<div class="col-md-3">
-	  		<div class="equipName"></div>
-	  		<div class="recentSpc"></div>
-	  		<div class="todayNum"></div>
-	  		<div class="thisMonthNum"></div>
-	  	</div>
-	  	<div class="col-md-3">
-	  		<div class="equipName"></div>
-	  		<div class="recentSpc"></div>
-	  		<div class="todayNum"></div>
-	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
 	  	</div>
 	  </div>
 	  <div class="row">
@@ -132,51 +96,33 @@
 	  		<div class="equipName"></div>
 	  		<div class="recentSpc"></div>
 	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
 	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
 	  	</div>
 	  	<div class="col-md-3">
 	  		<div class="equipName"></div>
 	  		<div class="recentSpc"></div>
 	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
 	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
 	  	</div>
 	  	<div class="col-md-3">
 	  		<div class="equipName"></div>
 	  		<div class="recentSpc"></div>
 	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
 	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
 	  	</div>
 	  	<div class="col-md-3">
 	  		<div class="equipName"></div>
 	  		<div class="recentSpc"></div>
 	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
 	  		<div class="thisMonthNum"></div>
-	  	</div>
-	  </div>
-	  <div class="row">
-	  	<div class="col-md-3">
-	  		<div class="equipName"></div>
-	  		<div class="recentSpc"></div>
-	  		<div class="todayNum"></div>
-	  		<div class="thisMonthNum"></div>
-	  	</div>
-	  	<div class="col-md-3">
-	  		<div class="equipName"></div>
-	  		<div class="recentSpc"></div>
-	  		<div class="todayNum"></div>
-	  		<div class="thisMonthNum"></div>
-	  	</div>
-	  	<div class="col-md-3">
-	  		<div class="equipName"></div>
-	  		<div class="recentSpc"></div>
-	  		<div class="todayNum"></div>
-	  		<div class="thisMonthNum"></div>
-	  	</div>
-	  	<div class="col-md-3">
-	  		<div class="equipName"></div>
-	  		<div class="recentSpc"></div>
-	  		<div class="todayNum"></div>
-	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
 	  	</div>
 	  </div>
 	  <div class="row">
@@ -184,25 +130,135 @@
 	  		<div class="equipName"></div>
 	  		<div class="recentSpc"></div>
 	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
 	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
 	  	</div>
 	  	<div class="col-md-3">
 	  		<div class="equipName"></div>
 	  		<div class="recentSpc"></div>
 	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
 	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
 	  	</div>
 	  	<div class="col-md-3">
 	  		<div class="equipName"></div>
 	  		<div class="recentSpc"></div>
 	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
 	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
 	  	</div>
 	  	<div class="col-md-3">
 	  		<div class="equipName"></div>
 	  		<div class="recentSpc"></div>
 	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
 	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
+	  	</div>
+	  </div>
+	  <div class="row">
+	  	<div class="col-md-3">
+	  		<div class="equipName"></div>
+	  		<div class="recentSpc"></div>
+	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
+	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
+	  	</div>
+	  	<div class="col-md-3">
+	  		<div class="equipName"></div>
+	  		<div class="recentSpc"></div>
+	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
+	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
+	  	</div>
+	  	<div class="col-md-3">
+	  		<div class="equipName"></div>
+	  		<div class="recentSpc"></div>
+	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
+	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
+	  	</div>
+	  	<div class="col-md-3">
+	  		<div class="equipName"></div>
+	  		<div class="recentSpc"></div>
+	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
+	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
+	  	</div>
+	  </div>
+	  <div class="row">
+	  	<div class="col-md-3">
+	  		<div class="equipName"></div>
+	  		<div class="recentSpc"></div>
+	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
+	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
+	  	</div>
+	  	<div class="col-md-3">
+	  		<div class="equipName"></div>
+	  		<div class="recentSpc"></div>
+	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
+	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
+	  	</div>
+	  	<div class="col-md-3">
+	  		<div class="equipName"></div>
+	  		<div class="recentSpc"></div>
+	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
+	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
+	  	</div>
+	  	<div class="col-md-3">
+	  		<div class="equipName"></div>
+	  		<div class="recentSpc"></div>
+	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
+	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
+	  	</div>
+	  </div>
+	  <div class="row">
+	  	<div class="col-md-3">
+	  		<div class="equipName"></div>
+	  		<div class="recentSpc"></div>
+	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
+	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
+	  	</div>
+	  	<div class="col-md-3">
+	  		<div class="equipName"></div>
+	  		<div class="recentSpc"></div>
+	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
+	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
+	  	</div>
+	  	<div class="col-md-3">
+	  		<div class="equipName"></div>
+	  		<div class="recentSpc"></div>
+	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
+	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
+	  	</div>
+	  	<div class="col-md-3">
+	  		<div class="equipName"></div>
+	  		<div class="recentSpc"></div>
+	  		<div class="todayNum"></div>
+	  		<div class="yesterdayNum"></div>
+	  		<div class="thisMonthNum"></div>
+	  		<div class="preMonthNum"></div>
 	  	</div>
 	  </div>
 	</div>

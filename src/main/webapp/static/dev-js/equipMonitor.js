@@ -38,6 +38,10 @@
 		document.getElementById(o1.equipUnid).querySelector(".todayNum").innerHTML = "今天样本数量:"+o1.todayNum;
 		
 		document.getElementById(o1.equipUnid).querySelector(".thisMonthNum").innerHTML = "当月样本数量:"+o1.thisMonthNum;
+		
+		document.getElementById(o1.equipUnid).querySelector(".yesterdayNum").innerHTML = "昨天样本数量:"+o1.yesterdayNum;
+		
+		document.getElementById(o1.equipUnid).querySelector(".preMonthNum").innerHTML = "上月样本数量:"+o1.preMonthNum;
 	}
 	  
 	//连接关闭的回调方法
