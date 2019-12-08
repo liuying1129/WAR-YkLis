@@ -6,13 +6,17 @@ h1 {
 }
 
 body {     
-    background-color: #323B55;
+    background-color: #071f36;
 
-    color: #aab9f4;
+    color: #01bffd;
 
     font-size: 16px;
-    /*font-weight: bold;*/
     font-family: Microsoft Yahei;
+}
+
+h1 {
+	
+	font-weight: bold;
 }
 
 .col-md-3[id] {
@@ -20,7 +24,12 @@ body {
     border:1px solid;
 	border-radius:22px;
 
-	background-color: #5466da;
+	background-color: #0a3d74;
+}
+
+.col-md-3 span {
+
+	color: #fff;
 }
 
 .equipName {
@@ -34,7 +43,7 @@ span[class~="animated"] {
 	/* Animate.css只能应用于块状或内联块状元素 */
 	display: inline-block;
 
-	color: #fff;
+	color: #d9a925;
 }
 
 span[class~="animated"] {
@@ -42,5 +51,5 @@ span[class~="animated"] {
 	/* Animate.css只能应用于块状或内联块状元素 */
 	display: inline-block;
 
-	color: #fff;
+	color: #d9a925;
 }

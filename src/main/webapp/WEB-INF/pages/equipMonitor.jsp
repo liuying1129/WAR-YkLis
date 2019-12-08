@@ -24,7 +24,7 @@
     <link href="${ctx}/static/dev-css/equipMonitor.css?jsr=${jsr}" rel="stylesheet">    
 </head>
 <body>
-    <h1>设备可视化</h1>
+    <h1><span></span>·设备可视化</h1>
 	<div class="container-fluid">
 	  <div class="row">
 	  	<div class="col-md-3">

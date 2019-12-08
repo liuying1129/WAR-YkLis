@@ -5,6 +5,15 @@
 	//4、为未来新版本的Javascript做好铺垫
     "use strict";
     
+if(!window.localStorage){
+	alert("浏览器不支持localStorage");
+}
+
+var strSCSYDW = localStorage.getItem("yklis.SCSYDW");
+if(typeof strSCSYDW == "undefined"||strSCSYDW ==null||strSCSYDW.length == 0){
+	strSCSYDW = "未授权";
+}
+
 	//WebSocket begin
 	//判断浏览器是否支持WebSocket
 	if (!!window.WebSocket && window.WebSocket.prototype.send){
@@ -60,6 +69,8 @@ if(typeof Array.prototype.forEach != "function"){
 }
 	
 $(document).ready(function() {
+	
+	document.querySelector("h1 span").innerHTML = strSCSYDW;
 	
 	$.ajax({
 		//默认值: true。如果需要发送同步请求，请将此选项设置为 false。注意，同步请求将锁住浏览器，用户其它操作必须等待请求完成才可以执行
