@@ -33,15 +33,15 @@
 		if(minute<=0) showTime="刚刚"
 			else if(minute<60) showTime=minute+"分钟前"
 				else showTime=o1.check_date;
-		document.getElementById(o1.equipUnid).querySelector(".recentSpc").innerHTML = "最近样本:"+ o1.patientname+ "[" + showTime +"]";
+		document.getElementById(o1.equipUnid).querySelector(".recentSpc").querySelector("span").innerHTML = o1.patientname+ "[" + showTime +"]";
 		
-		document.getElementById(o1.equipUnid).querySelector(".todayNum").innerHTML = "今天样本数量:"+o1.todayNum;
+		document.getElementById(o1.equipUnid).querySelector(".todayNum").querySelector("span").innerHTML = o1.todayNum;
 		
-		document.getElementById(o1.equipUnid).querySelector(".thisMonthNum").innerHTML = "当月样本数量:"+o1.thisMonthNum;
+		document.getElementById(o1.equipUnid).querySelector(".thisMonthNum").querySelector("span").innerHTML = o1.thisMonthNum;
 		
-		document.getElementById(o1.equipUnid).querySelector(".yesterdayNum").innerHTML = "昨天样本数量:"+o1.yesterdayNum;
+		document.getElementById(o1.equipUnid).querySelector(".yesterdayNum").querySelector("span").innerHTML = o1.yesterdayNum;
 		
-		document.getElementById(o1.equipUnid).querySelector(".preMonthNum").innerHTML = "上月样本数量:"+o1.preMonthNum;
+		document.getElementById(o1.equipUnid).querySelector(".preMonthNum").querySelector("span").innerHTML = o1.preMonthNum;
 	}
 	  
 	//连接关闭的回调方法
@@ -76,6 +76,11 @@ $(document).ready(function() {
 						
 			var x = document.querySelectorAll(".col-md-3");
 
+			x.forEach(function(element,index){
+
+				element.style.display="none";
+			});
+
 			data.response.forEach(function(element,index){
 				
 				//jq中不能使用continue
@@ -84,6 +89,8 @@ $(document).ready(function() {
 					x[index].id=element.Unid;
 					
 					x[index].querySelector(".equipName").innerHTML = element.Type + "["+element.Model+"]";
+
+					x[index].style.display="";
 				}
 			});
 		},

@@ -1,12 +1,46 @@
 
+h1 {
+	
+	/* 文字居中 */
+	text-align:center;
+}
+
+body {     
+    background-color: #323B55;
+
+    color: #aab9f4;
+
+    font-size: 16px;
+    /*font-weight: bold;*/
+    font-family: Microsoft Yahei;
+}
+
 .col-md-3[id] {
 	
-    border:2px solid;
-	border-radius:25px;
+    border:1px solid;
+	border-radius:22px;
+
+	background-color: #5466da;
 }
 
 .equipName {
 	
 	/* 文字居中 */
 	text-align:center;
+}
+
+span[class~="animated"] {
+
+	/* Animate.css只能应用于块状或内联块状元素 */
+	display: inline-block;
+
+	color: #fff;
+}
+
+span[class~="animated"] {
+
+	/* Animate.css只能应用于块状或内联块状元素 */
+	display: inline-block;
+
+	color: #fff;
 }
