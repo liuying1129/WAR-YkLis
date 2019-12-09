@@ -32,7 +32,7 @@
 	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
 	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
 	  	</div>
 	  	<div class="col-md-3">
@@ -40,7 +40,7 @@
 	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
 	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
 	  	</div>
 	  	<div class="col-md-3">
@@ -48,7 +48,7 @@
 	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
 	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
 	  	</div>
 	  	<div class="col-md-3">
@@ -56,41 +56,7 @@
 	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
 	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
-	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
-	  	</div>
-	  </div>
-	  <div class="row">
-	  	<div class="col-md-3">
-	  		<div class="equipName"></div>
-	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
-	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
-	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
-	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
-	  	</div>
-	  	<div class="col-md-3">
-	  		<div class="equipName"></div>
-	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
-	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
-	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
-	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
-	  	</div>
-	  	<div class="col-md-3">
-	  		<div class="equipName"></div>
-	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
-	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
-	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
-	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
-	  	</div>
-	  	<div class="col-md-3">
-	  		<div class="equipName"></div>
-	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
-	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
-	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
 	  	</div>
 	  </div>
@@ -100,7 +66,7 @@
 	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
 	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
 	  	</div>
 	  	<div class="col-md-3">
@@ -108,7 +74,7 @@
 	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
 	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
 	  	</div>
 	  	<div class="col-md-3">
@@ -116,7 +82,7 @@
 	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
 	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
 	  	</div>
 	  	<div class="col-md-3">
@@ -124,41 +90,7 @@
 	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
 	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
-	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
-	  	</div>
-	  </div>
-	  <div class="row">
-	  	<div class="col-md-3">
-	  		<div class="equipName"></div>
-	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
-	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
-	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
-	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
-	  	</div>
-	  	<div class="col-md-3">
-	  		<div class="equipName"></div>
-	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
-	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
-	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
-	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
-	  	</div>
-	  	<div class="col-md-3">
-	  		<div class="equipName"></div>
-	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
-	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
-	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
-	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
-	  	</div>
-	  	<div class="col-md-3">
-	  		<div class="equipName"></div>
-	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
-	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
-	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
 	  	</div>
 	  </div>
@@ -168,7 +100,7 @@
 	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
 	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
 	  	</div>
 	  	<div class="col-md-3">
@@ -176,7 +108,7 @@
 	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
 	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
 	  	</div>
 	  	<div class="col-md-3">
@@ -184,7 +116,7 @@
 	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
 	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
 	  	</div>
 	  	<div class="col-md-3">
@@ -192,41 +124,7 @@
 	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
 	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
-	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
-	  	</div>
-	  </div>
-	  <div class="row">
-	  	<div class="col-md-3">
-	  		<div class="equipName"></div>
-	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
-	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
-	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
-	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
-	  	</div>
-	  	<div class="col-md-3">
-	  		<div class="equipName"></div>
-	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
-	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
-	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
-	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
-	  	</div>
-	  	<div class="col-md-3">
-	  		<div class="equipName"></div>
-	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
-	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
-	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
-	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
-	  	</div>
-	  	<div class="col-md-3">
-	  		<div class="equipName"></div>
-	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
-	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
-	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
 	  	</div>
 	  </div>
@@ -236,7 +134,7 @@
 	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
 	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
 	  	</div>
 	  	<div class="col-md-3">
@@ -244,7 +142,7 @@
 	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
 	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
 	  	</div>
 	  	<div class="col-md-3">
@@ -252,7 +150,7 @@
 	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
 	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
 	  	</div>
 	  	<div class="col-md-3">
@@ -260,7 +158,109 @@
 	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
 	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
-	  		<div class="thisMonthNum">当月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
+	  	</div>
+	  </div>
+	  <div class="row">
+	  	<div class="col-md-3">
+	  		<div class="equipName"></div>
+	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
+	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
+	  	</div>
+	  	<div class="col-md-3">
+	  		<div class="equipName"></div>
+	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
+	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
+	  	</div>
+	  	<div class="col-md-3">
+	  		<div class="equipName"></div>
+	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
+	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
+	  	</div>
+	  	<div class="col-md-3">
+	  		<div class="equipName"></div>
+	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
+	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
+	  	</div>
+	  </div>
+	  <div class="row">
+	  	<div class="col-md-3">
+	  		<div class="equipName"></div>
+	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
+	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
+	  	</div>
+	  	<div class="col-md-3">
+	  		<div class="equipName"></div>
+	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
+	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
+	  	</div>
+	  	<div class="col-md-3">
+	  		<div class="equipName"></div>
+	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
+	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
+	  	</div>
+	  	<div class="col-md-3">
+	  		<div class="equipName"></div>
+	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
+	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
+	  	</div>
+	  </div>
+	  <div class="row">
+	  	<div class="col-md-3">
+	  		<div class="equipName"></div>
+	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
+	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
+	  	</div>
+	  	<div class="col-md-3">
+	  		<div class="equipName"></div>
+	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
+	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
+	  	</div>
+	  	<div class="col-md-3">
+	  		<div class="equipName"></div>
+	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
+	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
+	  	</div>
+	  	<div class="col-md-3">
+	  		<div class="equipName"></div>
+	  		<div class="recentSpc">最近样本&nbsp;&nbsp;<span></span></div>
+	  		<div class="todayNum">今日样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
+	  		<div class="yesterdayNum">昨日样本数量&nbsp;&nbsp;<span></span></div>
+	  		<div class="thisMonthNum">本月样本数量&nbsp;&nbsp;<span class="animated infinite heartBeat"></span></div>
 	  		<div class="preMonthNum">上月样本数量&nbsp;&nbsp;<span></span></div>
 	  	</div>
 	  </div>

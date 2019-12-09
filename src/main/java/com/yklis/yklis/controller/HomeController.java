@@ -935,6 +935,6 @@ public class HomeController{
     @ResponseBody
     public String queryEquipList(HttpServletRequest request) {
         
-    	return selectDataSetSQLCmdService.selectDataSetSQLCmd("SELECT * FROM EquipManage WITH(NOLOCK)");
+    	return selectDataSetSQLCmdService.selectDataSetSQLCmd("SELECT * FROM EquipManage WITH(NOLOCK) order by OrderNo");
     }    
 }
