@@ -15,7 +15,7 @@
     <c:set var="jsr" value="${initParam.jsRandom}"/>
     
     <!-- Animate.css -->
-    <link rel="stylesheet" href="${ctx}/static/animate.min.css">
+    <link rel="stylesheet" href="${ctx}/static/animate.min.css?jsr=V3.7.2">
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="${ctx}/static/bootstrap/3.3.7/css/bootstrap.min.css" />
