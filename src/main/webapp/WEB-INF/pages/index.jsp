@@ -16,6 +16,9 @@
     <c:set var="ctx" value="${pageContext.request.contextPath}"/>
     <c:set var="jsr" value="${initParam.jsRandom}"/>
     
+    <!-- 网页图标 -->
+    <link rel="icon" href="${ctx}/static/images/favicon.ico" />
+
     <!-- Custom styles for this template -->
     <link href="${ctx}/static/dev-css/index.css?jsr=${jsr}" rel="stylesheet">
 </head>

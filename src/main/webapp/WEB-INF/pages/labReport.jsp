@@ -16,6 +16,9 @@
     <c:set var="ctx" value="${pageContext.request.contextPath}"/>
     <c:set var="jsr" value="${initParam.jsRandom}"/>
     
+    <!-- 网页图标 -->
+    <link rel="icon" href="${ctx}/static/images/favicon.ico" />
+    
     <!-- Bootstrap -->
     <link rel="stylesheet" href="${ctx}/static/bootstrap/3.3.7/css/bootstrap.min.css" />
     <!-- Bootstrap Table -->

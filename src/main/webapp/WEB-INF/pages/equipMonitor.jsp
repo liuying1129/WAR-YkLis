@@ -14,6 +14,9 @@
     <c:set var="ctx" value="${pageContext.request.contextPath}"/>
     <c:set var="jsr" value="${initParam.jsRandom}"/>
     
+    <!-- 网页图标 -->
+    <link rel="icon" href="${ctx}/static/images/favicon.ico" />
+    
     <!-- Animate.css -->
     <link rel="stylesheet" href="${ctx}/static/animate.min.css?jsr=V3.7.2">
 
