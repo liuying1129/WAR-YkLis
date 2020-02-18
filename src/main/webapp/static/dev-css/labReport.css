@@ -36,12 +36,13 @@ table,th,td{
 }
 
 img[alt="打印"] {
-    position: absolute;/* 层模型->绝对定位 */
+    /* position: absolute; */ /* 层模型->绝对定位 */
+    position: fixed;/* 层模型->固定定位,避免该悬浮按钮跟随滚动 */
     
     z-index: 99999;/* 置于最上层 */
 
     right: 10px;
-    top: 50px;
+    top: 55px;
 
     cursor: pointer;
 }
