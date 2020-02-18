@@ -30,6 +30,9 @@
     <!-- notyf -->     
     <link href="${ctx}/static/notyf/notyf.min.css" rel="stylesheet">
          
+    <!-- 鼠标悬停动画.官网:https://github.com/IanLunn/Hover -->
+    <link rel="stylesheet" href="${ctx}/static/hover-css/hover-min.css" />
+
     <!-- Custom styles for this template -->
     <link href="${ctx}/static/dev-css/labReport.css?jsr=${jsr}" rel="stylesheet">
     
@@ -43,6 +46,8 @@
     <%-- <%@ include file="header.jsp" %> --%>
     <!-- 动态包含 -->
     <jsp:include page="header.jsp" />
+    
+  <img src="static/images/print.png" alt="打印" title="打印" class="hvr-grow" />  
 
   <!-- form表单数据通过form外button(ajax)提交到controller示例 -->
   <form id="frmQuery">

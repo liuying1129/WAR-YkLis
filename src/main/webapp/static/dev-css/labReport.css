@@ -34,3 +34,14 @@ table,th,td{
 #maskLayer img{
 	padding-top:80px;
 }
+
+img[alt="打印"] {
+    position: absolute;/* 层模型->绝对定位 */
+    
+    z-index: 99999;/* 置于最上层 */
+
+    right: 10px;
+    top: 50px;
+
+    cursor: pointer;
+}
