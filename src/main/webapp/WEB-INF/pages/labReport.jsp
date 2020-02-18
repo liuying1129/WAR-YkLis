@@ -78,7 +78,7 @@
     </select>
   </form>
   <button id="btnQuery">查询</button>
-  <button id="btnPrint">打印</button><!--  越秀中医,不需要显示打印按钮 style="display:none;" -->
+  <!-- <button id="btnPrint">打印</button> --><!--  越秀中医,不需要显示打印按钮 style="display:none;" --><!-- 改用浮动按钮,故注释 -->
 
   <table id="myTBody"></table>
   

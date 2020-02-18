@@ -317,7 +317,8 @@ function createDetailContent(parmTop,parmElement) {
 	LODOP.ADD_PRINT_TEXT(parmTop,655,100,20,parmElement.后段参考范围);
 }
 
-var btnPrint = document.getElementById("btnPrint");
+//var btnPrint = document.getElementById("btnPrint");
+var btnPrint = document.querySelector('img[alt="打印"]');
 btnPrint.onclick = function() {
 	
 	var lsSelected = $('#myTBody').bootstrapTable('getSelections');
