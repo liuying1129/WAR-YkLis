@@ -47,11 +47,39 @@
             <li><a id="hrefWap" tabindex="0" role="button" title="扫描二维码" data-trigger="focus" data-placement="bottom" data-html="true" data-content="&lt;img width='100px' height='100px' src='static/images/QRCodeURL.png'&gt;">手机版</a></li>
             <!-- 通过controller返回对应的html页面的示例 -->
             <!-- <li><a href="testHtml" target='_blank'>HtmlTest</a></li> -->
+            <li><a href="#" data-toggle="modal" data-target="#myModal">选项</a></li>
             <li><a href="equipMonitor" target="_blank">设备监控</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+    
+	<!-- 【选项】模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+	            &times;
+	          </button>
+	          <h4 class="modal-title">选项</h4>                     
+	        </div>
+	        <div class="modal-body">
+	
+	          <input type="radio" value="0"  name="printType" id="checkPreview" checked />
+	          <!-- Bootstrap写了label加粗的样式,故行内重写样式(经测试,写在外部CSS文件中不行) -->
+	          <label style="font-weight:normal;" for="checkPreview">预览模式</label>&nbsp;&nbsp;&nbsp;
+	          <input type="radio" value="1"  name="printType" id="checkPrint"  />
+	          <label style="font-weight:normal;" for="checkPrint">直接打印</label>&nbsp;&nbsp;&nbsp;
+	          <input type="radio" value="2"  name="printType" id="checkPrintDesign"  />
+	          <label style="font-weight:normal;" for="checkPrintDesign">打印设计</label><br />
+	        </div>
+	        <div class="modal-footer">
+	          <button id="btnSave" type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+	        </div>
+	      </div><!-- /.modal-content -->
+	    </div><!-- /.modal -->
+  	</div>    
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="${ctx}/static/jquery/jquery-3.2.1.min.js"></script>

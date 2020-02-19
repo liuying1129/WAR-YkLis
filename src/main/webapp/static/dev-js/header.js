@@ -97,9 +97,32 @@ $(document).ready(function() {
 		error : function(xhr, textStatus, errorThrown) {
 			console.log("ajax请求失败,请求:querySessionAccount,状态码:"+xhr.status +",状态说明:"+ textStatus+",xhr readyState:"+xhr.readyState);
 		}
-	});	
+	});
+	
+	//模式窗口的shown事件
+	$('#myModal').on('shown.bs.modal', function (e) {
+				
+		var radiosPrintType = document.getElementsByName("printType");
+	    for (var i = 0; i < radiosPrintType.length; i++) {
+	    	radiosPrintType[i].checked = false;
+	        if (radiosPrintType[i].value == localStorage.getItem("printType")) {
+	        	radiosPrintType[i].checked = true;
+	        }
+	    }
+	})
 });
 
 $('#hrefWap').popover({
 	//&lt;img width='100px' height='100px' src='static/images/QRCodeURL.png'&gt;
 });
+
+var btnSave = document.getElementById("btnSave");
+btnSave.onclick = function() {
+	
+	var radiosPrintType = document.getElementsByName("printType");
+    for (var i = 0; i < radiosPrintType.length; i++) {
+        if(radiosPrintType[i].checked){
+        	localStorage.setItem("printType", radiosPrintType[i].value);
+        }
+    }
+};

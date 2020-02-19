@@ -452,7 +452,11 @@ btnPrint.onclick = function() {
             		}
             	};
             }
-			LODOP.PREVIEW();//最后一个打印(或预览、维护、设计)语句//PRINT_DESIGN();
+            
+            var strPrintType = localStorage.getItem("printType");
+            if(strPrintType === "1") LODOP.PRINT()//最后一个打印(或预览、维护、设计)语句//PRINT_DESIGN();
+            else if(strPrintType === "2") LODOP.PRINT_DESIGN()//最后一个打印(或预览、维护、设计)语句//PRINT_DESIGN();
+            else LODOP.PREVIEW();//最后一个打印(或预览、维护、设计)语句//PRINT_DESIGN();
 		},
 		error : function(xhr, textStatus, errorThrown) {
 			console.log("ajax请求失败,请求:printReport,状态码:"+xhr.status +",状态说明:"+ textStatus+",xhr readyState:"+xhr.readyState);
