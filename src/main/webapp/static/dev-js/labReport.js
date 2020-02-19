@@ -353,7 +353,7 @@ btnPrint.onclick = function() {
 			data.forEach(function(element2,index2){				
 				
 				var PAGE_RECORDERS = 17;//每页行数
-				var iPageNum = 1;
+				var iPageNum = 1;//页码.仅用于打印在页脚
 				
 				//打印页头							
 				createPageHeaderContent(strSCSYDW,element2);
@@ -368,11 +368,8 @@ btnPrint.onclick = function() {
 					var FIRST_ROW_TOP = 145;//第一条明细的top
 					var ROW_HEIGHT = 20;//每条明细占用的高度
 					
-					var iRowTop = FIRST_ROW_TOP+(index % PAGE_RECORDERS)*ROW_HEIGHT;//该条明细记录打印的Top位置					
-					//打印明细
-					createDetailContent(iRowTop,element);
-										
-					if((index % PAGE_RECORDERS)+1 === PAGE_RECORDERS){
+					if((index % PAGE_RECORDERS === 0)&&(index != 0)){
+						//index为每页行数的整数倍时换页(index从0开始).第一次(index=0)时不换页
 						
 						LODOP.NewPageA();
 						
@@ -385,6 +382,10 @@ btnPrint.onclick = function() {
 						//打印页脚
 						createPageFooterContent(element2,iPageTotal,iPageNum);
 					}
+					
+					var iRowTop = FIRST_ROW_TOP+(index % PAGE_RECORDERS)*ROW_HEIGHT;//该条明细记录打印的Top位置					
+					//打印明细
+					createDetailContent(iRowTop,element);
 				});
 				//明细循环end
 				
