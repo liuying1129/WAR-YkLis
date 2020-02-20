@@ -34,7 +34,7 @@
         <property name="locations">  
             <list>  
                 <!-- <value>classpath:jdbc.properties</value> -->
-                <!-- file:/ykapi-cfg/jdbc.properties,file:window下是指当前分区,比如项目在d盘，则是d:/ykapi-cfg/jdbc.properties -->
+                <!-- file:/ykapi-cfg/jdbc.properties,file:window下是指当前分区,比如项目在d盘，则是d:/ykapi-cfg/jdbc.properties;linux下表示根目录/ykapi-cfg/jdbc.properties -->
                 <!-- 在项目包之外配置是为了部署、升级更方便 -->
                 <value>file:/yklis-cfg/jdbc.properties</value>
             </list>  
