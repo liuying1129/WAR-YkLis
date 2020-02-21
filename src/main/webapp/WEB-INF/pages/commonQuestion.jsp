@@ -36,6 +36,8 @@
     A:http://www.c-lodop.com下载Lodop综合版,并在客户端电脑上安装C-Lodop<br/>
     Q:出现莫名奇妙的问题?<br/>
     A:浏览器需要开启cookie功能<br/>
+    Q:连接websocket服务器错误<br/>
+    A:如果系统代码的websocket地址发生改变,登录时才会重新获取新的websocket地址<br/>    
     </div>
 
 </body>
