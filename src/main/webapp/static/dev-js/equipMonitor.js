@@ -87,7 +87,10 @@ $(document).ready(function() {
 						
 			var x = document.querySelectorAll(".col-md-3");
 
-			x.forEach(function(element,index){
+			//数组可以用x.forEach方式遍历
+			//x.forEach(function(element,index){
+			//document.querySelectorAll()返回的不是数组,而是NodeList,用x.forEach报错【对象不支持“forEach”属性或方法】,可用[].forEach遍历
+			[].forEach.call(x, function(element) {
 
 				element.style.display="none";
 			});
