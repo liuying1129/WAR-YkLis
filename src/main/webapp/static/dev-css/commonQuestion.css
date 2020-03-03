@@ -1,5 +1,5 @@
 
-/* 因为header的存在,内容需要往下移50px */
+/* 内容往下移80px */
 body{
     padding-top: 80px;
     padding-left: 50px;

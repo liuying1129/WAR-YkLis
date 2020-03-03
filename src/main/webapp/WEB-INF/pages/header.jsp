@@ -41,7 +41,8 @@
             <li><a id="hrefAccount" href="goLogin">登录</a></li>
             <li><a href="labReport">检验报告</a></li>
             <li><a id="hrefSCSYDW" href="#">授权使用单位</a></li>
-            <li><a href="commonQuestion">常见问题</a></li>
+            <!-- 示例:直接访问项目中的html页面 -->
+            <li><a href="./html/commonQuestion.html" target="_blank">常见问题</a></li>
             <!-- <li><a href="logout">注销</a></li>
             <li><a href="goModifyPwd">修改密码</a></li> -->
             <li><a id="hrefWap" tabindex="0" role="button" title="扫描二维码" data-trigger="focus" data-placement="bottom" data-html="true" data-content="&lt;img width='100px' height='100px' src='static/images/QRCodeURL.png'&gt;">手机版</a></li>
