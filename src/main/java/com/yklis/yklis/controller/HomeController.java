@@ -25,7 +25,6 @@ import org.javatuples.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -41,7 +40,6 @@ import com.yklis.lisfunction.service.ExecSQLCmdService;
 import com.yklis.lisfunction.service.ScalarSQLCmdService;
 import com.yklis.lisfunction.service.SelectDataSetSQLCmdService;
 import com.yklis.lisfunction.service.WorkerService;
-import com.yklis.lodopdesigner.inf.LodopDesignerService;
 import com.yklis.util.CommFunction;
 import com.yklis.yklis.util.Constants;
 
@@ -70,11 +68,6 @@ public class HomeController{
     
     @Autowired
     private ChkValuService chkValuService;
-    
-	@Autowired//XML配置方式
-	//@com.alibaba.dubbo.config.annotation.Reference//注解配置方式
-	private LodopDesignerService lodopDesignerService;
-
 
     @RequestMapping("index")
     //不能加@ResponseBody,否则,不会跳转到index页面,而是将index做为字符串返回到当前页面中
@@ -905,14 +898,6 @@ public class HomeController{
         
         return result;
     }
-    
-	//http://localhost:8080/YkLis/name/123
-	@RequestMapping("/name/{id}")
-	@ResponseBody
-	public String ss(@PathVariable("id") int userId){
-		
-		return lodopDesignerService.delete(userId);
-	}
 	
     @RequestMapping(value = "equipMonitor" )
     public String equipMonitor(HttpServletRequest request,HttpServletResponse response) {               
