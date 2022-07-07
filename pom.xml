@@ -14,7 +14,7 @@
 	<!-- 定义变量 -->
 	<properties>
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    	<spring.version>5.1.6.RELEASE</spring.version>
+    	<spring.version>5.2.21.RELEASE</spring.version>
     	<spring.groupId>org.springframework</spring.groupId>
     	
     	<!-- maven内置变量${maven.build.timestamp} -->
